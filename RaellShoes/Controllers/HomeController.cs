@@ -56,7 +56,7 @@ namespace RaellShoes.Controllers
         }
 
         public IActionResult Login()
-        {
+        {           
             return View();
         }
 
@@ -106,12 +106,23 @@ namespace RaellShoes.Controllers
                 cliente.Enderecos.Add(cliente.EnderecoCadastroInicial[i]);
             }
 
-            string confirmacao = facade.Cadastrar(cliente);
+            string confirmacao = facade.Cadastrar(cliente);           
 
-            if(confirmacao == null)
-                return View("Login");
+            if(confirmacao == null)            
+                return View("SucessoCadastro");           
+               
             else           
-                return View();          
+                return View("ErroCadastro", new String(confirmacao));          
+        }
+
+        public IActionResult SucessoCadastro()
+        {
+            return View();
+        }
+
+        public IActionResult Erro(String mensagem)
+        {
+            return View();
         }
 
 
@@ -119,7 +130,7 @@ namespace RaellShoes.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

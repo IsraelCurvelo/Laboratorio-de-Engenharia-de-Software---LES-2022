@@ -1,0 +1,81 @@
+﻿@model String
+
+@{ViewData["Title"] = "Erro Cadastro";}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Erro</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="">RaellShoes<span>.</span></a></h1>
+        </div>
+    </header><!-- End Header -->
+    <!--Form-->
+    <div class="container mt-5">
+        <!--SEM FORM POR SER PROTOTIPO E ROTEAR PARA CADASTRO-->
+        <!-- <form class="emailnovo">-->
+        <form asp-action="ConfirmarEmail" class="needs-validation" novalidate>
+            <div class="info-wrap">
+                <div class="container" style="padding-top: 100px; margin-bottom: -30px;">
+                    <div class="section-title2">
+                        <i class="bi bi-x-circle-fill" style="display: flex; justify-content: center; align-items: center; font-size: 200px; color: red;"></i>
+                    </div>
+                    <br><br><br>
+                    <div class="row">
+                        <div class="row">
+                            <h3 style="display: flex; justify-content: center; align-items: center; color: red; font-style: italic;">@Model</h3>
+                        </div>
+
+                    </div>
+                    <br><br><br>
+                    <button type="submit" class="btn btn-danger col-lg-12 ">Voltar</button>
+                </div>
+        </form><!--</form>-->
+        <br>
+    </div>
+    </section>
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

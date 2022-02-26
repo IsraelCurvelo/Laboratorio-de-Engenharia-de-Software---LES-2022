@@ -125,7 +125,7 @@ namespace RaellShoes.Facadee
 
             foreach (var item in lista)            
                 if (item != null)
-                    resposta += ", " +  item;                
+                    resposta += item+ " | " ;                
             
             return resposta;
         }
