@@ -1,0 +1,79 @@
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.deps.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.runtimeconfig.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.runtimeconfig.dev.json
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.dll
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.pdb
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.dll
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.pdb
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfoInputs.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfo.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CoreCompileInputs.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorAssemblyInfo.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorAssemblyInfo.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.TagHelpers.input.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.TagHelpers.output.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorCoreGenerate.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorTargetAssemblyInfo.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorTargetAssemblyInfo.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.Views.pdb
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.dll
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.pdb
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.genruntimeconfig.cache
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CopyComplete
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contato.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\PerguntasFrequentes.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\SobreNos.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\EsqueceuSenha.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\CadastreSe.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\ConfirmarEmail.cshtml.g.cs
+C:\Users\Israel Curvelo\Desktop\LES 2022\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.deps.json
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.runtimeconfig.json
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.runtimeconfig.dev.json
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.dll
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.pdb
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.dll
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.pdb
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfoInputs.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfo.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CoreCompileInputs.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorAssemblyInfo.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorAssemblyInfo.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.TagHelpers.input.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.TagHelpers.output.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorCoreGenerate.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\CadastreSe.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\ConfirmarEmail.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contato.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\EsqueceuSenha.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\PerguntasFrequentes.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\SobreNos.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorTargetAssemblyInfo.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.RazorTargetAssemblyInfo.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.Views.pdb
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.dll
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.pdb
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.genruntimeconfig.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CopyComplete

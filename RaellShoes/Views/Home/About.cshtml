@@ -1,0 +1,138 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Login</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style-login.css" rel="stylesheet">
+    <link href="~/assets/antigo/img/logo.jpg" rel="/assets/antigo/img/logo.jpg">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Seja Bem-Vindo</h3>
+
+                </div>
+                <div class="card-body">
+                    <form action="index-logado.html" class="needs-validation" novalidate>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                            </div>
+                            <input  type="email" class="form-control" placeholder="username" required>
+                            <div class="invalid-feedback">
+                                O email deve estar no formato xx@xx
+                            </div>
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                            </div>
+                            <input  type="password" class="form-control ipt-pass" placeholder="password" pattern="()(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@@#]{8,}" required>
+
+                            <div class="invalid-feedback">
+                                A senha deve conter ao menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um caractere especial.
+                            </div>
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Manter logado
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success col-lg-12">Entrar</button>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="justify-content-center ">
+                        <a href="esqueceu-senha.html"><button class="btn btn-outline-warning col-lg-12">Esqueceu sua senha?</button></a>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <p id="text-conta">Não tem uma conta? </p>
+                        <a href="confirmar-email.html"><button class="btn btn-outline-light">Cadastre-se</button> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+          (function () {
+              'use strict'
+              var forms = document.querySelectorAll('.needs-validation')
+
+              Array.prototype.slice.call(forms)
+                  .forEach(function (form) {
+                      form.addEventListener('submit', function (event) {
+                          if (!form.checkValidity()) {
+                              event.preventDefault()
+                              event.stopPropagation()
+                          }
+
+                          form.classList.add('was-validated')
+                      }, false)
+                  })
+          })()
+    </script>
+
+    <script>
+
+          function encerrarConta() {
+              Swal.fire({
+                  title: 'Você tem certeza?',
+                  text: "Sentiremos sua falta!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Sim, excluir a conta!',
+                  cancelButtonText: 'Não tenho certeza'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      Swal.fire(
+                          'Sua conta foi deletada',
+                          'Espero que volte logo.',
+                          'success',
+                      )
+                      setTimeout(function () {
+                          window.location.href = "excluir";
+                      }, 1200);
+                  }
+              })
+          }
+    </script>
+
+
+
+
+
+</body>
+
+</html>

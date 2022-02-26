@@ -1,0 +1,779 @@
+﻿@model RaellShoes.Models.Clientes.Cliente
+
+@{ ViewData["Title"] = "Cadastre-se"; }
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Cadastre-se</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html">RaellShoes<span>.</span></a></h1>
+        </div>
+    </header><!-- End Header -->
+
+
+    <section id="cliente" class="cliente">
+        <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
+            <div class="section-title2">
+                <h2>Me conte um pouco sobre <span>Você </span></h2>
+            </div>
+        </div>
+
+        <!--Form-->
+        <div class="container mt-5">
+            <form asp-action="CadastrarCliente" method="post" id="form-cliente" class="needs-validation" novalidate>
+
+                <!--Box Dados Pessoais-->
+                <div class="info-wrap">
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-person-badge" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Quais seus dados pessoais?</strong></h4><br>
+                    <div class="row">
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Nome</span>
+                                <input asp-for="Nome" class="form-control" id="name"
+                                       placeholder="Digite seu primeiro nome" minlength="3" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Sobrenome</span>
+                                <input asp-for="Sobrenome" class="form-control" id="lastname"
+                                       placeholder="Digite seu sobrenome" minlength="3" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>CPF</span>
+                                <input asp-for="Cpf" class="form-control" id="cpf" placeholder="Digite seu CPF"
+                                       maxlength="14" onkeypress="formatar('###.###.###-##', this);" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
+                                       required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Data de Nascimento</span>
+                                <input asp-for="DataNascimento" class="form-control" id="dataNascimento"
+                                       placeholder="Data de Nascimento" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Gênero</span>
+                                <br>
+                                <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Genero>()" class="form-select" required>
+                                  
+                                </select>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <!--Box Telefone-->
+                <div class="info-wrap">
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-phone" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Qual seu telefone?</strong></h4><br>
+
+
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo</span>
+                            <select asp-for="Telefone.TipoTelefone" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoTelefone>()" class="form-select" required>
+                               
+                            </select>
+
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>DDD</span>
+                            <input asp-for="Telefone.DDD" class="form-control" id="ddd" placeholder="Digite seu DDD" maxlength="2" pattern="[0-9]{2}" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório (2 Dígitos)
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Telefone</span>
+                            <input asp-for="Telefone.Numero" class="form-control" id="ddd" placeholder="Digite seu Telefone" maxlength="10"
+                                   onkeypress="formatar('#####-####', this);" pattern="[0-9]{4}-[0-9]{5}||[0-9]{5}-[0-9]{4}"
+                                   required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório (9 Dígitos)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <!--Box Endereço Residencial-->
+                <div class="info-wrap" id="endereco-box">
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-house" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Aonde você mora?</strong></h4><br>
+
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
+                            <select asp-for="EnderecoCadastroInicial[0].TipoEndereco" class="form-select" disabled required>
+                                <option value="Residencial">Residencial</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome do endereço</span>
+                            <input asp-for="EnderecoCadastroInicial[0].Apelido" type="text"  class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                                   required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Residência</span>
+                            <select asp-for="EnderecoCadastroInicial[0].TipoResidencia"asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()"class="form-select" id="tipoResidencia" required>
+                              
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Logradouro</span>
+                            <select asp-for="EnderecoCadastroInicial[0].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required>
+                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cep</span>
+                            <input asp-for="EnderecoCadastroInicial[0].Cep" type="text"  class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[0].Logradouro"  type="text" name="logradouro" class="form-control" id="logradouro-modal"
+                                   placeholder="Digite o logradouro" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Número</span>
+                            <input asp-for="EnderecoCadastroInicial[0].Numero" type="text" class="form-control" name="numero" id="numero" placeholder="N°" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Complemento</span>
+                            <input asp-for="EnderecoCadastroInicial[0].Complemento" type="text" class="form-control" name="complemento" id="complemento"
+                                   placeholder="Caso houver, digite o complemento">
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Bairro</span><i class="bi bi-lock" id="lock-bairro" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[0].Bairro"  type="text" name="bairro" class="form-control" id="bairro-modal"
+                                   placeholder="Digite o bairro" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cidade</span><i class="bi bi-lock" id="lock-cidade" hidden></i>
+                            <input  asp-for="EnderecoCadastroInicial[0].Cidade.Descricao" type="text" name="cidade" class="form-control" id="cidade-modal"
+                                   placeholder="Digite a cidade" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Estado</span><i class="bi bi-lock" id="lock-estado" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[0].Cidade.Estado.Descricao" type="text" name="estado" class="form-control" id="estado-modal"
+                                   placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>País</span><i class="bi bi-lock" id="lock-pais" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[0].Cidade.Estado.Pais.Descricao" type="text" name="pais" class="form-control" id="pais-modal" placeholder="Digite o país" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Observações</span>
+                            <textarea asp-for="EnderecoCadastroInicial[0].Observacoes" type="text" name="observacoes" class="form-control" id="observacoes"
+                                      placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+
+                            <div class="form-check form-switch">
+                                <span>Usar como endereço de entrega?</span>
+                                <input asp-for="FlagEntrega" type="checkbox" class="form-check-input" id="flag-end-entrega" checked onclick="setarEnderecoEntrega()">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+
+                            <div class="form-check form-switch">
+                                <span>Usar como endereço de cobrança?</span>
+                                <input asp-for="FlagCobranca" type="checkbox" class="form-check-input" id="flag-end-cobranca" checked onchange="setarEnderecoCobranca()">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+              
+                <br><br>
+
+                <!--Box Endereço Cobrança-->
+                <div class="info-wrap" id="endereco-cobranca" hidden>
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-house" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Qual será o endereço de cobrança?</strong></h4><br>
+
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
+                            <select asp-for="EnderecoCadastroInicial[1].TipoEndereco" class="form-select" id="tipo-end-cob" disabled required>
+                                <option>Cobrança</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome do endereço</span>
+                            <input asp-for="EnderecoCadastroInicial[1].Apelido" type="text" name="fraseendereco" class="form-control" id="fraseendereco-cob" placeholder="Dê um nome para este endereço">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Residência</span>
+                            <select asp-for="EnderecoCadastroInicial[1].TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()"id="tipo-endereco-cob" class="form-select">                               
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Logradouro</span>
+                            <select asp-for="EnderecoCadastroInicial[1].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()"class="form-select" id="tipoLogradouro-cob">
+                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cep</span>
+                            <input asp-for="EnderecoCadastroInicial[1].Cep" type="text" name="cep" class="form-control" id="cep-cob" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro-cob" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[1].Logradouro"type="text" name="logradouro" class="form-control" id="logradouro-cob"
+                                   placeholder="Digite o logradouro">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Número</span>
+                            <input asp-for="EnderecoCadastroInicial[1].Numero" type="text" class="form-control" name="numero" id="numero-cob" placeholder="N°">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Complemento</span>
+                            <input asp-for="EnderecoCadastroInicial[1].Complemento"type="text" class="form-control" name="complemento" id="complemento-cob"
+                                   placeholder="Caso houver, digite o complemento">
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Bairro</span><i class="bi bi-lock" id="lock-bairro-cob" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[1].Bairro"type="text" name="bairro" class="form-control" id="bairro-cob"
+                                   placeholder="Digite o bairro">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cidade</span><i class="bi bi-lock" id="lock-cidade-cob" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Descricao"type="text" name="cidade" class="form-control" id="cidade-cob"
+                                   placeholder="Digite a cidade">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Estado</span><i class="bi bi-lock" id="lock-estado-cob" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Estado.Descricao"type="text" name="estado" class="form-control" id="estado-cob"
+                                   placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" onChange="maiusculo()">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>País</span><i class="bi bi-lock" id="lock-pais-cob" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Estado.Pais.Descricao"type="text" name="pais" class="form-control" id="pais-cob" placeholder="Digite o país">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Observações</span>
+                            <textarea asp-for="EnderecoCadastroInicial[1].Observacoes" type="text" name="observacoes" class="form-control" id="observacoes-cob"
+                                      placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <br>
+                <!--Box Endereço Entrega-->
+                <div class="info-wrap" id="endereco-entrega" hidden>
+
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-house" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Qual será o endereço de entrega?</strong></h4><br>
+
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
+                            <select asp-for="EnderecoCadastroInicial[2].TipoEndereco" class="form-select" disabled required>
+                                <option>Entrega</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome do endereço</span>
+                            <input asp-for="EnderecoCadastroInicial[2].Apelido" type="text" name="fraseendereco" class="form-control" id="fraseendereco-ent" placeholder="Dê um nome para este endereço">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Residência</span>
+                            <select asp-for="EnderecoCadastroInicial[2].TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()"id="tipo-endereco-ent" class="form-select">
+                               
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Logradouro</span>
+                            <select asp-for="EnderecoCadastroInicial[2].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro-ent">
+                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cep</span>
+                            <input asp-for="EnderecoCadastroInicial[2].Cep"type="text" name="cep" class="form-control" id="cep-ent" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro-ent" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[2].Logradouro"type="text" name="logradouro" class="form-control" id="logradouro-ent"
+                                   placeholder="Digite o logradouro">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Número</span>
+                            <input asp-for="EnderecoCadastroInicial[2].Numero"type="text" class="form-control" name="numero" id="numero-ent" placeholder="N°">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Complemento</span>
+                            <input asp-for="EnderecoCadastroInicial[2].Complemento" type="text" class="form-control" name="complemento" id="complemento-ent"
+                                   placeholder="Caso houver, digite o complemento">
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Bairro</span><i class="bi bi-lock" id="lock-bairro-ent" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[2].Bairro"type="text" name="bairro" class="form-control" id="bairro-ent"
+                                   placeholder="Digite o bairro">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cidade</span><i class="bi bi-lock" id="lock-cidade-ent" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Descricao" type="text" name="cidade" class="form-control" id="cidade-ent"
+                                   placeholder="Digite a cidade">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Estado</span><i class="bi bi-lock" id="lock-estado-ent" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Estado.Descricao" type="text" name="estado" class="form-control" id="estado-ent"
+                                   placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" onChange="maiusculo()">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>País</span><i class="bi bi-lock" id="lock-pais-ent" hidden></i>
+                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Estado.Pais.Descricao" type="text" name="pais" class="form-control" id="pais-ent" placeholder="Digite o país">
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Observações</span>
+                            <textarea asp-for="EnderecoCadastroInicial[2].Observacoes"type="text" name="observacoes" class="form-control" id="observacoes-ent"
+                                      placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <br><br>
+
+                <!--Box Login-->
+                <div class="info-wrap">
+                    <div class="col-lg-3 col-md-6 info">
+                        <i class="bi bi-key" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Qual será seu login?</strong></h4><br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Email</span>
+                            <i class="bi bi-lock"></i><input asp-for="Usuario.Email" type="email" class="form-control" id="emailuser" placeholder="Digite seu email" readonly value="raellcurvelo@gmail.com">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Senha</span>
+                            <input asp-for="Usuario.Senha" type="password" class="form-control" id="senhauser" placeholder="Digite sua senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@@#]{8,}" required>
+
+                            <div class="invalid-feedback">
+                                A senha deve conter ao menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um digito.
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Confirmação de Senha</span>
+                            <input type="password" class="form-control" id="confsenhauser" placeholder="Redigite sua senha" required>
+                            <div class="invalid-feedback">
+                                As senhas devem ser iguais
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div>
+                    <button type="submit" class="btn btn-success col-lg-12">Salvar</button>
+                </div>
+            </form>
+            <br>
+        </div>
+
+    </section>
+
+
+    <script>
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('.needs-validation')
+
+      Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+
+                  form.classList.add('was-validated')
+                }, false)
+              })
+    })()
+    </script>
+
+    <script>
+    function maiusculo() {
+        var maiuscula = document.getElementById('estado').value.toUpperCase();
+        document.getElementById('estado').value = maiuscula;
+    }
+    </script>
+
+    <!--Validar senhas-->
+    <script>
+    var senha = document.getElementById("senhauser")
+    var confirmacaoSenha = document.getElementById("confsenhauser");
+
+    function validatePassword() {
+        if (senha.value != confirmacaoSenha.value) {
+            confirmacaoSenha.setCustomValidity("Senhas diferentes!");
+        } else {
+            confirmacaoSenha.setCustomValidity('');
+        }
+    }
+
+    senha.onchange = validatePassword;
+    confirmacaoSenha.onkeyup = validatePassword;
+    </script>
+
+    <script>
+    function formatar(mascara, documento) {
+        var i = documento.value.length;
+        var saida = mascara.substring(0, 1);
+        var texto = mascara.substring(i)
+        if (texto.substring(0, 1) !== saida) {
+            documento.value += texto.substring(0, 1);
+        }
+    }
+    </script>
+
+    <script>
+
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('logradouro-modal').value=("");
+            document.getElementById('bairro-modal').value=("");
+            document.getElementById('cidade-modal').value=("");
+            document.getElementById('estado-modal').value=("");
+            document.getElementById('pais-modal').value=("");
+
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('logradouro-modal').value=(conteudo.logradouro);
+            document.getElementById('bairro-modal').value=(conteudo.bairro);
+            document.getElementById('cidade-modal').value=(conteudo.localidade);
+            document.getElementById('estado-modal').value=(conteudo.uf);
+            document.getElementById('pais-modal').value=("Brasil");
+
+            auxDesabilitarCampo('logradouro-modal', true);
+            auxDesabilitarCampo('bairro-modal', true);
+            auxDesabilitarCampo('cidade-modal', true);
+            auxDesabilitarCampo('estado-modal', true);
+            auxDesabilitarCampo('pais-modal', true);
+
+            auxEsconderMostrarCampo('lock-logradouro',false);
+            auxEsconderMostrarCampo('lock-bairro', false);
+            auxEsconderMostrarCampo('lock-cidade', false);
+            auxEsconderMostrarCampo('lock-estado', false);
+            auxEsconderMostrarCampo('lock-pais', false);
+
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+            auxDesabilitarCampo('logradouro-modal', false);
+            auxDesabilitarCampo('bairro-modal', false);
+            auxDesabilitarCampo('cidade-modal', false);
+            auxDesabilitarCampo('estado-modal', false);
+            auxDesabilitarCampo('pais-modal', false);
+
+            auxEsconderMostrarCampo('lock-logradouro',true);
+            auxEsconderMostrarCampo('lock-bairro', true);
+            auxEsconderMostrarCampo('lock-cidade', true);
+            auxEsconderMostrarCampo('lock-estado', true);
+            auxEsconderMostrarCampo('lock-pais', true);
+        }
+    }
+
+    function auxEsconderMostrarCampo(id, valor){
+        document.getElementById(id).hidden = valor;
+    }
+
+    function auxDesabilitarCampo(id, valor){
+        document.getElementById(id).disabled = valor;
+    }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('logradouro-modal').value="...";
+                document.getElementById('bairro-modal').value="...";
+                document.getElementById('cidade-modal').value="...";
+                document.getElementById('estado-modal').value="...";
+                document.getElementById('pais-modal').value="...";
+
+
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+    </script>
+
+    <script>
+
+        function setarEnderecoCobranca(){
+            var endCobranca = document.getElementById('flag-end-cobranca').checked;
+            var camposObrigatoriosEnderecoCobranca =[
+                "fraseendereco-cob", "tipo-endereco-cob", "tipoLogradouro-cob", "cep-cob", "logradouro-cob",
+                "numero-cob", "bairro-cob",  "cidade-cob", "estado-cob", "pais-cob"];
+
+            if(endCobranca){
+                document.getElementById('endereco-cobranca').hidden = true;
+
+                for(var i = 0 ; camposObrigatoriosEnderecoCobranca.length; i ++){
+                    auxRequererCampo(camposObrigatoriosEnderecoCobranca[i], false);
+                }
+            }else{
+                document.getElementById('endereco-cobranca').hidden = false;
+
+                for(var i = 0 ; camposObrigatoriosEnderecoCobranca.length; i ++){
+                    auxRequererCampo(camposObrigatoriosEnderecoCobranca[i], true);
+
+                }
+            }
+
+        }
+
+        function setarEnderecoEntrega(){
+            var endEntrega = document.getElementById('flag-end-entrega').checked;
+            var camposObrigatoriosEnderecoEntrega =[
+                "fraseendereco-ent", "tipo-endereco-ent", "tipoLogradouro-ent", "cep-ent", "logradouro-ent",
+                "numero-ent", "bairro-ent",  "cidade-ent", "estado-ent", "pais-ent"];
+
+            if(endEntrega){
+                document.getElementById('endereco-entrega').hidden = true;
+
+                for(var i = 0 ; camposObrigatoriosEnderecoEntrega.length; i ++){
+                    auxRequererCampo(camposObrigatoriosEnderecoEntrega[i], false);
+                }
+            }else{
+                document.getElementById('endereco-entrega').hidden = false;
+
+                for(var i = 0 ; camposObrigatoriosEnderecoEntrega.length; i ++){
+                    auxRequererCampo(camposObrigatoriosEnderecoEntrega[i], true);
+
+                }
+            }
+
+
+        }
+
+        function auxRequererCampo(id, valor){
+            document.getElementById(id).required = valor;
+        }
+    </script>
+
+</body>
+
+
+
+</html>

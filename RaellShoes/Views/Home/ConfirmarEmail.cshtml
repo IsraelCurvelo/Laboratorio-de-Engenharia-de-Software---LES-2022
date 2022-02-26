@@ -1,0 +1,89 @@
+﻿@model RaellShoes.Models.Clientes.Cliente
+@{ViewData["Title"] = "Confirmar Email";}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Confirmar Email</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html">RaellShoes<span>.</span></a></h1>
+        </div>
+    </header><!-- End Header -->
+
+    <section id="cliente" class="cliente">
+
+        <!--Form-->
+        <div class="container mt-5">
+            <!--SEM FORM POR SER PROTOTIPO E ROTEAR PARA CADASTRO-->
+            <!-- <form class="emailnovo">-->
+            <form class="needs-validation" novalidate asp-action="cadastrese">
+                <!--Box Email Login-->
+                <div class="info-wrap " style="align-items: center; margin-left: 25%; height: 100%;width: 50%;margin-top: auto;margin-bottom: auto;">
+                    <div class="col-lg-3 col-md-6 info needs-validation">
+                        <i class="bi bi-envelope" style="margin-top: -8px;"></i>
+                    </div>
+                    <h4> <strong style="padding-left: 10px;"> Digite seu email</strong></h4><br>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Email</span>
+                            <input type="email" asp-for="Usuario.Email" class="form-control" id="emailuser"
+                                   placeholder="Digite seu email" required>
+                            <div class="invalid-feedback">
+                                *Digite um email válido
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-success col-lg-12 ">Confirmar</button>
+
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </form><!--</form>-->
+
+    </section>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+</body>
+
+</html>
