@@ -46,7 +46,7 @@ namespace RaellShoes.Models.Clientes
         public Endereco[] EnderecoCadastroInicial { get; set; } = new Endereco[3];
 
         public Cartao Cartao { get; set; }
-        public List<Endereco> Enderecos { get; set; }
+        public List<Endereco> Enderecos { get; set; } = new List<Endereco>();
         
 
         public Cliente()

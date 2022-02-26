@@ -8,7 +8,8 @@ namespace RaellShoes.Strategy
     {
         public String Processar(EntidadeDominio entidadeDominio)
         {
-            if (!entidadeDominio.GetType().Name.ToLower().Equals("cartao")) return "Objeto diferente do esperado";
+            if (!entidadeDominio.GetType().Name.ToLower().Equals("cartao")) 
+                return "Objeto diferente do esperado";
 
             Cartao cartao = (Cartao)entidadeDominio;
 

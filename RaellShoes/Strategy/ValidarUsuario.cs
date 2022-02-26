@@ -9,11 +9,13 @@ namespace RaellShoes.Strategy
     {
         public String Processar(EntidadeDominio entidadeDominio)
         {
-            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) return "Objeto diferente do esperado";          
+            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) 
+                return "Objeto diferente do esperado";          
 
             Cliente cliente = (Cliente)entidadeDominio;
 
-            if (cliente.Usuario.Email == null || cliente.Usuario.Senha == null) return "Campos nulos";
+            if (cliente.Usuario.Email == null || cliente.Usuario.Senha == null) 
+                return "Campos nulos";
             
             //if(usuario.Senha != usuario.ConfirmacaoSenha) return "SENHAS DIFERENTES";    
           

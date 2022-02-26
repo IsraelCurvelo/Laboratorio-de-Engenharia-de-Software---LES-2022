@@ -157,7 +157,8 @@ namespace RaellShoes.Dal
             Cliente clienteBanco = ConsultarEmail(cliente.Usuario.Email);
             if (clienteBanco != null)
             {
-                if (cliente.Usuario.Senha.Equals(clienteBanco.Usuario.Senha)) return clienteBanco;
+                if (cliente.Usuario.Senha.Equals(clienteBanco.Usuario.Senha))
+                    return clienteBanco;
             }
             return null;
         }  

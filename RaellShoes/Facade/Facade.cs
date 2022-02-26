@@ -35,11 +35,18 @@ namespace RaellShoes.Facadee
                 ValidarUsuario validarSenha = new ValidarUsuario();
                 CriptografarSenha criptografarSenha = new CriptografarSenha();
 
-                string confirmacaoDadosCliente = validarCliente.Processar(cliente);
-                string confirmacaoDadosEndereco = validarEndereco.Processar(cliente.Endereco);                
+                string confirmacaoDadosCliente = validarCliente.Processar(cliente);        
                 string confirmacaoSenha = validarSenha.Processar(cliente);               
                 string senhacriptografada = criptografarSenha.Processar(cliente);
-                
+
+                string confirmacaoDadosEndereco = null;
+                foreach (var item in cliente.Enderecos)
+                {
+                    string retornoValidacaoEndereco = validarEndereco.Processar(item);
+                    if (retornoValidacaoEndereco != null)
+                        confirmacaoDadosCliente = retornoValidacaoEndereco;
+                }
+
                 cliente.Usuario.Senha = senhacriptografada;
                 cliente.Status = true;
 
@@ -53,7 +60,9 @@ namespace RaellShoes.Facadee
                     lista.Add(confirmacaoDadosCliente);
                     lista.Add(confirmacaoDadosEndereco);
                     lista.Add(confirmacaoSenha);
-                    if(senhacriptografada == null)lista.Add("Senha não foi criptografada");                    
+                    if(senhacriptografada == null)
+                        lista.Add("Senha não foi criptografada");       
+                    
                     return ConcatenarErros(lista);
                 }                               
             }
@@ -65,7 +74,8 @@ namespace RaellShoes.Facadee
                 ValidarDadosEndereco validar = new ValidarDadosEndereco();
                 string confirmacao = validar.Processar(endereco);  
 
-                if(confirmacao != null)  return confirmacao;
+                if(confirmacao != null)  
+                    return confirmacao;
 
                 return CadastrarEntidade(endereco, log, gerarLog);                        
               
@@ -78,7 +88,8 @@ namespace RaellShoes.Facadee
                 ValidarDadosCartao validar = new ValidarDadosCartao();
                 string confirmacao = validar.Processar(cartao);
 
-                if (confirmacao != null) return confirmacao;
+                if (confirmacao != null) 
+                    return confirmacao;
 
                 return CadastrarEntidade(cartao, log, gerarLog);
 
@@ -93,11 +104,18 @@ namespace RaellShoes.Facadee
             string confirmacaoCliente = dal.Cadastrar(entidadeDominio);
             log.Descricao = gerarLog.Processar(entidadeDominio) + ", [Tipo: Inserção]";
             string confirmacaoLog = dal.Cadastrar(log);
-            if (confirmacaoCliente == null && confirmacaoLog == null) return null;
+
+            if (confirmacaoCliente == null && confirmacaoLog == null) 
+                return null;
 
             string erro = null;
-            if (confirmacaoCliente != null) erro = confirmacaoCliente;
-            if (confirmacaoLog != null) erro += confirmacaoLog;
+
+            if (confirmacaoCliente != null) 
+                erro = confirmacaoCliente;
+
+            if (confirmacaoLog != null) 
+                erro += confirmacaoLog;
+
             return erro;
         }
 
@@ -106,7 +124,8 @@ namespace RaellShoes.Facadee
             String resposta = null;
 
             foreach (var item in lista)            
-                if (item != null) resposta += ", " +  item;                
+                if (item != null)
+                    resposta += ", " +  item;                
             
             return resposta;
         }
@@ -137,8 +156,13 @@ namespace RaellShoes.Facadee
                 else
                 {
                     String resposta = null;
-                    if (confirmacaoDadosCliente != null) resposta = confirmacaoDadosCliente;
-                    if (confirmacaoDadosEndereco != null) resposta += ", " + confirmacaoDadosEndereco;                   
+
+                    if (confirmacaoDadosCliente != null) 
+                        resposta = confirmacaoDadosCliente;
+
+                    if (confirmacaoDadosEndereco != null) 
+                        resposta += ", " + confirmacaoDadosEndereco;  
+                    
                     return resposta;
                 }
                 
@@ -219,7 +243,9 @@ namespace RaellShoes.Facadee
             cliente.Usuario.Senha = senhacrip;
             Cliente login = dal.Login(cliente);
 
-            if (login != null) return login;
+            if (login != null) 
+                return login;
+
             return null;
         }
 

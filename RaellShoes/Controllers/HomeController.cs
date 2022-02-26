@@ -8,6 +8,7 @@ using RaellShoes.Data;
 using RaellShoes.Facadee;
 using RaellShoes.Models;
 using RaellShoes.Models.Clientes;
+using RaellShoes.Models.Enums;
 
 namespace RaellShoes.Controllers
 {
@@ -89,9 +90,28 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult CadastrarCliente(Cliente cliente)
         {
+            if (cliente.FlagCobranca)            
+                cliente.EnderecoCadastroInicial[1] = cliente.EnderecoCadastroInicial[0]; 
+
+            cliente.EnderecoCadastroInicial[1].TipoEndereco = TipoEndereco.Cobrança;
+
+            if (cliente.FlagEntrega)            
+                cliente.EnderecoCadastroInicial[2] = cliente.EnderecoCadastroInicial[0];
+                
+            cliente.EnderecoCadastroInicial[2].TipoEndereco = TipoEndereco.Entrega;
+
+
+            for(int i =0; i< cliente.EnderecoCadastroInicial.Length; i++)
+            {
+                cliente.Enderecos.Add(cliente.EnderecoCadastroInicial[i]);
+            }
+
             string confirmacao = facade.Cadastrar(cliente);
 
-            return View("Login");
+            if(confirmacao == null)
+                return View("Login");
+            else           
+                return View();          
         }
 
 

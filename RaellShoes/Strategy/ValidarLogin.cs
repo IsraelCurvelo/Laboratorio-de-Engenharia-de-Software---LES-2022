@@ -9,7 +9,8 @@ namespace RaellShoes.Strategy
     {
         public String Processar(EntidadeDominio entidadeDominio)
         {
-            if (!entidadeDominio.GetType().Name.Equals("usuario")) return null;
+            if (!entidadeDominio.GetType().Name.Equals("usuario")) 
+                return null;
 
             Usuario usuario = (Usuario)entidadeDominio;
 
@@ -19,8 +20,10 @@ namespace RaellShoes.Strategy
             DAL dal = new DAL(new DataBaseContext());
             Usuario usuarioBanco = (Usuario)dal.ConsultarId(usuario);
 
-            if(usuario.Email != usuarioBanco.Email || usuario.Senha != usuarioBanco.Senha) return null;          
-            else return "Ok";
+            if(usuario.Email != usuarioBanco.Email || usuario.Senha != usuarioBanco.Senha) 
+                return null;          
+            else 
+                return "Ok";
         }
     }
 }

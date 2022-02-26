@@ -10,11 +10,13 @@ namespace RaellShoes.Strategy
     {      
         public String Processar(EntidadeDominio entidadeDominio)
         {
-            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) return null;
+            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) 
+                return null;
             
             Cliente cliente = (Cliente)entidadeDominio;
 
-            if (cliente.Usuario.Senha == null) return null;
+            if (cliente.Usuario.Senha == null) 
+                return null;
 
             // criptografia MD5
             MD5 md5Hash = MD5.Create();

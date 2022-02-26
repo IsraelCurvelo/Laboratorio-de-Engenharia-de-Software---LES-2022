@@ -8,7 +8,8 @@ namespace RaellShoes.Strategy
     {
         public String Processar(EntidadeDominio entidadeDominio)
         {
-            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) return "Objeto diferente do esperado";
+            if (!entidadeDominio.GetType().Name.ToLower().Equals("cliente")) 
+                return "Objeto diferente do esperado";
 
             Cliente cliente = (Cliente)entidadeDominio;
 
@@ -18,9 +19,11 @@ namespace RaellShoes.Strategy
                 || cliente.Telefone.TipoTelefone == null || cliente.Telefone.DDD == null || cliente.Telefone.DDD.Length != 2 || cliente.Telefone.Numero == null || cliente.Telefone.Numero.Length >10 || cliente.Telefone.Numero.Length <8)
                                 return "Erro na digitação dos dados! *Dados Obrigatórios";
 
-            if (cliente.DataNascimento.Date > DateTime.Now) return "Não é possível cadastrar data de nascimento futura!";
+            if (cliente.DataNascimento.Date > DateTime.Now) 
+                return "Não é possível cadastrar data de nascimento futura!";
 
-            if (time > DateTime.Now) return "É preciso ser maior de idade para se cadastrar";                  
+            if (time > DateTime.Now) 
+                return "É preciso ser maior de idade para se cadastrar";                  
 
               else
                 return null;
