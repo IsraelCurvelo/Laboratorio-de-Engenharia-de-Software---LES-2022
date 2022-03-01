@@ -155,13 +155,13 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
-                            <select asp-for="EnderecoCadastroInicial[0].TipoEndereco" class="form-select" readonly required>
+                            <select asp-for="Endereco.TipoEndereco" class="form-select" readonly required>
                                 <option value="0" selected>Residencial</option>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Nome do endereço</span>
-                            <input asp-for="EnderecoCadastroInicial[0].Apelido" type="text" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                            <input asp-for="Endereco.Apelido" type="text" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
                                    required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -170,7 +170,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Residência</span>
-                            <select asp-for="EnderecoCadastroInicial[0].TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required>
+                            <select asp-for="Endereco.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -179,7 +179,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Logradouro</span>
-                            <select asp-for="EnderecoCadastroInicial[0].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required>
+                            <select asp-for="Endereco.TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -187,14 +187,14 @@
                         </div>
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cep</span>
-                            <input asp-for="EnderecoCadastroInicial[0].Cep" type="text" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
+                            <input asp-for="Endereco.Cep" type="text" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[0].Logradouro" type="text" class="form-control" id="logradouro-modal"
+                            <input asp-for="Endereco.Logradouro" type="text" class="form-control" id="logradouro-modal"
                                    placeholder="Digite o logradouro" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -202,20 +202,20 @@
                         </div>
                         <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Número</span>
-                            <input asp-for="EnderecoCadastroInicial[0].Numero" type="text" class="form-control" id="numero" placeholder="N°" required>
+                            <input asp-for="Endereco.Numero" type="text" class="form-control" id="numero" placeholder="N°" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Complemento</span>
-                            <input asp-for="EnderecoCadastroInicial[0].Complemento" type="text" class="form-control" id="complemento"
+                            <input asp-for="Endereco.Complemento" type="text" class="form-control" id="complemento"
                                    placeholder="Caso houver, digite o complemento">
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Bairro</span><i class="bi bi-lock" id="lock-bairro" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[0].Bairro" type="text" class="form-control" id="bairro-modal"
+                            <input asp-for="Endereco.Bairro" type="text" class="form-control" id="bairro-modal"
                                    placeholder="Digite o bairro" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -224,7 +224,7 @@
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cidade</span><i class="bi bi-lock" id="lock-cidade" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[0].Cidade.Descricao" type="text" class="form-control" id="cidade-modal"
+                            <input asp-for="Endereco.Cidade.Descricao" type="text" class="form-control" id="cidade-modal"
                                    placeholder="Digite a cidade" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -233,7 +233,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Estado</span><i class="bi bi-lock" id="lock-estado" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[0].Cidade.Estado.Descricao" type="text" class="form-control" id="estado-modal"
+                            <input asp-for="Endereco.Cidade.Estado.Descricao" type="text" class="form-control" id="estado-modal"
                                    placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -242,7 +242,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>País</span><i class="bi bi-lock" id="lock-pais" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[0].Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-modal" placeholder="Digite o país" required>
+                            <input asp-for="Endereco.Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-modal" placeholder="Digite o país" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -251,7 +251,7 @@
 
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Observações</span>
-                            <textarea asp-for="EnderecoCadastroInicial[0].Observacoes" type="text" class="form-control" id="observacoes"
+                            <textarea asp-for="Endereco.Observacoes" type="text" class="form-control" id="observacoes"
                                       placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
                         </div>
 
@@ -287,13 +287,13 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
-                            <select asp-for="EnderecoCadastroInicial[1].TipoEndereco" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" id="tipo-end-cob" readonly required>
+                            <select asp-for="EnderecoCobranca.TipoEndereco" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" id="tipo-end-cob" readonly required>
                                 <option value="2" selected>Cobrança</option>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Nome do endereço</span>
-                            <input asp-for="EnderecoCadastroInicial[1].Apelido" type="text" class="form-control" id="fraseendereco-cob" placeholder="Dê um nome para este endereço">
+                            <input asp-for="EnderecoCobranca.Apelido" type="text" class="form-control" id="fraseendereco-cob" placeholder="Dê um nome para este endereço">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -301,7 +301,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Residência</span>
-                            <select asp-for="EnderecoCadastroInicial[1].TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" id="tipo-endereco-cob" class="form-select">
+                            <select asp-for="EnderecoCobranca.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" id="tipo-endereco-cob" class="form-select">
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -310,7 +310,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Logradouro</span>
-                            <select asp-for="EnderecoCadastroInicial[1].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro-cob">
+                            <select asp-for="EnderecoCobranca.TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro-cob">
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -318,14 +318,14 @@
                         </div>
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cep</span>
-                            <input asp-for="EnderecoCadastroInicial[1].Cep" type="text" class="form-control" id="cep-cob" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
+                            <input asp-for="EnderecoCobranca.Cep" type="text" class="form-control" id="cep-cob" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro-cob" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[1].Logradouro" type="text" class="form-control" id="logradouro-cob"
+                            <input asp-for="EnderecoCobranca.Logradouro" type="text" class="form-control" id="logradouro-cob"
                                    placeholder="Digite o logradouro">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -333,20 +333,20 @@
                         </div>
                         <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Número</span>
-                            <input asp-for="EnderecoCadastroInicial[1].Numero" type="text" class="form-control" id="numero-cob" placeholder="N°">
+                            <input asp-for="EnderecoCobranca.Numero" type="text" class="form-control" id="numero-cob" placeholder="N°">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Complemento</span>
-                            <input asp-for="EnderecoCadastroInicial[1].Complemento" type="text" class="form-control" id="complemento-cob"
+                            <input asp-for="EnderecoCobranca.Complemento" type="text" class="form-control" id="complemento-cob"
                                    placeholder="Caso houver, digite o complemento">
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Bairro</span><i class="bi bi-lock" id="lock-bairro-cob" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[1].Bairro" type="text" class="form-control" id="bairro-cob"
+                            <input asp-for="EnderecoCobranca.Bairro" type="text" class="form-control" id="bairro-cob"
                                    placeholder="Digite o bairro">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -355,7 +355,7 @@
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cidade</span><i class="bi bi-lock" id="lock-cidade-cob" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Descricao" type="text" class="form-control" id="cidade-cob"
+                            <input asp-for="EnderecoCobranca.Cidade.Descricao" type="text" class="form-control" id="cidade-cob"
                                    placeholder="Digite a cidade">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -364,7 +364,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Estado</span><i class="bi bi-lock" id="lock-estado-cob" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Estado.Descricao" type="text" class="form-control" id="estado-cob"
+                            <input asp-for="EnderecoCobranca.Cidade.Estado.Descricao" type="text" class="form-control" id="estado-cob"
                                    placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" onChange="maiusculo()">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -373,7 +373,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>País</span><i class="bi bi-lock" id="lock-pais-cob" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[1].Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-cob" placeholder="Digite o país">
+                            <input asp-for="EnderecoCobranca.Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-cob" placeholder="Digite o país">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -382,7 +382,7 @@
 
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Observações</span>
-                            <textarea asp-for="EnderecoCadastroInicial[1].Observacoes" type="text" class="form-control" id="observacoes-cob"
+                            <textarea asp-for="EnderecoCobranca.Observacoes" type="text" class="form-control" id="observacoes-cob"
                                       placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
                         </div>
 
@@ -404,13 +404,13 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Endereço</span><i class="bi bi-lock"></i>
-                            <select asp-for="EnderecoCadastroInicial[2].TipoEndereco" class="form-select" readonly required>
+                            <select asp-for="EnderecoEntrega.TipoEndereco" class="form-select" readonly required>
                                 <option value="1" selected>Entrega</option>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Nome do endereço</span>
-                            <input asp-for="EnderecoCadastroInicial[2].Apelido" type="text" class="form-control" id="fraseendereco-ent" placeholder="Dê um nome para este endereço">
+                            <input asp-for="EnderecoEntrega.Apelido" type="text" class="form-control" id="fraseendereco-ent" placeholder="Dê um nome para este endereço">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -418,7 +418,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Residência</span>
-                            <select asp-for="EnderecoCadastroInicial[2].TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" id="tipo-endereco-ent" class="form-select">
+                            <select asp-for="EnderecoEntrega.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" id="tipo-endereco-ent" class="form-select">
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -427,7 +427,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Tipo de Logradouro</span>
-                            <select asp-for="EnderecoCadastroInicial[2].TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro-ent">
+                            <select asp-for="EnderecoEntrega.TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro-ent">
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -435,14 +435,14 @@
                         </div>
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cep</span>
-                            <input asp-for="EnderecoCadastroInicial[2].Cep" type="text" class="form-control" id="cep-ent" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
+                            <input asp-for="EnderecoEntrega.Cep" type="text" class="form-control" id="cep-ent" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro-ent" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[2].Logradouro" type="text" class="form-control" id="logradouro-ent"
+                            <input asp-for="EnderecoEntrega.Logradouro" type="text" class="form-control" id="logradouro-ent"
                                    placeholder="Digite o logradouro">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -450,20 +450,20 @@
                         </div>
                         <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Número</span>
-                            <input asp-for="EnderecoCadastroInicial[2].Numero" type="text" class="form-control" id="numero-ent" placeholder="N°">
+                            <input asp-for="EnderecoEntrega.Numero" type="text" class="form-control" id="numero-ent" placeholder="N°">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Complemento</span>
-                            <input asp-for="EnderecoCadastroInicial[2].Complemento" type="text" class="form-control" id="complemento-ent"
+                            <input asp-for="EnderecoEntrega.Complemento" type="text" class="form-control" id="complemento-ent"
                                    placeholder="Caso houver, digite o complemento">
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Bairro</span><i class="bi bi-lock" id="lock-bairro-ent" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[2].Bairro" type="text" class="form-control" id="bairro-ent"
+                            <input asp-for="EnderecoEntrega.Bairro" type="text" class="form-control" id="bairro-ent"
                                    placeholder="Digite o bairro">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -472,7 +472,7 @@
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cidade</span><i class="bi bi-lock" id="lock-cidade-ent" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Descricao" type="text" class="form-control" id="cidade-ent"
+                            <input asp-for="EnderecoEntrega.Cidade.Descricao" type="text" class="form-control" id="cidade-ent"
                                    placeholder="Digite a cidade">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -481,7 +481,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Estado</span><i class="bi bi-lock" id="lock-estado-ent" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Estado.Descricao" type="text" class="form-control" id="estado-ent"
+                            <input asp-for="EnderecoEntrega.Cidade.Estado.Descricao" type="text" class="form-control" id="estado-ent"
                                    placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" onChange="maiusculo()">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -490,7 +490,7 @@
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>País</span><i class="bi bi-lock" id="lock-pais-ent" hidden></i>
-                            <input asp-for="EnderecoCadastroInicial[2].Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-ent" placeholder="Digite o país">
+                            <input asp-for="EnderecoEntrega.Cidade.Estado.Pais.Descricao" type="text" class="form-control" id="pais-ent" placeholder="Digite o país">
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -499,7 +499,7 @@
 
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Observações</span>
-                            <textarea asp-for="EnderecoCadastroInicial[2].Observacoes" type="text" class="form-control" id="observacoes-ent"
+                            <textarea asp-for="EnderecoEntrega.Observacoes" type="text" class="form-control" id="observacoes-ent"
                                       placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
                         </div>
 
@@ -507,6 +507,9 @@
                 </div>
 
                 <br><br>
+
+
+
 
                 <!--Box Login-->
                 <div class="info-wrap">
@@ -522,7 +525,7 @@
 
                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Senha</span>
-                            <input asp-for="Usuario.Senha" type="password" class="form-control" id="senhauser" placeholder="Digite sua senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@@#]{8,}" required>
+                            <input asp-for="Usuario.Senha" type="password" class="form-control" id="senhauser" placeholder="Digite sua senha" pattern="(?=(?:.*?[A-Z]){1})(?=(?:.*?[a-z]){1})(?=(?:.*?[0-9]){1})(?=(?:.*?[!@@#$%*()_+^&}{:;?.]){1})(?!.*\s)[0-9a-zA-Z$*&@@#]{8,}" required>
 
                             <div class="invalid-feedback">
                                 A senha deve conter ao menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um digito.
@@ -573,7 +576,8 @@
     <script>
         function maiusculo() {
             var maiuscula = document.getElementById('estado').value.toUpperCase();
-            document.getElementById('estado').value = maiuscula;
+            document.getElementById('estado').value = maiuscula;          
+  
         }
     </script>
 

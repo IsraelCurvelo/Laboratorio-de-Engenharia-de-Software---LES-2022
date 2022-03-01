@@ -14,5 +14,9 @@ namespace RaellShoes.Models
         [DataType(DataType.Password)]
         [StringLength(50, MinimumLength = 8, ErrorMessage = "A Senha deve ser composta de pelo menos {2} caracteres, ter letras maiúsculas e minúsculas e também conter caracteres especiais.")]
         public String Senha { get; set; }
+
+        public bool Admin { get; set; }
+
+        public DateTime DataCadastro { get; set; }
     }
 }

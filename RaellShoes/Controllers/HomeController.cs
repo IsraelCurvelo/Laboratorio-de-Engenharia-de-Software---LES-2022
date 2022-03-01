@@ -89,30 +89,17 @@ namespace RaellShoes.Controllers
 
         [HttpPost]
         public IActionResult CadastrarCliente(Cliente cliente)
-        {
-            if (cliente.FlagCobranca)            
-                cliente.EnderecoCadastroInicial[1] = cliente.EnderecoCadastroInicial[0]; 
+        {          
 
-            cliente.EnderecoCadastroInicial[1].TipoEndereco = TipoEndereco.Cobrança;
+            string confirmacaoCliente = facade.Cadastrar(cliente);
 
-            if (cliente.FlagEntrega)            
-                cliente.EnderecoCadastroInicial[2] = cliente.EnderecoCadastroInicial[0];
-                
-            cliente.EnderecoCadastroInicial[2].TipoEndereco = TipoEndereco.Entrega;
+            string retornoEnderecos = facade.CadastrarEnderecosIniciais(cliente);
 
-
-            for(int i =0; i< cliente.EnderecoCadastroInicial.Length; i++)
-            {
-                cliente.Enderecos.Add(cliente.EnderecoCadastroInicial[i]);
-            }
-
-            string confirmacao = facade.Cadastrar(cliente);           
-
-            if(confirmacao == null)            
+            if (confirmacaoCliente == null && retornoEnderecos == null)            
                 return View("SucessoCadastro");           
                
             else           
-                return View("ErroCadastro", new String(confirmacao));          
+                return View("ErroCadastro", new String("Houve um erro ao cadastrar as informações!!! \n Erro: " + confirmacaoCliente));          
         }
 
         public IActionResult SucessoCadastro()

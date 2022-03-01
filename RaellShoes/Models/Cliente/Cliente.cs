@@ -38,16 +38,18 @@ namespace RaellShoes.Models.Clientes
         
         public Usuario Usuario { get; set; }
 
-        public Telefone Telefone { get; set; }        
+        public Telefone Telefone { get; set; }  
+        
+        public Cartao Cartao { get; set; }
 
-        public Endereco Endereco { get; set; }
+        public List<Endereco> Enderecos { get; set; }
 
         [NotMapped]
-        public Endereco[] EnderecoCadastroInicial { get; set; } = new Endereco[3];
-
-        public Cartao Cartao { get; set; }
-        public List<Endereco> Enderecos { get; set; } = new List<Endereco>();
-        
+        public Endereco Endereco { get; set; }
+        [NotMapped]
+        public Endereco EnderecoEntrega { get; set; }
+        [NotMapped]
+        public Endereco EnderecoCobranca { get; set; }
 
         public Cliente()
         {

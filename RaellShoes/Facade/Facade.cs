@@ -2,6 +2,7 @@
 using RaellShoes.Data;
 using RaellShoes.Models;
 using RaellShoes.Models.Clientes;
+using RaellShoes.Models.Enums;
 using RaellShoes.Strategy;
 using System;
 using System.Collections.Generic;
@@ -38,19 +39,19 @@ namespace RaellShoes.Facadee
                 string confirmacaoDadosCliente = validarCliente.Processar(cliente);        
                 string confirmacaoSenha = validarSenha.Processar(cliente);               
                 string senhacriptografada = criptografarSenha.Processar(cliente);
-
-                string confirmacaoDadosEndereco = null;
-                foreach (var item in cliente.Enderecos)
-                {
-                    string retornoValidacaoEndereco = validarEndereco.Processar(item);
-                    if (retornoValidacaoEndereco != null)
-                        confirmacaoDadosCliente = retornoValidacaoEndereco;
-                }
+               
+                string retornoValidacaoEndereco = validarEndereco.Processar(cliente.Endereco);
+                  
+                       
+              
 
                 cliente.Usuario.Senha = senhacriptografada;
                 cliente.Status = true;
+                cliente.Usuario.Admin = false;
+                cliente.Usuario.DataCadastro = DateTime.Now;
 
-                if (confirmacaoDadosCliente == null && confirmacaoDadosEndereco == null && confirmacaoSenha == null && senhacriptografada != null)
+
+                if (confirmacaoDadosCliente == null && retornoValidacaoEndereco == null && confirmacaoSenha == null && senhacriptografada != null)
                 {
                     return CadastrarEntidade(cliente, log, gerarLog);
                 }
@@ -58,7 +59,7 @@ namespace RaellShoes.Facadee
                 {
                     List<String> lista = new List<string>();
                     lista.Add(confirmacaoDadosCliente);
-                    lista.Add(confirmacaoDadosEndereco);
+                    lista.Add(retornoValidacaoEndereco);
                     lista.Add(confirmacaoSenha);
                     if(senhacriptografada == null)
                         lista.Add("Senha não foi criptografada");       
@@ -247,6 +248,70 @@ namespace RaellShoes.Facadee
                 return login;
 
             return null;
+        }
+
+        public string CadastrarEnderecosIniciais(Cliente cliente)
+        {
+            //Endereço Residencial
+            Endereco enderecoResidencial = new Endereco(
+             cliente.Endereco.Apelido, cliente.Endereco.Logradouro, cliente.Endereco.Numero, cliente.Endereco.Complemento,
+             cliente.Endereco.Bairro, cliente.Endereco.Cep, cliente.Endereco.Observacoes, cliente.Endereco.Cidade,
+             cliente.Endereco.TipoResidencia, cliente.Endereco.TipoLogradouro, 0);
+            enderecoResidencial.Id = 0;
+            enderecoResidencial.ClienteId = cliente.Id;
+            enderecoResidencial.CadastroInicial = true;
+            string confirmacaoEnderecoResidencial = Cadastrar(enderecoResidencial);
+
+            Endereco enderecoCobranca;
+            Endereco enderecoEntrega;
+
+            //Endereço Entrega
+            if (cliente.FlagEntrega)
+            {
+                enderecoEntrega = new Endereco(
+                    cliente.Endereco.Apelido, cliente.Endereco.Logradouro, cliente.Endereco.Numero, cliente.Endereco.Complemento,
+                    cliente.Endereco.Bairro, cliente.Endereco.Cep, cliente.Endereco.Observacoes, cliente.Endereco.Cidade,
+                    cliente.Endereco.TipoResidencia, cliente.Endereco.TipoLogradouro, TipoEndereco.Entrega);
+                
+            }
+            else
+            {
+                enderecoEntrega = new Endereco(
+                    cliente.EnderecoEntrega.Apelido, cliente.EnderecoEntrega.Logradouro, cliente.EnderecoEntrega.Numero, cliente.EnderecoEntrega.Complemento,
+                    cliente.EnderecoEntrega.Bairro, cliente.EnderecoEntrega.Cep, cliente.EnderecoEntrega.Observacoes, cliente.EnderecoEntrega.Cidade,
+                    cliente.EnderecoEntrega.TipoResidencia, cliente.EnderecoEntrega.TipoLogradouro, TipoEndereco.Entrega);                
+            }
+
+            enderecoEntrega.Id = 0;
+            enderecoEntrega.CadastroInicial = true;
+            enderecoEntrega.ClienteId = cliente.Id;
+            string confirmacaoEnderecoEntrega = Cadastrar(enderecoEntrega);
+
+            //Endereço Cobranca
+            if (cliente.FlagCobranca)
+            {
+                enderecoCobranca = new Endereco(cliente.Endereco.Apelido, cliente.Endereco.Logradouro, cliente.Endereco.Numero, cliente.Endereco.Complemento,
+                    cliente.Endereco.Bairro, cliente.Endereco.Cep, cliente.Endereco.Observacoes, cliente.Endereco.Cidade,
+                    cliente.Endereco.TipoResidencia, cliente.Endereco.TipoLogradouro, TipoEndereco.Cobrança);                              
+            }
+            else
+            {
+                enderecoCobranca = new Endereco(cliente.EnderecoCobranca.Apelido, cliente.EnderecoCobranca.Logradouro, cliente.EnderecoCobranca.Numero, cliente.EnderecoCobranca.Complemento,
+                    cliente.EnderecoCobranca.Bairro, cliente.EnderecoCobranca.Cep, cliente.EnderecoCobranca.Observacoes, cliente.EnderecoCobranca.Cidade,
+                    cliente.EnderecoCobranca.TipoResidencia, cliente.EnderecoCobranca.TipoLogradouro, TipoEndereco.Cobrança);                
+            }
+
+            enderecoCobranca.Id = 0;
+            enderecoCobranca.CadastroInicial = true;
+            enderecoCobranca.ClienteId = cliente.Id;
+            string confirmacaoEnderecoCobranca = Cadastrar(enderecoCobranca);
+
+
+            if (confirmacaoEnderecoResidencial == null && confirmacaoEnderecoEntrega == null && confirmacaoEnderecoCobranca == null)
+                return null;
+            else
+                return "Houve um erro ao cadastrar os endereços";
+
         }
 
     }

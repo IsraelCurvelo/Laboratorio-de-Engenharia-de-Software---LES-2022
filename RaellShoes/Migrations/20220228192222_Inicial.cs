@@ -56,7 +56,9 @@ namespace RaellShoes.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Email = table.Column<string>(nullable: false),
-                    Senha = table.Column<string>(maxLength: 50, nullable: false)
+                    Senha = table.Column<string>(maxLength: 50, nullable: false),
+                    Admin = table.Column<bool>(nullable: false),
+                    DataCadastro = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,6 +86,40 @@ namespace RaellShoes.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: false),
+                    Sobrenome = table.Column<string>(nullable: false),
+                    Cpf = table.Column<string>(maxLength: 14, nullable: false),
+                    DataNascimento = table.Column<DateTime>(nullable: false),
+                    Status = table.Column<bool>(nullable: false),
+                    FlagEntrega = table.Column<bool>(nullable: false),
+                    FlagCobranca = table.Column<bool>(nullable: false),
+                    Genero = table.Column<int>(nullable: false),
+                    UsuarioId = table.Column<int>(nullable: true),
+                    TelefoneId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cliente_Telefone_TelefoneId",
+                        column: x => x.TelefoneId,
+                        principalTable: "Telefone",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Cliente_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cidade",
                 columns: table => new
                 {
@@ -99,77 +135,6 @@ namespace RaellShoes.Migrations
                         name: "FK_Cidade_Estado_EstadoId",
                         column: x => x.EstadoId,
                         principalTable: "Estado",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Endereco",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Apelido = table.Column<string>(nullable: false),
-                    Logradouro = table.Column<string>(nullable: false),
-                    Numero = table.Column<string>(nullable: false),
-                    Complemento = table.Column<string>(nullable: true),
-                    Bairro = table.Column<string>(nullable: false),
-                    Cep = table.Column<string>(maxLength: 9, nullable: false),
-                    Observacoes = table.Column<string>(nullable: true),
-                    CidadeId = table.Column<int>(nullable: true),
-                    TipoResidencia = table.Column<int>(nullable: false),
-                    TipoLogradouro = table.Column<int>(nullable: false),
-                    TipoEndereco = table.Column<int>(nullable: false),
-                    ClienteId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Endereco", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Cidade_CidadeId",
-                        column: x => x.CidadeId,
-                        principalTable: "Cidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cliente",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(nullable: false),
-                    Sobrenome = table.Column<string>(nullable: false),
-                    Cpf = table.Column<string>(maxLength: 14, nullable: false),
-                    DataNascimento = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<bool>(nullable: false),
-                    FlagEntrega = table.Column<bool>(nullable: false),
-                    FlagCobranca = table.Column<bool>(nullable: false),
-                    Genero = table.Column<int>(nullable: false),
-                    UsuarioId = table.Column<int>(nullable: true),
-                    TelefoneId = table.Column<int>(nullable: true),
-                    EnderecoId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cliente", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cliente_Endereco_EnderecoId",
-                        column: x => x.EnderecoId,
-                        principalTable: "Endereco",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Cliente_Telefone_TelefoneId",
-                        column: x => x.TelefoneId,
-                        principalTable: "Telefone",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Cliente_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -201,6 +166,42 @@ namespace RaellShoes.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Endereco",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Apelido = table.Column<string>(nullable: false),
+                    Logradouro = table.Column<string>(nullable: false),
+                    Numero = table.Column<string>(nullable: false),
+                    Complemento = table.Column<string>(nullable: true),
+                    Bairro = table.Column<string>(nullable: false),
+                    Cep = table.Column<string>(maxLength: 9, nullable: false),
+                    Observacoes = table.Column<string>(nullable: true),
+                    CidadeId = table.Column<int>(nullable: true),
+                    TipoResidencia = table.Column<int>(nullable: false),
+                    TipoLogradouro = table.Column<int>(nullable: false),
+                    TipoEndereco = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Endereco", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Endereco_Cidade_CidadeId",
+                        column: x => x.CidadeId,
+                        principalTable: "Cidade",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Endereco_Cliente_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Cliente",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Cartao_ClienteId",
                 table: "Cartao",
@@ -211,11 +212,6 @@ namespace RaellShoes.Migrations
                 name: "IX_Cidade_EstadoId",
                 table: "Cidade",
                 column: "EstadoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cliente_EnderecoId",
-                table: "Cliente",
-                column: "EnderecoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cliente_TelefoneId",
@@ -241,45 +237,33 @@ namespace RaellShoes.Migrations
                 name: "IX_Estado_PaisId",
                 table: "Estado",
                 column: "PaisId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Endereco_Cliente_ClienteId",
-                table: "Endereco",
-                column: "ClienteId",
-                principalTable: "Cliente",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Endereco_Cliente_ClienteId",
-                table: "Endereco");
-
             migrationBuilder.DropTable(
                 name: "Cartao");
+
+            migrationBuilder.DropTable(
+                name: "Endereco");
 
             migrationBuilder.DropTable(
                 name: "Log");
 
             migrationBuilder.DropTable(
+                name: "Cidade");
+
+            migrationBuilder.DropTable(
                 name: "Cliente");
 
             migrationBuilder.DropTable(
-                name: "Endereco");
+                name: "Estado");
 
             migrationBuilder.DropTable(
                 name: "Telefone");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
-
-            migrationBuilder.DropTable(
-                name: "Cidade");
-
-            migrationBuilder.DropTable(
-                name: "Estado");
 
             migrationBuilder.DropTable(
                 name: "Pais");

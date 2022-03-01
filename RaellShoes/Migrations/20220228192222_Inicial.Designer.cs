@@ -9,7 +9,7 @@ using RaellShoes.Data;
 namespace RaellShoes.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220226005823_Inicial")]
+    [Migration("20220228192222_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,8 +78,6 @@ namespace RaellShoes.Migrations
 
                     b.Property<DateTime>("DataNascimento");
 
-                    b.Property<int?>("EnderecoId");
-
                     b.Property<bool>("FlagCobranca");
 
                     b.Property<bool>("FlagEntrega");
@@ -99,8 +97,6 @@ namespace RaellShoes.Migrations
                     b.Property<int?>("UsuarioId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("TelefoneId");
 
@@ -219,6 +215,10 @@ namespace RaellShoes.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Admin");
+
+                    b.Property<DateTime>("DataCadastro");
+
                     b.Property<string>("Email")
                         .IsRequired();
 
@@ -248,10 +248,6 @@ namespace RaellShoes.Migrations
 
             modelBuilder.Entity("RaellShoes.Models.Clientes.Cliente", b =>
                 {
-                    b.HasOne("RaellShoes.Models.Clientes.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId");
-
                     b.HasOne("RaellShoes.Models.Clientes.Telefone", "Telefone")
                         .WithMany()
                         .HasForeignKey("TelefoneId");

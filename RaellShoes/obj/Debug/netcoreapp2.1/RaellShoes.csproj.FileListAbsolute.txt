@@ -47,7 +47,6 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.pdb
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.dll
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.pdb
-C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfoInputs.cache
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfo.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CoreCompileInputs.cache
@@ -79,3 +78,4 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CopyComplete
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\ErroCadastro.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Home\SucessoCadastro.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache

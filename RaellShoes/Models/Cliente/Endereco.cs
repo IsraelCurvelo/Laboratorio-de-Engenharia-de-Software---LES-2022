@@ -42,6 +42,8 @@ namespace RaellShoes.Models.Clientes
 
         public int ClienteId { get; set; }
 
+        public bool CadastroInicial { get; set; }
+
         public Endereco()
         {
         }
