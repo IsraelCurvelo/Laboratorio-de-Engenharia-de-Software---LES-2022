@@ -123,14 +123,20 @@ namespace RaellShoes.Dal
            
             if (entidadeDominio.GetType().Name.ToLower().Equals("cliente"))
             {
-                 return dbContext.Cliente
-                    .Include(x => x.Telefone)
-                    .Include(x => x.Endereco)
-                    .Include(x => x.Endereco).Where(x => x.Endereco.TipoEndereco == 0)
-                    .Include(x => x.Endereco.Cidade)
-                    .Include(x => x.Endereco.Cidade.Estado)
-                    .Include(x => x.Endereco.Cidade.Estado.Pais)                    
-                    .FirstOrDefault(x => x.Id == entidadeDominio.Id);                              
+                 Cliente cliente = dbContext.Cliente
+                    .Include(x => x.Telefone) 
+                    .FirstOrDefault(x => x.Id == entidadeDominio.Id); 
+
+                Endereco enderecoResidencial = dbContext.Endereco
+                   .Include(x => x.Cidade)
+                   .Include(x => x.Cidade.Estado)
+                   .Include(x => x.Cidade.Estado.Pais)
+                   .FirstOrDefault(x => x.Id == entidadeDominio.Id && x.TipoEndereco == 0);
+
+                cliente.Endereco = enderecoResidencial;
+
+                return cliente;
+
             } 
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("endereco"))

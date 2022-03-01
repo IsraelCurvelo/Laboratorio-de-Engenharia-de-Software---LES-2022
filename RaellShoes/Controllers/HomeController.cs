@@ -9,6 +9,7 @@ using RaellShoes.Facadee;
 using RaellShoes.Models;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.Enums;
+using RaellShoes.Models.ViewModel;
 
 namespace RaellShoes.Controllers
 {
@@ -63,9 +64,10 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult Login(Cliente cliente)
         {
-            Cliente login = facade.Login(cliente);
-            if (login != null) 
-                return RedirectToAction("Index", "clientes");
+            LoginViewModel clienteLogado = facade.Login(cliente);         
+
+            if (clienteLogado != null && !cliente.Usuario.Admin) 
+                return RedirectToAction("Index", "clientes", clienteLogado);
 
             return View();
         }
@@ -103,6 +105,11 @@ namespace RaellShoes.Controllers
         }
 
         public IActionResult SucessoCadastro()
+        {
+            return View();
+        }
+
+        public IActionResult DetalhesProduto()
         {
             return View();
         }

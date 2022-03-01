@@ -3,6 +3,7 @@ using RaellShoes.Data;
 using RaellShoes.Models;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.Enums;
+using RaellShoes.Models.ViewModel;
 using RaellShoes.Strategy;
 using System;
 using System.Collections.Generic;
@@ -149,10 +150,23 @@ namespace RaellShoes.Facadee
 
                 if (confirmacaoDadosCliente == null && confirmacaoDadosEndereco == null)
                 {
-                    dal.Alterar(cliente);                   
+                    dal.Alterar(cliente);                    
                     log.Descricao = gerarLog.Processar(cliente) + ", [Tipo: Alteração]";
                     dal.Cadastrar(log);
-                    return null;
+
+                    string confirmacaoEndereco = null;                    
+                    cliente.Enderecos = new List<Endereco>();
+                    cliente.Enderecos.Add(cliente.Endereco);
+
+                    foreach (var item in cliente.Enderecos)
+                    {
+                        confirmacaoEndereco = Alterar(cliente.Endereco);
+                    }
+
+                    if (confirmacaoEndereco == null)
+                        return null;
+                    else
+                        return confirmacaoEndereco;
                 }
                 else
                 {
@@ -235,17 +249,17 @@ namespace RaellShoes.Facadee
             return dal.ConsultarEmail(email);
         }
 
-        public Cliente Login(EntidadeDominio entidadeDominio)
+        public LoginViewModel Login(EntidadeDominio entidadeDominio)
         {
             Cliente cliente = (Cliente)entidadeDominio;
             CriptografarSenha criptografar = new CriptografarSenha();
             string senhacrip = criptografar.Processar(cliente);
 
             cliente.Usuario.Senha = senhacrip;
-            Cliente login = dal.Login(cliente);
+            Cliente login = dal.Login(cliente);          
 
             if (login != null) 
-                return login;
+                return new LoginViewModel { Nome = login.Nome, Email = login.Usuario.Email, IdCliente = login.Id };
 
             return null;
         }

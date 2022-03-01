@@ -22,26 +22,30 @@ namespace RaellShoes.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(LoginViewModel cliente)
         {
-            return View();
+            return View(cliente);
         }
 
         //**************************PERFIL**************************
-        public IActionResult MeuPerfil(Cliente cliente)
+        public IActionResult MeuPerfil()
         {
-            cliente.Id = 1;
+            Cliente cliente = new Cliente { Id = 1 };
             Cliente clienteBanco = (Cliente)facade.ConsultarId(cliente);
-            if (clienteBanco == null) RedirectToAction("Index");
+
+            if (clienteBanco == null) 
+                RedirectToAction("Index");
+
             return View(clienteBanco);
         }
 
         [HttpPost]
         public IActionResult AlterarPerfil(Cliente cliente)
-        {
-            string confirmacao = facade.Alterar(cliente);
+        {             
+            string confirmacao = facade.Alterar(cliente);            
 
-            if (confirmacao == null) return View("MeuPerfil", cliente);
+            if (confirmacao == null) 
+                return View("MeuPerfil", cliente);
 
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
@@ -51,7 +55,8 @@ namespace RaellShoes.Controllers
         {
             string confirmacao = facade.Excluir(cliente);
 
-            if (confirmacao == null) return RedirectToAction("Index", "Home");
+            if (confirmacao == null) 
+                return RedirectToAction("Index", "Home");
 
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
@@ -86,6 +91,7 @@ namespace RaellShoes.Controllers
             //Após criar autenticação pegar o ID do cliente logado
             endereco.ClienteId = 1;
             string confirmacao = facade.Cadastrar(endereco);
+
             return RedirectToAction("MeusEnderecos");
         }        
 
@@ -140,6 +146,7 @@ namespace RaellShoes.Controllers
         {
             cartao.ClienteId = 1;
             string confirmacao = facade.Cadastrar(cartao);
+
             return RedirectToAction("MeusCartoes");
         }
 

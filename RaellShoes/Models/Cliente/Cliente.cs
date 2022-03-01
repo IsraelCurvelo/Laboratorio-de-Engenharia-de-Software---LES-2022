@@ -69,7 +69,7 @@ namespace RaellShoes.Models.Clientes
             Telefone = telefone;
             FlagCobranca = flagCobranca;
             FlagEntrega = flagEntrega;
-            Endereco = endereco;
+            Endereco = endereco;          
            
         }
 
