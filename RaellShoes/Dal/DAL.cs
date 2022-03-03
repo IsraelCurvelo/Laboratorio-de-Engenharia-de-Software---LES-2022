@@ -100,7 +100,7 @@ namespace RaellShoes.Dal
             {
                 case ("endereco"): 
                     foreach (EntidadeDominio x in dbContext.Endereco.Include(x => x.Cidade).Include(x => x.Cidade.Estado).Include(x => x.Cidade.Estado.Pais)
-                     .ToList().Where(x => x.ClienteId == entidadeDominio.Id))
+                     .ToList().Where(x => x.ClienteId == entidadeDominio.Id && x.TipoEndereco != 0))
                     {
                         resultado.Add(x);
                     }

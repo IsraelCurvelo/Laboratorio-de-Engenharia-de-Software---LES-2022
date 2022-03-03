@@ -1,0 +1,660 @@
+﻿@model RaellShoes.Models.ViewModel.EnderecoViewModel
+
+@{ViewData["Title"] = "Meus Endereços";}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Meus Endereços</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+ 
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="index-logado.html">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto " href="index-logado.html">Início</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Lançamentos</a></li>
+                            <li><a href="#">Outlet</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" href="sobre-nos.html">Sobre Nós</a></li>
+                    <li><a class="nav-link scrollto" href="contato.html">Contato</a></li>
+                    <li><a class="nav-link scrollto" href="perguntas-frequentes.html">Perguntas Frequentes</a></li>
+                    <li><a class="nav-link scrollto" href="carrinho.html">Carrinho</a></li>
+                    <li class="dropdown  active">
+                        <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="meuperfil.html">Meu Perfil</a></li>
+                            <li><a href="meus-enderecos.html">Meus Endereços</a></li>
+                            <li><a href="meus-cartoes.html">Meus Cartões</a></li>
+                            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+                            <li><a href="troca-e-devolucoes.html">Troca e Devoluções</a></li>
+                            <li><a href="ranking-e-vales.html">Ranking e Vales</a></li>
+                            <li><a href="alterar-senha.html">Alterar Senha</a></li>
+                            <li><a href="index.html">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+
+
+    <div class="alert alert-danger" role="alert" hidden id="alert-erro">
+        This is a danger alert—check it out!
+    </div>
+
+    <section id="cliente" class="cliente">
+        <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
+            <div class="section-title2">
+                <h2>Meus <span style="color: rgb(202, 64, 64)">Endereços </span></h2>
+            </div>
+        </div>
+
+        <!--Form-->
+        <div class="container mt-5">
+            <!--Box Novo-->
+            <div class="info-wrap " style="border-radius:20px">
+                <div class="col-lg-3 col-md-6 info">
+                    <i class="bi bi-house"
+                       style="margin-top: -8px;color: rgb(202, 64, 64); background-color: rgb(247, 202, 202);"></i>
+                </div>
+                <h4>
+                    <strong style="padding-left: 10px; color: rgb(202, 64, 64)"> Cadastrar Endereço </strong>
+                </h4><br>
+                <div>
+                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px" value="Novo" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                </div>
+            </div>
+
+            <br>
+
+            @foreach (var item in Model.Enderecos)
+            {
+                <div class="info-wrap" style="border-radius:20px;font-size: small" id="">
+                    <form asp-action="alterarendereco" class="needs-validation" novalidate>
+                        <div class="row">
+                            <input type="hidden" asp-for="@item.Id" name="Id" />
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Tipo de Endereço</span>
+                                <select asp-for="@item.TipoEndereco" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" name="TipoEndereco" class="form-select" required style="font-size: small">
+                                </select>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Nome do endereço</span>
+                                <input asp-for="@item.Apelido" type="text" name="Apelido" class="form-control" id="fraseendereco"
+                                       style="font-size: small" placeholder="Dê um nome para este endereço" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Cep</span>
+                                <input asp-for="@item.Cep" name="cep" type="text" class="form-control" id="cep" placeholder="Digite o cep" maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}"
+                                       style="font-size: small" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1 col-md-1 form-group mt-3 mt-md-0" id="comb-form">
+                                <input type="button" class="btn btn-outline-info btn-sm" id="detalhes-endereco" style="margin-top: 20px; border-radius: 10px " value="Ver detalhes" onclick="mostrarDetalhes(@item.Id)">
+                            </div>
+
+                        </div>
+                        <div class="row" id="@item.Id" hidden>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Tipo de Residência</span>
+                                <select asp-for="@item.TipoResidencia" name="TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required style="font-size: small">
+                                </select>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Tipo de Logradouro</span>
+                                <select asp-for="@item.TipoLogradouro" name="TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required style="font-size: small">
+                                </select>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-5 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Logradouro</span>
+                                <input asp-for="@item.Logradouro" name="Logradouro" type="text" class="form-control" id="logradouro1" style="font-size: small"
+                                       placeholder="Digite o logradouro" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Número</span>
+                                <input asp-for="@item.Numero" name="Numero" type="text" class="form-control" id="numero" placeholder="N°" required style="font-size: small">
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Complemento</span>
+                                <input asp-for="@item.Complemento" name="Complemento" type="text" class="form-control" id="complemento" style="font-size: small"
+                                       placeholder="Caso houver, digite o complemento">
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Bairro</span>
+                                <input asp-for="@item.Bairro" name="Bairro" type="text" class="form-control" id="bairro1" style="font-size: small"
+                                       placeholder="Digite o bairro" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <input type="hidden" asp-for="@item.Cidade.Id" name="Cidade.Id" />
+                                <span>Cidade</span>
+                                <input asp-for="@item.Cidade.Descricao" type="text" name="Cidade.Descricao" class="form-control" id="cidade1" style="font-size: small"
+                                       placeholder="Digite a cidade" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <input type="hidden" asp-for="@item.Cidade.Estado.Id" name="Cidade.Estado.Id" />
+                                <span>Estado</span>
+                                <input asp-for="@item.Cidade.Estado.Descricao" type="text" name="Cidade.Estado.Descricao" class="form-control" id="estado1" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()" style="font-size: small"
+                                       placeholder="Digite o estado">
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <input type="hidden" asp-for="@item.Cidade.Estado.Pais.Id" name="Cidade.Estado.Pais.Id" />
+                                <span>País</span>
+                                <input asp-for="@item.Cidade.Estado.Pais.Descricao" type="text" name="Cidade.Estado.Pais.Descricao" class="form-control" id="pais1" placeholder="Digite o país" style="font-size: small"
+                                       value="Brasil" required>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Observações</span>
+                                <textarea asp-for="@item.Observacoes" type="text" name="Observacoes" class="form-control" id="observacoes" style="font-size: small"
+                                          placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <input type="hidden" asp-for="@item.ClienteId" name="ClienteId" />
+                            </div>
+
+                            <br>
+
+                            <div>
+                                <button class="btn btn-warning btn-sm" style="border-radius:8px; width: 49%; margin-right:1.5%" type="submit">Alterar</button>
+                                @if (!item.CadastroInicial)
+                                    {  
+                                        <form>
+                                            <a asp-action="excluirendereco" asp-route-id="@item.Id" type="submit" class="btn btn-danger btn-sm" style="border-radius:8px; width: 49%; " onclick="excluirEndereco()">Excluir</a>
+                                        </form>
+                                    }
+                                
+
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <br>
+            }
+            </br>
+
+        </div>
+
+    </section>
+
+    <!-- Modal Novo Endereço -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <section id="cliente" class="cliente">
+                        <div class="container" style=" margin-bottom: -30px;">
+                            <div class="section-title2">
+                                <h2>Novo <span style="color: rgb(202, 64, 64)">Endereço </span></h2>
+                            </div>
+                        </div>
+
+                        <!--Form-->
+                        <div class="container mt-5">
+                            <form asp-action="cadastrarendereco" class="needs-validation" novalidate>
+                                <!--Novo Endereço-->                              
+                                <div class="info-wrap">
+                                    <div class="col-lg-3 col-md-6 info">
+                                        <i class="bi bi-house" style="margin-top: -8px; background-color: rgb(247, 202, 202); color: rgb(202, 64, 64)"></i>
+                                    </div>
+                                    <h4> <strong style="padding-left: 10px; color: rgb(202, 64, 64)"> Digite os dados</strong></h4><br>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Tipo de Endereço</span>
+                                            <select id="disabledSelect"asp-for="Endereco.TipoEndereco"asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" required>
+                                              
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Nome do endereço</span>
+                                            <input type="text" asp-for="Endereco.Apelido"  class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                                                   required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Tipo de Residência</span>
+                                            <select asp-for="Endereco.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Tipo de Logradouro</span>
+                                            <select asp-for="Endereco.TipoLogradouro"asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()"class="form-select" id="tipoLogradouro" required>
+                                         
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Cep</span>
+                                            <input type="text" asp-for="Endereco.Cep" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro" hidden></i>
+                                            <input type="text" asp-for="Endereco.Logradouro" class="form-control" id="logradouro-modal"
+                                                   placeholder="Digite o logradouro" required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Número</span>
+                                            <input type="text" class="form-control" asp-for="Endereco.Numero" id="numero" placeholder="N°" required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Complemento</span>
+                                            <input type="text" class="form-control"asp-for="Endereco.Complemento" id="complemento"
+                                                   placeholder="Caso houver, digite o complemento">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Bairro</span><i class="bi bi-lock" id="lock-bairro" hidden></i>
+                                            <input type="text" asp-for="Endereco.Bairro" class="form-control" id="bairro-modal"
+                                                   placeholder="Digite o bairro" required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Cidade</span><i class="bi bi-lock" id="lock-cidade" hidden></i>
+                                            <input type="text" asp-for="Endereco.Cidade.Descricao" class="form-control" id="cidade-modal"
+                                                   placeholder="Digite a cidade" required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Estado</span><i class="bi bi-lock" id="lock-estado" hidden></i>
+                                            <input type="text" asp-for="Endereco.Cidade.Estado.Descricao" class="form-control" id="estado-modal"
+                                                   placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()">
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>País</span><i class="bi bi-lock" id="lock-pais" hidden></i>
+                                            <input type="text" asp-for="Endereco.Cidade.Estado.Pais.Descricao" class="form-control" id="pais-modal" placeholder="Digite o país" required>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Observações</span>
+                                            <textarea type="text" asp-for="Endereco.Observacoes" class="form-control" id="observacoes"
+                                                      placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <br>
+
+                                <div>
+                                    <button class="btn btn-success col-lg-12">Salvar</button>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+
+                    </section>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+
+    <a href="https://api.whatsapp.com/send?phone=5511989462969&text=Dúvidas" target="_blank"
+       style="position:fixed;bottom:20px;right:18px;">
+        <svg enable-background="new 0 0 512 512" width="50" height="50" version="1.1" viewBox="0 0 512 512"
+             xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+        <path d="M256.064,0h-0.128l0,0C114.784,0,0,114.816,0,256c0,56,18.048,107.904,48.736,150.048l-31.904,95.104  l98.4-31.456C155.712,496.512,204,512,256.064,512C397.216,512,512,397.152,512,256S397.216,0,256.064,0z"
+              fill="#4CAF50" />
+
+        <path d="m405.02 361.5c-6.176 17.44-30.688 31.904-50.24 36.128-13.376 2.848-30.848 5.12-89.664-19.264-75.232-31.168-123.68-107.62-127.46-112.58-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624 26.176-62.304c6.176-6.304 16.384-9.184 26.176-9.184 3.168 0 6.016 0.16 8.576 0.288 7.52 0.32 11.296 0.768 16.256 12.64 6.176 14.88 21.216 51.616 23.008 55.392 1.824 3.776 3.648 8.896 1.088 13.856-2.4 5.12-4.512 7.392-8.288 11.744s-7.36 7.68-11.136 12.352c-3.456 4.064-7.36 8.416-3.008 15.936 4.352 7.36 19.392 31.904 41.536 51.616 28.576 25.44 51.744 33.568 60.032 37.024 6.176 2.56 13.536 1.952 18.048-2.848 5.728-6.176 12.8-16.416 20-26.496 5.12-7.232 11.584-8.128 18.368-5.568 6.912 2.4 43.488 20.48 51.008 24.224 7.52 3.776 12.48 5.568 14.304 8.736 1.792 3.168 1.792 18.048-4.384 35.52z"
+              fill="#FAFAFA" />
+
+ </svg>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        function mostrarDetalhes(id) {
+
+            if (document.getElementById(id).hidden) {
+                document.getElementById(id).hidden = false
+                document.getElementById('detalhes-endereco').value = "Recolher";
+            } else {
+                document.getElementById(id).hidden = true;
+                document.getElementById('detalhes-endereco').value = "Ver detalhes";
+            }
+        }
+    </script>
+
+    <script>
+        function maiusculo() {
+            var maiuscula = document.getElementById('estado').value.toUpperCase();
+            document.getElementById('estado').value = maiuscula;
+        }
+    </script>
+
+    <script>        
+
+        function excluirEndereco() {                 
+
+            return confirm("Deseja excluir este endereço?");
+        }
+    </script>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+            if (texto.substring(0, 1) !== saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+    </script>
+
+    <script>
+
+        function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('logradouro-modal').value = ("");
+            document.getElementById('bairro-modal').value = ("");
+            document.getElementById('cidade-modal').value = ("");
+            document.getElementById('estado-modal').value = ("");
+            document.getElementById('pais-modal').value = ("");
+
+        }
+
+        function meu_callback(conteudo) {
+            if (!("erro" in conteudo)) {
+                //Atualiza os campos com os valores.
+                document.getElementById('logradouro-modal').value = (conteudo.logradouro);
+                document.getElementById('bairro-modal').value = (conteudo.bairro);
+                document.getElementById('cidade-modal').value = (conteudo.localidade);
+                document.getElementById('estado-modal').value = (conteudo.uf);
+                document.getElementById('pais-modal').value = ("Brasil");
+
+            } //end if.
+            else {
+                //CEP não Encontrado.
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+               
+            }
+        }
+
+        function auxEsconderMostrarCampo(id, valor) {
+            document.getElementById(id).hidden = valor;
+        }
+
+        function auxDesabilitarCampo(id, valor) {
+            document.getElementById(id).disabled = valor;
+        }
+
+        function pesquisacep(valor) {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = valor.replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if (validacep.test(cep)) {
+
+                    //Preenche os campos com "..." enquanto consulta webservice.
+                    document.getElementById('logradouro-modal').value = "...";
+                    document.getElementById('bairro-modal').value = "...";
+                    document.getElementById('cidade-modal').value = "...";
+                    document.getElementById('estado-modal').value = "...";
+                    document.getElementById('pais-modal').value = "...";
+
+
+
+                    //Cria um elemento javascript.
+                    var script = document.createElement('script');
+
+                    //Sincroniza com o callback.
+                    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                    //Insere script no documento e carrega o conteúdo.
+                    document.body.appendChild(script);
+
+                } //end if.
+                else {
+                    //cep é inválido.
+                    limpa_formulário_cep();
+                    alert("Formato de CEP inválido.");
+                }
+            } //end if.
+            else {
+                //cep sem valor, limpa formulário.
+                limpa_formulário_cep();
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>

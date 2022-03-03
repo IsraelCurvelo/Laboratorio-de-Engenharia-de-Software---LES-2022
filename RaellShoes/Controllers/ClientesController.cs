@@ -68,6 +68,8 @@ namespace RaellShoes.Controllers
         {
             Endereco endereco = new Endereco() { Id = 1 };
             List<EntidadeDominio> resultEnderecos = facade.Consultar(endereco);
+            EnderecoViewModel enderecoViewModel = new EnderecoViewModel();
+
             if (resultEnderecos != null)
             {
                 List<Endereco> enderecos = new List<Endereco>();
@@ -75,16 +77,16 @@ namespace RaellShoes.Controllers
                 {
                     enderecos.Add((Endereco)item);
                 }
-                return View(enderecos);
+                
+                enderecoViewModel.Enderecos = enderecos;
+
+                return View(enderecoViewModel);
             }
-            return View(endereco);
+            return View(enderecoViewModel);
 
         }
 
-        public IActionResult CadastrarEndereco()
-        {
-            return View();
-        }
+       
         [HttpPost]
         public IActionResult CadastrarEndereco(Endereco endereco)
         {
