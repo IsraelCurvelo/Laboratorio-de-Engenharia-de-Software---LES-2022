@@ -17,7 +17,7 @@ namespace RaellShoes.Models.Administrador
         public String Modelo { get; set; }       
 
         [Required(ErrorMessage = "{0} obrigatório")]
-        public int Valor { get; set; }
+        public Double Valor { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         [Display(Name ="Código de Barras")]
@@ -74,7 +74,7 @@ namespace RaellShoes.Models.Administrador
             Categorias = new List<Categoria>();
         }
 
-        public Produto(string nome, string modelo, int valor, string codigoBarra, string url, string descricao, int quantidade, Status status,
+        public Produto(string nome, string modelo, double valor, string codigoBarra, string url, string descricao, int quantidade, Status status,
             DateTime dataCadastro, GrupoPrecificacao grupoPrecificacao, Fornecedor fornecedor, Marca marca, CorPrimariaProduto corPrimariaProduto, CorSecundariaProduto corSecundariaProduto,
             GeneroProduto generoProduto, Tamanho tamanho, FichaTecnica fichaTecnica, List<Categoria> categorias)
         {
