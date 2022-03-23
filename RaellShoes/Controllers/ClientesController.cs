@@ -125,6 +125,8 @@ namespace RaellShoes.Controllers
         {
             Cartao cartao = new Cartao() { Id = 1 };
             List<EntidadeDominio> resultEnderecos = facade.Consultar(cartao);
+            CartaoViewModel cartaoViewModel = new CartaoViewModel();
+
             if (resultEnderecos != null)
             {
                 List<Cartao> cartoes = new List<Cartao>();
@@ -132,9 +134,11 @@ namespace RaellShoes.Controllers
                 {
                     cartoes.Add((Cartao)item);
                 }
-                return View(cartoes);
+
+                cartaoViewModel.Cartoes = cartoes;
+                return View(cartaoViewModel);
             }
-            return View(cartao);
+            return View(cartaoViewModel);
         }
 
 
