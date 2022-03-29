@@ -2,6 +2,7 @@
 {
     public enum TipoCartao
     {
+        Selecione,
         Crédito,
         Débito
     }

@@ -199,7 +199,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Marca == produto.Marca).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -209,7 +209,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Nome == produto.Nome).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -219,7 +219,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Modelo == produto.Modelo).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -229,7 +229,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.CorPrimariaProduto == produto.CorPrimariaProduto).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -239,7 +239,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Genero == produto.Genero).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -250,7 +250,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Tamanho == produto.Tamanho).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }
@@ -260,7 +260,7 @@ namespace RaellShoes.Dal
                 var resultado = dbContext.Produto.Where(x => x.Valor == produto.Valor).ToList();
                 foreach (Produto item in resultado)
                 {
-                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    Produto retornoProduto = (Produto)ConsultarId(item);
                     consulta.Add(retornoProduto);
                 }
             }

@@ -8,13 +8,14 @@ namespace RaellShoes.Models.Enums
 {
     public enum Marca
     {
+        Selecione,
         Adidas,
         Nike,
         [Display(Name = "New Balance")]
         NewBalance,
         [Display(Name = "Air Jordan")]
         AirJordan,
-        Rebook,
+        Reebok,
         Mizuno,
         Puma,
         Qix,

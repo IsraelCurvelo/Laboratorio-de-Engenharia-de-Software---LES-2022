@@ -2,6 +2,7 @@
 {
     public enum TipoLogradouro
     {
+        Selecione,
         Rua,
         Avenida,
         Rodovia,

@@ -7,6 +7,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum CorSecundariaProduto
     {
+        Selecione,
         Branco,
         Preto,
         Azul,

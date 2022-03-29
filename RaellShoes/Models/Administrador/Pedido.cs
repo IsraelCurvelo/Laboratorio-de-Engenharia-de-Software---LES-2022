@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class Pedido
+    public class Pedido : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public String NumeroPedido { get; set; }

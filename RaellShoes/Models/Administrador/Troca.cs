@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class Troca
+    public class Troca : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public DateTime DataSolicitacao { get; set; }

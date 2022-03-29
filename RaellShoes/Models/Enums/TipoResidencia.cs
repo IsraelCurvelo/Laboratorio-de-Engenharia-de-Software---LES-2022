@@ -2,6 +2,7 @@
 {
     public enum TipoResidencia
     {
+        Selecione,
         Casa,
         Sobrado,
         Apartamento,

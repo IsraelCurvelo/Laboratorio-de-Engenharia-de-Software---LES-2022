@@ -8,6 +8,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum Tamanho
     {
+        Selecione,
         [Display(Name = "33")]
         TrintaTres,
         [Display(Name = "34")]

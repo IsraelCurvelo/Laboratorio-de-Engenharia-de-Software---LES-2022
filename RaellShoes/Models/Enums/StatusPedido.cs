@@ -8,6 +8,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum StatusPedido
     {
+        Selecione,
         [Display(Name = "EM PROCESSAMENTO")]
         EmProcessamento,
         [Display(Name = "EM TRÂNSITO")]

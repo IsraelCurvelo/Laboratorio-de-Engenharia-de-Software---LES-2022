@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class Cupom
+    public class Cupom : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public String Descricao { get; set; }

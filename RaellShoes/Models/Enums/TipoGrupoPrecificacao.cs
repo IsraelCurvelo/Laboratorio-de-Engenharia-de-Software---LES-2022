@@ -8,6 +8,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum TipoGrupoPrecificacao
     {
+        Selecione,
         [Display(Name = "Lançamento")]
         Lancamento,
         Vigente,

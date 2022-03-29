@@ -8,6 +8,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum FormaPagamento
     {
+        Selecione,
         [Display(Name ="Crédito")]
         Credito,
         [Display(Name ="Débito")]

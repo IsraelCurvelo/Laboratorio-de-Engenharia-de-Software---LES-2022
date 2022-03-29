@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class Carrinho
+    public class Carrinho : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public Double ValorFrete { get; set; }

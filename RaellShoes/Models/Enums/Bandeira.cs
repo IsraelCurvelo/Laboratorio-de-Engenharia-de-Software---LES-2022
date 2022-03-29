@@ -4,6 +4,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum Bandeira
     {
+        Selecione,
         MasterCard,
         Visa,
         Elo,

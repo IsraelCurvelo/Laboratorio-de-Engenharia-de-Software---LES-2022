@@ -7,6 +7,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum GeneroProduto
     {
+        Selecione,
         Masculino,
         Feminino,
         Unissex

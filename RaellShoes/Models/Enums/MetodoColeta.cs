@@ -7,6 +7,7 @@ namespace RaellShoes.Models.Enums
 {
     public enum MetodoColeta
     {
+        Selecione,
         Retirada,
         Postagem
     }

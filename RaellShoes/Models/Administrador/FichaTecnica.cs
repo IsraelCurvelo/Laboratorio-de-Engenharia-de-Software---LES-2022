@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class FichaTecnica
+    public class FichaTecnica : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public String Material { get; set; }

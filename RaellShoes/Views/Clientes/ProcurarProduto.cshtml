@@ -43,43 +43,24 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto " href="index-logado.html">Início</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Lançamentos</a></li>
-                            <li><a href="#">Outlet</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="sobre-nos.html">Sobre Nós</a></li>
-                    <li><a class="nav-link scrollto" href="contato.html">Contato</a></li>
-                    <li><a class="nav-link scrollto" href="perguntas-frequentes.html">Perguntas Frequentes</a></li>
-                    <li><a class="nav-link scrollto" href="carrinho.html">Carrinho</a></li>
+                    <li><a class="nav-link scrollto " href="">Início</a></li>
+                    <li><a class="nav-link scrollto" href="clientes/procurarproduto">Pesquisar um Produto</a></li>
+                    
+                    <li><a class="nav-link scrollto" href="">Sobre Nós</a></li>
+                    <li><a class="nav-link scrollto" href="">Contato</a></li>
+                    <li><a class="nav-link scrollto" href="">Perguntas Frequentes</a></li>
+                    <li><a class="nav-link scrollto" href="">Carrinho</a></li>
                     <li class="dropdown  active">
                         <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="meuperfil.html">Meu Perfil</a></li>
-                            <li><a href="meus-enderecos.html">Meus Endereços</a></li>
-                            <li><a href="meus-cartoes.html">Meus Cartões</a></li>
-                            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
-                            <li><a href="troca-e-devolucoes.html">Troca e Devoluções</a></li>
-                            <li><a href="ranking-e-vales.html">Ranking e Vales</a></li>
-                            <li><a href="alterar-senha.html">Alterar Senha</a></li>
-                            <li><a href="index.html">Sair</a></li>
+                            <li><a href="">Meu Perfil</a></li>
+                            <li><a href="">Meus Endereços</a></li>
+                            <li><a href="">Meus Cartões</a></li>
+                            <li><a href="">Meus Pedidos</a></li>
+                            <li><a href="">Troca e Devoluções</a></li>
+                            <li><a href="">Ranking e Vales</a></li>
+                            <li><a href="">Alterar Senha</a></li>
+                            <li><a href="">Sair</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -94,66 +75,61 @@
         <div class="container mt-5">
             <!--Box Clientes-->
             <div class="info-wrap" style=" border-radius:20px">
+                <form asp-action="FiltrarProdutos">
 
-                <h5><strong style="  color: rgb(64, 174, 202);">Procurar Produto </strong></h5><br>
+                    <h5><strong style="  color: rgb(64, 174, 202);">Procurar Produto </strong></h5><br>
 
-                <div class="row">
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Marca</span>
-                        <br>
-                        <select asp-for="Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()"
-                                class="form-select">
-                            <option></option>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Marca</span>
+                            <br>
+                            <select asp-for="Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()"
+                                    class="form-select">
+                                
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome</span>
+                            <input asp-for="Nome" class="form-control" id="name" placeholder="Digite o nome do produto" minlength="3">
+                        </div>
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Modelo</span>
+                            <input asp-for="Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto">
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cor</span>
+                            <br>
+                            <select asp-for="CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()"
+                                    class="form-select">                                
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Gênero</span>
+                            <br>
+                            <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()"
+                                    class="form-select">                                
+                            </select>
+                        </div>
 
-                        </select>
-                    </div>
-                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Nome</span>
-                        <input asp-for="Nome" class="form-control" id="name" placeholder="Digite o nome do produto" minlength="3">
-                    </div>
-                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Modelo</span>
-                        <input asp-for="Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto">
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Cor</span>
-                        <br>
-                        <select asp-for="CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()"
-                                class="form-select">
-                            <option></option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Gênero</span>
-                        <br>
-                        <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()"
-                                class="form-select">
-                            <option></option>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tamanho</span>
+                            <br>
+                            <select asp-for="Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()"
+                                    class="form-select">                               
+                            </select>
+                        </div>
 
-                        </select>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Tamanho</span>
-                        <br>
-                        <select asp-for="Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()"
-                                class="form-select">
-                            <option></option>
-
-                        </select>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Valor</span>
-                        <input asp-for="Valor" class="form-control" id="name" placeholder="Digite o valor do produto" minlength="3">
-                    </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Valor</span>
+                            <input asp-for="Valor" class="form-control" id="name" placeholder="Digite o valor do produto" minlength="3">
+                        </div>
 
 
 
 
-                </div><br><br>
-                <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar</button><br>
-
+                    </div><br><br>
+                    <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar</button><br>
+                </form>
             </div>
         </div>
 
