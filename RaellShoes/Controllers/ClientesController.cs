@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
 using RaellShoes.Models;
+using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.ViewModel;
 
@@ -171,6 +172,19 @@ namespace RaellShoes.Controllers
             if (confirmacao == null) return RedirectToAction("MeusCartoes");
 
             return RedirectToAction(nameof(Error), new { message = confirmacao });
+        }
+
+        public IActionResult ProcurarProduto()
+        {
+            return View();
+        }
+
+        [HttpPost]
+       
+        public IActionResult FiltrarProdutos(Produto produto)
+        {
+            var listaProdutos = facade.ConsultarFiltroProdutos(produto);
+            return View("ResultadoFiltro", listaProdutos);
         }
 
 

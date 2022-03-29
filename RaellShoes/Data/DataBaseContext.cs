@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models;
-
+using RaellShoes.Models.Administrador;
 
 namespace RaellShoes.Data
 {
@@ -19,5 +19,6 @@ namespace RaellShoes.Data
         public DbSet<Cartao> Cartao { get; set; }
 
         public DbSet<Log> Log { get; set; }
+        public DbSet<Produto> Produto { get; set; }
     }
 }

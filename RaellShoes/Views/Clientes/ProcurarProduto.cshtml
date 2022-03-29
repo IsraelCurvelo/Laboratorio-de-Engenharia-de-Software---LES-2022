@@ -1,0 +1,278 @@
+﻿@model RaellShoes.Models.Administrador.Produto
+
+@{ViewData["Title"] = "Procurar Produto";}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Admin - Procurar produto</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="index-logado.html">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto " href="index-logado.html">Início</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Lançamentos</a></li>
+                            <li><a href="#">Outlet</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" href="sobre-nos.html">Sobre Nós</a></li>
+                    <li><a class="nav-link scrollto" href="contato.html">Contato</a></li>
+                    <li><a class="nav-link scrollto" href="perguntas-frequentes.html">Perguntas Frequentes</a></li>
+                    <li><a class="nav-link scrollto" href="carrinho.html">Carrinho</a></li>
+                    <li class="dropdown  active">
+                        <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="meuperfil.html">Meu Perfil</a></li>
+                            <li><a href="meus-enderecos.html">Meus Endereços</a></li>
+                            <li><a href="meus-cartoes.html">Meus Cartões</a></li>
+                            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+                            <li><a href="troca-e-devolucoes.html">Troca e Devoluções</a></li>
+                            <li><a href="ranking-e-vales.html">Ranking e Vales</a></li>
+                            <li><a href="alterar-senha.html">Alterar Senha</a></li>
+                            <li><a href="index.html">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+    <!--Box Clientes-->
+    <section id="cliente" class="cliente">
+
+        <div class="container mt-5">
+            <!--Box Clientes-->
+            <div class="info-wrap" style=" border-radius:20px">
+
+                <h5><strong style="  color: rgb(64, 174, 202);">Procurar Produto </strong></h5><br>
+
+                <div class="row">
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Marca</span>
+                        <br>
+                        <select asp-for="Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()"
+                                class="form-select">
+                            <option></option>
+
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Nome</span>
+                        <input asp-for="Nome" class="form-control" id="name" placeholder="Digite o nome do produto" minlength="3">
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Modelo</span>
+                        <input asp-for="Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto">
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Cor</span>
+                        <br>
+                        <select asp-for="CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()"
+                                class="form-select">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Gênero</span>
+                        <br>
+                        <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()"
+                                class="form-select">
+                            <option></option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Tamanho</span>
+                        <br>
+                        <select asp-for="Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()"
+                                class="form-select">
+                            <option></option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor</span>
+                        <input asp-for="Valor" class="form-control" id="name" placeholder="Digite o valor do produto" minlength="3">
+                    </div>
+
+
+
+
+                </div><br><br>
+                <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar</button><br>
+
+            </div>
+        </div>
+
+
+
+    </section>
+
+   
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

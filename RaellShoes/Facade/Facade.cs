@@ -1,6 +1,7 @@
 ﻿using RaellShoes.Dal;
 using RaellShoes.Data;
 using RaellShoes.Models;
+using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.Enums;
 using RaellShoes.Models.ViewModel;
@@ -326,6 +327,11 @@ namespace RaellShoes.Facadee
             else
                 return "Houve um erro ao cadastrar os endereços";
 
+        }
+
+        public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
+        {
+            return dal.ConsultarFiltroProdutos(produto);
         }
 
     }

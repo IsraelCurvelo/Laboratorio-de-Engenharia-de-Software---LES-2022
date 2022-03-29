@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RaellShoes.Models.Administrador
 {
-    public class Produto
+    public class Produto : EntidadeDominio
     {
         [Required(ErrorMessage = "{0} obrigatório")]
         public String Nome { get; set; }

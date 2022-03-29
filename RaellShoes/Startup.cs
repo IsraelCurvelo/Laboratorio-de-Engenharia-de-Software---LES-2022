@@ -43,6 +43,16 @@ namespace RaellShoes
                     options.UseMySql(Configuration.GetConnectionString("DALContext"), builder => builder.MigrationsAssembly("RaellShoes")));
 
             services.AddScoped<DAL>();
+
+            //Section
+            services.AddSession(options =>
+            {
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +78,8 @@ namespace RaellShoes
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseSession();
         }
     }
 }

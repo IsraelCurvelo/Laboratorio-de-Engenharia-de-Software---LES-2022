@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
@@ -66,8 +67,17 @@ namespace RaellShoes.Controllers
         {
             LoginViewModel clienteLogado = facade.Login(cliente);         
 
-            if (clienteLogado != null && !cliente.Usuario.Admin) 
+            if (clienteLogado != null && !cliente.Usuario.Admin)
+            {
+                HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
                 return RedirectToAction("Index", "clientes", clienteLogado);
+
+            }else if(clienteLogado != null && cliente.Usuario.Admin)
+            {
+                HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
+                return RedirectToAction("Index", "administradors", clienteLogado);
+            } 
+                
 
             return View();
         }

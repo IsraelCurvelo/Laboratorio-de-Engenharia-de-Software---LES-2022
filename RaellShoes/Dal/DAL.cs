@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RaellShoes.Data;
 using RaellShoes.Models;
+using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using System;
 using System.Collections.Generic;
@@ -147,6 +148,26 @@ namespace RaellShoes.Dal
                    .Include(x => x.Cidade.Estado.Pais)
                    .FirstOrDefault(x => x.Id == entidadeDominio.Id);
             }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("produto"))
+            {
+                try
+                {
+                    Produto produto = dbContext.Produto
+                        .Include(obj => obj.FichaTecnica)
+                        .Include(obj => obj.Categorias)
+                        .Include(obj => obj.Fornecedor)
+                        .Include(obj => obj.GrupoPrecificacao)                        
+                        .FirstOrDefault(x => x.Id == entidadeDominio.Id);
+                    
+                    return produto;
+                    
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
             return null;                    
         }
         
@@ -167,7 +188,85 @@ namespace RaellShoes.Dal
                     return clienteBanco;
             }
             return null;
-        }  
-        
+        }
+
+        public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
+        {
+            HashSet<Produto> consulta = new HashSet<Produto>();
+
+            if (produto.Marca != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Marca == produto.Marca).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Nome != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Nome == produto.Nome).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Modelo != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Modelo == produto.Modelo).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.CorPrimariaProduto != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.CorPrimariaProduto == produto.CorPrimariaProduto).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Genero != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Genero == produto.Genero).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+            
+
+            if (produto.Tamanho != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Tamanho == produto.Tamanho).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Valor != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Valor == produto.Valor).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(produto);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            return consulta;
+        }
+
     }
 }
