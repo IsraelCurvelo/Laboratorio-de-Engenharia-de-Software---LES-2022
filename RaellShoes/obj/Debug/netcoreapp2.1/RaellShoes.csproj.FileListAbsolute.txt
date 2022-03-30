@@ -86,3 +86,4 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\MeusCartoes.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Index.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\ProcurarProduto.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\FiltroProdutos.cshtml.g.cs

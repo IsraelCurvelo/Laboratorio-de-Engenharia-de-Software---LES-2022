@@ -184,8 +184,10 @@ namespace RaellShoes.Controllers
         public IActionResult FiltrarProdutos(Produto produto)
         {
             var listaProdutos = facade.ConsultarFiltroProdutos(produto);
-            return View("ResultadoFiltro", listaProdutos);
+            return View("FiltroProdutos", listaProdutos);
         }
+
+        
 
 
         //**************************SENHA**************************
