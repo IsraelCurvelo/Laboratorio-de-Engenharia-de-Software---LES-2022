@@ -1,6 +1,6 @@
-﻿@model IEnumerable<RaellShoes.Models.Administrador.Produto>
+﻿@model RaellShoes.Models.Administrador.Produto
 
-@{ViewData["Title"] = "Resultado de Produtos";}
+@{ViewData["Title"] = "Detalhes do Produto";}
 
 
 <!DOCTYPE html>
@@ -10,27 +10,20 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RaellShoes</title>
+    <title>RaellShoes - Detalhes Produto</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-
+    <link href="~/assets/css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body >
 
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
@@ -52,96 +45,152 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index.html">RaellShoes<span>.</span></a></h1>
+            <h1 class="logo"><a href="">RaellShoes<span>.</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto active" href="home">Início</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Lançamentos</a></li>
-                            <li><a href="#">Outlet</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="home/sobrenos">Sobre Nós</a></li>
-                    <li><a class="nav-link scrollto" href="home/contato">Contato</a></li>
-                    <li><a class="nav-link scrollto" href="home/perguntasfrequentes">Perguntas Frequentes</a></li>
-                    <li><a class="nav-link scrollto" href="">Carrinho</a></li>
-                    <li><a class="nav-link scrollto" href="home/login">Login</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+
 
         </div>
     </header><!-- End Header -->
 
-    <main id="main">
+    <main id="main" data-aos="fade-up" >
 
-        <!-- ======= Products Section ======= -->
-        <section id="team" class="team section-bg">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
 
-
-            <div class="container" data-aos="fade-up">
-                <br /><br />
-                <div class="section-title">
-                    <h2>Resultado da busca</h2>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Detalhes do Produto</h2>
 
                 </div>
-                <br /><br />
 
-                <div class="row">
-                    @foreach (var item in Model)
-                    {
-                        <div class="col col-lg-4">
+            </div>
+        </section><!-- Breadcrumbs Section -->
+        <!-- ======= Portfolio Details Section ======= -->
+        <section id="portfolio-details" class="portfolio-details">
+            <div class="container">
+                <form asp-action="ProdutoCarrinho">
+                    <div class="row gy-4">
 
-                            <form asp-action="ProdutoCarrinho">
-                                <input type="hidden" asp-for="@item.Id" name="Id" />
-                                <div class="col-lg-12 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                                    <div class="member">
-                                        <div class="member-img">
-                                            <img src="~/assets/img/Produtos/@Html.DisplayFor(model => item.URLFoto)" class="img-fluid" alt="">
+                        <input type="hidden" asp-for="@Model.Id" name="Id" />
+                        <div class="col-lg-6">
+                            <div class="portfolio-details-slider swiper">
+                                <div class="swiper-wrapper align-items-center">
 
-                                        </div>
-                                        <div class="member-info">
-                                            <h6>@Html.DisplayFor(model => item.Marca) @Html.DisplayFor(model => item.Modelo) - @Html.DisplayFor(model => item.Nome) - @Html.DisplayFor(model => item.CorPrimariaProduto) </h6>
-                                            <span style=" font-size: large;">R$ @Html.DisplayFor(model => item.Valor)</span>
-                                            <span>6x Sem Juros</span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12" style="padding-bottom: 5px; margin:2px">
-                                                <button class="btn btn-info btn-sm col col-lg-12" style="border-radius:8px">Adicionar ao Carrinho</button>
-                                            </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid" class="img-fluid">
+                                    </div>
 
-                                            <div class="col-lg-12" style="padding-bottom: 5px; margin:2px">
-                                                <button asp-action="DetalhesProduto" class="btn btn-dark btn-sm col col-lg-12" style="border-radius:8px">Ver Produto</button>
-                                            </div>
-                                        </div>
-                                        <br />
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
+                                    </div>
+
+                                    <div class="swiper-slide">
+                                        <img src="~/assets/img/Produtos/@Html.DisplayFor(model => Model.URLFoto)" alt="" style="height: 550px;width: 720px;" class="img-fluid">
                                     </div>
                                 </div>
-                            </form>
+                                <div class="swiper-pagination"></div>
+                            </div>
                         </div>
 
-                    }
+
+                        <div class="col-lg-6">
+                            <input type="hidden" asp-for="@Model.Id" name="Id" />
+                            <div class="portfolio-info">
+                                <h3>@Html.DisplayFor(model => Model.Marca) @Html.DisplayFor(model => Model.Modelo) - @Html.DisplayFor(model => Model.Nome) </h3>
+                                <ul>
+                                    <li>
+                                        <strong>Categoria</strong>:
+                                    </li>
+                                    <li><strong>Marca</strong>: @Html.DisplayFor(model => Model.Marca)</li>
+                                    <li><strong>Data de Lançamento</strong>: @Html.DisplayFor(model => Model.DataCadastro)</li>
+                                    <li><strong>URL Fabricante</strong>: </li>
+                                </ul>
+                                <br>
+                                <h6>Cores e Tamanhos disponíveis</h6>
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span style="color: black">Cores</span>
+                                        <select asp-for="@Model.CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select" style="font-size: small">
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="div-tamanho-troca">
+                                        <span style="color: black;">Tamanho</span>
+                                        <select class="form-select" id="tamanho" asp-for="@Model.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" style="font-size:small">
+                                        </select>
+                                    </div>
+
+                                </div><br><br>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 style="color: red; font-weight: bold;"> R$ @Html.DisplayFor(model => Model.Valor)</h4>
+                                        <p style="color: black">ou em até 10x</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <input asp-action="ProdutoCarrinho" type="button" class="btn btn-success btn col-lg-5" style="border-radius:10px" value="Comprar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                                        <button asp-action="ProdutoCarrinho" class="btn btn-warning btn col-lg-6" style="border-radius:8px">Adicionar ao carrinho</button>
+                                    </div>
+                                </div><p></p>
+                            </div>
+
+                        </div>
+                </form>
+</div>
+                <br><br>
+                <div class="portfolio-description" style="padding-left: 14px;">
+                    <h2> @Html.DisplayFor(model => Model.Nome)</h2>
+                    <h5> @Html.DisplayFor(model => Model.Marca)</h5>
+                    <p>
+                        @Html.DisplayFor(model => Model.Descricao)
+                    </p>
                 </div>
-        </section><!-- End Products Section -->
+
+
+
+
+
+                <div class="portfolio-description" style="padding-left: 14px;">
+
+                    <h2> DETALHES</h2>
+                    <ul>
+                        <li>Material: @Html.DisplayFor(model => Model.FichaTecnica.Material)</li>
+                        <li>Solado: @Html.DisplayFor(model => Model.FichaTecnica.Solado)</li>
+                        <li>Altura: @Html.DisplayFor(model => Model.FichaTecnica.Altura)</li>
+                        <li>Garantia em Meses: @Html.DisplayFor(model => Model.FichaTecnica.GarantiaMeses)</li>
+                        <li>Cuidados: @Html.DisplayFor(model => Model.FichaTecnica.Cuidados)</li>
+                        <li>Limpeza: @Html.DisplayFor(model => Model.FichaTecnica.Limpeza)</li>
+                    </ul>
+                </div>
+
+            </div> 
+        </section><!-- End Portfolio Details Section -->
 
     </main><!-- End #main -->
     <!-- ======= Footer ======= -->
@@ -223,7 +272,8 @@
             </div>
         </div>
     </footer><!-- End Footer -->
-    <!--Whats-->
+
+
     <a href="https://api.whatsapp.com/send?phone=5511989462969&text=Dúvidas" target="_blank"
        style="position:fixed;bottom:20px;right:18px;">
         <svg enable-background="new 0 0 512 512" width="50" height="50" version="1.1" viewBox="0 0 512 512"
@@ -240,7 +290,6 @@
 
  </svg>
     </a>
-
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>

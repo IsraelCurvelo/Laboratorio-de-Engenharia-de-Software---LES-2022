@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6hh0TdtAsxuyA5HyTFopMJfIvQSB5Ac1VOKeWToLEoEUxiJYKxaj3FpHAhMsLmoLinreCy8knkqPxvduNLL4rA==",
+  "dgSpecHash": "mIPBt2r3ZClhLItJAUM6pn6eyK6li9UNrwtQnQn3n/kyIKMJJGWjNZdmL+EE9Ycq/fol7udT90sZj0+gsHvWLQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\curve\\Desktop\\LES\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes.csproj",
   "expectedPackageFiles": [
@@ -171,7 +171,7 @@
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\mysqlconnector\\0.42.1\\mysqlconnector.0.42.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\curve\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\curve\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\2.1.1\\pomelo.entityframeworkcore.mysql.2.1.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\pomelo.jsonobject\\1.1.1\\pomelo.jsonobject.1.1.1.nupkg.sha512",

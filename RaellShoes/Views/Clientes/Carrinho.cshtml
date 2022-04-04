@@ -1,0 +1,964 @@
+﻿@model RaellShoes.Models.Administrador.Carrinho
+
+@{ViewData["Title"] = "Carrinho de compras";}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Carrinho</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto " href="index-logado.html">Início</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Adulto</a></li>
+                                    <li><a href="#">Infantil</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Lançamentos</a></li>
+                            <li><a href="#">Outlet</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" href="sobre-nos.html">Sobre Nós</a></li>
+                    <li><a class="nav-link scrollto" href="contato.html">Contato</a></li>
+                    <li><a class="nav-link scrollto" href="perguntas-frequentes.html">Perguntas Frequentes</a></li>
+                    <li><a class="nav-link scrollto" href="carrinho.html">Carrinho</a></li>
+                    <li class="dropdown  active">
+                        <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Meu Perfil</a></li>
+                            <li><a href="meus-enderecos.html">Meus Endereços</a></li>
+                            <li><a href="meus-cartoes.html">Meus Cartões</a></li>
+                            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+                            <li><a href="troca-e-devolucoes.html">Troca e Devoluções</a></li>
+                            <li><a href="ranking-e-vales.html">Ranking e Vales</a></li>
+                            <li><a href="alterar-senha.html">Alterar Senha</a></li>
+                            <li><a href="index.html">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+
+    <section id="cliente" class="cliente">
+        <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
+            <div class="section-title2">
+
+                <h2>Carrinho de <span style="color: #3bc1ff;">Compras </span></h2>
+            </div>
+        </div>
+
+        <!--Pedido-->
+        <div class="container mt-5">
+            <!--Box Produtos-->
+            <div class="info-wrap">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Por favor, confirme os dados </span>
+                        <br>
+                    </div>
+
+                </div>
+
+                <hr>
+                <br>
+                <div class="col-lg-6 col-md-6 info">
+                    <i class="bi bi-cart3" style="margin-top: -8px;"></i>
+                </div>
+                <h4> <strong style="padding-left: 10px;">Produtos</strong></h4><br>
+                <br>
+
+                <div class="row" style="font-size: small; ">
+
+
+                    <!--Produto-->
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span></span>
+                        <img src='data:image/jpeg;base64,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BERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//2Q=='
+                             id="img-historico" />
+                    </div>
+
+                    <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <div class="row" style="font-size: small; ">
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Descrição</span>
+                                <input disabled type="textarea" name="descricao-produto" readonly
+                                       class="form-control-plaintext" id="descricao-produto" value="Tênis Adidas CD900">
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Cor</span>
+                                <input disabled type="textarea" name="cor-produto" readonly
+                                       class="form-control-plaintext" id="cor-produto" value="Branco">
+                            </div>
+
+                            <div class="col-lg-1 col-md-4 form-group mt-3 mt-md-0" id="comb-form"
+                                 style="margin-left: -20px;">
+                                <span>Tamanho</span>
+                                <input disabled type="textarea" name="tamanho-produto" readonly
+                                       class="form-control-plaintext" id="tamanho-produto" value="42">
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Quantidade</span>
+                                <select class="form-select" style="font-size: xx-small; ">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Valor</span>
+                                <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                       id="valor-produto" value="R$ 249,99">
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <button class="btn btn-danger btn-sm"
+                                        style="border-radius: 10px ; margin-top: 10px;">
+                                    Remover
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!--Produto-->
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span></span>
+                        <img src='https://static.netshoes.com.br/produtos/tenis-nike-venture-runner-masculino/69/HZM-3712-C69/HZM-3712-C69_detalhe1.jpg?ts=1585336447?ims=280x280'
+                             id="img-historico" />
+                    </div>
+
+                    <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <div class="row" style="font-size: small; ">
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Descrição</span>
+                                <input disabled type="textarea" name="descricao-produto" readonly
+                                       class="form-control-plaintext" id="descricao-produto" value="Tênis Nike Venture Runner">
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Cor</span>
+                                <input disabled type="textarea" name="cor-produto" readonly
+                                       class="form-control-plaintext" id="cor-produto" value="Azul Marinho">
+                            </div>
+
+                            <div class="col-lg-1 col-md-4 form-group mt-3 mt-md-0" id="comb-form"
+                                 style="margin-left: -20px;">
+                                <span>Tamanho</span>
+                                <input disabled type="textarea" name="tamanho-produto" readonly
+                                       class="form-control-plaintext" id="tamanho-produto" value="44">
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Quantidade</span>
+                                <select class="form-select" style="font-size: xx-small; ">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Valor</span>
+                                <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                       id="valor-produto" value="R$ 249,99">
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <button class="btn btn-danger btn-sm"
+                                        style="border-radius: 10px ; margin-top: 10px;">
+                                    Remover
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr>
+                </div><br>
+
+                <div class="row" style="font-size: small; ">
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <a href="index-logado.html">
+                            <button class="btn btn-warning btn-sm" style="border-radius: 10px ; margin-top: 10px;">
+                                Continuar
+                                Comprando
+                            </button>
+                        </a>
+
+
+                    </div>
+                    <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <h5 style="padding-left: 82%; "><strong>Sub-Total: </strong></h5>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <h5 style="color:rgb(196, 8, 17); "><strong>R$ 499,98 </strong></h5>
+
+                    </div>
+
+
+                </div><br>
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <button class="btn btn-success btn-sm col-lg-12"
+                                style="border-radius: 10px ; " onclick="ContinuarPedido('boxendereco')">
+                            Continuar Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+
+
+            <!--Box Endereço-->
+            <div class="info-wrap" id="boxendereco" hidden>
+
+                <div class="col-lg-12 col-md-6 info">
+                    <i class="bi bi-house" style="margin-top: -8px;"></i>
+                </div>
+                <h4> <strong style="padding-left: 10px;">Endereço de Entrega</strong></h4>
+                <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <button class="btn btn-dark btn-sm"
+                            style="border-radius: 10px ; margin-left: 88%; margin-top: -50px; " data-bs-toggle="modal" data-bs-target="#modalEndereco">
+                        Novo
+                        Endereço
+                    </button>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Selecione um endereço para entrega </span>
+                        <select class="form-select" style="font-size: small; ">
+                            <option>Casa Suzano</option>
+                            <option>Apê Tia</option>
+                            <option>Casa Mãe</option>
+                            <option>Casa Praia</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; margin-top: 25px; ">
+                            Calcular
+                            Frete
+                        </button>
+                    </div>
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor do Frete </span>
+                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                               id="valor-produto" value="R$ 19,99" style=" font-size: small;">
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <button class="btn btn-success btn-sm" style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxcupom')">
+                        Usar este
+                        endereço
+                    </button>
+                </div>
+            </div>
+            <br><br>
+
+            <!--Box Cupom-->
+            <div class="info-wrap" id="boxcupom" hidden>
+
+                <div class="col-lg-6 col-md-6 info">
+                    <i class="bi bi-tag-fill" style="margin-top: -8px;"></i>
+                </div>
+                <h4> <strong style="padding-left: 10px;">Cupom</strong></h4><br>
+
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Possui algum Cupom? </span>
+                        <br>
+                    </div>
+
+                </div>
+
+                <div class="row" style="font-size: small; ">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <input style=" font-size: small;" type="text" name="cupom" class="form-control" id="cupom"
+                               placeholder="Digite o código" minlength="6">
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; ">Aplicar</button>
+                    </div>
+                </div>
+                <div class="row" style="font-size: small; ">
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <button class="btn btn-success btn-sm"
+                                style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpagamento')">
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br> <br>
+            <!--Box Pagamento-->
+            <div class="info-wrap" id="boxpagamento" hidden>
+
+                <div class="col-lg-12 col-md-6 info">
+                    <i class="bi bi-credit-card-2-back" style="margin-top: -8px;"></i>
+                </div>
+                <h4> <strong style="padding-left: 10px;">Pagamento</strong></h4>
+                <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <button class="btn btn-dark btn-sm"
+                            style="border-radius: 10px ; margin-left: 90%; margin-top: -50px; " data-bs-toggle="modal" data-bs-target="#modalCartao">
+                        Novo
+                        Cartão
+                    </button>
+                </div>
+                <br>
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Valor Total do Pedido </span>
+                            <input type="textarea" name="valor-total-pedido" class="form-control-plaintext " style=" font-size: small; color: red; font-weight: bold"
+                                   id="valor-total" value="R$ 519,97" disabled readonly>
+                        </div>
+                    </div>
+                    <span style="color: rgba(0, 0, 0, 0.726); font-style: italic;">Quantos cartões irá usar?</span>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <select class="form-select" style="font-size: small; " id="definircartoes"
+                                onchange="definirCartoes()">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Selecione um cartão para pagamento </span>
+                        <select class="form-select" style="font-size: small; " id="tipo-cartao1" onchange="tipoCartao(this.value, this.id)">
+                            <option value="1">Nubank Virtual</option>
+                            <option value="2">C6 Crédito</option>
+                            <option value="3">Caixa Débito</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor a pagar </span>
+                        <input type="text" name="valor-produto1" class="form-control " style=" font-size: small;"
+                               id="valor-produto1" value="R$ 519,97">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Parcelamento</span>
+                        <select class="form-select" style="font-size: small; " id="parcelamento1">
+                            <option>1x sem juros</option>
+                            <option>2x sem juros</option>
+                            <option>3x sem juros</option>
+                            <option>4x sem juros</option>
+                            <option>5x sem juros</option>
+                            <option>6x sem juros</option>
+                            <option>7x sem juros</option>
+                            <option>8x sem juros</option>
+                            <option>9x sem juros</option>
+                            <option>10x sem juros</option>
+                            <option>11x sem juros</option>
+                            <option>12x sem juros</option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="row" hidden id="cartao2">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Selecione um cartão para pagamento </span>
+                        <select class="form-select" style="font-size: small; " id="tipo-cartao2" onchange="tipoCartao(this.value, this.id)">
+                            <option value="1">Nubank Virtual</option>
+                            <option value="2">C6 Crédito</option>
+                            <option value="3">Caixa Débito</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor a pagar </span>
+                        <input type="text" name="valor-produto2" class="form-control " style=" font-size: small;"
+                               id="valor-produto2">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Parcelamento</span>
+                        <select class="form-select" style="font-size: small; " id="parcelamento2">
+                            <option>1x sem juros</option>
+                            <option>2x sem juros</option>
+                            <option>3x sem juros</option>
+                            <option>4x sem juros</option>
+                            <option>5x sem juros</option>
+                            <option>6x sem juros</option>
+                            <option>7x sem juros</option>
+                            <option>8x sem juros</option>
+                            <option>9x sem juros</option>
+                            <option>10x sem juros</option>
+                            <option>11x sem juros</option>
+                            <option>12x sem juros</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row" hidden id="cartao3">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Selecione um cartão para pagamento </span>
+                        <select class="form-select" style="font-size: small; " id="tipo-cartao3" onchange="tipoCartao(this.value, this.id)">
+                            <option value="1">Nubank Virtual</option>
+                            <option value="2">C6 Crédito</option>
+                            <option value="3">Caixa Débito</option>
+                        </select>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor a pagar </span>
+                        <input type="text" name="valor-produto3" class="form-control " style=" font-size: small;"
+                               id="valor-produto3">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Parcelamento</span>
+                        <select class="form-select" style="font-size: small; " id="parcelamento3">
+                            <option>1x sem juros</option>
+                            <option>2x sem juros</option>
+                            <option>3x sem juros</option>
+                            <option>4x sem juros</option>
+                            <option>5x sem juros</option>
+                            <option>6x sem juros</option>
+                            <option>7x sem juros</option>
+                            <option>8x sem juros</option>
+                            <option>9x sem juros</option>
+                            <option>10x sem juros</option>
+                            <option>11x sem juros</option>
+                            <option>12x sem juros</option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <button class="btn btn-success btn-sm"
+                            style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpedido')">
+                        Confirmar
+                    </button>
+                </div>
+
+            </div>
+            <br><br>
+            <div class="info-wrap" id="boxpedido" hidden>
+                <div class="row">
+                    <span style="color: rgba(0, 0, 0, 0.726); font-style: italic;">
+                        Tudo certo com os dados do
+                        pedido?
+                    </span>
+                    <br>
+                    <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <br>
+                        <button class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px">
+                            Sim! Finalizar
+                            Pedido
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal Novo Endereço -->
+            <div class="modal fade" id="modalEndereco" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+
+                            <section id="cliente" class="cliente">
+                                <div class="container" style=" margin-bottom: -30px;">
+                                    <div class="section-title2">
+                                        <h2>Novo <span style="color: rgb(202, 64, 64)">Endereço </span></h2>
+                                    </div>
+                                </div>
+
+                                <!--Form-->
+                                <div class="container mt-5">
+                                    <form class="needs-validation" novalidate>
+                                        <!--Novo Endereço-->
+                                        <!--Box Endereço-->
+                                        <div class="info-wrap">
+                                            <div class="col-lg-3 col-md-6 info">
+                                                <i class="bi bi-house" style="margin-top: -8px; background-color: rgb(247, 202, 202); color: rgb(202, 64, 64)"></i>
+                                            </div>
+                                            <h4> <strong style="padding-left: 10px; color: rgb(202, 64, 64)"> Digite os dados</strong></h4><br>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Endereço</span>
+                                                    <select id="disabledSelect" class="form-select" required>
+                                                        <option></option>
+                                                        <option>Entrega</option>
+                                                        <option>Cobrança</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Nome do endereço</span>
+                                                    <input type="text" name="fraseendereco" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                                                           required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Logradouro</span>
+                                                    <select class="form-select" id="tipoLogradouro" required>
+                                                        <option></option>
+                                                        <option>Rua</option>
+                                                        <option>Avenida</option>
+                                                        <option>Rodovia</option>
+                                                        <option>Estrada</option>
+                                                        <option>Viela</option>
+                                                        <option>Travessa</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Logradouro</span>
+                                                    <input type="text" name="logradouro" class="form-control" id="logradouro"
+                                                           placeholder="Digite o logradouro" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Número</span>
+                                                    <input type="text" class="form-control" name="numero" id="numero" placeholder="N°" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Complemento</span>
+                                                    <input type="text" class="form-control" name="complemento" id="complemento"
+                                                           placeholder="Caso houver, digite o complemento">
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Bairro</span>
+                                                    <input type="text" name="bairro" class="form-control" id="bairro"
+                                                           placeholder="Digite o bairro" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Cidade</span>
+                                                    <input type="text" name="cidade" class="form-control" id="cidade"
+                                                           placeholder="Digite a cidade" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Estado</span>
+                                                    <input type="text" name="estado" class="form-control" id="estado"
+                                                           placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()">
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>País</span>
+                                                    <input type="text" name="pais" class="form-control" id="pais" placeholder="Digite o país" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Cep</span>
+                                                    <input type="text" name="cep" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Observações</span>
+                                                    <textarea type="text" name="observacoes" class="form-control" id="observacoes"
+                                                              placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <br>
+
+                                        <div>
+                                            <button class="btn btn-success col-lg-12">Salvar</button>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+
+                            </section>
+                            <br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Novo Cartao -->
+            <div class="modal fade" id="modalCartao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+
+                            <section id="cliente" class="cliente" style="font-size:small">
+                                <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
+                                    <div class="section-title2">
+                                        <h2>Novo <span style="color: blueviolet;">Cartão </span></h2>
+                                    </div>
+                                </div>
+
+                                <!--Form-->
+                                <div class="container mt-5">
+                                    <form asp-action="cadastrarcartao" class="needs-validation" novalidate>
+                                        <!--Novo Cartão-->
+                                        <div class="info-wrap">
+                                            <div class="col-lg-3 col-md-6 info">
+                                                <i class="bi bi-credit-card-2-back" style="margin-top: -8px; color: rgb(142, 104, 179); background-color: rgba(220, 179, 235, 0.397);"></i>
+                                            </div>
+                                            <h4> <strong style="padding-left: 10px; color: blueviolet;"> Digite os dados</strong></h4><br>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Cartão</span>
+                                                    <select  id="tipocartao" class="form-select" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoCartao>()" style="font-size:small" required>
+                                                        <option></option>
+                                                        <option value="1">Crédito</option>
+                                                        <option value="2">Débito</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Bandeira</span>
+                                                    <select  class="form-select" id="bandeiracartao" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Bandeira>()" style="font-size:small" required>
+                                                        <option></option>
+                                                        <option value="1">MasterCard</option>
+                                                        <option value="2">Visa</option>
+                                                        <option value="3">Elo</option>
+                                                        <option value="4">American Express</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Apelido</span>
+                                                    <input  type="text" class="form-control" id="apelidocartao" style="font-size:small"
+                                                           placeholder="Digite um apelido para este cartão" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Número do cartão</span>
+                                                    <input  type="text" class="form-control" id="numerocartao" style="font-size:small"
+                                                           placeholder="Digite o número do cartão" maxlength="19" onkeypress="formatar('####-####-####-####', this);" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Nome Impresso no cartão</span>
+                                                    <input  type="text" class="form-control" id="nomecartao" style="font-size:small"
+                                                           placeholder="Nome impresso no cartão" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Validade</span>
+                                                    <input  type="text" class="form-control" id="validade" placeholder="XX/XX" style="font-size:small"
+                                                           maxlength="5" onkeypress="formatar('##/##', this);" pattern="[0-9]{2}/[0-9]{2}" required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-2 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>csv</span>
+                                                    <input type="password" class="form-control" id="csv" maxlength="4" pattern="[0-9]{4}||[0-9]{3}" style="font-size:small"
+                                                           placeholder="Código de Segurança" required>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div>
+                                                <button class="btn btn-success btn-sm col-lg-12" style=" border-radius:8px;">Salvar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+
+                            </section>
+                            <br>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+        function definirCartoes() {
+            debugger;
+
+            var escolha = (document.getElementById('definircartoes'));
+            var escolhaCartoes = escolha.options[escolha.selectedIndex].value;
+
+            if (escolhaCartoes == 1) {
+                document.getElementById('cartao2').hidden = true;
+                document.getElementById('cartao3').hidden = true;
+                document.getElementById('valor-produto1').value = "R$ 519,97";
+            } else if (escolhaCartoes == 2) {
+                document.getElementById('cartao2').hidden = false;
+                document.getElementById('cartao3').hidden = true;
+                document.getElementById('valor-produto1').value = "R$ 259,98";
+                document.getElementById('valor-produto2').value = "R$ 259,98";
+            } else if (escolhaCartoes == 3) {
+                document.getElementById('cartao2').hidden = false;
+                document.getElementById('cartao3').hidden = false;
+                document.getElementById('valor-produto1').value = "R$ 173,32";
+                document.getElementById('valor-produto2').value = "R$ 173,32";
+                document.getElementById('valor-produto3').value = "R$ 173,32";
+            }
+        }
+
+        function tipoCartao(valorCartao, id) {
+            if (id == "tipo-cartao1") {
+                if (valorCartao == 3) {
+                    document.getElementById('parcelamento1').disabled = true;
+                } else {
+                    document.getElementById('parcelamento1').disabled = false;
+                }
+            } else if (id == "tipo-cartao2") {
+                if (valorCartao == 3) {
+                    document.getElementById('parcelamento2').disabled = true;
+                } else {
+                    document.getElementById('parcelamento2').disabled = false;
+                }
+            } else if (id == "tipo-cartao3") {
+                if (valorCartao == 3) {
+                    document.getElementById('parcelamento3').disabled = true;
+                } else {
+                    document.getElementById('parcelamento3').disabled = false;
+                }
+            }
+        }
+
+        function ContinuarPedido(id) {
+            debugger;
+            //var status = (document.getElementById(id).hidden);
+            document.getElementById(id).hidden = false;
+        }
+    </script>
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

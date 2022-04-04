@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RaellShoes.Data;
 
 namespace RaellShoes.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220402013022_Coorecao")]
+    partial class Coorecao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,6 +223,8 @@ namespace RaellShoes.Migrations
                     b.Property<string>("Nome")
                         .IsRequired();
 
+                    b.Property<int?>("PedidoId");
+
                     b.Property<int>("Quantidade");
 
                     b.Property<int>("Status");
@@ -239,6 +243,8 @@ namespace RaellShoes.Migrations
                     b.HasIndex("FornecedorId");
 
                     b.HasIndex("GrupoPrecificacaoId");
+
+                    b.HasIndex("PedidoId");
 
                     b.ToTable("Produto");
                 });
@@ -524,6 +530,10 @@ namespace RaellShoes.Migrations
                         .WithMany()
                         .HasForeignKey("GrupoPrecificacaoId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RaellShoes.Models.Administrador.Pedido")
+                        .WithMany("Produtos")
+                        .HasForeignKey("PedidoId");
                 });
 
             modelBuilder.Entity("RaellShoes.Models.Clientes.Cartao", b =>

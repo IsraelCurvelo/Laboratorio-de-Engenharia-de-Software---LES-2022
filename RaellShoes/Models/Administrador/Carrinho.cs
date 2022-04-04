@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,10 +25,29 @@ namespace RaellShoes.Models.Administrador
         [Required(ErrorMessage = "{0} obrigatório")]
         public Cupom Cupom { get; set; }
 
+        [NotMapped]
         [Required(ErrorMessage = "{0} obrigatório")]
-        public List<Produto> Produtos { get; set; }
+        public HashSet<Produto> Produtos { get; set; }
 
+        [NotMapped]
         [Required(ErrorMessage = "{0} obrigatório")]
-        public List<Cartao> Cartaos { get; set; }
+        public List<Cartao> Cartoes { get; set; }
+
+        public Carrinho()
+        {
+            Produtos = new HashSet<Produto>();
+            Cartoes = new List<Cartao>();
+        }
+
+        public Carrinho(double valorFrete, double valorTotal, Cliente cliente, Endereco endereco, Cupom cupom)
+        {
+            ValorFrete = valorFrete;
+            ValorTotal = valorTotal;
+            Cliente = cliente;
+            EnderecoEntrega = endereco;
+            Cupom = cupom;
+            Produtos = new HashSet<Produto>();
+            Cartoes = new List<Cartao>();
+        }
     }
 }

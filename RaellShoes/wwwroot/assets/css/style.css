@@ -9,6 +9,7 @@ body {
 a {
   color: #106eea;
   text-decoration: none;
+
 }
 
 a:hover {
@@ -929,6 +930,7 @@ section {
   transition: all ease-in-out 0.3s;
   background: rgba(255, 255, 255, 0.9);
   padding: 15px;
+  color:black;
 }
 .portfolio .portfolio-item .portfolio-info h4 {
   font-size: 18px;
@@ -978,11 +980,12 @@ section {
   bottom: 20px;
 }
 
+
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 40px;
+    padding-top: 40px;
 }
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
@@ -1021,15 +1024,25 @@ section {
   margin-top: 10px;
 }
 .portfolio-details .portfolio-description {
-  padding-top: 30px;
+    padding-top: 30px;
+    color: black;
 }
+
 .portfolio-details .portfolio-description h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: black;
 }
+
 .portfolio-details .portfolio-description p {
-  padding: 0;
+    padding: 0;
+    color: black;
+}
+
+.portfolio-details .portfolio-description span {
+    padding: 0;
+    color: black;
 }
 
 /*--------------------------------------------------------------

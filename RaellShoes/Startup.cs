@@ -45,6 +45,7 @@ namespace RaellShoes
             services.AddScoped<DAL>();
 
             //Section
+            services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 //options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -71,6 +72,7 @@ namespace RaellShoes
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
@@ -79,7 +81,7 @@ namespace RaellShoes
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSession();
+           
         }
     }
 }

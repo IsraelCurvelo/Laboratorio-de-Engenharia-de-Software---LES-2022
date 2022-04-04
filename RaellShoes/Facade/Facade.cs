@@ -4,6 +4,7 @@ using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.Enums;
+using RaellShoes.Models.NN;
 using RaellShoes.Models.ViewModel;
 using RaellShoes.Strategy;
 using System;
@@ -332,6 +333,17 @@ namespace RaellShoes.Facadee
         public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
         {
             return dal.ConsultarFiltroProdutos(produto);
+        }
+
+        public string ProdutoCarrinho(Produto produto, int id)
+        {
+            ProdutoCliente produtoCliente = new ProdutoCliente { ProdutoId = produto.Id, ClienteId = id };
+            return dal.Cadastrar(produtoCliente);                
+        }
+
+        public Carrinho BuscarCarrinho(int idCliente)
+        {
+            return dal.BuscarCarrinho(idCliente);
         }
 
     }

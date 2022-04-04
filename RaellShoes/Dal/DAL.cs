@@ -268,5 +268,22 @@ namespace RaellShoes.Dal
             return consulta;
         }
 
+        public Carrinho BuscarCarrinho(int idCliente)
+        {
+            var resultado = dbContext.ProdutoCliente.Where(x => x.ClienteId == idCliente).ToList();
+            Carrinho carrinho = new Carrinho();
+            Produto produto = new Produto();
+            foreach (var item in resultado)
+            {
+                produto.Id = item.ProdutoId;
+                var produtoResult = ConsultarId(produto);
+                if(produtoResult != null)
+                {
+                    carrinho.Produtos.Add((Produto)produtoResult);
+                }
+            }
+
+            return carrinho;
+        }
     }
 }

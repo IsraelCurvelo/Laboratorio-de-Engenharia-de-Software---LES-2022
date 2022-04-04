@@ -69,7 +69,7 @@ namespace RaellShoes.Controllers
 
             if (clienteLogado != null && !cliente.Usuario.Admin)
             {
-                HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
+                HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);                
                 return RedirectToAction("Index", "clientes", clienteLogado);
 
             }else if(clienteLogado != null && cliente.Usuario.Admin)

@@ -36,6 +36,7 @@ namespace RaellShoes.Models.Administrador
         public Status Status { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
+        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime DataCadastro { get; set; }
 
 

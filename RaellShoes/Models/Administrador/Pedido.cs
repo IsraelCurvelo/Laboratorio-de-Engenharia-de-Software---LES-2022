@@ -3,6 +3,7 @@ using RaellShoes.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,6 +35,7 @@ namespace RaellShoes.Models.Administrador
         
         public Cupom Cupom { get; set; }
 
+        [NotMapped]
         [Required(ErrorMessage = "{0} obrigatório")]
         public List<Produto> Produtos { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
@@ -174,6 +175,8 @@ namespace RaellShoes.Controllers
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
 
+        //**************************PRODUTO**************************
+
         public IActionResult ProcurarProduto()
         {
             return View();
@@ -187,7 +190,11 @@ namespace RaellShoes.Controllers
             return View("FiltroProdutos", listaProdutos);
         }
 
-        
+        public IActionResult DetalhesProduto(Produto produto)
+        {
+            Produto produtoResult = (Produto)facade.ConsultarId(produto);
+            return View(produtoResult);
+        }
 
 
         //**************************SENHA**************************
@@ -205,6 +212,33 @@ namespace RaellShoes.Controllers
         public IActionResult TrocarSenha(TrocarSenhaViewModel model)
         {
             return RedirectToAction("Login", "Home");
+        }
+
+        //**************************CARRINHO**************************
+        public IActionResult ProdutoCarrinho(Produto produto)
+        {          
+
+            string confirmacao = facade.ProdutoCarrinho(produto, 2);
+
+            if(confirmacao != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Carrinho");
+            }
+
+           
+        }
+
+        public IActionResult Carrinho()
+        {
+            int idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+            Carrinho carrinho = facade.BuscarCarrinho(idLogado);
+            
+
+            return View(carrinho);
         }
 
 
