@@ -26,19 +26,39 @@ namespace RaellShoes.Controllers
 
         public IActionResult Index(LoginViewModel cliente)
         {
-            return View(cliente);
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                return View(cliente);
+            }
+            else
+                return RedirectToAction("Login", "Home");
+           
         }
 
         //**************************PERFIL**************************
         public IActionResult MeuPerfil()
-        {
-            Cliente cliente = new Cliente { Id = 1 };
-            Cliente clienteBanco = (Cliente)facade.ConsultarId(cliente);
+        { 
+            int idLogado = 0;
+            if(HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+            
+            if(idLogado > 0)
+            {
+                Cliente cliente = new Cliente { Id = idLogado };
+                Cliente clienteBanco = (Cliente)facade.ConsultarId(cliente);
 
-            if (clienteBanco == null) 
-                RedirectToAction("Index");
+                if (clienteBanco == null) 
+                    return RedirectToAction("Index");
 
-            return View(clienteBanco);
+                return View(clienteBanco); 
+
+            }else
+                return RedirectToAction("Login", "Home");
+          
         }
 
         [HttpPost]
@@ -68,23 +88,32 @@ namespace RaellShoes.Controllers
         //**************************ENDEREÇOS**************************        
         public IActionResult MeusEnderecos()
         {
-            Endereco endereco = new Endereco() { Id = 1 };
-            List<EntidadeDominio> resultEnderecos = facade.Consultar(endereco);
-            EnderecoViewModel enderecoViewModel = new EnderecoViewModel();
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
 
-            if (resultEnderecos != null)
+            if (idLogado > 0)
             {
-                List<Endereco> enderecos = new List<Endereco>();
-                foreach (var item in resultEnderecos)
-                {
-                    enderecos.Add((Endereco)item);
-                }
-                
-                enderecoViewModel.Enderecos = enderecos;
+                Endereco endereco = new Endereco() { Id = idLogado };
+                List<EntidadeDominio> resultEnderecos = facade.Consultar(endereco);
+                EnderecoViewModel enderecoViewModel = new EnderecoViewModel();
 
+                if (resultEnderecos != null)
+                {
+                    List<Endereco> enderecos = new List<Endereco>();
+                    foreach (var item in resultEnderecos)
+                    {
+                        enderecos.Add((Endereco)item);
+                    }
+
+                    enderecoViewModel.Enderecos = enderecos;
+
+                    return View(enderecoViewModel);
+                }
                 return View(enderecoViewModel);
             }
-            return View(enderecoViewModel);
+            else
+                return RedirectToAction("Login", "Home");
 
         }
 
@@ -92,11 +121,19 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult CadastrarEndereco(Endereco endereco)
         {
-            //Após criar autenticação pegar o ID do cliente logado
-            endereco.ClienteId = 1;
-            string confirmacao = facade.Cadastrar(endereco);
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
 
-            return RedirectToAction("MeusEnderecos");
+            if (idLogado > 0)
+            {               
+                endereco.ClienteId = idLogado;
+                string confirmacao = facade.Cadastrar(endereco);
+                //Falta redirecionar para tela de erro caso não cadastre
+                return RedirectToAction("MeusEnderecos");
+            }
+            else
+                return RedirectToAction("Login", "Home");
         }        
 
         [HttpPost]
@@ -125,22 +162,31 @@ namespace RaellShoes.Controllers
         //**************************CARTÕES**************************
         public IActionResult MeusCartoes()
         {
-            Cartao cartao = new Cartao() { Id = 1 };
-            List<EntidadeDominio> resultEnderecos = facade.Consultar(cartao);
-            CartaoViewModel cartaoViewModel = new CartaoViewModel();
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
 
-            if (resultEnderecos != null)
+            if (idLogado > 0)
             {
-                List<Cartao> cartoes = new List<Cartao>();
-                foreach (var item in resultEnderecos)
-                {
-                    cartoes.Add((Cartao)item);
-                }
+                Cartao cartao = new Cartao() { Id = idLogado };
+                List<EntidadeDominio> resultEnderecos = facade.Consultar(cartao);
+                CartaoViewModel cartaoViewModel = new CartaoViewModel();
 
-                cartaoViewModel.Cartoes = cartoes;
+                if (resultEnderecos != null)
+                {
+                    List<Cartao> cartoes = new List<Cartao>();
+                    foreach (var item in resultEnderecos)
+                    {
+                        cartoes.Add((Cartao)item);
+                    }
+
+                    cartaoViewModel.Cartoes = cartoes;
+                    return View(cartaoViewModel);
+                }
                 return View(cartaoViewModel);
             }
-            return View(cartaoViewModel);
+            else
+                return RedirectToAction("Login", "Home");
         }
 
 
@@ -152,10 +198,20 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult CadastrarCartao(Cartao cartao)
         {
-            cartao.ClienteId = 1;
-            string confirmacao = facade.Cadastrar(cartao);
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
 
-            return RedirectToAction("MeusCartoes");
+            if (idLogado > 0)
+            {
+                cartao.ClienteId = idLogado;
+                string confirmacao = facade.Cadastrar(cartao);
+                //Falta redirecionar caso não cadastre
+                return RedirectToAction("MeusCartoes");
+            }
+            else
+                return RedirectToAction("Login", "Home");
+            
         }
 
         [HttpPost]
@@ -179,7 +235,17 @@ namespace RaellShoes.Controllers
 
         public IActionResult ProcurarProduto()
         {
-            return View();
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "Home");
+            
         }
 
         [HttpPost]
@@ -216,31 +282,62 @@ namespace RaellShoes.Controllers
 
         //**************************CARRINHO**************************
         public IActionResult ProdutoCarrinho(Produto produto)
-        {          
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
 
-            string confirmacao = facade.ProdutoCarrinho(produto, 2);
-
-            if(confirmacao != null)
+            if (idLogado > 0)
             {
-                return RedirectToAction("Index");
+                string confirmacao = facade.ProdutoCarrinho(produto, idLogado);
+
+                if (confirmacao != null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Carrinho");
+                }
             }
             else
+                return RedirectToAction("Login", "Home");
+        }
+
+        public IActionResult RemoverProduto(Produto produto)
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
             {
+                string confirmacao = facade.RemoverCarrinho(produto, idLogado);
+
                 return RedirectToAction("Carrinho");
             }
-
-           
+            else
+                return RedirectToAction("Login", "Home");
         }
+
+        
 
         public IActionResult Carrinho()
         {
-            int idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
-            Carrinho carrinho = facade.BuscarCarrinho(idLogado);
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                Carrinho carrinho = facade.BuscarCarrinho(idLogado);
+
+                return View(carrinho);
+            }
+            else
+                return RedirectToAction("Login", "Home");
             
-
-            return View(carrinho);
         }
-
 
 
         //**************************PEDIDOS**************************

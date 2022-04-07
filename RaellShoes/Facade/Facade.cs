@@ -341,6 +341,12 @@ namespace RaellShoes.Facadee
             return dal.Cadastrar(produtoCliente);                
         }
 
+        public string RemoverCarrinho(Produto produto, int id)
+        {
+            ProdutoCliente produtoCliente = new ProdutoCliente { ProdutoId = produto.Id, ClienteId = id };
+            return dal.Excluir(produtoCliente);
+        }
+
         public Carrinho BuscarCarrinho(int idCliente)
         {
             return dal.BuscarCarrinho(idCliente);

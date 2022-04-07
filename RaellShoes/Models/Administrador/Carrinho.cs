@@ -33,10 +33,15 @@ namespace RaellShoes.Models.Administrador
         [Required(ErrorMessage = "{0} obrigatório")]
         public List<Cartao> Cartoes { get; set; }
 
+        [NotMapped]
+        
+        public List<int> QtdeProdutos { get; set; }
+
         public Carrinho()
         {
             Produtos = new HashSet<Produto>();
             Cartoes = new List<Cartao>();
+            QtdeProdutos = new List<int>();
         }
 
         public Carrinho(double valorFrete, double valorTotal, Cliente cliente, Endereco endereco, Cupom cupom)
@@ -48,6 +53,7 @@ namespace RaellShoes.Models.Administrador
             Cupom = cupom;
             Produtos = new HashSet<Produto>();
             Cartoes = new List<Cartao>();
+            QtdeProdutos = new List<int>();
         }
     }
 }
