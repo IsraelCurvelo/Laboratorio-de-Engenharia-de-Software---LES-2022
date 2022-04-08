@@ -3,6 +3,7 @@ using RaellShoes.Data;
 using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
+using RaellShoes.Models.NN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,14 @@ namespace RaellShoes.Dal
 
                 case ("cartao"):
                     foreach (EntidadeDominio x in dbContext.Cartao.ToList().Where(x => x.ClienteId == entidadeDominio.Id))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
+                case ("produtocliente"):
+                    ProdutoCliente produtoCliente = (ProdutoCliente)entidadeDominio;
+                    foreach (EntidadeDominio x in dbContext.ProdutoCliente.ToList().Where(x => x.ClienteId == produtoCliente.ClienteId && x.ProdutoId == produtoCliente.ProdutoId))
                     {
                         resultado.Add(x);
                     }

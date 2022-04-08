@@ -332,11 +332,55 @@ namespace RaellShoes.Controllers
             {
                 Carrinho carrinho = facade.BuscarCarrinho(idLogado);
 
-                return View(carrinho);
+                List<EntidadeDominio> enderecosResult = facade.Consultar(new Endereco { Id = idLogado });
+                List<Endereco> enderecos = new List<Endereco>();
+                foreach (var item in enderecosResult)
+                {
+                    enderecos.Add((Endereco)item);
+                }
+
+                List<EntidadeDominio> cartoesResult = facade.Consultar(new Cartao { Id = idLogado });
+                List<Cartao> cartoes = new List<Cartao>();
+                foreach (var item in cartoesResult)
+                {
+                    cartoes.Add((Cartao)item);
+                }
+
+                CarrinhoViewModel carrinhoViewModel = new CarrinhoViewModel() { 
+                    Carrinho = carrinho, 
+                    Enderecos = enderecos,
+                    Cartoes = cartoes
+                };
+
+                return View(carrinhoViewModel);
             }
             else
                 return RedirectToAction("Login", "Home");
             
+        }
+
+        [HttpPost]
+        public IActionResult CadastrarEnderecoCarrinho(Endereco endereco)
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                endereco.ClienteId = idLogado;
+                string confirmacao = facade.Cadastrar(endereco);
+                //Falta redirecionar para tela de erro caso não cadastre
+                return RedirectToAction("Carrinho");
+            }
+            else
+                return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public IActionResult CadastrarCartaoCarrinho(Cartao cartao)
+        {
+            return View();
         }
 
 

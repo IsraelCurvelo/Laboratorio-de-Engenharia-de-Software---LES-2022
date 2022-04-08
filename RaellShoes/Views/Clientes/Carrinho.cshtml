@@ -1,12 +1,12 @@
-﻿@model RaellShoes.Models.Administrador.Carrinho
+﻿@model RaellShoes.Models.ViewModel.CarrinhoViewModel
 
-@{ViewData["Title"] = "Carrinho de compras";
-    @foreach (var item in Model.Produtos)
-    {
-        @Model.ValorTotal{ Model.ValorTotal += item.Valor; }
-    };
+@{ViewData["Title"] = "Carrinho de compras";}
 
+@foreach (var item in Model.Carrinho.Produtos)
+{
+    @Model.Carrinho.ValorTotal{ Model.Carrinho.ValorTotal += item.Valor; }
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@
     <link href="~/assets/antigo/css/style.css" rel="stylesheet">
 
 </head>
-<body>
+<body onload="calcularProdutos()">
 
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
@@ -46,9 +46,9 @@
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
-                
-                    
-                   
+
+
+
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
@@ -83,77 +83,74 @@
                 <h4> <strong style="padding-left: 10px;">Produtos</strong></h4><br>
                 <br>
 
-                <div class="row" style="font-size: small; ">
-
-                    @foreach (var item in Model.Produtos)
-                    {
-                        <!--Produto-->
+                <!--Produto-->
+                @foreach (var item in Model.Carrinho.Produtos)
+                {
                     <form asp-action="RemoverProduto">
                         <input type="hidden" asp-for="@item.Id" name="Id" />
-
-                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span></span>
-                            <img src="~/assets/img/Produtos/@Html.DisplayFor(model => item.URLFoto)" id="img-historico" />
-                        </div>
-
-                        <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <div class="row" style="font-size: small; ">
-                                <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span>Descrição</span>
-                                    <input disabled type="textarea" name="descricao-produto" readonly
-                                           class="form-control-plaintext" id="descricao-produto" value="@Html.DisplayFor(model => item.Marca) @Html.DisplayFor(model => item.Modelo) - @Html.DisplayFor(model => item.Nome)">
-                                </div>
-
-                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span>Cor</span>
-                                    <input disabled type="textarea" name="cor-produto" readonly
-                                           class="form-control-plaintext" id="cor-produto" value="@Html.DisplayFor(model => item.CorPrimariaProduto)">
-                                </div>
-
-                                <div class="col-lg-1 col-md-4 form-group mt-3 mt-md-0" id="comb-form"
-                                     style="margin-left: -20px;">
-                                    <span>Tamanho</span>
-                                    <input disabled type="textarea" name="tamanho-produto" readonly
-                                           class="form-control-plaintext" id="tamanho-produto" value="@Html.DisplayFor(model => item.Tamanho)">
-                                </div>
-
-
-                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span>Quantidade</span>
-                                    <select class="form-select" style="font-size: xx-small; ">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span>Valor</span>
-                                    <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                                           id="valor-produto" value="@Html.DisplayFor(model => item.Valor)">
-                                </div>
-                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <button  class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;">
-                                        Remover
-                                    </button>
-                                </div>
-
+                        <div class="row" style="font-size: small; ">
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span></span>
+                                <img src="~/assets/img/Produtos/@Html.DisplayFor(model => item.URLFoto)" id="img-historico" />
                             </div>
+
+                            <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <div class="row" style="font-size: small; ">
+                                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Descrição</span>
+                                        <input disabled type="textarea" name="descricao-produto" readonly
+                                               class="form-control-plaintext" id="descricao-produto" value="@Html.DisplayFor(model => item.Marca) @Html.DisplayFor(model => item.Modelo) - @Html.DisplayFor(model => item.Nome)">
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Cor</span>
+                                        <input disabled type="textarea" name="cor-produto" readonly
+                                               class="form-control-plaintext" id="cor-produto" value="@Html.DisplayFor(model => item.CorPrimariaProduto)">
+                                    </div>
+
+                                    <div class="col-lg-1 col-md-4 form-group mt-3 mt-md-0" id="comb-form"
+                                         style="margin-left: -20px;">
+                                        <span>Tamanho</span>
+                                        <input disabled type="textarea" name="tamanho-produto" readonly
+                                               class="form-control-plaintext" id="tamanho-produto" value="@Html.DisplayFor(model => item.Tamanho)">
+                                    </div>
+
+
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Quantidade</span>
+                                        <select class="form-select" style="font-size: xx-small; ">
+                                            @for (int i = 1; i <= item.Quantidade; i++)
+                                            {
+                                                <option>@i</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Valor</span>
+                                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                               id="valor-produto" value="@Html.DisplayFor(model => item.Valor)">
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <button class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;">
+                                            Remover
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr>
                         </div>
-
-                        <hr>
-</form>
-
-
-                        }
+                    </form>
 
 
 
-</div><br>
+
+                }<br>
 
                 <div class="row" style="font-size: small; ">
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <a href="index-logado.html">
+                        <a asp-action="index">
                             <button class="btn btn-warning btn-sm" style="border-radius: 10px ; margin-top: 10px;">
                                 Continuar
                                 Comprando
@@ -168,20 +165,21 @@
 
                     </div>
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <h5 style="color:rgb(196, 8, 17); "><strong>R$ @Html.DisplayFor(model => Model.ValorTotal) </strong></h5>
+                        <h5 style="color:rgb(196, 8, 17); "><strong>R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal) </strong></h5>
 
                     </div>
 
 
                 </div><br>
                 <div class="row">
-
-                    <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <button class="btn btn-success btn-sm col-lg-12"
-                                style="border-radius: 10px ; " onclick="ContinuarPedido('boxendereco')">
-                            Continuar Pedido
-                        </button>
-                    </div>
+                    @if (Model.Carrinho.Produtos.Count > 0)
+                    {
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <button class="btn btn-success btn-sm col-lg-12"
+                                    style="border-radius: 10px ; " onclick="ContinuarPedido('boxendereco')">
+                                Continuar Pedido
+                            </button>
+                        </div>}
                 </div>
             </div>
 
@@ -208,11 +206,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um endereço para entrega </span>
-                        <select class="form-select" style="font-size: small; ">
-                            <option>Casa Suzano</option>
-                            <option>Apê Tia</option>
-                            <option>Casa Mãe</option>
-                            <option>Casa Praia</option>
+                        <select asp-items="@(new SelectList(Model.Enderecos,"Id","Apelido"))" class="form-select" style="font-size: small; ">
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
@@ -224,7 +218,7 @@
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor do Frete </span>
                         <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                               id="valor-produto" value="R$ 19,99" style=" font-size: small;">
+                               id="valor-produto" value="R$ 0,00" style=" font-size: small;">
                     </div>
                 </div>
 
@@ -470,7 +464,7 @@
 
                                 <!--Form-->
                                 <div class="container mt-5">
-                                    <form class="needs-validation" novalidate>
+                                    <form class="needs-validation" novalidate asp-action="CadastrarEnderecoCarrinho">
                                         <!--Novo Endereço-->
                                         <!--Box Endereço-->
                                         <div class="info-wrap">
@@ -483,34 +477,7 @@
                                             <div class="row">
                                                 <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Tipo de Endereço</span>
-                                                    <select id="disabledSelect" class="form-select" required>
-                                                        <option></option>
-                                                        <option>Entrega</option>
-                                                        <option>Cobrança</option>
-                                                    </select>
-                                                    <div class="invalid-feedback">
-                                                        *Campo obrigatório
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Nome do endereço</span>
-                                                    <input type="text" name="fraseendereco" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
-                                                           required>
-                                                    <div class="invalid-feedback">
-                                                        *Campo obrigatório
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Tipo de Logradouro</span>
-                                                    <select class="form-select" id="tipoLogradouro" required>
-                                                        <option></option>
-                                                        <option>Rua</option>
-                                                        <option>Avenida</option>
-                                                        <option>Rodovia</option>
-                                                        <option>Estrada</option>
-                                                        <option>Viela</option>
-                                                        <option>Travessa</option>
+                                                    <select id="disabledSelect" asp-for="Endereco.TipoEndereco" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" required>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
@@ -518,8 +485,42 @@
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Logradouro</span>
-                                                    <input type="text" name="logradouro" class="form-control" id="logradouro"
+                                                    <span>Nome do endereço</span>
+                                                    <input type="text" asp-for="Endereco.Apelido" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                                                           required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Residência</span>
+                                                    <select asp-for="Endereco.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Logradouro</span>
+                                                    <select asp-for="Endereco.TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Cep</span>
+                                                    <input type="text" asp-for="Endereco.Cep" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}" onblur="pesquisacep(this.value)">
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Logradouro</span><i class="bi bi-lock" id="lock-logradouro" hidden></i>
+                                                    <input type="text" asp-for="Endereco.Logradouro" class="form-control" id="logradouro-modal"
                                                            placeholder="Digite o logradouro" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
@@ -527,20 +528,20 @@
                                                 </div>
                                                 <div class="col-lg-1 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Número</span>
-                                                    <input type="text" class="form-control" name="numero" id="numero" placeholder="N°" required>
+                                                    <input type="text" class="form-control" asp-for="Endereco.Numero" id="numero" placeholder="N°" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Complemento</span>
-                                                    <input type="text" class="form-control" name="complemento" id="complemento"
+                                                    <input type="text" class="form-control" asp-for="Endereco.Complemento" id="complemento"
                                                            placeholder="Caso houver, digite o complemento">
                                                 </div>
 
                                                 <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Bairro</span>
-                                                    <input type="text" name="bairro" class="form-control" id="bairro"
+                                                    <span>Bairro</span><i class="bi bi-lock" id="lock-bairro" hidden></i>
+                                                    <input type="text" asp-for="Endereco.Bairro" class="form-control" id="bairro-modal"
                                                            placeholder="Digite o bairro" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
@@ -548,8 +549,8 @@
                                                 </div>
 
                                                 <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Cidade</span>
-                                                    <input type="text" name="cidade" class="form-control" id="cidade"
+                                                    <span>Cidade</span><i class="bi bi-lock" id="lock-cidade" hidden></i>
+                                                    <input type="text" asp-for="Endereco.Cidade.Descricao" class="form-control" id="cidade-modal"
                                                            placeholder="Digite a cidade" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
@@ -557,8 +558,8 @@
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Estado</span>
-                                                    <input type="text" name="estado" class="form-control" id="estado"
+                                                    <span>Estado</span><i class="bi bi-lock" id="lock-estado" hidden></i>
+                                                    <input type="text" asp-for="Endereco.Cidade.Estado.Descricao" class="form-control" id="estado-modal"
                                                            placeholder="Digite o estado" pattern="[A-Z a-z]{2}" maxlength="2" required onChange="maiusculo()">
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
@@ -566,24 +567,18 @@
                                                 </div>
 
                                                 <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>País</span>
-                                                    <input type="text" name="pais" class="form-control" id="pais" placeholder="Digite o país" required>
+                                                    <span>País</span><i class="bi bi-lock" id="lock-pais" hidden></i>
+                                                    <input type="text" asp-for="Endereco.Cidade.Estado.Pais.Descricao" class="form-control" id="pais-modal" placeholder="Digite o país" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>Cep</span>
-                                                    <input type="text" name="cep" class="form-control" id="cep" placeholder="Digite o cep" required maxlength="9" onkeypress="formatar('#####-###', this);" pattern="[0-9]{5}-[0-9]{3}">
-                                                    <div class="invalid-feedback">
-                                                        *Campo obrigatório
-                                                    </div>
-                                                </div>
+
 
                                                 <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Observações</span>
-                                                    <textarea type="text" name="observacoes" class="form-control" id="observacoes"
+                                                    <textarea type="text" asp-for="Endereco.Observacoes" class="form-control" id="observacoes"
                                                               placeholder="Tem alguma observação?" data-rule="minlen:3" rows="3"></textarea>
                                                 </div>
                                             </div>
@@ -625,7 +620,7 @@
 
                                 <!--Form-->
                                 <div class="container mt-5">
-                                    <form asp-action="cadastrarcartao" class="needs-validation" novalidate>
+                                    <form asp-action="CadastrarCartaoCarrinho" class="needs-validation" novalidate>
                                         <!--Novo Cartão-->
                                         <div class="info-wrap">
                                             <div class="col-lg-3 col-md-6 info">
@@ -792,7 +787,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
-        function definirCartoes() {           
+        function calcularProdutos() {
+
+        }
+    </script>
+
+    <script>
+        function definirCartoes() {
 
             var escolha = (document.getElementById('definircartoes'));
             var escolhaCartoes = escolha.options[escolha.selectedIndex].value;
@@ -837,12 +838,12 @@
             }
         }
 
-        function ContinuarPedido(id) {            
+        function ContinuarPedido(id) {
             //var status = (document.getElementById(id).hidden);
             document.getElementById(id).hidden = false;
         }
 
-        
+
     </script>
 
     <script>
