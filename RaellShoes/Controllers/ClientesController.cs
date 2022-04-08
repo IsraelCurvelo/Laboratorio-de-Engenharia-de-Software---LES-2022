@@ -380,7 +380,20 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult CadastrarCartaoCarrinho(Cartao cartao)
         {
-            return View();
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                cartao.ClienteId = idLogado;
+                string confirmacao = facade.Cadastrar(cartao);
+                //Falta redirecionar caso não cadastre
+                return RedirectToAction("Carrinho");
+            }
+            else
+                return RedirectToAction("Index");
+           
         }
 
 
