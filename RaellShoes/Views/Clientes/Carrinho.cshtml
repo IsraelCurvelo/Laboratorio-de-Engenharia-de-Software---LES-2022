@@ -164,12 +164,12 @@
 
                     </div>
                     <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <h5 style="padding-left: 82%; padding-top: 10px "><strong>Sub-Total:</strong></h5>
+                        <h5 style="padding-left: 82%; padding-top: 10px "><strong>Sub-Total Produtos:</strong></h5>
 
 
                     </div>
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" >
-                        <input readonly class="form-control-plaintext" type="text" style="color: rgb(196, 8, 17);
+                        <input readonly class="form-control-plaintext" type="text" style="color: rgb(196, 8, 17); padding-top: 20px;
                              font-weight: bold;font-size: 20px" value="R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal)" id="subtotal" >
 
                     </div>
@@ -209,13 +209,13 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um endereço para entrega </span>
                         <select asp-items="@(new SelectList(Model.Enderecos,"Id","Apelido"))" class="form-select" style="font-size: small; " id="endereco-entrega">
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; margin-top: 25px; "id="botao-frete">
+                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; margin-top: 25px; " id="botao-frete" onclick="calcularFrete()">
                             Calcular
                             Frete
                         </button>
@@ -223,7 +223,18 @@
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor do Frete </span>
                         <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                               id="valor-produto" value="R$ 0,00" style=" font-size: small;">
+                               id="valor-frete" value="R$ 0,00" style=" font-size: small;">
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <h5 style="padding-top: 14px; padding-left: 60px "><strong>Sub-Total com Frete:</strong></h5>
+                        
+
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0">
+                        <input readonly class="form-control-plaintext" type="text" style="color: rgb(196, 8, 17); padding-top:20px;
+                             font-weight: bold;font-size: 20px" value="R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal)" id="subtotal-2">
+
                     </div>
                 </div>
 
@@ -255,18 +266,39 @@
 
                 <div class="row" style="font-size: small; ">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <select asp-items="@(new SelectList(Model.Cupons,"Id","Descricao"))" class="form-select" style="font-size: small; " id="cupom-carrinho">
+                        <select asp-items="@(new SelectList(Model.Cupons,"Id","Descricao"))" class="form-select" style="font-size: small; " id="cupom-carrinho" onchange="calcularCupom()">
+                            <option value="0">Selecionar</option>
                         </select>
                     </div>
 
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; " id="botao-cupom">Aplicar</button>
+                    <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form" hidden>
+
+                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                               id="hidden-valor-cupom">
                     </div>
+
+                    <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form" >
+
+                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext" >
+                              
+                    </div>
+
 
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor Aplicado </span>
                         <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                               id="valor-produto" value="R$ 0,00">
+                               id="valor-cupom" value="R$ 0,00">
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <h5 style="padding-top: 14px; padding-left: 60px "><strong>Sub-Total Cupom:</strong></h5>
+
+
+                    </div>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0">
+                        <input readonly class="form-control-plaintext" type="text" style="color: rgb(196, 8, 17); padding-top:20px;
+                             font-weight: bold;font-size: 20px" value="R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal)" id="subtotal-3">
+
                     </div>
                 </div>
                 <div class="row" style="font-size: small; ">
@@ -303,7 +335,7 @@
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Valor Total do Pedido </span>
-                            <input type="textarea" name="valor-total-pedido" class="form-control-plaintext " style=" font-size: small; color: red; font-weight: bold"
+                            <input type="textarea" name="valor-total-pedido" class="form-control-plaintext " style=" font-size: small; color: red; font-weight: bold; font-size: 30px;"
                                    id="valor-total" value="R$ @Model.Carrinho.ValorTotal" disabled readonly>
                         </div>
                     </div>
@@ -844,19 +876,23 @@
 
                 
                 document.getElementById('botao-confirmar-produto').hidden = true;
+                document.getElementById('botao-confirmar-endereco').hidden = true;
 
                 for (var i = 1; i <= @Model.Carrinho.Produtos.Count; i++) {
                     document.getElementById('quantidade('+i+')').disabled = true;
-                    document.getElementById('botao-remover(' + i +')').hidden = true;
+                    document.getElementById('botao-remover(' + i + ')').hidden = true;
+                    document.getElementById('subtotal-2').value = document.getElementById('subtotal').value;
                 }
 
             } else if (id == "boxcupom") {
                 document.getElementById('endereco-entrega').disabled = true;
                 document.getElementById('botao-frete').hidden = true;
                 document.getElementById('botao-confirmar-endereco').hidden = true;
-                document.getElementById('botao-novo-endereco').hidden = true;
+                document.getElementById('botao-novo-endereco').hidden = true;               
+
 
             } else if (id == 'boxpagamento') {
+                document.getElementById('valor-total').value = document.getElementById('subtotal-3').value;
                 document.getElementById('cupom-carrinho').disabled = true;
                 document.getElementById('botao-cupom').hidden = true;
                 document.getElementById('botao-confirmar-cupom').hidden = true;
@@ -924,8 +960,6 @@
             }
         }
 
-
-
         function desabilitarCampos(confirmacao) {
             document.getElementById('botao-confirmar-pagamento').hidden = confirmacao;
             document.getElementById('botao-novo-cartao').hidden = confirmacao;
@@ -974,8 +1008,57 @@
 
             document.getElementById('subtotal').value = "R$ " + subtotal;
             document.getElementById('valor-total').value = "R$ " + subtotal;
+            
         }
 
+        function calcularFrete() {
+            var valorFrete = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('valor-frete').value = "R$ " + valorFrete+",00";
+            adicionarValorFreteSubTotal();
+        }
+
+        function adicionarValorFreteSubTotal() {
+
+            var subTotal = document.getElementById('subtotal').value;           
+            subTotal = subTotal.slice(3).replace(",", ".");          
+            subTotal = parseFloat(subTotal);
+            
+            var valorFrete = document.getElementById('valor-frete').value;           
+            valorFrete = valorFrete.slice(3).replace(",", ".");
+            valorFrete = parseFloat(valorFrete);
+            
+            subTotal += valorFrete;
+            document.getElementById('subtotal-2').value = "R$ " + subTotal;
+            document.getElementById('valor-total').value = document.getElementById('subtotal-2').value;
+            document.getElementById('subtotal-3').value = document.getElementById('subtotal-2').value;  
+            document.getElementById('botao-confirmar-endereco').hidden = false;  
+        }
+
+        function calcularCupom() {
+            var cupomEscolhido = document.getElementById('cupom-carrinho').value; 
+            if (cupomEscolhido != null && cupomEscolhido > 0) {
+                var cupom = document.getElementById('cupom-carrinho');
+                var texto = cupom.options[cupom.selectedIndex].text;
+                texto = texto.split(" ");
+                document.getElementById('valor-cupom').value = "R$ " + texto[0];
+
+                var subTotal = document.getElementById('subtotal-2').value;
+                subTotal = subTotal.slice(3).replace(",", ".");
+                subTotal = parseFloat(subTotal);
+
+                var valorCupom = document.getElementById('valor-cupom').value;
+                valorCupom = valorCupom.slice(3).replace(",", ".");
+                valorCupom = parseFloat(valorCupom);
+
+                subTotal -= valorCupom;
+
+                document.getElementById('subtotal-3').value = "R$ " + subTotal;                
+
+            } else {
+                document.getElementById('valor-cupom').value = "R$ 0.00";
+                document.getElementById('subtotal-3').value = document.getElementById('subtotal-2').value;
+            }
+        }
 
     </script>
 
