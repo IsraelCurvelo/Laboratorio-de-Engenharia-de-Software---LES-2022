@@ -118,7 +118,7 @@
 
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                         <span>Quantidade</span>
-                                        <select class="form-select" style="font-size: xx-small; " id="quantidade" onchange="calcularValorProduto((@item.Id), this.value)">
+                                        <select class="form-select" style="font-size: xx-small; " id="quantidade(@item.Id)" onchange="calcularValorProduto((@item.Id), this.value)">
                                             @for (int i = 1; i <= item.Quantidade; i++)
                                             {
                                                 <option>@i</option>
@@ -135,7 +135,7 @@
                                                id="hidden-valor-produto(@item.Id)" value="@Html.DisplayFor(model => item.Valor)">
                                     </div>
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <button class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;" id="botao-remover">
+                                        <button class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;" id="botao-remover(@item.Id)">
                                             Remover
                                         </button>
                                     </div>
@@ -842,9 +842,13 @@
 
             if (id == 'boxendereco') {
 
-                document.getElementById('quantidade').disabled = true;
-                document.getElementById('botao-remover').hidden = true;
+                
                 document.getElementById('botao-confirmar-produto').hidden = true;
+
+                for (var i = 1; i <= @Model.Carrinho.Produtos.Count; i++) {
+                    document.getElementById('quantidade('+i+')').disabled = true;
+                    document.getElementById('botao-remover(' + i +')').hidden = true;
+                }
 
             } else if (id == "boxcupom") {
                 document.getElementById('endereco-entrega').disabled = true;
@@ -956,14 +960,14 @@
 
 
             document.getElementById('valor-produto(' + idValor + ')').value = resultado;
-            
+
             var subtotal = 0;
 
-            
+
             for (var i = 1; i <= @Model.Carrinho.Produtos.Count; i++) {
                 var auxSubtotal = document.getElementById('valor-produto(' + i + ')').value;
                 auxSubtotal = auxSubtotal.replace(",", ".");
-               
+
                 var floatValorUnitario = parseFloat(auxSubtotal);
                 subtotal = subtotal + floatValorUnitario;
             }
