@@ -374,5 +374,24 @@ namespace RaellShoes.Facadee
             return dal.BuscarCarrinho(idCliente);
         }
 
+        public List<Cupom> BuscarCuponsCliente(int idCliente)
+        { 
+            List<Cupom> cupomLista = new List<Cupom>();
+            List<EntidadeDominio> cupomClientesResult = dal.Consultar(new CupomCliente { ClienteId = idCliente });
+            List<CupomCliente> cupomClientes = new List<CupomCliente>();
+
+            foreach (var item in cupomClientesResult)
+            {
+                cupomClientes.Add((CupomCliente)item);
+            }           
+
+            foreach(var item in cupomClientes)
+            {
+                Cupom cupom = new Cupom { Id = item.CupomId };
+                cupomLista.Add((Cupom)dal.ConsultarId(cupom));
+            }
+            return cupomLista;
+        }
+
     }
 }

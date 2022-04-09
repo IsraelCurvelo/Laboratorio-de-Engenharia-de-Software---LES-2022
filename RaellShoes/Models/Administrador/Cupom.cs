@@ -21,17 +21,21 @@ namespace RaellShoes.Models.Administrador
         [Required(ErrorMessage = "{0} obrigatório")]
         public String Codigo { get; set; }
 
+        [Required(ErrorMessage = "{0} obrigatório")]
+        public Double Desconto { get; set; }
+
         public Cupom()
         {
 
         }
 
-        public Cupom(string nome, Status status, DateTime dataCadastro, string codigo)
+        public Cupom(string nome, Status status, DateTime dataCadastro, string codigo, double desconto)
         {
             Descricao = nome;
             Status = status;
             DataCadastro = dataCadastro;
             Codigo = codigo;
+            Desconto = desconto;
         }
     }
 }

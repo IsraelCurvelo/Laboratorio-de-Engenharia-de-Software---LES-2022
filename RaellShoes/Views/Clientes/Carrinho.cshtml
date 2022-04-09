@@ -66,7 +66,7 @@
         <!--Pedido-->
         <div class="container mt-5">
             <!--Box Produtos-->
-            <div class="info-wrap">
+            <div class="info-wrap" id="boxproduto">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Por favor, confirme os dados </span>
@@ -104,21 +104,21 @@
 
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                         <span>Cor</span>
-                                        <input disabled type="textarea" name="cor-produto" readonly
+                                        <input disabled type="textarea" name="cor-produto"
                                                class="form-control-plaintext" id="cor-produto" value="@Html.DisplayFor(model => item.CorPrimariaProduto)">
                                     </div>
 
                                     <div class="col-lg-1 col-md-4 form-group mt-3 mt-md-0" id="comb-form"
                                          style="margin-left: -20px;">
                                         <span>Tamanho</span>
-                                        <input disabled type="textarea" name="tamanho-produto" readonly
+                                        <input disabled type="textarea" name="tamanho-produto"
                                                class="form-control-plaintext" id="tamanho-produto" value="@Html.DisplayFor(model => item.Tamanho)">
                                     </div>
 
 
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                         <span>Quantidade</span>
-                                        <select class="form-select" style="font-size: xx-small; ">
+                                        <select class="form-select" style="font-size: xx-small; " id="quantidade" onchange="calcularValorProduto((@item.Id), this.value)">
                                             @for (int i = 1; i <= item.Quantidade; i++)
                                             {
                                                 <option>@i</option>
@@ -128,10 +128,14 @@
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                         <span>Valor</span>
                                         <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                                               id="valor-produto" value="@Html.DisplayFor(model => item.Valor)">
+                                               id="valor-produto(@item.Id)" value="@Html.DisplayFor(model => item.Valor)">
+                                    </div>
+                                    <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form" hidden>                                        
+                                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                               id="hidden-valor-produto(@item.Id)" value="@Html.DisplayFor(model => item.Valor)">
                                     </div>
                                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <button class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;">
+                                        <button class="btn btn-danger btn-sm" style="border-radius: 10px ; margin-top: 10px;" id="botao-remover">
                                             Remover
                                         </button>
                                     </div>
@@ -160,12 +164,13 @@
 
                     </div>
                     <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <h5 style="padding-left: 82%; "><strong>Sub-Total: </strong></h5>
+                        <h5 style="padding-left: 82%; padding-top: 10px "><strong>Sub-Total:</strong></h5>
 
 
                     </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <h5 style="color:rgb(196, 8, 17); "><strong>R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal) </strong></h5>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" >
+                        <input readonly class="form-control-plaintext" type="text" style="color: rgb(196, 8, 17);
+                             font-weight: bold;font-size: 20px" value="R$ @Html.DisplayFor(model => Model.Carrinho.ValorTotal)" id="subtotal" >
 
                     </div>
 
@@ -176,7 +181,7 @@
                     {
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <button class="btn btn-success btn-sm col-lg-12"
-                                    style="border-radius: 10px ; " onclick="ContinuarPedido('boxendereco')">
+                                    style="border-radius: 10px ; " onclick="ContinuarPedido('boxendereco')" id="botao-confirmar-produto">
                                 Continuar Pedido
                             </button>
                         </div>}
@@ -195,7 +200,7 @@
                 </div>
                 <h4> <strong style="padding-left: 10px;">Endereço de Entrega</strong></h4>
                 <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                    <button class="btn btn-dark btn-sm"
+                    <button class="btn btn-dark btn-sm" id="botao-novo-endereco"
                             style="border-radius: 10px ; margin-left: 88%; margin-top: -50px; " data-bs-toggle="modal" data-bs-target="#modalEndereco">
                         Novo
                         Endereço
@@ -206,11 +211,11 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um endereço para entrega </span>
-                        <select asp-items="@(new SelectList(Model.Enderecos,"Id","Apelido"))" class="form-select" style="font-size: small; ">
+                        <select asp-items="@(new SelectList(Model.Enderecos,"Id","Apelido"))" class="form-select" style="font-size: small; " id="endereco-entrega">
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; margin-top: 25px; ">
+                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; margin-top: 25px; "id="botao-frete">
                             Calcular
                             Frete
                         </button>
@@ -223,7 +228,7 @@
                 </div>
 
                 <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                    <button class="btn btn-success btn-sm" style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxcupom')">
+                    <button class="btn btn-success btn-sm" style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxcupom')" id="botao-confirmar-endereco">
                         Usar este
                         endereço
                     </button>
@@ -250,12 +255,12 @@
 
                 <div class="row" style="font-size: small; ">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <select asp-items="@(new SelectList(Model.Cupons,"Id","Descricao"))" class="form-select" style="font-size: small; ">
+                        <select asp-items="@(new SelectList(Model.Cupons,"Id","Descricao"))" class="form-select" style="font-size: small; " id="cupom-carrinho">
                         </select>
                     </div>
 
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; ">Aplicar</button>
+                        <button class="btn btn-primary btn-sm" style="border-radius: 10px ; " id="botao-cupom">Aplicar</button>
                     </div>
 
                     <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
@@ -267,7 +272,7 @@
                 <div class="row" style="font-size: small; ">
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <button class="btn btn-success btn-sm"
-                                style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpagamento')">
+                                style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpagamento')"id="botao-confirmar-cupom">
                             Continuar
                         </button>
                     </div>
@@ -285,7 +290,7 @@
                 </div>
                 <h4> <strong style="padding-left: 10px;">Pagamento</strong></h4>
                 <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                    <button class="btn btn-dark btn-sm"
+                    <button class="btn btn-dark btn-sm" id="botao-novo-cartao"
                             style="border-radius: 10px ; margin-left: 90%; margin-top: -50px; " data-bs-toggle="modal" data-bs-target="#modalCartao">
                         Novo
                         Cartão
@@ -317,14 +322,14 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um cartão para pagamento </span>
-                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="tipo-cartao1" onchange="tipoCartao(this.value, this.id)">
+                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="cartao1" onchange="tipoCartao(this.value, this.id)">
                         </select>
                     </div>
 
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor a pagar </span>
-                        <input type="text" name="valor-produto1" class="form-control " style=" font-size: small;"
-                               id="valor-produto1" value="R$ @Model.Carrinho.ValorTotal">
+                        <input type="number" name="valor-produto1" class="form-control " style=" font-size: small;"
+                               id="valor-produto1" value="0" >
                     </div>
 
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
@@ -351,14 +356,14 @@
                 <div class="row" hidden id="cartao2">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um cartão para pagamento </span>
-                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="tipo-cartao2" onchange="tipoCartao(this.value, this.id)">
+                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="cartao-2" onchange="tipoCartao(this.value, this.id)">
                         </select>
                     </div>
 
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor a pagar </span>
-                        <input type="text" name="valor-produto2" class="form-control " style=" font-size: small;"
-                               id="valor-produto2">
+                        <input type="number" name="valor-produto2" class="form-control " style=" font-size: small;"
+                               id="valor-produto2"value="0">
                     </div>
 
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
@@ -386,14 +391,14 @@
                 <div class="row" hidden id="cartao3">
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Selecione um cartão para pagamento </span>
-                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="tipo-cartao3" onchange="tipoCartao(this.value, this.id)">
+                        <select asp-items="@(new SelectList(Model.Cartoes,"Id","Apelido"))" class="form-select" style="font-size: small; " id="cartao-3" onchange="tipoCartao(this.value, this.id)">
                         </select>
                     </div>
 
                     <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <span>Valor a pagar </span>
-                        <input type="text" name="valor-produto3" class="form-control " style=" font-size: small;"
-                               id="valor-produto3">
+                        <input type="number" name="valor-produto3" class="form-control " style=" font-size: small;"
+                               id="valor-produto3" value="0">
                     </div>
 
                     <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
@@ -419,7 +424,7 @@
 
                 <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                     <button class="btn btn-success btn-sm"
-                            style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpedido')">
+                            style="border-radius: 8px ; margin-top: 25px; " onclick="ContinuarPedido('boxpedido')"  id="botao-confirmar-pagamento">
                         Confirmar
                     </button>
                 </div>
@@ -435,7 +440,7 @@
                     <br>
                     <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                         <br>
-                        <button class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px">
+                        <button  asp-action="CriarPedido" class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px">
                             Sim! Finalizar
                             Pedido
                         </button>
@@ -790,22 +795,22 @@
             if (escolhaCartoes == 1) {
                 document.getElementById('cartao2').hidden = true;
                 document.getElementById('cartao3').hidden = true;
-                /**/
-                document.getElementById('valor-produto1').value = "R$  " + @Model.Carrinho.ValorTotal;
-                /**/
+
+                //document.getElementById('valor-produto1').value = "R$  " + //Model.Carrinho.ValorTotal;
+
             } else if (escolhaCartoes == 2) {
                 var parcela2 = document.getElementById('valor-produto1').value;
                 parcela2 = parcela2 / 2;
                 document.getElementById('cartao2').hidden = false;
                 document.getElementById('cartao3').hidden = true;
-                document.getElementById('valor-produto1').value = "R$ 259,90";
-                document.getElementById('valor-produto2').value = "R$ 259,98";
+                //document.getElementById('valor-produto1').value = "R$ 259,90";
+               // document.getElementById('valor-produto2').value = "R$ 259,98";
             } else if (escolhaCartoes == 3) {
                 document.getElementById('cartao2').hidden = false;
                 document.getElementById('cartao3').hidden = false;
-                document.getElementById('valor-produto1').value = "R$ 173,32";
-                document.getElementById('valor-produto2').value = "R$ 173,32";
-                document.getElementById('valor-produto3').value = "R$ 173,32";
+               // document.getElementById('valor-produto1').value = "R$ 173,32";
+                //document.getElementById('valor-produto2').value = "R$ 173,32";
+                //document.getElementById('valor-produto3').value = "R$ 173,32";
             }
         }
 
@@ -832,8 +837,139 @@
         }
 
         function ContinuarPedido(id) {
-            //var status = (document.getElementById(id).hidden);
+
             document.getElementById(id).hidden = false;
+
+            if (id == 'boxendereco') {
+
+                document.getElementById('quantidade').disabled = true;
+                document.getElementById('botao-remover').hidden = true;
+                document.getElementById('botao-confirmar-produto').hidden = true;
+
+            } else if (id == "boxcupom") {
+                document.getElementById('endereco-entrega').disabled = true;
+                document.getElementById('botao-frete').hidden = true;
+                document.getElementById('botao-confirmar-endereco').hidden = true;
+                document.getElementById('botao-novo-endereco').hidden = true;
+
+            } else if (id == 'boxpagamento') {
+                document.getElementById('cupom-carrinho').disabled = true;
+                document.getElementById('botao-cupom').hidden = true;
+                document.getElementById('botao-confirmar-cupom').hidden = true;
+
+            } else if (id == 'boxpedido') {
+
+                var numCartoes = document.getElementById('definircartoes').value;
+                var valorTotal = document.getElementById('valor-total').value;
+
+                if (valorTotal != null) {
+                    valorTotal = valorTotal.slice(3).replace(",", ".");
+
+                    valorTotal = parseFloat(valorTotal);
+
+                    var valorProduto1 = document.getElementById('valor-produto1').value;
+                    var valorProduto2 = document.getElementById('valor-produto2').value;
+                    var valorProduto3 = document.getElementById('valor-produto3').value;
+
+                    var valorProduto1 = parseFloat(valorProduto1);
+                    var valorProduto2 = parseFloat(valorProduto2);
+                    var valorProduto3 = parseFloat(valorProduto3);
+
+                    if (numCartoes == 1) {
+
+                        document.getElementById('valor-produto2').value = 0;
+                        document.getElementById('valor-produto3').value = 0;
+
+                        if (valorProduto1 == valorTotal) {
+                            document.getElementById(id).hidden = false;
+                            desabilitarCampos(true);
+                        }
+                        else {
+                            document.getElementById(id).hidden = true;
+                            desabilitarCampos(false);
+                        }
+
+                    } else if (numCartoes == 2) {
+
+                        document.getElementById('valor-produto3').value = 0;
+
+
+                        if ((valorProduto1 + valorProduto2) == valorTotal) {
+                            document.getElementById(id).hidden = false;
+                            desabilitarCampos(true);
+                        }
+                        else {
+                            document.getElementById(id).hidden = true;
+                            desabilitarCampos(false);
+                        }
+
+
+                    } else if (numCartoes == 3) {
+
+                        if ((valorProduto1 + valorProduto2 + valorProduto3) == valorTotal) {
+                            document.getElementById(id).hidden = false;
+                            desabilitarCampos(true);
+                        }
+                        else {
+                            document.getElementById(id).hidden = true;
+                            desabilitarCampos(false);
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+
+        function desabilitarCampos(confirmacao) {
+            document.getElementById('botao-confirmar-pagamento').hidden = confirmacao;
+            document.getElementById('botao-novo-cartao').hidden = confirmacao;
+
+            document.getElementById('definircartoes').disabled = confirmacao;
+
+            document.getElementById('cartao1').disabled = confirmacao;
+            document.getElementById('valor-produto1').disabled = confirmacao;
+            document.getElementById('parcelamento1').disabled = confirmacao;
+
+            document.getElementById('cartao-2').disabled = confirmacao;
+            document.getElementById('valor-produto2').disabled = confirmacao;
+            document.getElementById('parcelamento2').disabled = confirmacao;
+
+            document.getElementById('cartao-3').disabled = confirmacao;
+            document.getElementById('valor-produto3').disabled = confirmacao;
+            document.getElementById('parcelamento3').disabled = confirmacao;
+        }
+
+        function calcularValorProduto(idValor, idQuantidade) {
+
+            //var valorUnitario = document.getElementById('valor-produto(' + idValor + ')').value.replace(",", ".");
+
+            var subTotal = document.getElementById('hidden-valor-produto(' + idValor + ')').value;
+
+            subTotal = subTotal.replace(",", ".");
+
+            subTotal = parseFloat(subTotal);
+
+
+            var resultado = subTotal * idQuantidade;
+
+
+            document.getElementById('valor-produto(' + idValor + ')').value = resultado;
+            
+            var subtotal = 0;
+
+            
+            for (var i = 1; i <= @Model.Carrinho.Produtos.Count; i++) {
+                var auxSubtotal = document.getElementById('valor-produto(' + i + ')').value;
+                auxSubtotal = auxSubtotal.replace(",", ".");
+               
+                var floatValorUnitario = parseFloat(auxSubtotal);
+                subtotal = subtotal + floatValorUnitario;
+            }
+
+            document.getElementById('subtotal').value = "R$ " + subtotal;
+            document.getElementById('valor-total').value = "R$ " + subtotal;
         }
 
 

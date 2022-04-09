@@ -123,6 +123,15 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("cupomcliente"):
+                    CupomCliente cupomCliente = (CupomCliente)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.CupomCliente.ToList().Where(x => x.ClienteId == cupomCliente.ClienteId ))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
                 default:
                     return null;
             }
@@ -171,6 +180,21 @@ namespace RaellShoes.Dal
                     
                     return produto;
                     
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
+            {
+                try
+                {
+                    Cupom cupom = dbContext.Cupom.FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return cupom;
+
                 }
                 catch (ApplicationException e)
                 {

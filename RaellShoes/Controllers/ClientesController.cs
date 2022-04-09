@@ -8,6 +8,7 @@ using RaellShoes.Facadee;
 using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
+using RaellShoes.Models.NN;
 using RaellShoes.Models.ViewModel;
 
 namespace RaellShoes.Controllers
@@ -346,10 +347,14 @@ namespace RaellShoes.Controllers
                     cartoes.Add((Cartao)item);
                 }
 
+                List<Cupom> cupons = facade.BuscarCuponsCliente(idLogado );
+                
+
                 CarrinhoViewModel carrinhoViewModel = new CarrinhoViewModel() { 
                     Carrinho = carrinho, 
                     Enderecos = enderecos,
-                    Cartoes = cartoes
+                    Cartoes = cartoes,
+                    Cupons = cupons
                 };
 
                 return View(carrinhoViewModel);
