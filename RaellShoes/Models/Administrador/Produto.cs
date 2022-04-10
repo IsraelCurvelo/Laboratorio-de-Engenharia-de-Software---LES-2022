@@ -74,6 +74,7 @@ namespace RaellShoes.Models.Administrador
         {
             Categorias = new List<Categoria>();
         }
+       
 
         public Produto(string nome, string modelo, double valor, string codigoBarra, string url, string descricao, int quantidade, Status status,
             DateTime dataCadastro, GrupoPrecificacao grupoPrecificacao, Fornecedor fornecedor, Marca marca, CorPrimariaProduto corPrimariaProduto, CorSecundariaProduto corSecundariaProduto,

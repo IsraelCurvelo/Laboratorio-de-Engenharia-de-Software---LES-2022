@@ -54,7 +54,7 @@ using RaellShoes.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(37, 1165, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98e7c680b10b476090e9a7362087742e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1dca2420abdd46e0856929a961fd787c", async() => {
                 BeginContext(43, 1152, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -94,7 +94,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1204, 2128, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6af68f9d45e84e7d9f8372d980ad361b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d350dfc25754d0cb6ad83286e79999c", async() => {
                 BeginContext(1210, 2115, true);
                 WriteLiteral(@"
     <!-- ======= Header ======= -->

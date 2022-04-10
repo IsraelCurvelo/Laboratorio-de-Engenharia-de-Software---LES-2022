@@ -31,14 +31,17 @@ namespace RaellShoes.Models.Administrador
 
         [NotMapped]
         [Required(ErrorMessage = "{0} obrigatório")]
-        public List<Cartao> Cartoes { get; set; }        
-
+        public List<Cartao> Cartoes { get; set; }
+        [NotMapped]
+        public Produto Produto { get; set; }
 
         public Carrinho()
         {
             Produtos = new HashSet<Produto>();
             Cartoes = new List<Cartao>();            
         }
+
+       
 
         public Carrinho(double valorFrete, double valorTotal, Cliente cliente, Endereco endereco, Cupom cupom)
         {

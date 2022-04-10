@@ -20,6 +20,16 @@ namespace RaellShoes.Models.ViewModel
 
         public List<Cupom> Cupons { get; set; }
 
+        public Double ValorTotal { get; set; }
+
+        public CarrinhoViewModel(Double valor)
+        {
+            Enderecos = new List<Endereco>();
+            Cartoes = new List<Cartao>();
+            Cupons = new List<Cupom>();
+            ValorTotal = valor;
+        }
+
         public CarrinhoViewModel()
         {
             Enderecos = new List<Endereco>();

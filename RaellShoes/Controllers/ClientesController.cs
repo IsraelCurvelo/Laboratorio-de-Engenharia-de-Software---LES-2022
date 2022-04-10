@@ -408,6 +408,12 @@ namespace RaellShoes.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult RegistrarVenda(Carrinho carrinho)
+        {
+            return View("Index");
+        }
+
 
         //**************************ERRO*************************
         public IActionResult Error(String message)
