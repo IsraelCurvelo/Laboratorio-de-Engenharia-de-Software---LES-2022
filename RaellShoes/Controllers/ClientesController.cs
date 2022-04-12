@@ -409,7 +409,7 @@ namespace RaellShoes.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarVenda(Carrinho carrinho)
+        public IActionResult RegistrarVenda(string data)
         {
             return View("Index");
         }

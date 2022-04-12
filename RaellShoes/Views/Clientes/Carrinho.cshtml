@@ -35,7 +35,7 @@
     <link href="~/assets/antigo/css/style.css" rel="stylesheet">
 
 </head>
-<body onload="calcularProdutos()">
+<body >
 
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
@@ -443,7 +443,7 @@
                         <br>
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <br>
-                            <button class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px">
+                            <button class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px" onclick="FinalizarPedido()">
                                 Sim! Finalizar
                                 Pedido
                             </button>
@@ -851,8 +851,7 @@
             } else if (id == 'boxpagamento') {//Transição de Cupom para Pagamento
 
                 document.getElementById('valor-total').value = document.getElementById('subtotal-3').value;
-                document.getElementById('cupom-carrinho').disabled = true;
-                document.getElementById('botao-cupom').hidden = true;
+                document.getElementById('cupom-carrinho').disabled = true;                
                 document.getElementById('botao-confirmar-cupom').hidden = true;
 
             } else if (id == 'boxpedido') {//Transição de Pagamento para Finalização
@@ -1180,6 +1179,34 @@
            
         }
 
+        function FinalizarPedido() {
+            var Dados = {
+                valorTotal: document.getElementById('valor-total').value
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Clientes/RegistrarVenda?data=" + JSON.stringify(Dados),
+                data: JSON.stringify(Dados),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    if (data == true) {
+                        window.location.reload();
+                        window.scrollTo(0, 0);
+                        //setTimeout(() => { window.location.reload();  }, 1000);
+
+                    }
+                    else {
+
+
+                        window.location.reload();
+                        window.scrollTo(0, 0);
+                    }
+                }
+            });
+        }
+
     </script>
 
     <script>
@@ -1312,6 +1339,8 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive-main/src/jquery.unobtrusive-ajax.js"></script>
 
 </body>
 

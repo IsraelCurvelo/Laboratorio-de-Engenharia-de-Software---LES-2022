@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "mIPBt2r3ZClhLItJAUM6pn6eyK6li9UNrwtQnQn3n/kyIKMJJGWjNZdmL+EE9Ycq/fol7udT90sZj0+gsHvWLQ==",
+  "dgSpecHash": "ejF/FUmNPNO2116jtArBTrRb0yKRgIDZBk+X6jBpBhXHuCg7YjRr81G5GvfvCYVe+yViZhovt9O0ZXX6ZZ5WLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\curve\\Desktop\\LES\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\curve\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.1.1\\microsoft.aspnetcore.antiforgery.2.1.1.nupkg.sha512",
@@ -161,6 +162,7 @@
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.2.0\\microsoft.identitymodel.tokens.5.2.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.identitymodel.tokens.saml\\5.2.0\\microsoft.identitymodel.tokens.saml.5.2.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.identitymodel.xml\\5.2.0\\microsoft.identitymodel.xml.5.2.0.nupkg.sha512",
+    "C:\\Users\\curve\\.nuget\\packages\\microsoft.jquery.unobtrusive.ajax\\3.2.6\\microsoft.jquery.unobtrusive.ajax.3.2.6.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.net.http.headers\\2.1.1\\microsoft.net.http.headers.2.1.1.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",

@@ -13,12 +13,25 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\.gitattributes" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\.gitignore" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\.vsts-pipelines\builds\ci-public.yml" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\build.cmd" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\build.msbuild" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\CODE-OF-CONDUCT.md" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\CONTRIBUTING.md" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\gulpfile.js" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\Microsoft.jQuery.Unobtrusive.Ajax.nuspec" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\README.md" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\run.ps1" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\src\jquery.unobtrusive-ajax.js" />
+    <None Include="wwwroot\lib\jquery-ajax-unobtrusive-main\version.props" />
   </ItemGroup>
 
 </Project>

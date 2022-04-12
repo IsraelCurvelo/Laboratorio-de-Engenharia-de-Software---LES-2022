@@ -89,3 +89,4 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\DetalhesProduto.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\Carrinho.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\libman.json
