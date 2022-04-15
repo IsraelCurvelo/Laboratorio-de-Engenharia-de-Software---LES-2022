@@ -9,8 +9,8 @@ using RaellShoes.Data;
 namespace RaellShoes.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220402004456_NN_ProdutoCliente")]
-    partial class NN_ProdutoCliente
+    [Migration("20220415030512_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,6 +75,8 @@ namespace RaellShoes.Migrations
                         .IsRequired();
 
                     b.Property<DateTime>("DataCadastro");
+
+                    b.Property<double>("Desconto");
 
                     b.Property<string>("Descricao")
                         .IsRequired();
@@ -158,12 +160,42 @@ namespace RaellShoes.Migrations
                     b.ToTable("GrupoPrecificacao");
                 });
 
-            modelBuilder.Entity("RaellShoes.Models.Administrador.Produto", b =>
+            modelBuilder.Entity("RaellShoes.Models.Administrador.Pedido", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CarrinhoId");
+                    b.Property<int>("ClienteId");
+
+                    b.Property<int?>("CupomId");
+
+                    b.Property<DateTime>("DataCompra");
+
+                    b.Property<string>("EnderecoEntrega")
+                        .IsRequired();
+
+                    b.Property<int>("FormaPagamento");
+
+                    b.Property<string>("NumeroPedido")
+                        .IsRequired();
+
+                    b.Property<int>("Status");
+
+                    b.Property<double>("ValorTotal");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("CupomId");
+
+                    b.ToTable("Pedido");
+                });
+
+            modelBuilder.Entity("RaellShoes.Models.Administrador.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("CodigoBarra")
                         .IsRequired();
@@ -206,8 +238,6 @@ namespace RaellShoes.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarrinhoId");
-
                     b.HasIndex("FichaTecnicaId");
 
                     b.HasIndex("FornecedorId");
@@ -226,8 +256,6 @@ namespace RaellShoes.Migrations
 
                     b.Property<int>("Bandeira");
 
-                    b.Property<int?>("CarrinhoId");
-
                     b.Property<int>("ClienteId");
 
                     b.Property<string>("CodigoSeguranca");
@@ -243,8 +271,6 @@ namespace RaellShoes.Migrations
                     b.Property<string>("Validade");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CarrinhoId");
 
                     b.HasIndex("ClienteId")
                         .IsUnique();
@@ -414,6 +440,20 @@ namespace RaellShoes.Migrations
                     b.ToTable("Log");
                 });
 
+            modelBuilder.Entity("RaellShoes.Models.NN.CupomCliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ClienteId");
+
+                    b.Property<int>("CupomId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CupomCliente");
+                });
+
             modelBuilder.Entity("RaellShoes.Models.NN.ProdutoCliente", b =>
                 {
                     b.Property<int>("Id")
@@ -422,6 +462,10 @@ namespace RaellShoes.Migrations
                     b.Property<int>("ClienteId");
 
                     b.Property<int>("ProdutoId");
+
+                    b.Property<int>("Quantidade");
+
+                    b.Property<double>("Valor");
 
                     b.HasKey("Id");
 
@@ -474,12 +518,20 @@ namespace RaellShoes.Migrations
                         .HasForeignKey("ProdutoId");
                 });
 
+            modelBuilder.Entity("RaellShoes.Models.Administrador.Pedido", b =>
+                {
+                    b.HasOne("RaellShoes.Models.Clientes.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RaellShoes.Models.Administrador.Cupom", "Cupom")
+                        .WithMany()
+                        .HasForeignKey("CupomId");
+                });
+
             modelBuilder.Entity("RaellShoes.Models.Administrador.Produto", b =>
                 {
-                    b.HasOne("RaellShoes.Models.Administrador.Carrinho")
-                        .WithMany("Produtos")
-                        .HasForeignKey("CarrinhoId");
-
                     b.HasOne("RaellShoes.Models.Administrador.FichaTecnica", "FichaTecnica")
                         .WithMany()
                         .HasForeignKey("FichaTecnicaId")
@@ -498,10 +550,6 @@ namespace RaellShoes.Migrations
 
             modelBuilder.Entity("RaellShoes.Models.Clientes.Cartao", b =>
                 {
-                    b.HasOne("RaellShoes.Models.Administrador.Carrinho")
-                        .WithMany("Cartaos")
-                        .HasForeignKey("CarrinhoId");
-
                     b.HasOne("RaellShoes.Models.Clientes.Cliente")
                         .WithOne("Cartao")
                         .HasForeignKey("RaellShoes.Models.Clientes.Cartao", "ClienteId")

@@ -31,6 +31,10 @@ namespace RaellShoes.Models.Administrador
 
         [Required(ErrorMessage = "{0} obrigatório")]
         public int Quantidade { get; set; }
+        [NotMapped]
+        public int QuantidadeCarrinho { get; set; }
+        [NotMapped]
+        public double ValorSubtotal { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
         public Status Status { get; set; }

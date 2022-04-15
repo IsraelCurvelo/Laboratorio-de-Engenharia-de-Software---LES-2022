@@ -10,15 +10,21 @@ namespace RaellShoes.Models.NN
         public int ClienteId { get; set; }
         public int ProdutoId { get; set; }
 
+        public int Quantidade { get; set; }
+
+        public double Valor { get; set; }
+
         public ProdutoCliente()
         {
 
         }
 
-        public ProdutoCliente(int idCliente, int idProduto)
+        public ProdutoCliente(int idCliente, int idProduto, int quantidade, double valor)
         {
             ClienteId = idCliente;
             ProdutoId = idProduto;
+            Quantidade = quantidade;
+            Valor = valor;
         }
     }
 }

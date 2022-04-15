@@ -226,6 +226,17 @@ namespace RaellShoes.Facadee
 
 
             }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("produtocliente"))
+            {
+                ProdutoCliente produtoCliente = (ProdutoCliente)entidadeDominio;       
+
+                string conf = dal.Alterar(produtoCliente);
+                log.Descricao = gerarLog.Processar(produtoCliente) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+
+            }
             return null;
             
         }
@@ -372,6 +383,11 @@ namespace RaellShoes.Facadee
         public Carrinho BuscarCarrinho(int idCliente)
         {
             return dal.BuscarCarrinho(idCliente);
+        } 
+        
+        public List<ProdutoCliente> BuscaProdutoCliente(int idCliente)
+        {
+            return dal.BuscaProdutoCliente(idCliente);
         }
 
         public List<Cupom> BuscarCuponsCliente(int idCliente)

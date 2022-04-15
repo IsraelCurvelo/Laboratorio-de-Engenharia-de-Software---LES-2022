@@ -4,7 +4,7 @@
 
 @foreach (var item in Model.Carrinho.Produtos)
 {
-    @Model.Carrinho.ValorTotal{ Model.Carrinho.ValorTotal += item.Valor; }
+    @Model.Carrinho.ValorTotal{ Model.Carrinho.ValorTotal += item.ValorSubtotal; }
 }
 
 
@@ -121,16 +121,25 @@
                                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                 <span>Quantidade</span>
                                                 <select class="form-select" style="font-size: xx-small; " id="quantidade(@item.Id)" onchange="calcularValorProduto((@item.Id), this.value)">
+
                                                     @for (int i = 1; i <= item.Quantidade; i++)
                                                     {
-                                                        <option>@i</option>
+
+                                                        if (item.QuantidadeCarrinho == i)
+                                                        {
+                                                            <option selected>@i</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option>@i</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div>
                                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                 <span>Valor</span>
                                                 <input disabled type="text" readonly class="form-control-plaintext"
-                                                       id="valor-produto(@item.Id)" value="@Html.DisplayFor(model => item.Valor)">
+                                                       id="valor-produto(@item.Id)" value="@Html.DisplayFor(model => item.ValorSubtotal)">
                                             </div>
                                             <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form" hidden>
                                                 <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
@@ -902,7 +911,7 @@
                                 if (valorCupom > 0)
                                     cupom = true;
                             }
-                            console.log(cupom);
+                            
                             if (cupom) {
                                 if ((valorProduto1 + valorProduto2) == valorTotal) {
                                     document.getElementById(id).hidden = false;
@@ -956,7 +965,7 @@
 
         //Calcular o preço total dos produtos conforme mudar a quantidade
         function calcularValorProduto(idValor, idQuantidade) {
-
+           
             //var valorUnitario = document.getElementById('valor-produto(' + idValor + ')').value.replace(",", ".");
 
             var subTotal = document.getElementById('hidden-valor-produto(' + idValor + ')').value;
@@ -984,6 +993,34 @@
 
             document.getElementById('subtotal').value = "R$ " + subtotal;
             document.getElementById('valor-total').value = "R$ " + subtotal;
+            
+            var Dados = {
+                ProdutoId: idValor,
+                Quantidade: idQuantidade,
+                Valor: subtotal
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Clientes/AtualizarCarrinho?data=" + JSON.stringify(Dados),
+                data: JSON.stringify(Dados),
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    if (data == true) {
+                        window.location.reload();
+                        window.scrollTo(0, 0);
+                        //setTimeout(() => { window.location.reload();  }, 1000);
+
+                    }
+                    else {
+
+
+                        window.location.reload();
+                        window.scrollTo(0, 0);
+                    }
+                }
+            });
 
         }
 
@@ -1180,8 +1217,85 @@
         }
 
         function FinalizarPedido() {
+            var subTotalProdutos = document.getElementById('subtotal').value;
+            subTotalProdutos = subTotalProdutos.slice(3).replace(",", ".");
+            subTotalProdutos = parseFloat(subTotalProdutos);
+
+            //Endereço de entrega
+            var select = document.getElementById('endereco-entrega');
+            var apelidoEnderecoEntrega = select.options[select.selectedIndex].text;
+            var idEnderecoEntrega = select.options[select.selectedIndex].value;
+
+            var valorFrete = document.getElementById('valor-frete').value;
+            valorFrete = valorFrete.slice(3).replace(",", ".");
+            valorFrete = parseFloat(valorFrete);
+
+            var subTotalFrete = document.getElementById('subtotal-2').value;
+            subTotalFrete = subTotalFrete.slice(3).replace(",", ".");
+            subTotalFrete = parseFloat(subTotalFrete);
+
+            //Cupom            
+            var select = document.getElementById('cupom-carrinho');
+            var cupomSelecionadoTexto = select.options[select.selectedIndex].text;
+            var cupomSelecionadoId = select.options[select.selectedIndex].value;
+
+            var descontoCupom = document.getElementById('valor-cupom').value;
+            descontoCupom = descontoCupom.slice(3).replace(",", ".");
+            descontoCupom = parseFloat(descontoCupom);
+
+            var subTotalCupom = document.getElementById('subtotal-3').value;
+            subTotalCupom = subTotalCupom.slice(3).replace(",", ".");
+            subTotalCupom = parseFloat(subTotalFrete);
+
+            //Pagamento                        
+            var select = document.getElementById('cupom-carrinho');
+            var cupomSelecionadoTexto = select.options[select.selectedIndex].text;
+            var cupomSelecionadoId = select.options[select.selectedIndex].value;
+
+            var valorTotal = document.getElementById('valor-total').value
+            valorTotal = valorTotal.slice(3).replace(",", ".");
+            valorTotal = parseFloat(valorTotal);
+
+            var cartoesUsado = document.getElementById('definircartoes').value;
+
+            //Cartao1
+            var select = document.getElementById('cartao1');
+            var cartao1SelecionadoTexto = select.options[select.selectedIndex].text;
+            var cartao1SelecionadoId = select.options[select.selectedIndex].value;
+            var cartao1Valor = document.getElementById('valor-produto1').value;
+
+            var select = document.getElementById('parcelamento1');
+            var parcelamento1 = select.options[select.selectedIndex].text;
+            
+
+            //Cartao2
+            var select = document.getElementById('cartao-2');
+            var cartao2SelecionadoTexto = select.options[select.selectedIndex].text;
+            var cartao2SelecionadoId = select.options[select.selectedIndex].value;
+            var cartao2Valor = document.getElementById('valor-produto2').value;
+            var select = document.getElementById('parcelamento2');
+            var parcelamento2 = select.options[select.selectedIndex].text;
+
             var Dados = {
-                valorTotal: document.getElementById('valor-total').value
+                SubTotalProdutos: subTotalProdutos,
+                ApelidoEnderecoEntrega: apelidoEnderecoEntrega,
+                IdEnderecoEntrega: idEnderecoEntrega,
+                ValorFrete: valorFrete,
+                SubTotalFrete: subTotalFrete,
+                ApelidoCupom: cupomSelecionadoTexto,
+                IdCupom: cupomSelecionadoId,
+                DescontoCupom: descontoCupom,
+                SubTotalCupom: subTotalCupom,
+                valorTotal: valorTotal,
+                CartoesUsados: cartoesUsado,
+                Cartao1Texto: cartao1SelecionadoTexto,
+                Cartao1Id: cartao1SelecionadoId,
+                Cartao1Valor: cartao1Valor,
+                Parcelamento1: parcelamento1,
+                Cartao2Texto: cartao2SelecionadoTexto,
+                Cartao2Id: cartao2SelecionadoId,
+                Cartao2Valor: cartao2Valor,
+                Parcelamento2: parcelamento2
             };
 
             $.ajax({

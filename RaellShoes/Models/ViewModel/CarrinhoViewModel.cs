@@ -1,5 +1,6 @@
 ﻿using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
+using RaellShoes.Models.NN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,15 @@ namespace RaellShoes.Models.ViewModel
 
         public Double ValorTotal { get; set; }
 
+        public List<ProdutoCliente> ProdutoClientes { get; set; }
+
         public CarrinhoViewModel(Double valor)
         {
             Enderecos = new List<Endereco>();
             Cartoes = new List<Cartao>();
             Cupons = new List<Cupom>();
             ValorTotal = valor;
+            ProdutoClientes = new List<ProdutoCliente>();
         }
 
         public CarrinhoViewModel()
@@ -35,6 +39,7 @@ namespace RaellShoes.Models.ViewModel
             Enderecos = new List<Endereco>();
             Cartoes = new List<Cartao>();
             Cupons = new List<Cupom>();
+            ProdutoClientes = new List<ProdutoCliente>();
         }
 
         public CarrinhoViewModel(Carrinho carrinho)
@@ -43,6 +48,7 @@ namespace RaellShoes.Models.ViewModel
             Enderecos = new List<Endereco>();
             Cartoes = new List<Cartao>();
             Cupons = new List<Cupom>();
+            ProdutoClientes = new List<ProdutoCliente>();
         }
     }
 }

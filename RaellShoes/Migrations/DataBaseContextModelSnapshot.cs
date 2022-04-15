@@ -461,6 +461,10 @@ namespace RaellShoes.Migrations
 
                     b.Property<int>("ProdutoId");
 
+                    b.Property<int>("Quantidade");
+
+                    b.Property<double>("Valor");
+
                     b.HasKey("Id");
 
                     b.ToTable("ProdutoCliente");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
 using RaellShoes.Models;
@@ -282,6 +283,8 @@ namespace RaellShoes.Controllers
         }
 
         //**************************CARRINHO**************************
+
+        //Adicionar Produto no carrinho
         public IActionResult ProdutoCarrinho(Produto produto)
         {
             int idLogado = 0;
@@ -305,6 +308,7 @@ namespace RaellShoes.Controllers
                 return RedirectToAction("Login", "Home");
         }
 
+        //Remover produto do carrinho
         public IActionResult RemoverProduto(Produto produto)
         {
             int idLogado = 0;
@@ -322,7 +326,7 @@ namespace RaellShoes.Controllers
         }
 
         
-
+        //Exibir o carrinho
         public IActionResult Carrinho()
         {
             int idLogado = 0;
@@ -332,6 +336,24 @@ namespace RaellShoes.Controllers
             if (idLogado > 0)
             {
                 Carrinho carrinho = facade.BuscarCarrinho(idLogado);
+                List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
+
+                //Setar o campo QuantidadeCarrinho em Produto
+                foreach (var produto in carrinho.Produtos)
+                {
+                    foreach (var produtoCliente in produtoClientes)
+                    {
+                        if(produto.Id == produtoCliente.ProdutoId)
+                        {
+                            produto.QuantidadeCarrinho = produtoCliente.Quantidade;
+                        }
+                    }
+                }
+                //Setar o campo ValorSubtotal do Produto com base na quantidade
+                foreach (var item in carrinho.Produtos)
+                {
+                    item.ValorSubtotal = item.Valor * item.QuantidadeCarrinho;
+                }
 
                 List<EntidadeDominio> enderecosResult = facade.Consultar(new Endereco { Id = idLogado });
                 List<Endereco> enderecos = new List<Endereco>();
@@ -362,6 +384,39 @@ namespace RaellShoes.Controllers
             else
                 return RedirectToAction("Login", "Home");
             
+        }
+
+
+        [HttpPost]
+        //Atualizar a edição de produtos do carrinho
+        public IActionResult AtualizarCarrinho(string data)
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                ProdutoCliente produtoCliente = JsonConvert.DeserializeObject<ProdutoCliente>(data);
+                produtoCliente.ClienteId = idLogado;
+
+                List<EntidadeDominio> listaProdutoCliente = facade.Consultar(produtoCliente);
+
+                foreach (var item in listaProdutoCliente)
+                {
+                    produtoCliente.Id = item.Id;  
+                }
+
+                return RedirectToAction("ExtensaoAtualizarCarrinho", produtoCliente);
+            }else
+                return RedirectToAction("Index");
+        }
+
+        public IActionResult ExtensaoAtualizarCarrinho(ProdutoCliente produtoCliente)
+        {
+            string conf = facade.Alterar(produtoCliente);
+
+            return View("carrinho");
         }
 
         [HttpPost]
@@ -411,7 +466,20 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult RegistrarVenda(string data)
         {
-            return View("Index");
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
+                return View("Index");
+            }
+            else
+                return RedirectToAction("Index");
+           
+
+            
         }
 
 
