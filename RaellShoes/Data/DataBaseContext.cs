@@ -34,5 +34,7 @@ namespace RaellShoes.Data
         
         public DbSet<Cupom> Cupom { get; set; }
 
+        public DbSet<ProdutoPedido> ProdutoPedido { get; set; }
+
     }
 }

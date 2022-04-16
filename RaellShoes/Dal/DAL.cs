@@ -67,6 +67,13 @@ namespace RaellShoes.Dal
                     }
                     return ExtensaoAlterar(entidadeDominio);
 
+                case ("produto"):
+                    if (!dbContext.ProdutoCliente.Any(x => x.Id == entidadeDominio.Id))
+                    {
+                        throw new ApplicationException("Objeto não encontrado");
+                    }
+                    return ExtensaoAlterar(entidadeDominio);
+
                 default:
                     return null;
             }
@@ -331,5 +338,7 @@ namespace RaellShoes.Dal
 
             return carrinho;
         }
+
+        
     }
 }

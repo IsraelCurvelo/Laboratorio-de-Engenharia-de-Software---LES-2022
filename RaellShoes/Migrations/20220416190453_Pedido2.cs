@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RaellShoes.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Pedido2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -213,6 +213,56 @@ namespace RaellShoes.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProdutoPedido",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: true),
+                    Modelo = table.Column<string>(nullable: true),
+                    Valor = table.Column<double>(nullable: false),
+                    CodigoBarra = table.Column<string>(nullable: true),
+                    URLFoto = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
+                    Quantidade = table.Column<int>(nullable: false),
+                    QuantidadeCarrinho = table.Column<int>(nullable: false),
+                    ValorSubtotal = table.Column<double>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    GrupoPrecificacaoId = table.Column<int>(nullable: true),
+                    FornecedorId = table.Column<int>(nullable: true),
+                    Marca = table.Column<int>(nullable: false),
+                    CorPrimariaProduto = table.Column<int>(nullable: false),
+                    CorSecundariaProduto = table.Column<int>(nullable: false),
+                    Genero = table.Column<int>(nullable: false),
+                    Tamanho = table.Column<int>(nullable: false),
+                    FichaTecnicaId = table.Column<int>(nullable: true),
+                    PedidoId = table.Column<int>(nullable: false),
+                    ProdutoEstoqueId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProdutoPedido", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProdutoPedido_FichaTecnica_FichaTecnicaId",
+                        column: x => x.FichaTecnicaId,
+                        principalTable: "FichaTecnica",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProdutoPedido_Fornecedor_FornecedorId",
+                        column: x => x.FornecedorId,
+                        principalTable: "Fornecedor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProdutoPedido_GrupoPrecificacao_GrupoPrecificacaoId",
+                        column: x => x.GrupoPrecificacaoId,
+                        principalTable: "GrupoPrecificacao",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Estado",
                 columns: table => new
                 {
@@ -348,7 +398,19 @@ namespace RaellShoes.Migrations
                     FormaPagamento = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     ClienteId = table.Column<int>(nullable: false),
-                    CupomId = table.Column<int>(nullable: true)
+                    CupomId = table.Column<int>(nullable: true),
+                    SubTotalProdutos = table.Column<double>(nullable: false),
+                    ApelidoEnderecoEntrega = table.Column<string>(nullable: true),
+                    ValorFrete = table.Column<double>(nullable: false),
+                    SubTotalFrete = table.Column<double>(nullable: false),
+                    SubTotalCupom = table.Column<double>(nullable: false),
+                    NumeroCartoesUsados = table.Column<int>(nullable: false),
+                    Cartao1Apelido = table.Column<string>(nullable: true),
+                    Cartao1Valor = table.Column<double>(nullable: false),
+                    Parcelamento1Valor = table.Column<string>(nullable: true),
+                    Cartao2Apelido = table.Column<string>(nullable: true),
+                    Cartao2Valor = table.Column<double>(nullable: false),
+                    Parcelamento2Valor = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -519,6 +581,21 @@ namespace RaellShoes.Migrations
                 name: "IX_Produto_GrupoPrecificacaoId",
                 table: "Produto",
                 column: "GrupoPrecificacaoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProdutoPedido_FichaTecnicaId",
+                table: "ProdutoPedido",
+                column: "FichaTecnicaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProdutoPedido_FornecedorId",
+                table: "ProdutoPedido",
+                column: "FornecedorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProdutoPedido_GrupoPrecificacaoId",
+                table: "ProdutoPedido",
+                column: "GrupoPrecificacaoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -543,6 +620,9 @@ namespace RaellShoes.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProdutoCliente");
+
+            migrationBuilder.DropTable(
+                name: "ProdutoPedido");
 
             migrationBuilder.DropTable(
                 name: "Endereco");

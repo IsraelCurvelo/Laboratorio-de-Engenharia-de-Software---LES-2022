@@ -380,6 +380,116 @@ namespace RaellShoes.Facadee
                 return null;
         }
 
+        public Pedido RegistrarVenda(DadosPedidoViewModel dados, List<ProdutoCliente> produtoClientes)
+        {
+            //Montar o obj pedido
+            Pedido pedido = new Pedido();
+            Random random = new Random();
+            pedido.NumeroPedido = "ORD-" + random.Next(1000);
+
+            foreach (var item in produtoClientes)
+            {
+                Produto produto = new Produto { Id = item.ProdutoId };
+                produto = (Produto)dal.ConsultarId(produto);
+
+                ProdutoPedido produtoPedido = new ProdutoPedido
+                {
+                    ProdutoEstoqueId = produto.Id,
+                    Nome = produto.Nome,
+                    Modelo = produto.Modelo,
+                    Valor = produto.Valor,
+                    ValorSubtotal = item.Valor,
+                    CodigoBarra = produto.CodigoBarra,
+                    URLFoto = produto.URLFoto,
+                    Descricao = produto.Descricao,
+                    Quantidade = item.Quantidade,
+                    GrupoPrecificacao = produto.GrupoPrecificacao,
+                    Fornecedor = produto.Fornecedor,
+                    Marca = produto.Marca,
+                    CorPrimariaProduto = produto.CorPrimariaProduto,
+                    CorSecundariaProduto = produto.CorSecundariaProduto,
+                    Genero = produto.Genero,
+                    Tamanho = produto.Tamanho,
+                    FichaTecnica = produto.FichaTecnica
+                };
+
+                pedido.Produtos.Add(produtoPedido);
+
+                Cliente cliente = new Cliente { Id = item.ClienteId };
+                cliente = (Cliente)dal.ConsultarId(cliente);
+                pedido.Cliente = cliente;
+            }
+
+            pedido.Status = Models.Enums.StatusPedido.EmProcessamento;
+            pedido.DataCompra = DateTime.Now;
+            pedido.FormaPagamento = Models.Enums.FormaPagamento.Credito;
+
+
+            pedido.SubTotalProdutos = dados.SubTotalProdutos;
+            pedido.ApelidoEnderecoEntrega = dados.ApelidoEnderecoEntrega;
+            Endereco endereco = (Endereco)dal.ConsultarId(new Endereco { Id = dados.IdEnderecoEntrega });
+
+            pedido.EnderecoEntrega = endereco.Apelido + " - " + endereco.Logradouro + ", " + endereco.Numero + ", " + endereco.Complemento + ", "
+               + endereco.Bairro + ", " + endereco.Cidade.Descricao + " - " + endereco.Cidade.Estado.Descricao + " - " + endereco.Cep;
+
+            pedido.ValorFrete = dados.ValorFrete;
+            pedido.SubTotalFrete = dados.SubTotalFrete;
+            Cupom cupom = (Cupom)dal.ConsultarId(new Cupom { Id = dados.IdCupom });
+
+            pedido.Cupom = cupom;
+            pedido.SubTotalCupom = dados.SubTotalCupom;
+            pedido.ValorTotal = dados.valorTotal;
+
+            pedido.NumeroCartoesUsados = dados.CartoesUsados;
+            pedido.Cartao1Apelido = dados.Cartao1Texto;
+            pedido.Cartao1Valor = dados.Cartao1Valor;
+            pedido.Parcelamento1Valor = dados.Parcelamento1;
+
+            if (pedido.NumeroCartoesUsados == 2)
+            {
+                pedido.Cartao2Apelido = dados.Cartao2Texto;
+                pedido.Cartao2Valor = dados.Cartao2Valor;
+                pedido.Parcelamento2Valor = dados.Parcelamento2;
+            }            
+
+            dal.Cadastrar(pedido);
+            
+            foreach (var item in pedido.Produtos)
+            {
+                item.PedidoId = pedido.Id;
+                dal.Cadastrar(item);
+            }
+
+            LimparCarrinhoPedido(pedido);
+
+            return pedido;
+        }
+
+        private void LimparCarrinhoPedido(Pedido pedido)
+        {
+           
+            Carrinho carrinho =  dal.BuscarCarrinho(pedido.Cliente.Id);
+            foreach (var produtoEstoque in carrinho.Produtos)
+            {
+                foreach (var produtoComprado in pedido.Produtos)
+                {
+                    if(produtoComprado.ProdutoEstoqueId == produtoEstoque.Id)
+                    {
+                        produtoEstoque.Quantidade -= produtoComprado.Quantidade;
+                        dal.Alterar(produtoEstoque);
+                    }
+                }
+                
+                string conf = RemoverCarrinho(produtoEstoque, pedido.Cliente.Id);
+            }
+
+            if(pedido.Cupom != null)
+            {
+                pedido.Cupom.Status = Status.Inativo;
+                dal.Alterar(pedido);
+            }
+        }
+
         public Carrinho BuscarCarrinho(int idCliente)
         {
             return dal.BuscarCarrinho(idCliente);

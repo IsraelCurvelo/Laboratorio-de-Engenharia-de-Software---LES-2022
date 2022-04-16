@@ -472,8 +472,13 @@ namespace RaellShoes.Controllers
 
             if (idLogado > 0)
             {
+                DadosPedidoViewModel dados = JsonConvert.DeserializeObject<DadosPedidoViewModel>(data);
                 List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
-                return View("Index");
+
+                Pedido pedido = facade.RegistrarVenda(dados, produtoClientes);
+                
+
+                return RedirectToAction("PedidoSucesso", pedido);
             }
             else
                 return RedirectToAction("Index");

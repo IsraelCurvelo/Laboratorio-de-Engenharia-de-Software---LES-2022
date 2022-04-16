@@ -9,8 +9,8 @@ using RaellShoes.Data;
 namespace RaellShoes.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220415030512_Inicial")]
-    partial class Inicial
+    [Migration("20220416190453_Pedido2")]
+    partial class Pedido2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,16 @@ namespace RaellShoes.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApelidoEnderecoEntrega");
+
+                    b.Property<string>("Cartao1Apelido");
+
+                    b.Property<double>("Cartao1Valor");
+
+                    b.Property<string>("Cartao2Apelido");
+
+                    b.Property<double>("Cartao2Valor");
+
                     b.Property<int>("ClienteId");
 
                     b.Property<int?>("CupomId");
@@ -176,10 +186,24 @@ namespace RaellShoes.Migrations
 
                     b.Property<int>("FormaPagamento");
 
+                    b.Property<int>("NumeroCartoesUsados");
+
                     b.Property<string>("NumeroPedido")
                         .IsRequired();
 
+                    b.Property<string>("Parcelamento1Valor");
+
+                    b.Property<string>("Parcelamento2Valor");
+
                     b.Property<int>("Status");
+
+                    b.Property<double>("SubTotalCupom");
+
+                    b.Property<double>("SubTotalFrete");
+
+                    b.Property<double>("SubTotalProdutos");
+
+                    b.Property<double>("ValorFrete");
 
                     b.Property<double>("ValorTotal");
 
@@ -245,6 +269,62 @@ namespace RaellShoes.Migrations
                     b.HasIndex("GrupoPrecificacaoId");
 
                     b.ToTable("Produto");
+                });
+
+            modelBuilder.Entity("RaellShoes.Models.Administrador.ProdutoPedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CodigoBarra");
+
+                    b.Property<int>("CorPrimariaProduto");
+
+                    b.Property<int>("CorSecundariaProduto");
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<int?>("FichaTecnicaId");
+
+                    b.Property<int?>("FornecedorId");
+
+                    b.Property<int>("Genero");
+
+                    b.Property<int?>("GrupoPrecificacaoId");
+
+                    b.Property<int>("Marca");
+
+                    b.Property<string>("Modelo");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<int>("PedidoId");
+
+                    b.Property<int>("ProdutoEstoqueId");
+
+                    b.Property<int>("Quantidade");
+
+                    b.Property<int>("QuantidadeCarrinho");
+
+                    b.Property<int>("Status");
+
+                    b.Property<int>("Tamanho");
+
+                    b.Property<string>("URLFoto");
+
+                    b.Property<double>("Valor");
+
+                    b.Property<double>("ValorSubtotal");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FichaTecnicaId");
+
+                    b.HasIndex("FornecedorId");
+
+                    b.HasIndex("GrupoPrecificacaoId");
+
+                    b.ToTable("ProdutoPedido");
                 });
 
             modelBuilder.Entity("RaellShoes.Models.Clientes.Cartao", b =>
@@ -546,6 +626,21 @@ namespace RaellShoes.Migrations
                         .WithMany()
                         .HasForeignKey("GrupoPrecificacaoId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RaellShoes.Models.Administrador.ProdutoPedido", b =>
+                {
+                    b.HasOne("RaellShoes.Models.Administrador.FichaTecnica", "FichaTecnica")
+                        .WithMany()
+                        .HasForeignKey("FichaTecnicaId");
+
+                    b.HasOne("RaellShoes.Models.Administrador.Fornecedor", "Fornecedor")
+                        .WithMany()
+                        .HasForeignKey("FornecedorId");
+
+                    b.HasOne("RaellShoes.Models.Administrador.GrupoPrecificacao", "GrupoPrecificacao")
+                        .WithMany()
+                        .HasForeignKey("GrupoPrecificacaoId");
                 });
 
             modelBuilder.Entity("RaellShoes.Models.Clientes.Cartao", b =>
