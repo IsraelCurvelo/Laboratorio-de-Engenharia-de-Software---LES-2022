@@ -283,6 +283,101 @@ namespace RaellShoes.Controllers
         }
 
         //**************************CARRINHO**************************
+        //Exibir o carrinho
+        public IActionResult Carrinho()
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                Carrinho carrinho = facade.BuscarCarrinho(idLogado);
+                List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
+
+                //Setar o campo QuantidadeCarrinho em Produto
+                foreach (var produto in carrinho.Produtos)
+                {
+                    foreach (var produtoCliente in produtoClientes)
+                    {
+                        if (produto.Id == produtoCliente.ProdutoId)
+                        {
+                            produto.QuantidadeCarrinho = produtoCliente.Quantidade;
+                        }
+                    }
+                }
+                //Setar o campo ValorSubtotal do Produto com base na quantidade
+                foreach (var item in carrinho.Produtos)
+                {
+                    item.ValorSubtotal = item.Valor * item.QuantidadeCarrinho;
+                }
+
+                List<EntidadeDominio> enderecosResult = facade.Consultar(new Endereco { Id = idLogado });
+                List<Endereco> enderecos = new List<Endereco>();
+                foreach (var item in enderecosResult)
+                {
+                    enderecos.Add((Endereco)item);
+                }
+
+                List<EntidadeDominio> cartoesResult = facade.Consultar(new Cartao { Id = idLogado });
+                List<Cartao> cartoes = new List<Cartao>();
+                foreach (var item in cartoesResult)
+                {
+                    cartoes.Add((Cartao)item);
+                }
+
+                List<Cupom> cupons = facade.BuscarCuponsCliente(idLogado);
+
+
+                CarrinhoViewModel carrinhoViewModel = new CarrinhoViewModel()
+                {
+                    Carrinho = carrinho,
+                    Enderecos = enderecos,
+                    Cartoes = cartoes,
+                    Cupons = cupons
+                };
+
+                return View(carrinhoViewModel);
+            }
+            else
+                return RedirectToAction("Login", "Home");
+
+        }
+
+
+        [HttpPost]
+        //Atualizar a edição de produtos do carrinho
+        public IActionResult AtualizarCarrinho(string data)
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                ProdutoCliente produtoCliente = JsonConvert.DeserializeObject<ProdutoCliente>(data);
+                produtoCliente.ClienteId = idLogado;
+
+                List<EntidadeDominio> listaProdutoCliente = facade.Consultar(produtoCliente);
+
+                foreach (var item in listaProdutoCliente)
+                {
+                    produtoCliente.Id = item.Id;
+                }
+
+                return RedirectToAction("ExtensaoAtualizarCarrinho", produtoCliente);
+            }
+            else
+                return RedirectToAction("Index");
+        }
+
+        public IActionResult ExtensaoAtualizarCarrinho(ProdutoCliente produtoCliente)
+        {
+            string conf = facade.Alterar(produtoCliente);
+
+            return View("carrinho");
+        }
+
 
         //Adicionar Produto no carrinho
         public IActionResult ProdutoCarrinho(Produto produto)
@@ -326,98 +421,7 @@ namespace RaellShoes.Controllers
         }
 
         
-        //Exibir o carrinho
-        public IActionResult Carrinho()
-        {
-            int idLogado = 0;
-            if (HttpContext.Session.GetInt32("UsuarioId") != null)
-                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
-
-            if (idLogado > 0)
-            {
-                Carrinho carrinho = facade.BuscarCarrinho(idLogado);
-                List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
-
-                //Setar o campo QuantidadeCarrinho em Produto
-                foreach (var produto in carrinho.Produtos)
-                {
-                    foreach (var produtoCliente in produtoClientes)
-                    {
-                        if(produto.Id == produtoCliente.ProdutoId)
-                        {
-                            produto.QuantidadeCarrinho = produtoCliente.Quantidade;
-                        }
-                    }
-                }
-                //Setar o campo ValorSubtotal do Produto com base na quantidade
-                foreach (var item in carrinho.Produtos)
-                {
-                    item.ValorSubtotal = item.Valor * item.QuantidadeCarrinho;
-                }
-
-                List<EntidadeDominio> enderecosResult = facade.Consultar(new Endereco { Id = idLogado });
-                List<Endereco> enderecos = new List<Endereco>();
-                foreach (var item in enderecosResult)
-                {
-                    enderecos.Add((Endereco)item);
-                }
-
-                List<EntidadeDominio> cartoesResult = facade.Consultar(new Cartao { Id = idLogado });
-                List<Cartao> cartoes = new List<Cartao>();
-                foreach (var item in cartoesResult)
-                {
-                    cartoes.Add((Cartao)item);
-                }
-
-                List<Cupom> cupons = facade.BuscarCuponsCliente(idLogado );
-                
-
-                CarrinhoViewModel carrinhoViewModel = new CarrinhoViewModel() { 
-                    Carrinho = carrinho, 
-                    Enderecos = enderecos,
-                    Cartoes = cartoes,
-                    Cupons = cupons
-                };
-
-                return View(carrinhoViewModel);
-            }
-            else
-                return RedirectToAction("Login", "Home");
-            
-        }
-
-
-        [HttpPost]
-        //Atualizar a edição de produtos do carrinho
-        public IActionResult AtualizarCarrinho(string data)
-        {
-            int idLogado = 0;
-            if (HttpContext.Session.GetInt32("UsuarioId") != null)
-                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
-
-            if (idLogado > 0)
-            {
-                ProdutoCliente produtoCliente = JsonConvert.DeserializeObject<ProdutoCliente>(data);
-                produtoCliente.ClienteId = idLogado;
-
-                List<EntidadeDominio> listaProdutoCliente = facade.Consultar(produtoCliente);
-
-                foreach (var item in listaProdutoCliente)
-                {
-                    produtoCliente.Id = item.Id;  
-                }
-
-                return RedirectToAction("ExtensaoAtualizarCarrinho", produtoCliente);
-            }else
-                return RedirectToAction("Index");
-        }
-
-        public IActionResult ExtensaoAtualizarCarrinho(ProdutoCliente produtoCliente)
-        {
-            string conf = facade.Alterar(produtoCliente);
-
-            return View("carrinho");
-        }
+        
 
         [HttpPost]
         public IActionResult CadastrarEnderecoCarrinho(Endereco endereco)
@@ -478,7 +482,7 @@ namespace RaellShoes.Controllers
                 Pedido pedido = facade.RegistrarVenda(dados, produtoClientes);
                 
 
-                return RedirectToAction("PedidoSucesso", pedido);
+                return View(pedido);
             }
             else
                 return RedirectToAction("Index");
@@ -487,6 +491,7 @@ namespace RaellShoes.Controllers
             
         }
 
+       
 
         //**************************ERRO*************************
         public IActionResult Error(String message)

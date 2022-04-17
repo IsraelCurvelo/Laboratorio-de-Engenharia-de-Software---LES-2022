@@ -67,12 +67,9 @@ namespace RaellShoes.Dal
                     }
                     return ExtensaoAlterar(entidadeDominio);
 
-                case ("produto"):
-                    if (!dbContext.ProdutoCliente.Any(x => x.Id == entidadeDominio.Id))
-                    {
-                        throw new ApplicationException("Objeto não encontrado");
-                    }
-                    return ExtensaoAlterar(entidadeDominio);
+                case ("produto"): 
+                    return ExtensaoAlterar(entidadeDominio);                 
+                    
 
                 default:
                     return null;
@@ -157,7 +154,8 @@ namespace RaellShoes.Dal
             if (entidadeDominio.GetType().Name.ToLower().Equals("cliente"))
             {
                  Cliente cliente = dbContext.Cliente
-                    .Include(x => x.Telefone) 
+                    .Include(x => x.Telefone)
+                    .Include(x => x.Usuario)
                     .FirstOrDefault(x => x.Id == entidadeDominio.Id); 
 
                 Endereco enderecoResidencial = dbContext.Endereco
@@ -329,10 +327,12 @@ namespace RaellShoes.Dal
             foreach (var item in resultado)
             {
                 produto.Id = item.ProdutoId;
-                var produtoResult = ConsultarId(produto);
+                Produto produtoResult = (Produto)ConsultarId(produto);
+                
                 if(produtoResult != null)
-                {
-                    carrinho.Produtos.Add((Produto)produtoResult);
+                {     
+                                      
+                    carrinho.Produtos.Add(produtoResult);
                 }
             }
 

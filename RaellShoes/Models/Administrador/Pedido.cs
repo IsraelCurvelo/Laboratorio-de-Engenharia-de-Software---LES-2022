@@ -33,6 +33,7 @@ namespace RaellShoes.Models.Administrador
         public Cliente Cliente { get; set; }
         
         public Cupom Cupom { get; set; }
+
         [Required(ErrorMessage = "{0} obrigatório")]
         public Double SubTotalProdutos { get; set; }
 

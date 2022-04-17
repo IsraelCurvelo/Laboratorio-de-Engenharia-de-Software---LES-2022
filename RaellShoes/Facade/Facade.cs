@@ -348,7 +348,8 @@ namespace RaellShoes.Facadee
 
         public string ProdutoCarrinho(Produto produto, int id)
         {
-            ProdutoCliente produtoCliente = new ProdutoCliente { ProdutoId = produto.Id, ClienteId = id };
+            Produto produtoRetornado = (Produto)dal.ConsultarId(produto);
+            ProdutoCliente produtoCliente = new ProdutoCliente { ProdutoId = produto.Id, ClienteId = id, Quantidade = 1, Valor = produtoRetornado.Valor };
             List<EntidadeDominio> retornoBanco = dal.Consultar(produtoCliente);
 
             if (retornoBanco.Count == 0)
