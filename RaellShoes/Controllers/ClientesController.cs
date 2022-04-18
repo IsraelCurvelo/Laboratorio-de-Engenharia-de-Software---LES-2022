@@ -511,6 +511,38 @@ namespace RaellShoes.Controllers
             return View("Index");
         }
 
+        public IActionResult MeusPedidos()
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {                
+                List<EntidadeDominio> listaPedidos = facade.Consultar(new Pedido { ClienteId = idLogado });
+                List<Pedido> pedidos = new List<Pedido>();
+                List<ProdutoPedido> produtos = new List<ProdutoPedido>();
+
+                foreach (var item in listaPedidos)
+                {
+                    pedidos.Add((Pedido)item);
+
+                    List<EntidadeDominio> listaProdutos = facade.Consultar(new ProdutoPedido { PedidoId = item.Id });
+                    foreach (var produto in listaProdutos)
+                    {
+                        produtos.Add((ProdutoPedido)produto);
+                    }                    
+                }
+
+                PedidoViewModel pedidoViewModel = new PedidoViewModel { Pedidos = pedidos, ProdutosPedidos = produtos };
+
+                return View(pedidoViewModel);
+            }
+            else
+                return RedirectToAction("Login");
+
+        }
+
 
 
         //**************************ERRO*************************

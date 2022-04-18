@@ -143,6 +143,24 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("pedido"):
+                    Pedido pedido = (Pedido)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.Pedido.ToList().Where(x => x.Id == pedido.ClienteId))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
+                case ("produtopedido"):
+                    ProdutoPedido produtoPedido = (ProdutoPedido)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.ProdutoPedido.ToList().Where(x => x.PedidoId == produtoPedido.PedidoId))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
                 default:
                     return null;
             }
