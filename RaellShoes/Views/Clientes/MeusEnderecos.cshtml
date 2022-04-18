@@ -28,52 +28,37 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index-logado.html">RaellShoes<span>.</span></a></h1>
+            <h1 class="logo"><a href="/clientes">RaellShoes<span>.</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto " href="index-logado.html">Início</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Navegue</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Masculino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#"><span>Feminino</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Adulto</a></li>
-                                    <li><a href="#">Infantil</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Lançamentos</a></li>
-                            <li><a href="#">Outlet</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="sobre-nos.html">Sobre Nós</a></li>
-                    <li><a class="nav-link scrollto" href="contato.html">Contato</a></li>
-                    <li><a class="nav-link scrollto" href="perguntas-frequentes.html">Perguntas Frequentes</a></li>
-                    <li><a class="nav-link scrollto" href="carrinho.html">Carrinho</a></li>
-                    <li class="dropdown  active">
-                        <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="meuperfil.html">Meu Perfil</a></li>
-                            <li><a href="meus-enderecos.html">Meus Endereços</a></li>
-                            <li><a href="meus-cartoes.html">Meus Cartões</a></li>
-                            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
-                            <li><a href="troca-e-devolucoes.html">Troca e Devoluções</a></li>
-                            <li><a href="ranking-e-vales.html">Ranking e Vales</a></li>
-                            <li><a href="alterar-senha.html">Alterar Senha</a></li>
-                            <li><a href="index.html">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link scrollto active" href="/clientes">Início</a></li>
+                        <li><a class="nav-link scrollto" href="/clientes/procurarproduto">Pesquisar um Produto</a></li>
+                        <li><a class="nav-link scrollto" href="">Sobre Nós</a></li>
+                        <li><a class="nav-link scrollto" href="">Contato</a></li>
+                        <li><a class="nav-link scrollto" href="">Perguntas Frequentes</a></li>
+                        <li><a class="nav-link scrollto" href="/clientes/carrinho">Carrinho</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/clientes/meuperfil">Meu Perfil</a></li>
+                                <li><a href="/clientes/meusenderecos">Meus Endereços</a></li>
+                                <li><a href="/clientes/meuscartoes">Meus Cartões</a></li>
+                                <li><a href="">Meus Pedidos</a></li>
+                                <li><a href="">Troca e Devoluções</a></li>
+                                <li><a href="">Ranking e Vales</a></li>
+                                <li><a href="">Alterar Senha</a></li>
+                                <li><a href="home/index">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
@@ -247,12 +232,12 @@
                             <div>
                                 <button class="btn btn-warning btn-sm" style="border-radius:8px; width: 49%; margin-right:1.5%" type="submit">Alterar</button>
                                 @if (!item.CadastroInicial)
-                                    {  
-                                        <form>
-                                            <a asp-action="excluirendereco" asp-route-id="@item.Id" type="submit" class="btn btn-danger btn-sm" style="border-radius:8px; width: 49%; " onclick="excluirEndereco()">Excluir</a>
-                                        </form>
-                                    }
-                                
+                                {
+                                    <form>
+                                        <a asp-action="excluirendereco" asp-route-id="@item.Id" type="submit" class="btn btn-danger btn-sm" style="border-radius:8px; width: 49%; " onclick="excluirEndereco()">Excluir</a>
+                                    </form>
+                                }
+
 
 
                             </div>
@@ -285,7 +270,7 @@
                         <!--Form-->
                         <div class="container mt-5">
                             <form asp-action="cadastrarendereco" class="needs-validation" novalidate>
-                                <!--Novo Endereço-->                              
+                                <!--Novo Endereço-->
                                 <div class="info-wrap">
                                     <div class="col-lg-3 col-md-6 info">
                                         <i class="bi bi-house" style="margin-top: -8px; background-color: rgb(247, 202, 202); color: rgb(202, 64, 64)"></i>
@@ -296,8 +281,7 @@
                                     <div class="row">
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Tipo de Endereço</span>
-                                            <select id="disabledSelect"asp-for="Endereco.TipoEndereco"asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" required>
-                                              
+                                            <select id="disabledSelect" asp-for="Endereco.TipoEndereco" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoEndereco>()" class="form-select" required>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -306,14 +290,14 @@
 
                                         <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Nome do endereço</span>
-                                            <input type="text" asp-for="Endereco.Apelido"  class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
+                                            <input type="text" asp-for="Endereco.Apelido" class="form-control" id="fraseendereco" placeholder="Dê um nome para este endereço"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
                                             </div>
                                         </div>
 
-                                        
+
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Tipo de Residência</span>
                                             <select asp-for="Endereco.TipoResidencia" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoResidencia>()" class="form-select" id="tipoResidencia" required>
@@ -325,8 +309,7 @@
 
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Tipo de Logradouro</span>
-                                            <select asp-for="Endereco.TipoLogradouro"asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()"class="form-select" id="tipoLogradouro" required>
-                                         
+                                            <select asp-for="Endereco.TipoLogradouro" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoLogradouro>()" class="form-select" id="tipoLogradouro" required>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -356,7 +339,7 @@
                                         </div>
                                         <div class="col-lg-3 col-md-3 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Complemento</span>
-                                            <input type="text" class="form-control"asp-for="Endereco.Complemento" id="complemento"
+                                            <input type="text" class="form-control" asp-for="Endereco.Complemento" id="complemento"
                                                    placeholder="Caso houver, digite o complemento">
                                         </div>
 
@@ -529,9 +512,9 @@
         }
     </script>
 
-    <script>        
+    <script>
 
-        function excluirEndereco() {                 
+        function excluirEndereco() {
 
             return confirm("Deseja excluir este endereço?");
         }
@@ -596,7 +579,7 @@
                 //CEP não Encontrado.
                 limpa_formulário_cep();
                 alert("CEP não encontrado.");
-               
+
             }
         }
 

@@ -384,9 +384,7 @@ namespace RaellShoes.Facadee
         public Pedido RegistrarVenda(DadosPedidoViewModel dados, List<ProdutoCliente> produtoClientes)
         {
             //Montar o obj pedido
-            Pedido pedido = new Pedido();
-            Random random = new Random();
-            pedido.NumeroPedido = "ORD-" + random.Next(1000);
+            Pedido pedido = new Pedido();           
 
             foreach (var item in produtoClientes)
             {
@@ -421,6 +419,7 @@ namespace RaellShoes.Facadee
                 pedido.Cliente = cliente;
             }
 
+            pedido.NumeroPedido = dados.NumeroPedido;
             pedido.Status = Models.Enums.StatusPedido.EmProcessamento;
             pedido.DataCompra = DateTime.Now;
             pedido.FormaPagamento = Models.Enums.FormaPagamento.Credito;
@@ -477,7 +476,13 @@ namespace RaellShoes.Facadee
                     if(produtoComprado.ProdutoEstoqueId == produtoEstoque.Id)
                     {
                         produtoEstoque.Quantidade -= produtoComprado.Quantidade;
+
+                        if (produtoEstoque.Quantidade == 0)
+                            produtoEstoque.Status = Status.Inativo;
+
                         dal.Alterar(produtoEstoque);
+
+                        
                     }
                 }
                 

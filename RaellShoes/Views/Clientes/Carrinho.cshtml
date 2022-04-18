@@ -41,13 +41,36 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="">RaellShoes<span>.</span></a></h1>
+            <h1 class="logo"><a href="/clientes">RaellShoes<span>.</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
 
-
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a class="nav-link scrollto active" href="/clientes">Início</a></li>
+                        <li><a class="nav-link scrollto" href="/clientes/procurarproduto">Pesquisar um Produto</a></li>                        
+                        <li><a class="nav-link scrollto" href="">Sobre Nós</a></li>
+                        <li><a class="nav-link scrollto" href="">Contato</a></li>
+                        <li><a class="nav-link scrollto" href="">Perguntas Frequentes</a></li>
+                        <li><a class="nav-link scrollto" href="/clientes/carrinho">Carrinho</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Meu Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/clientes/meuperfil">Meu Perfil</a></li>
+                                <li><a href="/clientes/meusenderecos">Meus Endereços</a></li>
+                                <li><a href="/clientes/meuscartoes">Meus Cartões</a></li>
+                                <li><a href="">Meus Pedidos</a></li>
+                                <li><a href="">Troca e Devoluções</a></li>
+                                <li><a href="">Ranking e Vales</a></li>
+                                <li><a href="">Alterar Senha</a></li>
+                                <li><a href="home/index">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
 
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -442,7 +465,7 @@
                 </div>
                 <br><br>
 
-
+                    
                 <div class="info-wrap" id="boxpedido" hidden>
                     <div class="row">
                         <span style="color: rgba(0, 0, 0, 0.726); font-style: italic;">
@@ -452,6 +475,11 @@
                         <br>
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <br>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form" hidden>
+                                <input asp-for="NumeroPedido" type="text" name="numero-pedido" class="form-control " style=" font-size: small;"
+                                        id="numero-pedido">
+                            </div>
                             <button class="btn btn-success btn-sm col-lg-12" style="border-radius: 4px" onclick="FinalizarPedido()">
                                 Sim! Finalizar
                                 Pedido
@@ -460,6 +488,7 @@
                         </div>
                     </div>
                 </div>
+                   
 
 
                 <!-- Modal Novo Endereço -->
@@ -892,13 +921,21 @@
                         else {
                             document.getElementById(id).hidden = true;
                             desabilitarCampos(false);
-                            alert("O valor de pagamento precisa corresponder ao valor total do pedido!");
+                            swal({
+                                title: "O valor de pagamento precisa corresponder ao valor total do pedido!",
+                                text: "Por favor, revise os dados!",
+                                icon: "error",
+                            });                            
                         }
 
                     } else if (numCartoes == 2) {
 
                         if (valorProduto1 == 0 || valorProduto2 == 0) {
-                            alert("O valor não pode ser zero!");
+                            swal({
+                                title: "O valor não pode ser zero!!",
+                                text: "Por favor, revise os dados!",
+                                icon: "error",
+                            });                            
                             document.getElementById(id).hidden = true;
                             desabilitarCampos(false);
                         } else {
@@ -920,7 +957,12 @@
                                 else {
                                     document.getElementById(id).hidden = true;
                                     desabilitarCampos(false);
-                                    alert("O valores de pagamento precisa corresponder ao valor total do pedido!");
+                                    swal({
+                                        title: "O valores de pagamento precisa corresponder ao valor total do pedido!",
+                                        text: "Por favor, revise os dados!",
+                                        icon: "error",
+                                    });
+                                    
                                 }
                             } else {
 
@@ -932,12 +974,21 @@
                                     } else {
                                         document.getElementById(id).hidden = true;
                                         desabilitarCampos(false);
-                                        alert("O valores de pagamento precisa corresponder ao valor total do pedido!");
+                                        swal({
+                                            title: "O valores de pagamento precisa corresponder ao valor total do pedido!",
+                                            text: "Por favor, revise os dados!",
+                                            icon: "error",
+                                        });
+                                        
                                     }
                                 } else {
                                     document.getElementById(id).hidden = true;
                                     desabilitarCampos(false);
-                                    alert("O valor minimo de pagamento é R$ 10,00!");
+                                    swal({
+                                        title: "O valor minimo de pagamento é R$ 10,00!",
+                                        text: "Por favor, revise os dados!",
+                                        icon: "error",
+                                    });                                    
                                 }
                             }
                         }                        
@@ -1048,7 +1099,12 @@
             document.getElementById('subtotal-3').value = document.getElementById('subtotal-2').value;
             document.getElementById('botao-confirmar-endereco').hidden = false;
 
-            alert("Frete calculado com sucesso!");
+            swal({
+                title: "Frete calculado com sucesso!",
+                text: "O valor acrescentado é de R$ " + valorFrete+",00",
+                icon: "success",
+            });
+            
         }
 
         //Calcular desconto do cupom escolhido
@@ -1072,7 +1128,12 @@
 
                 document.getElementById('subtotal-3').value = "R$ " + subTotal;
 
-                alert("Cupom inserido com sucesso!");
+                swal({
+                    title: "Cupom inserido com sucesso!",
+                    text: "O valor a ser descontado será de R$ " + valorCupom,
+                    icon: "success",
+                });
+               
 
             } else {
                 document.getElementById('valor-cupom').value = "R$ 0.00";
@@ -1276,6 +1337,16 @@
             var select = document.getElementById('parcelamento2');
             var parcelamento2 = select.options[select.selectedIndex].text;
 
+            var stringAleatoria = '';
+            var caracteres = '0123456789';
+            for (var i = 0; i < 6; i++) {
+                stringAleatoria += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+
+            document.getElementById("numero-pedido").value = "ORD-"+ stringAleatoria;
+
+            var numeroPedido = document.getElementById("numero-pedido").value;
+
             var Dados = {
                 SubTotalProdutos: subTotalProdutos,
                 ApelidoEnderecoEntrega: apelidoEnderecoEntrega,
@@ -1295,7 +1366,8 @@
                 Cartao2Texto: cartao2SelecionadoTexto,
                 Cartao2Id: cartao2SelecionadoId,
                 Cartao2Valor: cartao2Valor,
-                Parcelamento2: parcelamento2
+                Parcelamento2: parcelamento2,
+                NumeroPedido: numeroPedido
             };
 
             $.ajax({
@@ -1319,6 +1391,14 @@
                     }
                 }
             });
+
+            swal({
+                title: "Pedido gerado com sucesso!",
+                text: "Estaremos separando os produtos para entrega, até lá você pode acompanhar o status na seção 'Meus Pedidos'!",
+                icon: "success",
+                timer: 10000,
+            });
+           
         }
 
     </script>

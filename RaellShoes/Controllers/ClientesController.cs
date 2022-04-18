@@ -283,7 +283,7 @@ namespace RaellShoes.Controllers
         }
 
         //**************************CARRINHO**************************
-        //Exibir o carrinho
+        //Exibir o carrinho              
         public IActionResult Carrinho()
         {
             int idLogado = 0;
@@ -462,14 +462,10 @@ namespace RaellShoes.Controllers
 
 
         //**************************PEDIDOS**************************
-        public IActionResult Pedidos()
-        {
-            return View();
-        }
-
-        [HttpPost]
+                
         public IActionResult RegistrarVenda(string data)
         {
+            System.Threading.Thread.Sleep(5000);
             int idLogado = 0;
             if (HttpContext.Session.GetInt32("UsuarioId") != null)
                 idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
@@ -480,18 +476,42 @@ namespace RaellShoes.Controllers
                 List<ProdutoCliente> produtoClientes = facade.BuscaProdutoCliente(idLogado);
 
                 Pedido pedido = facade.RegistrarVenda(dados, produtoClientes);
-                
 
-                return View(pedido);
+                if(pedido.Cliente != null)
+                    pedido.ClienteId = pedido.Cliente.Id;
+
+                if(pedido.Cupom != null)
+                    pedido.CupomId = pedido.Cupom.Id;
+
+                return RedirectToAction("PedidoRealizado", pedido);
             }
             else
-                return RedirectToAction("Index");
-           
+                return RedirectToAction("Login");          
 
             
         }
 
-       
+
+        public IActionResult PedidoRealizado(Pedido pedido)
+        {
+            if (pedido.Id > 0)
+            {
+                if (pedido.CupomId > 0)
+                    pedido.Cupom = (Cupom)facade.ConsultarId(new Cupom { Id = pedido.CupomId });
+
+                if (pedido.ClienteId > 0)
+                {
+                    pedido.Cliente = (Cliente)facade.ConsultarId(new Cliente { Id = pedido.ClienteId });
+                    return View("PedidoRealizado", pedido);
+                }
+                else
+                    return View("Index");
+
+            }
+            return View("Index");
+        }
+
+
 
         //**************************ERRO*************************
         public IActionResult Error(String message)

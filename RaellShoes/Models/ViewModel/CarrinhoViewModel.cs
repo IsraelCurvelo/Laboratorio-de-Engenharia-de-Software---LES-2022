@@ -25,6 +25,8 @@ namespace RaellShoes.Models.ViewModel
 
         public List<ProdutoCliente> ProdutoClientes { get; set; }
 
+        public String NumeroPedido { get; set; }
+
         public CarrinhoViewModel(Double valor)
         {
             Enderecos = new List<Endereco>();

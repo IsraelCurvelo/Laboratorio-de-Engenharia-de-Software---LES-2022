@@ -44,6 +44,8 @@ namespace RaellShoes.Models.ViewModel
 
         public String Parcelamento2 { get; set; }
 
+        public String NumeroPedido { get; set; }
+
         public DadosPedidoViewModel()
         {
         }

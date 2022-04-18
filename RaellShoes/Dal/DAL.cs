@@ -310,7 +310,28 @@ namespace RaellShoes.Dal
                 }
             }
 
+            
             return consulta;
+        }
+
+        private Produto FiltroProdutosCliente(Produto produto)
+        {
+            try
+            {
+                Produto produtoAtivo = dbContext.Produto.Where(x=> x.Status == Models.Enums.Status.Ativo)
+                    .Include(obj => obj.FichaTecnica)
+                    .Include(obj => obj.Categorias)
+                    .Include(obj => obj.Fornecedor)
+                    .Include(obj => obj.GrupoPrecificacao)
+                    .FirstOrDefault(x => x.Id == produto.Id);
+
+                return produtoAtivo;
+
+            }
+            catch (ApplicationException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
         }
 
         public List<ProdutoCliente> BuscaProdutoCliente(int idCliente)
