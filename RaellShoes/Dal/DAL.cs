@@ -168,7 +168,13 @@ namespace RaellShoes.Dal
 
                 return cliente;
 
-            } 
+            }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("usuario"))
+            {
+                Usuario usuario = dbContext.Usuario.FirstOrDefault(x => x.Id == entidadeDominio.Id);  
+                return usuario;
+            }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("endereco"))
             {

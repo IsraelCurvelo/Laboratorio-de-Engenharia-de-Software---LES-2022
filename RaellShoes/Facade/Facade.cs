@@ -269,10 +269,12 @@ namespace RaellShoes.Facadee
             string senhacrip = criptografar.Processar(cliente);
 
             cliente.Usuario.Senha = senhacrip;
-            Cliente login = dal.Login(cliente);          
+            Cliente login = dal.Login(cliente);
+
+            Usuario usuario = (Usuario)dal.ConsultarId(login.Usuario);
 
             if (login != null) 
-                return new LoginViewModel { Nome = login.Nome, Email = login.Usuario.Email, IdCliente = login.Id };
+                return new LoginViewModel { Nome = login.Nome, Email = login.Usuario.Email, IdCliente = login.Id, Admin = usuario.Admin };
 
             return null;
         }

@@ -7,5 +7,6 @@ namespace RaellShoes.Models.ViewModel
 {
     public class AdminViewModel
     {
+
     }
 }

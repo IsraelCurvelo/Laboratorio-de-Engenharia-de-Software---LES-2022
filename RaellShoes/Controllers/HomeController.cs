@@ -65,17 +65,19 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult Login(Cliente cliente)
         {
-            LoginViewModel clienteLogado = facade.Login(cliente);         
+            LoginViewModel clienteLogado = facade.Login(cliente);              
+            
 
-            if (clienteLogado != null && !cliente.Usuario.Admin)
+            if (clienteLogado != null && !clienteLogado.Admin)
             {
                 HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);                
                 return RedirectToAction("Index", "clientes", clienteLogado);
 
-            }else if(clienteLogado != null && cliente.Usuario.Admin)
+            }else if(clienteLogado != null && clienteLogado.Admin)
             {
                 HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
-                return RedirectToAction("Index", "administradors", clienteLogado);
+                
+                return RedirectToAction("Index", "administrador", clienteLogado);
             } 
                 
 

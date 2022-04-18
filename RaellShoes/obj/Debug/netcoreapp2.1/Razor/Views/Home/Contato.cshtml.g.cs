@@ -65,7 +65,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(82, 11659, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7959ffdf41474438b44229a0447e7217", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "27610f37361e497eb44d65ee99806836", async() => {
                 BeginContext(88, 3723, true);
                 WriteLiteral(@"
 
@@ -148,7 +148,7 @@ using RaellShoes.Models;
                         ");
                 EndContext();
                 BeginContext(3811, 1523, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "509c2777c78f40f983acfc940eaf8324", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f67aff5884874413b3bf757149aea7d3", async() => {
                     BeginContext(3876, 1451, true);
                     WriteLiteral(@"
                             <div class=""row"">
@@ -215,7 +215,7 @@ using RaellShoes.Models;
                         ");
                 EndContext();
                 BeginContext(5945, 167, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "49d5f948282f4cd6ae35e80bd1d6bf85", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9a8621dec8da4199be498a54524f970e", async() => {
                     BeginContext(5975, 130, true);
                     WriteLiteral("\r\n                            <input type=\"email\" name=\"email\"><input type=\"submit\" value=\"Inscreva-se\">\r\n                        ");
                     EndContext();

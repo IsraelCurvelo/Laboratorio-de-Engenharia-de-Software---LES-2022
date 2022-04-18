@@ -72,7 +72,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(131, 673, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6f4087e1ec84dd48f74ce5e639c8c67", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b54577e271624580a6e55961f2c40797", async() => {
                 BeginContext(137, 537, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -89,7 +89,7 @@ using RaellShoes.Models;
     ");
                 EndContext();
                 BeginContext(674, 53, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "e142c4869f07402d97db3fe9a74e2cfb", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "3de25136aafd4c3cb30436e824c222bf", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -108,7 +108,7 @@ using RaellShoes.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(733, 60, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f9cddf08ad7b4a1ea159deab6a7f0d6f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7ad94dc7b156402a9af0a2da0e8fe84b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -142,7 +142,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(806, 2815, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3041d23e7e2b4487af5463df5c0a1ec2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e80cb4198894d59af0f4ecbc4d641f3", async() => {
                 BeginContext(812, 554, true);
                 WriteLiteral(@"
 
@@ -162,7 +162,7 @@ using RaellShoes.Models;
             ");
                 EndContext();
                 BeginContext(1366, 1335, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d85a6672e7304ef0ad7a093aeeee67c0", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ac675d4ab9b4b989c1646039f166a16", async() => {
                     BeginContext(1432, 688, true);
                     WriteLiteral(@"
                 <!--Box Email Login-->
@@ -177,7 +177,7 @@ using RaellShoes.Models;
                             ");
                     EndContext();
                     BeginContext(2120, 156, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "887c54d94c894eeba4710ca17432fce9", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8d0e69fb70cb409a8341a23ef9dba4d5", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

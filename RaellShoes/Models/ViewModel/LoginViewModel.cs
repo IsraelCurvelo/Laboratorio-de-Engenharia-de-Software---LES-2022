@@ -14,5 +14,6 @@ namespace RaellShoes.Models.ViewModel
 
         public int IdCliente { get; set; }
       
+        public bool Admin { get; set; }
     }
 }
