@@ -59,10 +59,10 @@ namespace RaellShoes.Models.Administrador
 
         public String Parcelamento2Valor { get; set; }
 
-        [NotMapped]
+        
         public int ClienteId { get; set; }
 
-        [NotMapped]
+        
         public int CupomId { get; set; }
 
         [NotMapped]

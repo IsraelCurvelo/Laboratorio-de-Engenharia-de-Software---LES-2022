@@ -146,7 +146,7 @@ namespace RaellShoes.Dal
                 case ("pedido"):
                     Pedido pedido = (Pedido)entidadeDominio;
 
-                    foreach (EntidadeDominio x in dbContext.Pedido.ToList().Where(x => x.Id == pedido.ClienteId))
+                    foreach (EntidadeDominio x in dbContext.Pedido.ToList().Where(x => x.ClienteId == pedido.ClienteId))
                     {
                         resultado.Add(x);
                     }
