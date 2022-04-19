@@ -265,7 +265,7 @@ namespace RaellShoes.Dal
 
             if (produto.Marca != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Marca == produto.Marca).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Marca == produto.Marca && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -275,7 +275,7 @@ namespace RaellShoes.Dal
 
             if (produto.Nome != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Nome == produto.Nome).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Nome == produto.Nome &&  x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -285,7 +285,7 @@ namespace RaellShoes.Dal
 
             if (produto.Modelo != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Modelo == produto.Modelo).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Modelo == produto.Modelo && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -295,7 +295,7 @@ namespace RaellShoes.Dal
 
             if (produto.CorPrimariaProduto != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.CorPrimariaProduto == produto.CorPrimariaProduto).ToList();
+                var resultado = dbContext.Produto.Where(x => x.CorPrimariaProduto == produto.CorPrimariaProduto && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -305,7 +305,7 @@ namespace RaellShoes.Dal
 
             if (produto.Genero != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Genero == produto.Genero).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Genero == produto.Genero && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -316,7 +316,7 @@ namespace RaellShoes.Dal
 
             if (produto.Tamanho != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Tamanho == produto.Tamanho).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Tamanho == produto.Tamanho && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
@@ -326,7 +326,7 @@ namespace RaellShoes.Dal
 
             if (produto.Valor != null)
             {
-                var resultado = dbContext.Produto.Where(x => x.Valor == produto.Valor).ToList();
+                var resultado = dbContext.Produto.Where(x => x.Valor == produto.Valor && x.Status == Models.Enums.Status.Ativo).ToList();
                 foreach (Produto item in resultado)
                 {
                     Produto retornoProduto = (Produto)ConsultarId(item);
