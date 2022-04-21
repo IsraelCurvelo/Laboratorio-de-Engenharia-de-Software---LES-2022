@@ -118,7 +118,7 @@
 
 
                             <div class="col-lg-2 col-md-1 form-group mt-3 mt-md-0" id="comb-form">
-                                <input type="button" class="btn btn-outline-info btn-sm" style="margin-top: 20px; margin-left:-8px; border-radius:5px" id="detalhes-pedido0" value="Ver Mais" onclick="mostrarDetalhes(@item.Id, 'detalhes-pedido0')">
+                                <input type="button" class="btn btn-outline-info btn-sm" style="margin-top: 20px; margin-left:-8px; border-radius:5px" id="detalhes-pedido-@item.Id" value="Ver Mais" onclick="mostrarDetalhes(@item.Id, 'detalhes-pedido-@item.Id')">
                             </div>
                         </div>
 
@@ -564,7 +564,7 @@
                 document.getElementById(idbotao).value = "Recolher";
             } else {
                 document.getElementById(id).hidden = true;
-                document.getElementById(idbotao).value = "Ver Produtos";
+                document.getElementById(idbotao).value = "Ver Mais";
             }
         }
     </script>
