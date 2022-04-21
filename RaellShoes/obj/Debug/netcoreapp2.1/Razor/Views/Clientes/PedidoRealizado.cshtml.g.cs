@@ -67,7 +67,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(124, 1185, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5511748b627b4e9ab38aac15dfee615f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ddd60a2ca19e44068e146b859fcbd1fb", async() => {
                 BeginContext(130, 1172, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -108,7 +108,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n\r\n");
             EndContext();
             BeginContext(1313, 24300, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9539e1ec20484c37936d7cc68a8aa41d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b73611146784143a9897b45c49b2157", async() => {
                 BeginContext(1319, 3252, true);
                 WriteLiteral(@"
 
@@ -576,7 +576,7 @@ WriteAttributeValue(" ", 15355, Model.Parcelamento2Valor, 15356, 25, false);
                             ");
                 EndContext();
                 BeginContext(16139, 128, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "d22f86fc5d6e473eb83af2fb94050a6f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "88eb386e0b984b899529c3d635403243", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -702,7 +702,7 @@ WriteAttributeValue(" ", 18577, Html.DisplayFor(model => item.Valor), 18578, 37,
                 WriteLiteral("\r\n                <div class=\"row\">\r\n                    ");
                 EndContext();
                 BeginContext(18863, 73, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e80129b282bc43aaa862a77a8661360f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3940fb78c5ef42aaa6db630f0eb8b1f2", async() => {
                     BeginContext(18921, 6, true);
                     WriteLiteral("Voltar");
                     EndContext();

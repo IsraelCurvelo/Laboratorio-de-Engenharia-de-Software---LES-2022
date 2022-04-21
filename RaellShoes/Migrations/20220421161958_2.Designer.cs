@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RaellShoes.Data;
 
 namespace RaellShoes.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220421161958_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace RaellShoes.Migrations
 
                     b.Property<double>("Cartao2Valor");
 
-                    b.Property<int>("ClienteId");
+                    b.Property<int>("ClienteId1");
 
                     b.Property<int?>("CupomId1");
 
@@ -207,7 +209,7 @@ namespace RaellShoes.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("ClienteId1");
 
                     b.HasIndex("CupomId1");
 
@@ -600,7 +602,7 @@ namespace RaellShoes.Migrations
                 {
                     b.HasOne("RaellShoes.Models.Clientes.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClienteId")
+                        .HasForeignKey("ClienteId1")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("RaellShoes.Models.Administrador.Cupom", "Cupom")
