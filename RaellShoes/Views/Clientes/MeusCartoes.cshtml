@@ -130,11 +130,11 @@
                             </div>
 
                             <div class="col-lg-1 col-md-1 form-group mt-3 mt-md-0" id="comb-form">
-                                <input type="button" class="btn btn-outline-info btn-sm" style="margin-top: 20px; margin-left:-8px; border-radius:5px" id="detalhes-cartao-0" value="Ver detalhes" onclick="mostrarDetalhes(1,'detalhes-cartao-0' )">
+                                <input type="button" class="btn btn-outline-info btn-sm" style="margin-top: 20px; margin-left:-8px; border-radius:5px" id="detalhes-cartao-0" value="Ver detalhes" onclick="mostrarDetalhes(@item.Id,'detalhes-cartao-0' )">
                             </div>
                         </div>
 
-                        <div class="row" id="1" hidden>
+                        <div class="row" id="@item.Id" hidden>
                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form" style="font-size: small">
                                 <span>Tipo de Cartão</span>
                                 <select asp-for="@item.TipoCartao" id="tipocartao" name="TipoCartao" class="form-select" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoCartao>()" style="font-size: small" required>
