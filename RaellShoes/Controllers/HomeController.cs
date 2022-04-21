@@ -103,8 +103,8 @@ namespace RaellShoes.Controllers
 
         [HttpPost]
         public IActionResult CadastrarCliente(Cliente cliente)
-        {          
-
+        {
+           
             string confirmacaoCliente = facade.Cadastrar(cliente);
 
             string retornoEnderecos = facade.CadastrarEnderecosIniciais(cliente);

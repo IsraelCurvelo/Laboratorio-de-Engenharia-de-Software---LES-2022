@@ -180,7 +180,7 @@ namespace RaellShoes.Dal
                    .Include(x => x.Cidade)
                    .Include(x => x.Cidade.Estado)
                    .Include(x => x.Cidade.Estado.Pais)
-                   .FirstOrDefault(x => x.Id == entidadeDominio.Id && x.TipoEndereco == 0);
+                   .FirstOrDefault(x => x.ClienteId == entidadeDominio.Id && x.TipoEndereco == 0);
 
                 cliente.Endereco = enderecoResidencial;
 

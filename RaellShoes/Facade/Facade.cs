@@ -47,12 +47,11 @@ namespace RaellShoes.Facadee
                   
                        
               
-
+                cliente.Usuario.DataCadastro = DateTime.Now;
                 cliente.Usuario.Senha = senhacriptografada;
                 cliente.Status = true;
                 cliente.Usuario.Admin = false;
-                cliente.Usuario.DataCadastro = DateTime.Now;
-
+               
 
                 if (confirmacaoDadosCliente == null && retornoValidacaoEndereco == null && confirmacaoSenha == null && senhacriptografada != null)
                 {
@@ -271,11 +270,12 @@ namespace RaellShoes.Facadee
             cliente.Usuario.Senha = senhacrip;
             Cliente login = dal.Login(cliente);
 
-            Usuario usuario = (Usuario)dal.ConsultarId(login.Usuario);
+            
 
-            if (login != null) 
+            if (login != null) {
+                Usuario usuario = (Usuario)dal.ConsultarId(login.Usuario);
                 return new LoginViewModel { Nome = login.Nome, Email = login.Usuario.Email, IdCliente = login.Id, Admin = usuario.Admin };
-
+            }
             return null;
         }
 

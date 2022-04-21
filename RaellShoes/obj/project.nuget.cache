@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ejF/FUmNPNO2116jtArBTrRb0yKRgIDZBk+X6jBpBhXHuCg7YjRr81G5GvfvCYVe+yViZhovt9O0ZXX6ZZ5WLA==",
+  "dgSpecHash": "9xKP211v4wiazxxTVP8znhBOVgufuOZ/i/M3wDx93Gjyt2jg0cwuQ8Pxjz+OFIZyQVOAmiWsj3qPr+djvyUJRg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\curve\\Desktop\\LES\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes.csproj",
+  "projectFilePath": "C:\\Users\\curve\\Desktop\\LES\\RaellShoes\\RaellShoes\\RaellShoes\\RaellShoes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\curve\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
