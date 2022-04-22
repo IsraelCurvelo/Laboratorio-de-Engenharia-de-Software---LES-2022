@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 namespace RaellShoes.Models.Enums
 {
     public enum MetodoColeta
-    {
-        Selecione,
+    {       
         Retirada,
         Postagem
     }

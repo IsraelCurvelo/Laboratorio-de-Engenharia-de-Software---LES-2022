@@ -3,6 +3,7 @@ using RaellShoes.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,26 +11,32 @@ namespace RaellShoes.Models.Administrador
 {
     public class Troca : EntidadeDominio
     {
-        [Required(ErrorMessage = "{0} obrigatório")]
+       
         public DateTime DataSolicitacao { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+   
         public Cliente Cliente { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+       
         public Pedido Pedido { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
-        public Produto Produto { get; set; }
+        public ProdutoPedido Produto { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+      
         public TipoReembolso TipoReembolso { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+      
         public MetodoColeta MetodoColeta { get; set; }
 
-        [Required(ErrorMessage = "{0} obrigatório")]
+       
         public StatusPedido Status { get; set; }
+        public MotivoTroca MotivoTroca { get; set; }
+        public String OutroMotivo { get; set; }
+        public Tamanho Tamanho { get; set; }
+        public String Comentarios { get; set; }
+
+        [NotMapped]
+        public int IddoProduto { get; set; }
 
 
         public Troca()
@@ -37,7 +44,7 @@ namespace RaellShoes.Models.Administrador
 
         }
 
-        public Troca(DateTime dataSolicitacao, Cliente cliente, Pedido pedido, Produto produto, TipoReembolso tipoReembolso, MetodoColeta metodoColeta, StatusPedido status)
+        public Troca(DateTime dataSolicitacao, Cliente cliente, Pedido pedido, ProdutoPedido produto, TipoReembolso tipoReembolso, MetodoColeta metodoColeta, StatusPedido status)
         {
             DataSolicitacao = dataSolicitacao;
             Cliente = cliente;

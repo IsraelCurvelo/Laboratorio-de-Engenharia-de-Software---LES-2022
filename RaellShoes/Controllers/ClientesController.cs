@@ -543,8 +543,26 @@ namespace RaellShoes.Controllers
 
         }
 
+        //**************************TROCA*************************
+        public IActionResult SolicitacaoTroca(Troca troca)
+        {
+            troca.DataSolicitacao = DateTime.Now;
+            troca.Status = Models.Enums.StatusPedido.EmTroca;
 
+            ProdutoPedido produto = (ProdutoPedido)facade.ConsultarId(new ProdutoPedido { Id = troca.IddoProduto });
+            Pedido pedido = (Pedido)facade.ConsultarId(new Pedido { Id = produto.PedidoId });
+            Cliente cliente = (Cliente)facade.ConsultarId(new Cliente { Id = pedido.Cliente.Id });
 
+            troca.Produto = produto;
+            troca.Pedido = pedido;
+            troca.Cliente = cliente;
+
+            string conf = facade.Cadastrar(troca);
+
+            return View();
+        }
+
+        
         //**************************ERRO*************************
         public IActionResult Error(String message)
         {

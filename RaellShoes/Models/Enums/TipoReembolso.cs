@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace RaellShoes.Models.Enums
 {
     public enum TipoReembolso
-    {
-        Selecione,
+    {       
         Cupom,
+        Troca,
         Estorno
     }
 }

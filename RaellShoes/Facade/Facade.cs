@@ -98,6 +98,13 @@ namespace RaellShoes.Facadee
 
             }
 
+            if (entidadeDominio.GetType().Name.ToLower().Equals("troca"))
+            {
+                Troca troca = (Troca)entidadeDominio;                
+
+                return CadastrarEntidade(troca, log, gerarLog);
+            }
+
             return null;
             
         }

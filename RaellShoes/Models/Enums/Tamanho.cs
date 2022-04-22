@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace RaellShoes.Models.Enums
 {
     public enum Tamanho
-    {
-        Selecione,
+    {     Selecione,  
         [Display(Name = "33")]
         TrintaTres,
         [Display(Name = "34")]

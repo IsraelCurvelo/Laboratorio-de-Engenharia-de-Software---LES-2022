@@ -36,5 +36,7 @@ namespace RaellShoes.Data
 
         public DbSet<ProdutoPedido> ProdutoPedido { get; set; }
 
+        public DbSet<Troca> Troca { get; set; }
+
     }
 }

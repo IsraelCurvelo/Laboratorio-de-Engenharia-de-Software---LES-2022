@@ -223,6 +223,42 @@ namespace RaellShoes.Dal
                 }
             }
 
+            if (entidadeDominio.GetType().Name.ToLower().Equals("produtopedido"))
+            {
+                try
+                {
+                    ProdutoPedido produto = dbContext.ProdutoPedido
+                        .Include(obj => obj.FichaTecnica)                        
+                        .Include(obj => obj.Fornecedor)
+                        .Include(obj => obj.GrupoPrecificacao)
+                        .FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return produto;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("pedido"))
+            {
+                try
+                {
+                    Pedido pedido = dbContext.Pedido
+                        .Include(obj => obj.Cliente)
+                        .Include(obj => obj.Cupom)                       
+                        .FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return pedido;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+
             if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
             {
                 try

@@ -15,5 +15,6 @@ namespace RaellShoes.Models.ViewModel
         public Pedido Pedido { get; set; }
 
         public ProdutoPedido ProdutoPedido { get; set; }
+        public Troca Troca { get; set; }
     }
 }
