@@ -70,11 +70,20 @@ namespace RaellShoes.Controllers
         }
 
         [HttpPost]
+        public IActionResult Pedidos(PedidoViewModel pedidoViewModel)
+        {
+            return View(pedidoViewModel);
+
+        }
+
+        [HttpPost]
         public IActionResult FiltrarPedidosAdmin(Pedido pedido)
         {
+            List<Pedido> pedidos = facade.ConsultarFiltroPedidosAdmin(pedido);
 
-            return View("Index");
-
+            PedidoViewModel pedidoViewModel = new PedidoViewModel { Pedidos = pedidos };
+            
+            return View("Pedidos", pedidoViewModel);
 
         }
     }

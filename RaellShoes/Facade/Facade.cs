@@ -534,5 +534,10 @@ namespace RaellShoes.Facadee
             return cupomLista;
         }
 
+        public List<Pedido> ConsultarFiltroPedidosAdmin(Pedido pedido)
+        {
+            return dal.ConsultarFiltroPedidoAdmin(pedido);
+        }
+
     }
 }

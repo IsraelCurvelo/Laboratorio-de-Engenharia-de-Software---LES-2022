@@ -429,6 +429,59 @@ namespace RaellShoes.Dal
             return carrinho;
         }
 
-        
+        public List<Pedido> ConsultarFiltroPedidoAdmin(Pedido pedido)
+        {
+            HashSet<Pedido> consulta = new HashSet<Pedido>();
+            List<Pedido> pedidos = new List<Pedido>();
+
+            if (pedido.NumeroPedido != null)
+            {
+                var resultado = dbContext.Pedido.Where(x => x.NumeroPedido == pedido.NumeroPedido).ToList();
+                foreach (Pedido item in resultado)
+                {
+                    Pedido retornoPedido = (Pedido)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (pedido.DataCompra != null)
+            {
+                var resultado = dbContext.Pedido.Where(x => x.DataCompra == pedido.DataCompra).ToList();
+                foreach (Pedido item in resultado)
+                {
+                    Pedido retornoPedido = (Pedido)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (pedido.FormaPagamento != null)
+            {
+                var resultado = dbContext.Pedido.Where(x => x.FormaPagamento == pedido.FormaPagamento).ToList();
+                foreach (Pedido item in resultado)
+                {
+                    Pedido retornoPedido = (Pedido)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (pedido.Status != null)
+            {
+                var resultado = dbContext.Pedido.Where(x => x.Status == pedido.Status).ToList();
+                foreach (Pedido item in resultado)
+                {
+                    Pedido retornoPedido = (Pedido)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            foreach (var item in consulta)
+            {
+                pedidos.Add(item);
+            }
+
+            return pedidos;
+        }
+
+
     }
 }
