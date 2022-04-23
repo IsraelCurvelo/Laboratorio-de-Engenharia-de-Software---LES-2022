@@ -550,16 +550,40 @@ namespace RaellShoes.Controllers
             troca.Status = Models.Enums.StatusPedido.EmTroca;
 
             ProdutoPedido produto = (ProdutoPedido)facade.ConsultarId(new ProdutoPedido { Id = troca.IddoProduto });
-            Pedido pedido = (Pedido)facade.ConsultarId(new Pedido { Id = produto.PedidoId });
-            Cliente cliente = (Cliente)facade.ConsultarId(new Cliente { Id = pedido.Cliente.Id });
+            Pedido pedido = (Pedido)facade.ConsultarId(new Pedido { Id = produto.PedidoId });            
 
             troca.Produto = produto;
             troca.Pedido = pedido;
-            troca.Cliente = cliente;
+            troca.IddoCliente = pedido.Cliente.Id;
 
             string conf = facade.Cadastrar(troca);
 
-            return View();
+            return View("Troca");
+        }
+
+        public IActionResult Troca()
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            if (idLogado > 0)
+            {
+                List<EntidadeDominio> listaTrocas = facade.Consultar(new Troca { IddoCliente = idLogado });
+                List<Troca> trocas = new List<Troca>();
+
+                foreach (var item in listaTrocas)
+                {
+                    trocas.Add((Troca)item);  
+                }
+                
+                TrocaViewModel trocaViewModel = new TrocaViewModel { Trocas = trocas};
+
+                return View(trocaViewModel);
+            }
+            else
+                return RedirectToAction("Login");
+            
         }
 
         

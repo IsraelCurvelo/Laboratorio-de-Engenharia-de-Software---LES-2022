@@ -12,10 +12,7 @@ namespace RaellShoes.Models.Administrador
     public class Troca : EntidadeDominio
     {
        
-        public DateTime DataSolicitacao { get; set; }
-
-   
-        public Cliente Cliente { get; set; }
+        public DateTime DataSolicitacao { get; set; }   
 
        
         public Pedido Pedido { get; set; }
@@ -38,16 +35,20 @@ namespace RaellShoes.Models.Administrador
         [NotMapped]
         public int IddoProduto { get; set; }
 
+  
+        public int IddoCliente { get; set; }
+
 
         public Troca()
         {
 
-        }
+        }        
 
-        public Troca(DateTime dataSolicitacao, Cliente cliente, Pedido pedido, ProdutoPedido produto, TipoReembolso tipoReembolso, MetodoColeta metodoColeta, StatusPedido status)
+
+        public Troca(DateTime dataSolicitacao, int cliente, Pedido pedido, ProdutoPedido produto, TipoReembolso tipoReembolso, MetodoColeta metodoColeta, StatusPedido status)
         {
             DataSolicitacao = dataSolicitacao;
-            Cliente = cliente;
+            IddoCliente = cliente;
             Pedido = pedido;
             Produto = produto;
             TipoReembolso = TipoReembolso;

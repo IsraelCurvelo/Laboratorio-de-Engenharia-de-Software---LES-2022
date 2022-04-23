@@ -161,6 +161,15 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("troca"):
+                    Troca troca = (Troca)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.Troca.Include(x => x.Pedido).Include(x => x.Produto).ToList().Where(x => x.IddoCliente == troca.IddoCliente))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
                 default:
                     return null;
             }
