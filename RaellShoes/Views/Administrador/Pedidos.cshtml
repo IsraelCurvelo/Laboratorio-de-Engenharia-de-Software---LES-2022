@@ -136,15 +136,17 @@
 
                                     @foreach (var item in Model.Pedidos)
                                     {
-                                        <tr>
-                                            <td> @Html.DisplayFor(modelItem => item.Id)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Cliente.Nome)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Cliente.Cpf)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.NumeroPedido)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.DataCompra)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Status)</td>
-                                            <td><button asp-action="verpedido" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Pedido</button></td>
-                                        </tr>
+                                    <tr>
+                                        <td> @Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Cliente.Nome)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Cliente.Cpf)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.NumeroPedido)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.DataCompra)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                                        <form>
+                                            <td><button asp-action="DetalhesPedido" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Pedido</button></td>
+                                         </form>
+                                    </tr>
 
                                     }
 

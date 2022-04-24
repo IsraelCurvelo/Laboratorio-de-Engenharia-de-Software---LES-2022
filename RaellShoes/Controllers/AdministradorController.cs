@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
+using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.ViewModel;
@@ -85,6 +86,31 @@ namespace RaellShoes.Controllers
             
             return View("Pedidos", pedidoViewModel);
 
+        }
+
+        public IActionResult DetalhesPedido(Pedido pedidoProcurar)
+        {
+            Pedido pedido = (Pedido)facade.ConsultarId(pedidoProcurar);           
+            List<EntidadeDominio> listaProdutos = facade.Consultar(new ProdutoPedido { PedidoId = pedido.Id });
+            List<ProdutoPedido> produtos = new List<ProdutoPedido>();
+
+            foreach (var item in listaProdutos)
+            {
+                produtos.Add((ProdutoPedido) item);
+            }
+
+            PedidoViewModel pedidoViewModel = new PedidoViewModel { Pedido = pedido, ProdutosPedidos = produtos };
+            return View(pedidoViewModel);
+        } 
+        
+        public IActionResult AprovarPedido(Pedido pedido)
+        {
+            return View();
+        }
+        
+        public IActionResult AprovarEntrega(Pedido pedido)
+        {
+            return View();
         }
     }
 }

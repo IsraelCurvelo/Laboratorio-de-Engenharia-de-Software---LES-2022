@@ -256,6 +256,8 @@ namespace RaellShoes.Dal
                 {
                     Pedido pedido = dbContext.Pedido
                         .Include(obj => obj.Cliente)
+                        .Include(obj => obj.Cliente.Telefone)
+                        .Include(obj => obj.Cliente.Usuario)
                         .Include(obj => obj.Cupom)                       
                         .FirstOrDefault(x => x.Id == entidadeDominio.Id);
 
