@@ -222,7 +222,20 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesTroca", troca);
         }
 
-        public IActionResult ReceberProdutoTroca(Troca trocaSolicitacao)
+        public IActionResult ReceberProdutoTrocaSim(Troca trocaSolicitacao)
+        {
+            Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
+            troca.Status = Models.Enums.StatusPedido.ProdutoRecebido;
+            string conf = facade.Alterar(troca);
+
+            Produto produto = (Produto)facade.ConsultarId(new Produto { Id = troca.Produto.ProdutoEstoqueId });
+            produto.Quantidade += troca.Produto.Quantidade;
+            string confirm = facade.Alterar(produto);
+
+            return RedirectToAction("DetalhesTroca", troca);
+        }
+
+        public IActionResult ReceberProdutoTrocaNao(Troca trocaSolicitacao)
         {
             Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
             troca.Status = Models.Enums.StatusPedido.ProdutoRecebido;
@@ -230,7 +243,7 @@ namespace RaellShoes.Controllers
 
             return RedirectToAction("DetalhesTroca", troca);
         }
-        
+
         public IActionResult ConfirmarEntregaProdutoTroca(Troca trocaSolicitacao)
         {
             Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);

@@ -213,11 +213,11 @@
                 }
                 else if (Model.Status == RaellShoes.Models.Enums.StatusPedido.TrocaAutorizada)
                 {
-                <form>
+               
                     <div class="row">
-                        <button asp-action="ReceberProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Confirmar Recebimento</button>
+                        <button  class="btn btn-success col-lg-12" data-bs-toggle="modal" data-bs-target="#modalTroca">Confirmar Recebimento</button>
                     </div>
-                </form>
+               
                 <br>
 
 
@@ -243,7 +243,7 @@
 
 
     <!-- Modal Motivo Inativação -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalTroca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
@@ -252,54 +252,39 @@
                     <section id="cliente" class="cliente">
                         <div class="container" style=" margin-bottom: -30px;">
                             <div class="section-title2">
-                                <h2> <span style="color: rgb(64, 174, 202)">Inativar Produto </span></h2>
+                                <h2> <span style="color: rgb(64, 174, 202)">Confirmação de recebimento de Produto </span></h2>
                             </div>
                         </div>
 
                         <!--Form-->
                         <div class="container mt-5">
-                            <form class="needs-validation" novalidate action="">
+                            <!--Box Inativação-->
+                            <div class="info-wrap">
+
+                                <h4>
+                                    <strong style="padding-left: 10px; color: rgb(64, 174, 202)">
+                                        Deseja retornar o produto ao estoque?
+                                    </strong>
+                                </h4><br>
 
 
-                                <!--Box Inativação-->
-                                <div class="info-wrap">
-
-                                    <h4>
-                                        <strong style="padding-left: 10px; color: rgb(64, 174, 202)">
-                                            Qual o motivo da
-                                            inativação?
-                                        </strong>
-                                    </h4><br>
-
-                                    <div class="row">
-
-
-
-                                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Descrição</span>
-                                            <textarea type="text" name="descricao" class="form-control" id="descricao"
-                                                      placeholder="Descrição do Produto" data-rule="minlen:3" rows="10" required></textarea>
-                                            <div class="invalid-feedback">
-                                                *Campo obrigatório
-                                            </div>
+                                <div class="row">
+                                    <form>
+                                        <div class="row">
+                                            <button asp-action="ReceberProdutoTrocaSim" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Sim</button>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Data de Inativação</span>
-                                            <input  class="form-control" id="data-inativacao" type="date" readonly
-                                                   onload="setarData()">
-                                            <div class="invalid-feedback">
-                                                *Campo obrigatório
-                                            </div>
+                                    </form>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <form>
+                                        <div class="row">
+                                            <button asp-action="ReceberProdutoTrocaNao" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Não</button>
                                         </div>
-                                        <br> <br>
-                                        <div>
-                                            <button class="btn btn-success col-lg-12">Salvar</button>
-                                        </div>
-                            </form>
-                            <br>
-                        </div>
+                                    </form>
+                                </div>
+                                <br>
+                            </div>
 
                     </section>
                     <br>
