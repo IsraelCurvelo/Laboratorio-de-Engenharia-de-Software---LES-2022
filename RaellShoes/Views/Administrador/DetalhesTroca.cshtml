@@ -197,21 +197,43 @@
 
                 @if (Model.Status == RaellShoes.Models.Enums.StatusPedido.EmTroca)
                 {
-                        <form>
-                            <div class="row">
-                                <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Autorizar</button>
-                            </div>
-                        </form>
-                        <br>
-                        <form>
-                            <div class="row">
-                                <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Recusar</button>
-                            </div>
-                        </form>
-                 
+                    <form>
+                        <div class="row">
+                            <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Autorizar</button>
+                        </div>
+                    </form>
+                    <br>
+                    <form>
+                        <div class="row">
+                            <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Recusar</button>
+                        </div>
+                    </form>
+
 
                 }
-                </div>
+                else if (Model.Status == RaellShoes.Models.Enums.StatusPedido.TrocaAutorizada)
+                {
+                <form>
+                    <div class="row">
+                        <button asp-action="ReceberProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Confirmar Recebimento</button>
+                    </div>
+                </form>
+                <br>
+
+
+                }
+                else if (Model.Status == RaellShoes.Models.Enums.StatusPedido.ProdutoRecebido)
+                {
+                <form>
+                    <div class="row">
+                        <button asp-action="ConfirmarEntregaProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Confirmar Entrega</button>
+                    </div>
+                </form>
+                <br>
+
+
+                }
+            </div>
 
         </div>
 

@@ -254,6 +254,17 @@ namespace RaellShoes.Facadee
                 return conf;
 
             }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("troca"))
+            {
+                Troca troca = (Troca)entidadeDominio;
+
+                string conf = dal.Alterar(troca);
+                log.Descricao = gerarLog.Processar(troca) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+
+            }
             return null;
             
         }

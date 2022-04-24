@@ -201,19 +201,43 @@ namespace RaellShoes.Controllers
         public IActionResult DetalhesTroca(Troca trocaProcurar)
         {
             Troca troca = (Troca)facade.ConsultarId(trocaProcurar);
-            //troca.Produto = (ProdutoPedido)facade.ConsultarId(new ProdutoPedido { Id = troca.Produto.Id });  
-
             return View(troca);
         }
 
-        public IActionResult AutorizarTroca(Troca troca)
+        public IActionResult AutorizarTroca(Troca trocaSolicitacao)
         {
-            return View();
+            Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
+            troca.Status = Models.Enums.StatusPedido.TrocaAutorizada;
+            string conf = facade.Alterar(troca);
+
+            return RedirectToAction("DetalhesTroca", troca);            
         }
 
-        public IActionResult ReprovarTroca(Troca troca)
+        public IActionResult ReprovarTroca(Troca trocaSolicitacao)
         {
-            return View();
+            Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
+            troca.Status = Models.Enums.StatusPedido.Reprovado;
+            string conf = facade.Alterar(troca);
+
+            return RedirectToAction("DetalhesTroca", troca);
+        }
+
+        public IActionResult ReceberProdutoTroca(Troca trocaSolicitacao)
+        {
+            Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
+            troca.Status = Models.Enums.StatusPedido.ProdutoRecebido;
+            string conf = facade.Alterar(troca);
+
+            return RedirectToAction("DetalhesTroca", troca);
+        }
+        
+        public IActionResult ConfirmarEntregaProdutoTroca(Troca trocaSolicitacao)
+        {
+            Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
+            troca.Status = Models.Enums.StatusPedido.TrocaEfetuada;
+            string conf = facade.Alterar(troca);
+
+            return RedirectToAction("DetalhesTroca", troca);
         }
     }
 }
