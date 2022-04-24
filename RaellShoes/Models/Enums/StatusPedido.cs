@@ -23,8 +23,8 @@ namespace RaellShoes.Models.Enums
         TrocaAutorizada,
         [Display(Name = "PRODUTO RECEBIDO")]
         ProdutoRecebido,
-        [Display(Name = "TROCA EFETUADA")]
-        TrocaEfetuada
+        [Display(Name = "TROCADO")]
+        Trocado
 
     }
 }

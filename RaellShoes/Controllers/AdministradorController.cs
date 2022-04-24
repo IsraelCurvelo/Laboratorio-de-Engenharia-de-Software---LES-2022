@@ -247,7 +247,7 @@ namespace RaellShoes.Controllers
         public IActionResult ConfirmarEntregaProdutoTroca(Troca trocaSolicitacao)
         {
             Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
-            troca.Status = Models.Enums.StatusPedido.TrocaEfetuada;
+            troca.Status = Models.Enums.StatusPedido.Trocado;
             string conf = facade.Alterar(troca);
 
             return RedirectToAction("DetalhesTroca", troca);
