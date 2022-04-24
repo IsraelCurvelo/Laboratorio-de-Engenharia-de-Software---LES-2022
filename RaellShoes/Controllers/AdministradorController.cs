@@ -197,5 +197,23 @@ namespace RaellShoes.Controllers
 
             return View("Trocas", trocaViewModel);
         }
+
+        public IActionResult DetalhesTroca(Troca trocaProcurar)
+        {
+            Troca troca = (Troca)facade.ConsultarId(trocaProcurar);
+            //troca.Produto = (ProdutoPedido)facade.ConsultarId(new ProdutoPedido { Id = troca.Produto.Id });  
+
+            return View(troca);
+        }
+
+        public IActionResult AutorizarTroca(Troca troca)
+        {
+            return View();
+        }
+
+        public IActionResult ReprovarTroca(Troca troca)
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,437 @@
+﻿@model RaellShoes.Models.Administrador.Troca
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Admin - Listar Troca</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="/administrador">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="dropdown  active">
+                    <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/administrador/GrupoPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedor">Fornecedor</a></li>
+                        <li><a href="/administrador/Categoria">Categoria</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Trocas">Trocas</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Pedidos">Pedidos</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Clientes">Clientes</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Produtos">Produtos</a></li>
+                <li><a class="nav-link scrollto" href="/">Sair</a></li>
+                <li><a class="nav-link scrollto" href=""></a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+
+    </header><!-- End Header -->
+    <!--Box Clientes-->
+    <section id="cliente" class="cliente">
+
+        <!--Pedido-->
+        <div class="container mt-5">
+            <!--Box Historico-->
+            <div class="info-wrap" style=" border-radius:20px; ">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Número do Pedido </span>
+                        <input disabled type="textarea" name="numero-pedido" readonly class="form-control-plaintext"
+                               id="numero-pedido" value="@Html.DisplayFor(model => Model.Pedido.NumeroPedido)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                        <br>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Valor do Produto </span>
+                        <input disabled type="textarea" name="valor-produto" readonly class="form-control-plaintext"
+                               id="valor-produto" value="R$ @Html.DisplayFor(model => Model.Produto.Valor)" style="color: rgb(247, 99, 0);  font-weight: bold;">
+                        <br>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <span>Data da Solicitação</span>
+                        <input disabled type="text" name="data-solicitacao" readonly class="form-control-plaintext"
+                               id="data-solicitacao" value="@Html.DisplayFor(model => Model.DataSolicitacao)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <span>Tipo de Reembolso</span>
+                        <input disabled type="text" name="metodo-coleta" readonly class="form-control-plaintext"
+                               id="metodo-coleta" value="@Html.DisplayFor(model => Model.TipoReembolso)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <span>Método de Coleta</span>
+                        <input disabled type="text" name="tipo-Reembolso" readonly class="form-control-plaintext"
+                               id="tipo-reembolso" value="@Html.DisplayFor(model => Model.MetodoColeta)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Status</span>
+                        <input disabled type="text" readonly class="form-control-plaintext" name="status-troca"
+                               id="status-troca" value="@Html.DisplayFor(model => Model.Status)"
+                               style="color: blue;  font-weight: bold; font-style: italic;">
+                        <div class="validate"></div>
+                    </div>
+
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Cliente </span>
+                        <input disabled type="textarea" name="cliente" readonly class="form-control-plaintext" id="cliente"
+                               value="@Html.DisplayFor(model => Model.Pedido.Cliente.Nome) @Html.DisplayFor(model => Model.Pedido.Cliente.Sobrenome)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                        <br>
+                    </div>
+
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>CPF </span>
+                        <input disabled type="textarea" name="cpf" readonly class="form-control-plaintext" id="cpf"
+                               value="@Html.DisplayFor(model => Model.Pedido.Cliente.Cpf)" style="color: rgb(247, 99, 0);  font-weight: bold;">
+                        <br>
+                    </div>
+
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <span>Telefone</span>
+                        <input disabled type="text" name="telefone" readonly class="form-control-plaintext" id="telefone"
+                               value="@Html.DisplayFor(model => Model.Pedido.Cliente.Telefone.DDD) @Html.DisplayFor(model => Model.Pedido.Cliente.Telefone.Numero)" style="color: rgb(247, 99, 0); font-weight: bold;">
+                    </div>
+
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <span>Email</span>
+                        <input disabled type="text" name="email" readonly class="form-control-plaintext" id="email"
+                               value="@Model.Pedido.Cliente.Usuario.Email" style="color: rgb(247, 99, 0); font-weight: bold;">
+                    </div>
+
+                </div>
+
+                <br>
+                <hr><br>
+
+                <div class="row" style="margin-top: 40px;">
+                    <h5><strong style="padding-left: 10px; color:rgb(65, 199, 121);"> Produtos </strong></h5><br>
+                    <br><br>
+
+
+                    <!--Produto 1-->
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span></span>
+                        <img src='~/assets/img/Produtos/@Html.DisplayFor(model => Model.Produto.URLFoto)'
+                             id="img-historico" />
+                    </div>
+
+                    <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Descrição</span>
+                        <input disabled type="textarea" name="descricao-produto" readonly class="form-control-plaintext"
+                               id="descricao-produto" value="@Html.DisplayFor(model =>  Model.Produto.Marca) @Html.DisplayFor(model =>  Model.Produto.Modelo) - @Html.DisplayFor(model =>  Model.Produto.Nome)">
+                        <div class="validate"></div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Valor</span>
+                                <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                       id="valor-produto" value="R$ @Html.DisplayFor(model =>  Model.Produto.Valor)">
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Tamanho</span>
+                                <input disabled type="textarea" name="tamanho-produto" readonly class="form-control-plaintext"
+                                       id="tamanho-produto" value="@Html.DisplayFor(model =>  Model.Produto.Tamanho)">
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Cor</span>
+                                <input disabled type="textarea" name="cor-produto" readonly class="form-control-plaintext"
+                                       id="cor-produto" value="@Html.DisplayFor(model =>  Model.Produto.CorPrimariaProduto)">
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Quantidade</span>
+                                <input disabled type="number" name="qtde-produto" readonly class="form-control-plaintext"
+                                       id="qtde-produto" value="@Html.DisplayFor(model =>  Model.Produto.Quantidade)">
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div><br><br>
+
+
+                @if (Model.Status == RaellShoes.Models.Enums.StatusPedido.EmTroca)
+                {
+                        <form>
+                            <div class="row">
+                                <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Autorizar</button>
+                            </div>
+                        </form>
+                        <br>
+                        <form>
+                            <div class="row">
+                                <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Recusar</button>
+                            </div>
+                        </form>
+                 
+
+                }
+                </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- Modal Motivo Inativação -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <section id="cliente" class="cliente">
+                        <div class="container" style=" margin-bottom: -30px;">
+                            <div class="section-title2">
+                                <h2> <span style="color: rgb(64, 174, 202)">Inativar Produto </span></h2>
+                            </div>
+                        </div>
+
+                        <!--Form-->
+                        <div class="container mt-5">
+                            <form class="needs-validation" novalidate action="">
+
+
+                                <!--Box Inativação-->
+                                <div class="info-wrap">
+
+                                    <h4>
+                                        <strong style="padding-left: 10px; color: rgb(64, 174, 202)">
+                                            Qual o motivo da
+                                            inativação?
+                                        </strong>
+                                    </h4><br>
+
+                                    <div class="row">
+
+
+
+                                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Descrição</span>
+                                            <textarea type="text" name="descricao" class="form-control" id="descricao"
+                                                      placeholder="Descrição do Produto" data-rule="minlen:3" rows="10" required></textarea>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Data de Inativação</span>
+                                            <input  class="form-control" id="data-inativacao" type="date" readonly
+                                                   onload="setarData()">
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <br> <br>
+                                        <div>
+                                            <button class="btn btn-success col-lg-12">Salvar</button>
+                                        </div>
+                            </form>
+                            <br>
+                        </div>
+
+                    </section>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+            if (texto.substring(0, 1) !== saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+        function mostrarResultado() {
+            var campo = document.getElementById("resultado").hidden;
+
+            if (campo)
+                document.getElementById("resultado").hidden = false;
+            else
+                document.getElementById("resultado").hidden = true;
+        }
+
+        function dataAtualFormatada() {
+            var data = new Date(),
+                dia = data.getDate().toString(),
+                diaF = (dia.length == 1) ? '0' + dia : dia,
+                mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+                mesF = (mes.length == 1) ? '0' + mes : mes,
+                anoF = data.getFullYear();
+            return anoF + "-" + mesF + "-" + diaF;
+        }
+
+        function setarData() {
+            debugger;
+            document.getElementById("data-inativacao").value = dataAtualFormatada();
+
+        }
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

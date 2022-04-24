@@ -150,3 +150,4 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Pedidos.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\DetalhesPedido.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Trocas.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\DetalhesTroca.cshtml.g.cs

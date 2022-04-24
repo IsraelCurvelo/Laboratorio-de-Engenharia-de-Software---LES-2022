@@ -276,7 +276,10 @@ namespace RaellShoes.Dal
                 {
                     Troca troca = dbContext.Troca
                         .Include(obj => obj.Pedido)
-                        .Include(obj => obj.Pedido.Cliente)                        
+                        .Include(obj => obj.Pedido.Cliente)
+                        .Include(obj => obj.Pedido.Cliente.Telefone)
+                        .Include(obj => obj.Pedido.Cliente.Usuario)
+                        .Include(obj => obj.Produto)
                         .FirstOrDefault(x => x.Id == entidadeDominio.Id);
 
                     return troca;
