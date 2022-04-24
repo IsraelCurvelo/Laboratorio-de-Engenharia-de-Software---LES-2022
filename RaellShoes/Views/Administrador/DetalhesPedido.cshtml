@@ -37,7 +37,7 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="admin-index.html">RaellShoes<span>.</span></a></h1>
+            <h1 class="logo"><a href="/administrador">RaellShoes<span>.</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
@@ -47,24 +47,26 @@
                 <li class="dropdown  active">
                     <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="admin-parametro-grupoprecificacao.html">Grupo de Precificação</a></li>
-                        <li><a href="admin-parametro-fornecedor.html">Fornecedor</a></li>
-                        <li><a href="admin-parametro-categoria.html">Categoria</a></li>
+                        <li><a href="/administrador/GrupoPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedor">Fornecedor</a></li>
+                        <li><a href="/administrador/Categoria">Categoria</a></li>
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto" href="admin-procurar-cupom.html">Cupons</a></li>
-                <li><a class="nav-link scrollto" href="admin-procurar-troca.html">Trocas</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Trocas">Trocas</a></li>
                 <li><a class="nav-link scrollto" href="/administrador/Pedidos">Pedidos</a></li>
-                <li><a class="nav-link scrollto" href="admin-procurar-cliente.html">Clientes</a></li>
-                <li><a class="nav-link scrollto" href="admin-procurar-produto.html">Produtos</a></li>
-                <li><a class="nav-link scrollto" href="/"></a>Sair</li>
+                <li><a class="nav-link scrollto" href="/administrador/Clientes">Clientes</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Produtos">Produtos</a></li>
+                <li><a class="nav-link scrollto" href="/">Sair</a></li>
+                <li><a class="nav-link scrollto" href=""></a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
 
 
     </header><!-- End Header -->
-    <!--Box Clientes-->
+
+    <!--Box Pedidos-->
     <section id="cliente" class="cliente">
 
         <!--Pedido-->
@@ -216,7 +218,7 @@
                             <button asp-action="AprovarPedido" asp-route-id="@Model.Pedido.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(1)">Aprovar Pedido</button>
                         </div>
                     </form>
-                    <br> 
+                    <br>
                     <form>
                         <div class="row">
                             <button asp-action="ReprovarPedido" asp-route-id="@Model.Pedido.Id" class="btn btn-danger col-lg-12" onclick="mudancaStatus(2)">Reprovar Pedido</button>

@@ -1,7 +1,4 @@
-﻿@model RaellShoes.Models.ViewModel.PedidoViewModel
-
-@{ViewData["Title"] = "Pedidos";}
-
+﻿@model RaellShoes.Models.ViewModel.TrocaViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RaellShoes - Admin - Pedidos</title>
+    <title>RaellShoes - Admin - Procurar troca</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -32,7 +29,7 @@
 
 </head>
 
-<body>
+<body onload="removerOpcoesTroca()">
 
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
@@ -70,50 +67,49 @@
     <section id="cliente" class="cliente">
         <div class="container mt-5">
             <!--Box Clientes-->
-            <div class="info-wrap" style="border-radius:20px">
+            <div class="info-wrap" style=" border-radius:20px">
 
-                <h5><strong style="  color: rgb(13, 236, 181);">Procurar Pedido </strong></h5><br>
-                <form asp-action="FiltrarPedidosAdmin">
+                <h5><strong style="  color: rgb(228, 13, 236);">Procurar Troca </strong></h5><br>
+                <form asp-action="FiltrarTrocasAdmin">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Número do pedido</span>
-                            <input class="form-control" id="numero-pedido" placeholder="Número do pedido" asp-for="@Model.Pedido.NumeroPedido">
+                            <input asp-for="Troca.Pedido.NumeroPedido" class="form-control" id="numero-pedido" placeholder="Número do pedido">
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span>Data do Pedido</span>
-                            <input class="form-control" id="data-pedido" type="date" placeholder="Data do pedido" asp-for="@Model.Pedido.DataCompra">
+                            <span>Data de Solicitação</span>
+                            <input asp-for="Troca.DataSolicitacao" class="form-control" id="data-pedido" type="date" placeholder="Data de Solicitação">
 
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span>Forma de Pagamento</span>
-                            <br>
-                            <select class="form-select" asp-for="@Model.Pedido.FormaPagamento" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.FormaPagamento>()">
-                            </select>
+                            <span>CPF do Cliente</span>
+                            <input asp-for="Troca.Pedido.Cliente.Cpf" class="form-control" id="cpf-cliente" placeholder="CPF do Cliente">
                         </div>
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Status</span>
                             <br>
-                            <select class="form-select" asp-for="@Model.Pedido.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.StatusPedido>()">
+                            <select asp-for="Troca.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.StatusPedido>()"
+                                    class="form-select" id="troca-status">
                             </select>
                         </div>
                     </div><br><br>
-                    <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar </button><br>
-
-
+                    <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar</button><br>
+                    
                 </form>
             </div>
         </div>
 
-        @if (Model.Pedidos != null)
+
+        @if (Model.Trocas != null)
         {
             <!--Últimos Clientes-->
-            <div class="container mt-5" id="resultado">
+            <div class="container mt-5" id="resultado" >
                 <!--Box ultimos clientes-->
                 <div class="info-wrap" style=" border-radius:20px; text-align: center;">
-                    <h5><strong style="  color: rgb(13, 236, 181);">Resultado </strong></h5><br>
+                    <h5><strong style="  color: rgb(228, 13, 236);">Resultado </strong></h5><br>
 
                     <div class="row" style="text-align: center;">
                         <div class="col-lg-12 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
@@ -121,46 +117,39 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Código</th>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">CPF</th>
                                         <th scope="col">Número do pedido</th>
-                                        <th scope="col">Data do pedido</th>
+                                        <th scope="col">CPF do Cliente</th>                                       
+                                        <th scope="col">Data de Solicitação</th>
                                         <th scope="col">Status</th>
                                         <th scope="col"></th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach (var item in Model.Pedidos)
+                                    @foreach (var item in Model.Trocas)
                                     {
                                         <tr>
-                                            <td> @Html.DisplayFor(modelItem => item.Id)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Cliente.Nome)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Cliente.Cpf)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.NumeroPedido)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.DataCompra)</td>
-                                            <td> @Html.DisplayFor(modelItem => item.Status)</td>
-                                            <form>
-                                                <td><button asp-action="DetalhesPedido" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Pedido</button></td>
-                                            </form>
+                                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Pedido.NumeroPedido)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Pedido.Cliente.Cpf)</td>                                            
+                                            <td>@Html.DisplayFor(modelItem => item.DataSolicitacao)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                            <td><button class="btn btn-info btn-sm">Ver Solicitação</button></td>
                                         </tr>
-
                                     }
 
-                                </tbody>
+
+
+                                    </tbody>
                             </table>
 
                         </div>
                     </div>
                 </div>
             </div>
-
         }
 
-
-
-    </section>
+        </section>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -276,9 +265,17 @@
             else
                 document.getElementById("resultado").hidden = true;
         }
+
+        function removerOpcoesTroca() {
+            document.getElementById("troca-status").options[7].remove();
+            document.getElementById("troca-status").options[4].remove();
+            document.getElementById("troca-status").options[3].remove();
+            document.getElementById("troca-status").options[2].remove();
+            document.getElementById("troca-status").options[1].remove();
+        }
     </script>
 
-    <!--Vendor JS Files-->
+    <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

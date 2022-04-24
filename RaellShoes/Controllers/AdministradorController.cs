@@ -132,11 +132,70 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesPedido", pedido);
         }
 
+        //***********************TROCA*******************************
+
         public IActionResult VerSolicitacaoTroca(Pedido pedidoSolicitacao)
         {
             //IMPLEMENTAR APÒS TROCA
 
             return View();
+        }
+
+
+
+        public IActionResult Trocas()
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            Cliente cliente = (Cliente)facade.ConsultarId(new Cliente { Id = idLogado });
+
+            if (idLogado > 0)
+            {
+
+                if (!cliente.Usuario.Admin)
+                {
+                    return RedirectToAction("Index", "home");
+                }
+                TrocaViewModel troca = new TrocaViewModel();
+                return View(troca);
+            }
+            else
+                return RedirectToAction("Login", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult Trocas(TrocaViewModel trocaViewModel)
+        {
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+
+            Cliente cliente = (Cliente)facade.ConsultarId(new Cliente { Id = idLogado });
+
+            if (idLogado > 0)
+            {
+
+                if (!cliente.Usuario.Admin)
+                {
+                    return RedirectToAction("Index", "home");
+                }
+                TrocaViewModel troca = new TrocaViewModel();
+                return View(troca);
+            }
+            else
+                return RedirectToAction("Login", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult FiltrarTrocasAdmin(Troca troca)
+        {
+            List<Troca> trocas = facade.ConsultarFiltroTrocasAdmin(troca);
+
+            TrocaViewModel trocaViewModel = new TrocaViewModel { Trocas = trocas };
+
+            return View("Trocas", trocaViewModel);
         }
     }
 }

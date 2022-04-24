@@ -270,6 +270,24 @@ namespace RaellShoes.Dal
                 }
             }
 
+            if (entidadeDominio.GetType().Name.ToLower().Equals("troca"))
+            {
+                try
+                {
+                    Troca troca = dbContext.Troca
+                        .Include(obj => obj.Pedido)
+                        .Include(obj => obj.Pedido.Cliente)                        
+                        .FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return troca;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+
             if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
             {
                 try
@@ -482,6 +500,59 @@ namespace RaellShoes.Dal
             }
 
             return pedidos;
+        }
+
+        public List<Troca> ConsultarFiltroTrocasAdmin(Troca troca)
+        {
+            HashSet<Troca> consulta = new HashSet<Troca>();
+            List<Troca> listaTrocas = new List<Troca>();
+
+            if (troca.Pedido.NumeroPedido != null)
+            {
+                var resultado = dbContext.Troca.Where(x => x.Pedido.NumeroPedido == troca.Pedido.NumeroPedido).ToList();
+                foreach (Troca item in resultado)
+                {
+                    Troca retornoPedido = (Troca)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (troca.DataSolicitacao != null)
+            {
+                var resultado = dbContext.Troca.Where(x => x.DataSolicitacao == troca.DataSolicitacao).ToList();
+                foreach (Troca item in resultado)
+                {
+                    Troca retornoPedido = (Troca)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (troca.Pedido.Cliente.Cpf != null)
+            {
+                var resultado = dbContext.Troca.Where(x => x.Pedido.Cliente.Cpf == troca.Pedido.Cliente.Cpf).ToList();
+                foreach (Troca item in resultado)
+                {
+                    Troca retornoPedido = (Troca)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            if (troca.Status != null)
+            {
+                var resultado = dbContext.Troca.Where(x => x.Status == troca.Status).ToList();
+                foreach (Troca item in resultado)
+                {
+                    Troca retornoPedido = (Troca)ConsultarId(item);
+                    consulta.Add(retornoPedido);
+                }
+            }
+
+            foreach (var item in consulta)
+            {
+                listaTrocas.Add(item);
+            }
+
+            return listaTrocas;
         }
 
 

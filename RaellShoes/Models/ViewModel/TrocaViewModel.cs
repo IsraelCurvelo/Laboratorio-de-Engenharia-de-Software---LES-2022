@@ -13,6 +13,8 @@ namespace RaellShoes.Models.ViewModel
 
         public List<Pedido> Pedidos { get; set; }
 
+        public Troca Troca { get; set; }
+
         public TrocaViewModel()
         {
             Trocas = new List<Troca>();

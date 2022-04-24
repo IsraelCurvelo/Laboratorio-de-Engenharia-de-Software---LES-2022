@@ -550,5 +550,10 @@ namespace RaellShoes.Facadee
             return dal.ConsultarFiltroPedidoAdmin(pedido);
         }
 
+        public List<Troca> ConsultarFiltroTrocasAdmin(Troca troca)
+        {
+            return dal.ConsultarFiltroTrocasAdmin(troca);
+        }
+
     }
 }
