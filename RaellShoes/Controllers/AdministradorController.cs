@@ -46,6 +46,8 @@ namespace RaellShoes.Controllers
             
         }
 
+        //********************PEDIDOS************************
+
         public IActionResult Pedidos()
         {
             int idLogado = 0;
@@ -103,12 +105,21 @@ namespace RaellShoes.Controllers
             return View(pedidoViewModel);
         } 
         
-        public IActionResult AprovarPedido(Pedido pedido)
+        public IActionResult AprovarPedido(Pedido pedidoSolicitacao)
+        {
+            Pedido pedido = (Pedido)facade.ConsultarId(pedidoSolicitacao);
+            pedido.Status = Models.Enums.StatusPedido.EmTransporte;
+            string conf = facade.Alterar(pedido);
+
+            return RedirectToAction("DetalhesPedido", pedido);
+        }
+
+        public IActionResult ReprovarPedido(Pedido pedidoSolicitacao)
         {
             return View();
         }
-        
-        public IActionResult AprovarEntrega(Pedido pedido)
+
+        public IActionResult AprovarEntrega(Pedido pedidoSolicitacao)
         {
             return View();
         }

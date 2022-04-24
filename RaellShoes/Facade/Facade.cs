@@ -243,6 +243,17 @@ namespace RaellShoes.Facadee
                 return conf;
 
             }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("pedido"))
+            {
+                Pedido pedido = (Pedido)entidadeDominio;
+
+                string conf = dal.Alterar(pedido);
+                log.Descricao = gerarLog.Processar(pedido) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+
+            }
             return null;
             
         }

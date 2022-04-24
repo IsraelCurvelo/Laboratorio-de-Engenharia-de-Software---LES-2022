@@ -102,7 +102,7 @@
                         <span>Status</span>
                         <input disabled type="text" readonly class="form-control-plaintext" name="status-produto"
                                id="status-produto" value="@Html.DisplayFor(model => Model.Pedido.Status)"
-                               style="color: rgb(62, 91, 255); font-weight: bold; font-style: italic;">
+                               style="color: red; font-weight: bold; font-style: italic;">
                         <div class="validate"></div>
                     </div>
 
@@ -153,76 +153,82 @@
                 <hr><br>
 
 
-                    <div class="row" style="margin-top: 40px;">
-                        <h5><strong style="padding-left: 10px; color:rgb(65, 199, 121);"> Produtos </strong></h5><br>
-                        <br><br>
+                <div class="row" style="margin-top: 40px;">
+                    <h5><strong style="padding-left: 10px; color:rgb(65, 199, 121);"> Produtos </strong></h5><br>
+                    <br><br>
 
-                        @foreach (var item in Model.ProdutosPedidos)
+                    @foreach (var item in Model.ProdutosPedidos)
+                    {
+                        @if (item != null)
                         {
-                            @if (item != null)
-                            {
-                                <!--Produto 1-->
-                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span></span>
-                                    <img src='~/assets/img/Produtos/@Html.DisplayFor(model => item.URLFoto)'
-                                         id="img-historico" />
-                                </div>
+                            <!--Produto 1-->
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span></span>
+                                <img src='~/assets/img/Produtos/@Html.DisplayFor(model => item.URLFoto)'
+                                     id="img-historico" />
+                            </div>
 
-                                <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                    <span>Descrição</span>
-                                    <input disabled type="textarea" name="descricao-produto" readonly class="form-control-plaintext"
-                                           id="descricao-produto" value="@Html.DisplayFor(model => item.Marca) @Html.DisplayFor(model => item.Modelo) - @Html.DisplayFor(model => item.Nome)">
-                                    <div class="validate"></div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Valor</span>
-                                            <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
-                                                   id="valor-produto" value="R$ @Html.DisplayFor(model => item.Valor)">
-                                        </div>
-                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Tamanho</span>
-                                            <input disabled type="textarea" name="tamanho-produto" readonly class="form-control-plaintext"
-                                                   id="tamanho-produto" value="@Html.DisplayFor(model => item.Tamanho)">
-                                        </div>
-
-                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Cor</span>
-                                            <input disabled type="textarea" name="cor-produto" readonly class="form-control-plaintext"
-                                                   id="cor-produto" value="@Html.DisplayFor(model => item.CorPrimariaProduto)">
-                                        </div>
-
-                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Quantidade</span>
-                                            <input disabled type="number" name="qtde-produto" readonly class="form-control-plaintext"
-                                                   id="qtde-produto" value="@Html.DisplayFor(model => item.Quantidade)">
-                                        </div>
-
+                            <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Descrição</span>
+                                <input disabled type="textarea" name="descricao-produto" readonly class="form-control-plaintext"
+                                       id="descricao-produto" value="@Html.DisplayFor(model => item.Marca) @Html.DisplayFor(model => item.Modelo) - @Html.DisplayFor(model => item.Nome)">
+                                <div class="validate"></div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Valor</span>
+                                        <input disabled type="text" name="valor-produto" readonly class="form-control-plaintext"
+                                               id="valor-produto" value="R$ @Html.DisplayFor(model => item.Valor)">
                                     </div>
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Tamanho</span>
+                                        <input disabled type="textarea" name="tamanho-produto" readonly class="form-control-plaintext"
+                                               id="tamanho-produto" value="@Html.DisplayFor(model => item.Tamanho)">
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Cor</span>
+                                        <input disabled type="textarea" name="cor-produto" readonly class="form-control-plaintext"
+                                               id="cor-produto" value="@Html.DisplayFor(model => item.CorPrimariaProduto)">
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                        <span>Quantidade</span>
+                                        <input disabled type="number" name="qtde-produto" readonly class="form-control-plaintext"
+                                               id="qtde-produto" value="@Html.DisplayFor(model => item.Quantidade)">
+                                    </div>
+
                                 </div>
-                                <hr>
-
-                            }
-
+                            </div>
+                            <hr>
 
                         }
 
 
-                    </div><br><br>
+                    }
+
+
+                </div><br><br>
 
                 @if (Model.Pedido.Status == RaellShoes.Models.Enums.StatusPedido.EmProcessamento)
                 {
                     <form>
                         <div class="row">
-                            <button asp-action="AprovarPedido" asp-route-id="@Model.Pedido.Id" class="btn btn-dark col-lg-12">Aprovar Pedido</button>
+                            <button asp-action="AprovarPedido" asp-route-id="@Model.Pedido.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(1)">Aprovar Pedido</button>
+                        </div>
+                    </form>
+                    <br> 
+                    <form>
+                        <div class="row">
+                            <button asp-action="ReprovarPedido" asp-route-id="@Model.Pedido.Id" class="btn btn-danger col-lg-12" onclick="mudancaStatus(2)">Reprovar Pedido</button>
                         </div>
                     </form>
 
                 }
-                else if (Model.Pedido.Status == RaellShoes.Models.Enums.StatusPedido.EmTransito)
+                else if (Model.Pedido.Status == RaellShoes.Models.Enums.StatusPedido.EmTransporte)
                 {
                     <form>
                         <div class="row">
-                            <button asp-action="AprovarEntrega" asp-route-id="@Model.Pedido.Id" class="btn btn-dark col-lg-12">Aprovar Entrega</button>
+                            <button asp-action="AprovarEntrega" asp-route-id="@Model.Pedido.Id" class="btn btn-dark col-lg-12" onclick="mudancaStatus(3)">Aprovar Entrega</button>
                         </div>
                     </form>
                 }
@@ -371,6 +377,31 @@
             debugger;
             document.getElementById("data-inativacao").value = dataAtualFormatada();
 
+        }
+
+        function mudancaStatus(valor) {
+            if (valor == 1) {
+                swal({
+                    title: "Pedido aprovado com sucesso!",
+                    text: "O cliente receberá uma notificação em instantes",
+                    icon: "success",
+                    timer: 3000,
+                });
+            } else if (valor == 2) {
+                swal({
+                    title: "Pedido reprovado com sucesso!",
+                    text: "O cliente receberá uma notificação em instantes",
+                    icon: "success",
+                    timer: 3000,
+                });
+            } else if (valor == 3) {
+                swal({
+                    title: "Pedido entregue com sucesso!",
+                    text: "O cliente receberá uma notificação em instantes",
+                    icon: "success",
+                    timer: 3000,
+                });
+            }
         }
     </script>
 

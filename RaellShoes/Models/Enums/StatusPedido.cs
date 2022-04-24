@@ -11,10 +11,12 @@ namespace RaellShoes.Models.Enums
         Selecione,
         [Display(Name = "EM PROCESSAMENTO")]
         EmProcessamento,
-        [Display(Name = "EM TRÂNSITO")]
-        EmTransito,
+        [Display(Name = "EM TRANSPORTE")]
+        EmTransporte,
         [Display(Name = "ENTREGUE")]
         Entregue,
+        [Display(Name = "REPROVADO")]
+        Reprovado,
         [Display(Name = "EM TROCA")]
         EmTroca,
         [Display(Name = "TROCA AUTORIZADA")]
