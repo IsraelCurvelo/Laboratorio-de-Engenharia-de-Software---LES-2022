@@ -116,11 +116,26 @@ namespace RaellShoes.Controllers
 
         public IActionResult ReprovarPedido(Pedido pedidoSolicitacao)
         {
-            return View();
+            Pedido pedido = (Pedido)facade.ConsultarId(pedidoSolicitacao);
+            pedido.Status = Models.Enums.StatusPedido.Reprovado;
+            string conf = facade.Alterar(pedido);
+
+            return RedirectToAction("DetalhesPedido", pedido);
         }
 
         public IActionResult AprovarEntrega(Pedido pedidoSolicitacao)
         {
+            Pedido pedido = (Pedido)facade.ConsultarId(pedidoSolicitacao);
+            pedido.Status = Models.Enums.StatusPedido.Entregue;
+            string conf = facade.Alterar(pedido);
+
+            return RedirectToAction("DetalhesPedido", pedido);
+        }
+
+        public IActionResult VerSolicitacaoTroca(Pedido pedidoSolicitacao)
+        {
+            //IMPLEMENTAR APÒS TROCA
+
             return View();
         }
     }
