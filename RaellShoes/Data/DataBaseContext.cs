@@ -38,5 +38,12 @@ namespace RaellShoes.Data
 
         public DbSet<Troca> Troca { get; set; }
 
+        public DbSet<Fornecedor> Fornecedor { get; set; }
+
+        public DbSet<Categoria> Categoria { get; set; }
+
+        public DbSet<GrupoPrecificacao> GrupoPrecificacao { get; set; }
+        public DbSet<FichaTecnica> FichaTecnica { get; set; }
+
     }
 }
