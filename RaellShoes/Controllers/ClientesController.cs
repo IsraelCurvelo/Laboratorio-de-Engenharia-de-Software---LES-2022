@@ -587,6 +587,15 @@ namespace RaellShoes.Controllers
         }
 
         
+        //**************************SENHA*************************
+
+        [HttpPost]
+        public IActionResult AlterarSenha(TrocarSenhaViewModel senha)
+        {
+           
+            return View();
+        }
+        
         //**************************ERRO*************************
         public IActionResult Error(String message)
         {

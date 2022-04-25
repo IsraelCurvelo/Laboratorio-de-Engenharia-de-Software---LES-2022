@@ -199,13 +199,13 @@
                 {
                     <form>
                         <div class="row">
-                            <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Autorizar</button>
+                            <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12"onclick="mudancaStatus(1)">Autorizar</button>
                         </div>
                     </form>
                     <br>
                     <form>
                         <div class="row">
-                            <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Recusar</button>
+                            <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12"onclick="mudancaStatus(2)">Recusar</button>
                         </div>
                     </form>
 
@@ -226,7 +226,7 @@
                 {
                 <form>
                     <div class="row">
-                        <button asp-action="ConfirmarEntregaProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Confirmar Entrega</button>
+                        <button asp-action="ConfirmarEntregaProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(4)">Confirmar Entrega</button>
                     </div>
                 </form>
                 <br>
@@ -271,7 +271,7 @@
                                 <div class="row">
                                     <form>
                                         <div class="row">
-                                            <button asp-action="ReceberProdutoTrocaSim" asp-route-id="@Model.Id" class="btn btn-success col-lg-12">Sim</button>
+                                            <button asp-action="ReceberProdutoTrocaSim" asp-route-id="@Model.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(3)">Sim</button>
                                         </div>
                                     </form>
                                 </div>
@@ -279,7 +279,7 @@
                                 <div class="row">
                                     <form>
                                         <div class="row">
-                                            <button asp-action="ReceberProdutoTrocaNao" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12">Não</button>
+                                            <button asp-action="ReceberProdutoTrocaNao" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12"onclick="mudancaStatus(3)">Não</button>
                                         </div>
                                     </form>
                                 </div>
@@ -423,6 +423,38 @@
             debugger;
             document.getElementById("data-inativacao").value = dataAtualFormatada();
 
+        }
+
+        function mudancaStatus(valor) {
+            if (valor == 1) {
+                swal({
+                    title: "Troca autorizada com sucesso!",
+                    text: "O cliente receberá uma notificação em instantes",
+                    icon: "success",
+                    timer: 3000,
+                });
+            } else if (valor == 2) {
+                swal({
+                    title: "Troca recusada com sucesso!",
+                    text: "O cliente receberá uma notificação em instantes",
+                    icon: "success",
+                    timer: 3000,
+                });
+            } else if (valor == 3) {
+                swal({
+                    title: "Confirmação de recebimento de produto",
+                    text: "O produto foi recebido com sucesso!",
+                    icon: "success",
+                    timer: 3000,
+                });
+            } else if (valor == 4) {
+                swal({
+                    title: "Troca efetuada com sucesso",
+                    text: "Todo o processo de troca foi realizado!",
+                    icon: "success",
+                    timer: 3000,
+                });
+            }
         }
     </script>
 
