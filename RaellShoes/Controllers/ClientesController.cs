@@ -544,6 +544,7 @@ namespace RaellShoes.Controllers
         }
 
         //**************************TROCA*************************
+        [HttpPost]
         public IActionResult SolicitacaoTroca(Troca troca)
         {
             troca.DataSolicitacao = DateTime.Now;
@@ -558,7 +559,9 @@ namespace RaellShoes.Controllers
 
             string conf = facade.Cadastrar(troca);
 
-            return View("Troca");
+            //Terminar a mudança de status do produto do pedido
+
+            return RedirectToAction("Troca");
         }
 
         public IActionResult Troca()
@@ -592,7 +595,7 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult AlterarSenha(TrocarSenhaViewModel senha)
         {
-           
+           //FALTA IMPLEMENTAR
             return View();
         }
         

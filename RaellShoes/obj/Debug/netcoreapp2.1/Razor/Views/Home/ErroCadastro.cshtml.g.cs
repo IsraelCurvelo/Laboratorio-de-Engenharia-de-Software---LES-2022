@@ -66,7 +66,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(97, 1162, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b827dcefcb514ed0ac1d1e7bf9228feb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "da342f6f95c347a9ba0cca277147af22", async() => {
                 BeginContext(103, 1149, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -106,7 +106,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1261, 2170, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b65fd5a99fed4c11a314944cecb2c1c9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c8870f9175344d71b0aab8d2cd6d9f0f", async() => {
                 BeginContext(1267, 474, true);
                 WriteLiteral(@"
     <!-- ======= Header ======= -->
@@ -122,7 +122,7 @@ using RaellShoes.Models;
         ");
                 EndContext();
                 BeginContext(1741, 928, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d609a0e851914a2da0ab55d92c49b68f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "23e40aa36b534dfd893a344f6b434c04", async() => {
                     BeginContext(1811, 617, true);
                     WriteLiteral(@"
             <div class=""info-wrap"">

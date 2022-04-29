@@ -1078,6 +1078,8 @@
         //Calcular o Frete do endereço
         function calcularFrete() {
             var valorFrete = Math.floor(Math.random() * 20) + 1;
+            //REMOVER APOS TESTE
+            valorFrete = 10;
             document.getElementById('valor-frete').value = "R$ " + valorFrete+",00";
             adicionarValorFreteSubTotal();
         }

@@ -102,7 +102,6 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.pdb
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.dll
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\bin\Debug\netcoreapp2.1\RaellShoes.Views.pdb
-C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfoInputs.cache
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.AssemblyInfo.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csproj.CoreCompileInputs.cache
@@ -151,3 +150,5 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\DetalhesPedido.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Trocas.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\DetalhesTroca.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Clientes\AlterarSenha.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\RaellShoes.csprojAssemblyReference.cache

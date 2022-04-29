@@ -228,7 +228,7 @@ namespace RaellShoes.Data
 
             Produto produto1 = new Produto
             {
-                Nome = "Tênis Adidas Runner",
+                Nome = "Tênis Adidas Busenitz",
                 Modelo = "Az9088",
                 Valor = 299.99,
                 CodigoBarra = "783462478364237846",
@@ -247,6 +247,71 @@ namespace RaellShoes.Data
                 FichaTecnica =  ficha1               
 
             };
+            Produto produto2 = new Produto
+            {
+                Nome = "Tênis Nike Air Force",
+                Modelo = "CT23",
+                Valor = 399.99,
+                CodigoBarra = "525435435345453342",
+                URLFoto = "Nike/Tênis Nike Air Force 1 '07 Masculino/1tenis-air-force-1-07-lv8-emb-CT2301-001-1.jpg",
+                Descricao = "Produto2",
+                Quantidade = 6,
+                Status = Models.Enums.Status.Ativo,
+                DataCadastro = DateTime.Now,
+                GrupoPrecificacao = grupo2,
+                Fornecedor = fornecedor2,
+                Marca = Models.Enums.Marca.Nike,
+                CorPrimariaProduto = Models.Enums.CorPrimariaProduto.Branco,
+                CorSecundariaProduto= Models.Enums.CorSecundariaProduto.Preto,
+                Genero = Models.Enums.GeneroProduto.Masculino,
+                Tamanho = Models.Enums.Tamanho.TrintaNove,
+                FichaTecnica =  ficha1               
+
+            };
+
+            Produto produto3 = new Produto
+            {
+                Nome = "Tênis Adidas Court",
+                Modelo = "F36483",
+                Valor = 199.99,
+                CodigoBarra = "12345678965432333",
+                URLFoto = "Adidas/Tênis Adidas Grand Court Base Masculino/adidas.jpg",
+                Descricao = "Produto3",
+                Quantidade = 6,
+                Status = Models.Enums.Status.Ativo,
+                DataCadastro = DateTime.Now,
+                GrupoPrecificacao = grupo2,
+                Fornecedor = fornecedor2,
+                Marca = Models.Enums.Marca.Adidas,
+                CorPrimariaProduto = Models.Enums.CorPrimariaProduto.Branco,
+                CorSecundariaProduto = Models.Enums.CorSecundariaProduto.Branco,
+                Genero = Models.Enums.GeneroProduto.Masculino,
+                Tamanho = Models.Enums.Tamanho.Quarenta,
+                FichaTecnica = ficha3
+
+            };
+
+            Produto produto4 = new Produto
+            {
+                Nome = "Tênis Nike Court",
+                Modelo = "DJ6260",
+                Valor = 149.99,
+                CodigoBarra = "12345678965432333",
+                URLFoto = "Nike/Tênis Nike Court/1tenis-nike-court-vision-lo-DJ6260-001-3-31628872466.jpg",
+                Descricao = "Produto4",
+                Quantidade = 1,
+                Status = Models.Enums.Status.Inativo,
+                DataCadastro = DateTime.Now,
+                GrupoPrecificacao = grupo3,
+                Fornecedor = fornecedor4,
+                Marca = Models.Enums.Marca.Nike,
+                CorPrimariaProduto = Models.Enums.CorPrimariaProduto.Preto,
+                CorSecundariaProduto = Models.Enums.CorSecundariaProduto.Preto,
+                Genero = Models.Enums.GeneroProduto.Masculino,
+                Tamanho = Models.Enums.Tamanho.Quarenta,
+                FichaTecnica = ficha2
+
+            };
 
 
 
@@ -256,7 +321,7 @@ namespace RaellShoes.Data
             dbContext.AddRange(grupo1, grupo2, grupo3);
             dbContext.AddRange(ficha1, ficha2, ficha3, ficha4, ficha5);
             dbContext.AddRange(admin);
-            dbContext.AddRange(produto1);
+            dbContext.AddRange(produto1, produto2, produto3, produto4);
 
             dbContext.SaveChanges();
         }

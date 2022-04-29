@@ -129,7 +129,7 @@
                             </div>
 
                             <div class="col-lg-1 col-md-1 form-group mt-3 mt-md-0" id="comb-form">
-                                <input type="button" class="btn btn-outline-info btn-sm" id="detalhes-endereco" style="margin-top: 20px; border-radius: 10px " value="Ver detalhes" onclick="mostrarDetalhes(@item.Id)">
+                                <input type="button" class="btn btn-outline-info btn-sm" id="detalhes-endereco(@item.Id)" style="margin-top: 20px; border-radius: 10px " value="Ver detalhes" onclick="mostrarDetalhes(@item.Id)">
                             </div>
 
                         </div>
@@ -497,10 +497,10 @@
 
             if (document.getElementById(id).hidden) {
                 document.getElementById(id).hidden = false
-                document.getElementById('detalhes-endereco').value = "Recolher";
+                document.getElementById('detalhes-endereco('+Id+')').value = "Recolher";
             } else {
                 document.getElementById(id).hidden = true;
-                document.getElementById('detalhes-endereco').value = "Ver detalhes";
+                document.getElementById('detalhes-endereco(' + Id + ')').value = "Ver detalhes";
             }
         }
     </script>
