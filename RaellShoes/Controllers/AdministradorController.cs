@@ -252,5 +252,11 @@ namespace RaellShoes.Controllers
 
             return RedirectToAction("DetalhesTroca", troca);
         }
+
+        //****************PRODUTO********************
+        public IActionResult Produtos()
+        {
+            return View();
+        }
     }
 }
