@@ -561,6 +561,11 @@ namespace RaellShoes.Controllers
 
             //Terminar a mudança de status do produto do pedido
 
+            pedido.Status = Models.Enums.StatusPedido.EmTroca;
+
+            conf = facade.Alterar(pedido);
+
+
             return RedirectToAction("Troca");
         }
 
