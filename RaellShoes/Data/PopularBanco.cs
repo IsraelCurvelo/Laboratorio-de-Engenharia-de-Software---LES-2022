@@ -118,11 +118,12 @@ namespace RaellShoes.Data
 
             Cupom cupom1 = new Cupom
             {
-                Descricao = "20.00 Aniversário",
-                Codigo = "NIVER20",
+                Descricao = "10.00 Aniversário RaellShoes",
+                Codigo = "NIVER10",
                 Status = Models.Enums.Status.Ativo,
                 DataCadastro = DateTime.Now,
-                Desconto = 20
+                Desconto = 10,
+                Promocional = true
             };
 
             GrupoPrecificacao grupo1 = new GrupoPrecificacao

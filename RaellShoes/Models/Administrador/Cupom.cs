@@ -24,18 +24,26 @@ namespace RaellShoes.Models.Administrador
         [Required(ErrorMessage = "{0} obrigatório")]
         public Double Desconto { get; set; }
 
+       
+        public bool Promocional { get; set; }
+
+        public int ClienteId { get; set; }
+
+
         public Cupom()
         {
 
         }
 
-        public Cupom(string nome, Status status, DateTime dataCadastro, string codigo, double desconto)
+        public Cupom(string nome, Status status, DateTime dataCadastro, string codigo, double desconto, bool promocional, int clienteId)
         {
             Descricao = nome;
             Status = status;
             DataCadastro = dataCadastro;
             Codigo = codigo;
             Desconto = desconto;
+            Promocional = promocional;
+            ClienteId = clienteId;
         }
     }
 }

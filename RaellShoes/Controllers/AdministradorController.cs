@@ -232,6 +232,8 @@ namespace RaellShoes.Controllers
             produto.Quantidade += troca.Produto.Quantidade;
             string confirm = facade.Alterar(produto);
 
+            //FALTA GERAR CUPOM SE FOI SELECIONADO ESSA OPCAO
+
             return RedirectToAction("DetalhesTroca", troca);
         }
 
@@ -240,6 +242,8 @@ namespace RaellShoes.Controllers
             Troca troca = (Troca)facade.ConsultarId(trocaSolicitacao);
             troca.Status = Models.Enums.StatusPedido.ProdutoRecebido;
             string conf = facade.Alterar(troca);
+            
+            //FALTA GERAR CUPOM SE FOI SELECIONADO ESSA OPCAO
 
             return RedirectToAction("DetalhesTroca", troca);
         }
