@@ -105,6 +105,13 @@ namespace RaellShoes.Facadee
                 return CadastrarEntidade(troca, log, gerarLog);
             }
 
+            if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
+            {
+                Cupom cupom = (Cupom)entidadeDominio;
+
+                return CadastrarEntidade(cupom, log, gerarLog);
+            }
+
             return null;
             
         }
@@ -550,19 +557,14 @@ namespace RaellShoes.Facadee
         public List<Cupom> BuscarCuponsCliente(int idCliente)
         { 
             List<Cupom> cupomLista = new List<Cupom>();
-            List<EntidadeDominio> cupomClientesResult = dal.Consultar(new CupomCliente { ClienteId = idCliente });
+            List<EntidadeDominio> cuponsClientesResult = dal.Consultar(new Cupom { ClienteId = idCliente });
             List<CupomCliente> cupomClientes = new List<CupomCliente>();
 
-            foreach (var item in cupomClientesResult)
+            foreach (var item in cuponsClientesResult)
             {
-                cupomClientes.Add((CupomCliente)item);
-            }           
+                cupomLista.Add((Cupom)item);
+            }   
 
-            foreach(var item in cupomClientes)
-            {
-                Cupom cupom = new Cupom { Id = item.CupomId };
-                cupomLista.Add((Cupom)dal.ConsultarId(cupom));
-            }
             return cupomLista;
         }
 

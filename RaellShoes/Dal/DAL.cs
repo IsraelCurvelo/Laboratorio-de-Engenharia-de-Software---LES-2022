@@ -143,6 +143,20 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("cupom"):
+                    Cupom cupom = (Cupom)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.Cupom.ToList().Where(x => x.ClienteId == cupom.ClienteId && x.Status == Models.Enums.Status.Ativo))
+                    {
+                        resultado.Add(x);
+                    }
+
+                    foreach (EntidadeDominio x in dbContext.Cupom.ToList().Where(x => x.Promocional == true && x.Status == Models.Enums.Status.Ativo))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
                 case ("pedido"):
                     Pedido pedido = (Pedido)entidadeDominio;
 

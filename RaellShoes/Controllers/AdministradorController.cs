@@ -232,7 +232,23 @@ namespace RaellShoes.Controllers
             produto.Quantidade += troca.Produto.Quantidade;
             string confirm = facade.Alterar(produto);
 
-            //FALTA GERAR CUPOM SE FOI SELECIONADO ESSA OPCAO
+            //FALTA GERAR CUPOM SE FOI SELECIONADO ESSA OPCAO[
+            double valorProduto = produto.Valor;
+            string valorStringProduto = valorProduto.ToString("#########0.00");
+            valorStringProduto = valorStringProduto.Replace(",", ".");
+            Cupom cupom = new Cupom
+            {
+                Status = Models.Enums.Status.Ativo,
+                DataCadastro = DateTime.Now,
+                Codigo = "TROCA_"+troca.Pedido.Cliente.Cpf + valorStringProduto,
+                Desconto = valorProduto,
+                ClienteId = troca.IddoCliente,
+                Promocional = false,
+                Descricao = valorStringProduto + " CUPOM DE TROCA" 
+            };
+
+            string a = facade.Cadastrar(cupom);
+
 
             return RedirectToAction("DetalhesTroca", troca);
         }
