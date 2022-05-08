@@ -578,5 +578,10 @@ namespace RaellShoes.Facadee
             return dal.ConsultarFiltroTrocasAdmin(troca);
         }
 
+        public List<Categoria> ConsultarCategoriasDash()
+        {
+            return dal.ConsultarCategoriasDash();
+        }
+
     }
 }

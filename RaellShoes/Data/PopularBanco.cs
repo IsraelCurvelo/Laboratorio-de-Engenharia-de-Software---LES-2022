@@ -77,7 +77,7 @@ namespace RaellShoes.Data
             Categoria categoria3 = new Categoria
             {
                 DataCadastro = DateTime.Now,
-                Nome = "Social",
+                Nome = "Esporte",
                 Status = Models.Enums.Status.Ativo
             };
 

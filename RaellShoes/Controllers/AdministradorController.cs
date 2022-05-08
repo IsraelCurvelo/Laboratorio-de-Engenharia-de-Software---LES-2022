@@ -38,7 +38,16 @@ namespace RaellShoes.Controllers
                 {
                     return RedirectToAction("Index", "home");
                 }
-                return View();
+                
+                List<Categoria> ListaCategorias = facade.ConsultarCategoriasDash();
+
+
+
+                DashViewModel dashViewModel = new DashViewModel() { MostrarGrafico = false, Categorias = ListaCategorias };
+
+                dashViewModel.TabelaGrafico = new int[ListaCategorias.Count, 8];
+
+                return View(dashViewModel);
             }
             else
                 return RedirectToAction("Login", "Home");
@@ -275,6 +284,13 @@ namespace RaellShoes.Controllers
 
         //****************PRODUTO********************
         public IActionResult Produtos()
+        {
+            return View();
+        }
+
+        //*****************GRAFICO********************
+        [HttpPost]
+        public IActionResult GerarGrafico(DashViewModel dashViewModel)
         {
             return View();
         }

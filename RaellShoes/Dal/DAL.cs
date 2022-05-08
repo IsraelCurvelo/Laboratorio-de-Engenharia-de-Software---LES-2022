@@ -572,6 +572,11 @@ namespace RaellShoes.Dal
             return listaTrocas;
         }
 
+         public List<Categoria> ConsultarCategoriasDash()
+        {
+            return dbContext.Categoria.ToList();
+        }
+
 
     }
 }

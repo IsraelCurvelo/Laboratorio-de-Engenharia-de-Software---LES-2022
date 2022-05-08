@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Data;
 using RaellShoes.Facadee;
 using RaellShoes.Models;
+using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.Enums;
 using RaellShoes.Models.ViewModel;
@@ -76,8 +77,12 @@ namespace RaellShoes.Controllers
             }else if(clienteLogado != null && clienteLogado.Admin)
             {
                 HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
+
+                LoginViewModel loginViewModel = new LoginViewModel();
+
                 
-                return RedirectToAction("Index", "administrador", clienteLogado);
+                
+                return RedirectToAction("Index", "administrador", loginViewModel);
             } 
                 
 
