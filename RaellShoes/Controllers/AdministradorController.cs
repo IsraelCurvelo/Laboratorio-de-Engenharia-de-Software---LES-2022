@@ -293,6 +293,16 @@ namespace RaellShoes.Controllers
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
         {
             var listaPedidos = facade.GerarGrafico(dashViewModel);
+            List<ProdutoPedido> listaProdutos = new List<ProdutoPedido>();
+
+            foreach (var item in listaPedidos)
+            {
+                var listaProdutosDoPedido = facade.ConsultarProdutosDoPedido(item);
+                foreach (var produto in listaProdutosDoPedido)
+                {
+                    listaProdutos.Add(produto);
+                }
+            }
             dashViewModel.MostrarGrafico = true;
             return View("Index", dashViewModel);
         }

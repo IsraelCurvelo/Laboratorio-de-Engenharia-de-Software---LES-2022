@@ -583,6 +583,11 @@ namespace RaellShoes.Dal
            return dbContext.Pedido.Where(x => x.DataCompra >= model.DataInicio && x.DataCompra <= model.DataFinal).ToList();
         }
 
+        public List<ProdutoPedido> ConsultarProdutosDoPedido(Pedido pedido)
+        {
+            return dbContext.ProdutoPedido.Where(x => x.PedidoId == pedido.Id).ToList();
+        }
+
 
     }
 }
