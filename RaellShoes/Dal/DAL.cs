@@ -4,6 +4,7 @@ using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.NN;
+using RaellShoes.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -575,6 +576,11 @@ namespace RaellShoes.Dal
          public List<Categoria> ConsultarCategoriasDash()
         {
             return dbContext.Categoria.ToList();
+        }
+
+        public List<Pedido> GerarGrafico(DashViewModel model)
+        {
+           return dbContext.Pedido.Where(x => x.DataCompra >= model.DataInicio && x.DataCompra <= model.DataFinal).ToList();
         }
 
 

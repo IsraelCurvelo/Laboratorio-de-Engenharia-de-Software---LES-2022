@@ -583,5 +583,10 @@ namespace RaellShoes.Facadee
             return dal.ConsultarCategoriasDash();
         }
 
+       public List<Pedido> GerarGrafico(DashViewModel model)
+        {
+            return dal.GerarGrafico(model);
+        }
+
     }
 }

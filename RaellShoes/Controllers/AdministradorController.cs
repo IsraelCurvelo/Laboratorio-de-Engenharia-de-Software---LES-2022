@@ -292,7 +292,9 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
         {
-            return View();
+            var listaPedidos = facade.GerarGrafico(dashViewModel);
+            dashViewModel.MostrarGrafico = true;
+            return View("Index", dashViewModel);
         }
     }
 }
