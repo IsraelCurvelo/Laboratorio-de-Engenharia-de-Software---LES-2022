@@ -8,6 +8,7 @@ using RaellShoes.Models.Clientes;
 using RaellShoes.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,7 +46,7 @@ namespace RaellShoes.Controllers
 
                 DashViewModel dashViewModel = new DashViewModel() { MostrarGrafico = false, Categorias = ListaCategorias };
 
-                dashViewModel.TabelaGrafico = new int[ListaCategorias.Count, 8];
+                
 
                 return View(dashViewModel);
             }
@@ -303,8 +304,21 @@ namespace RaellShoes.Controllers
                     listaProdutos.Add(produto);
                 }
             }
-            dashViewModel.MostrarGrafico = true;
+            dashViewModel.MostrarGrafico = true;   
+
             return View("Index", dashViewModel);
+        }
+
+        //Retorna dados JSO da população de cada estado
+        public JsonResult PopulacaoGrafico()
+        {
+            var lista = new List<DashVendasPeriodo>();
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,01), Casual = 330, Corrida = 390,Treino = 200, Skate = 100 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,06), Casual = 320, Corrida = 380,Treino = 300, Skate = 120 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 09), Casual = 310, Corrida = 360, Treino = 560, Skate = 190 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 10), Casual = 380, Corrida = 320, Treino = 593, Skate = 220 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 11), Casual = 390, Corrida = 380, Treino = 530, Skate = 400 });
+            return Json(lista);
         }
     }
 }

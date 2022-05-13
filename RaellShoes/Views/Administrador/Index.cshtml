@@ -1,6 +1,7 @@
 ﻿@model RaellShoes.Models.ViewModel.DashViewModel
 
-@{ ViewData["Title"] = "Dash Admin";}
+@{ ViewData["Title"] = "Dash Admin";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,11 +31,11 @@
     <link href="~/assets/antigo/css/style.css" rel="stylesheet">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
 
 </head>
 
-<body>
+<body >
 
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
@@ -80,106 +81,105 @@
             </div>
             <br><br>
             <!--Box Dados Pedido-->
-                <form asp-action="GerarGrafico">
-                    <div class="info-wrap" style=" border-radius:20px">
+            <form asp-action="GerarGrafico">
+                <div class="info-wrap" style=" border-radius:20px">
 
-                        <div class="row">
-                            <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
-                                <h5> <strong style="color: rgb(64, 174, 202)"> Selecione as categorias</strong></h5><br>
+                    <div class="row">
+                        <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
+                            <h5> <strong style="color: rgb(64, 174, 202)"> Selecione as categorias</strong></h5><br>
+                        </div>
+                        <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
+                            <h5> <strong style="color: rgb(64, 174, 202)"> Selecione o período</strong></h5><br>
+                        </div>
+                    </div>
+
+                    <div class="row" style="color: black;  font-style: italic;">
+
+
+                        <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
+                            <div class="form-check form-switch">
+                                <span>Basquete</span>
+                                <input asp-for="Basquete" type="checkbox" class="form-check-input" id="basquete">
                             </div>
-                            <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
-                                <h5> <strong style="color: rgb(64, 174, 202)"> Selecione o período</strong></h5><br>
+                            <div class="form-check form-switch">
+                                <span>Treino</span>
+                                <input asp-for="Treino" type="checkbox" class="form-check-input" id="treino">
+                            </div>
+                            <div class="form-check form-switch">
+                                <span>Casual</span>
+                                <input asp-for="Casual" type="checkbox" class="form-check-input" id="casual">
+                            </div>
+
+                            <div class="form-check form-switch">
+                                <span>Social</span>
+                                <input asp-for="Social" type="checkbox" class="form-check-input" id="social">
                             </div>
                         </div>
 
-                        <div class="row" style="color: black;  font-style: italic;">
-
-                           
-                            <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
-                                <div class="form-check form-switch">
-                                    <span>Basquete</span>
-                                    <input asp-for="Basquete" type="checkbox" class="form-check-input" id="basquete">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <span>Treino</span>
-                                    <input asp-for="Treino" type="checkbox" class="form-check-input" id="treino">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <span>Casual</span>
-                                    <input asp-for="Casual" type="checkbox" class="form-check-input" id="casual">
-                                </div>
-
-                                <div class="form-check form-switch">
-                                    <span>Social</span>
-                                    <input asp-for="Social" type="checkbox" class="form-check-input" id="social">
-                                </div> 
+                        <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
+                            <div class="form-check form-switch">
+                                <span>Skateboarding</span>
+                                <input asp-for="Skateboarding" type="checkbox" class="form-check-input" id="skateboarding">
                             </div>
-
-                            <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
-                                <div class="form-check form-switch">
-                                    <span>Skateboarding</span>
-                                    <input asp-for="Skateboarding" type="checkbox" class="form-check-input" id="skateboarding">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <span>Corrida</span>
-                                    <input asp-for="Corrida" type="checkbox" class="form-check-input" id="corrida">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <span>Outro</span>
-                                    <input asp-for="Outro" type="checkbox" class="form-check-input" id="outro">
-                                </div>                                
+                            <div class="form-check form-switch">
+                                <span>Corrida</span>
+                                <input asp-for="Corrida" type="checkbox" class="form-check-input" id="corrida">
                             </div>
-
-                            <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
-
-
-                                <div class="row">
-
-                                    <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <span>Data inicial</span>
-                                        <input asp-for="DataInicio" class="form-control" id="data-pedido" type="date" placeholder="Data Início" required>
-
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <span>Data Final</span>
-                                        <input asp-for="DataFinal" class="form-control" id="data-pedido" type="date" placeholder="Data Final" required>
-
-                                    </div>
-
-                                </div>
+                            <div class="form-check form-switch">
+                                <span>Outro</span>
+                                <input asp-for="Outro" type="checkbox" class="form-check-input" id="outro">
                             </div>
-
                         </div>
-                            <br>  <br>
+
+                        <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
+
 
                             <div class="row">
-                                <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
 
-                                    <button class="col-lg-12 btn btn-dark " style="color: white; margin-top: 23px">Gerar Gráfico </button><br>
+                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                    <span>Data inicial</span>
+                                    <input asp-for="DataInicio" class="form-control" id="data-pedido" type="date" placeholder="Data Início" required>
 
                                 </div>
+                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                    <span>Data Final</span>
+                                    <input asp-for="DataFinal" class="form-control" id="data-pedido" type="date" placeholder="Data Final" required>
+
+                                </div>
+
                             </div>
+                        </div>
 
+                    </div>
+                    <br>  <br>
 
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
 
+                            <button class="col-lg-12 btn btn-dark " style="color: white; margin-top: 23px">Gerar Gráfico </button><br>
 
                         </div>
-                </form>
+                    </div>
+
+
+
+
+                </div>
+            </form>
             <br><br>
 
             @if (Model.MostrarGrafico)
             {
                 <div class="info-wrap" style=" border-radius:20px" id="grafico">
 
-
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <div id="chart_div" style="width: 100%; height: 500px;"></div>
-
 
                 </div>
 
             }
 
-</section>
+    </section>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -290,38 +290,88 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+ 
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive-main/src/jquery.unobtrusive-ajax.js"></script>
 
     <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+        //google.charts.load('current', { 'packages': ['corechart'] });
+        //google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { packages: ['corechart', 'bar'] });
+        google.charts.setOnLoadCallback(CarregaDados);
 
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Período', 'Casual', 'Esporte', 'Skate'],
-                ['Janeiro-2022', 1000, 400, 600],
-                ['Fevereiro-2022', 1170, 460, 900],
-                ['Março-2022', 660, 1120, 1300],
-                ['Abril-2022', 1030, 666, 897],
-                ['Maio-2022', 899, 876, 600],
-                ['Junho-2022', 677, 999, 567],
-                ['Julho-2022', 999, 99, 66],
-                ['Agosto-2022', 130, 540, 66],
-
-             
-            ]);
-
-            var options = {
-                title: 'Vendas por um período agrupadas por Categorias',
-                hAxis: { title: 'Mês-Ano', titleTextStyle: { color: '#333' } },
-                vAxis: { minValue: 0 }
-            };
-
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+        function CarregaDados() {
+           
+        $.ajax({
+            url: '@Url.Action("PopulacaoGrafico","Administrador")',
+            dataType: "json",
+            type: "GET",
+            error: function(xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data) {
+                GraficoPopulacional(data);
+                return false;
+            }
+        });
+        return false;
         }
+
+        function GraficoPopulacional(data) {
+            var dataArray = [
+                ['Data', 'Casual', 'Corrida', 'Treino', 'Skate', 'Basquete', 'Social', 'Outro']
+            ];
+            $.each(data, function (i, item) {
+                dataArray.push([ item.data, item.casual, item.corrida, item.treino, item.skate, item.basquete, item.social, item.outro]);
+            });
+            var data = google.visualization.arrayToDataTable(dataArray);
+            var options = {
+                title: 'Vendas por Categoria',
+                chartArea: {
+                    width: '80%'
+                },
+                colors: ['green', '#ffab91', 'orange', 'blue', 'gray', 'yellow', 'purple'],
+                hAxis: {
+                    title: 'Data do pedido',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Valor Total'
+                }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            return false;
+        }
+
+        //function drawChart() {
+        //    var data = google.visualization.arrayToDataTable([
+        //        ['Período', "Casual", 'Esporte', 'Skate'],
+        //        ['Janeiro-2022', 1000, 400, 600],
+        //        ['Fevereiro-2022', 1170, 460, 900],
+        //        ['Março-2022', 660, 1120, 1300],
+        //        ['Abril-2022', 1030, 666, 897],
+        //        ['Maio-2022', 899, 876, 600],
+        //        ['Junho-2022', 677, 999, 567],
+        //        ['Julho-2022', 999, 99, 66],
+        //        ['Agosto-2022', 130, 540, 66]
+
+
+        //    ]);
+
+        //    var options = {
+        //        title: 'Vendas por um período agrupadas por Categorias',
+        //        hAxis: { title: 'Mês-Ano', titleTextStyle: { color: '#333' } },
+        //        vAxis: { minValue: 0 }
+        //    };
+
+        //    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        //    chart.draw(data, options);
+        //}
     </script>
 
-    
+
 
 </body>
 

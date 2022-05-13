@@ -1,6 +1,7 @@
 ﻿using RaellShoes.Models.Administrador;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace RaellShoes.Models.ViewModel
         public DateTime DataFinal { get; set; }
         public bool MostrarGrafico { get; set; }
         public List<Categoria> Categorias { get; set; }       
-        public int[,] TabelaGrafico { get; set; }
+        public string[,] TabelaGrafico { get; set; }
 
         public bool Basquete { get; set; }
         public bool Treino { get; set; }
@@ -21,6 +22,8 @@ namespace RaellShoes.Models.ViewModel
         public bool Skateboarding { get; set; }
         public bool Corrida { get; set; }       
         public bool Outro { get; set; }
+
+        public DataTable Tabela { get; set; }
 
         public DashViewModel()
         {
