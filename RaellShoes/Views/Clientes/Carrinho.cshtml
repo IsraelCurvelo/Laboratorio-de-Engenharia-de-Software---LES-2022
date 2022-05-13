@@ -1077,9 +1077,7 @@
 
         //Calcular o Frete do endereço
         function calcularFrete() {
-            var valorFrete = Math.floor(Math.random() * 20) + 1;
-            //REMOVER APOS TESTE
-            valorFrete = 10;
+            var valorFrete = Math.floor(Math.random() * 20) + 1;           
             document.getElementById('valor-frete').value = "R$ " + valorFrete+",00";
             adicionarValorFreteSubTotal();
         }
@@ -1128,13 +1126,32 @@
 
                 subTotal -= valorCupom;
 
-                document.getElementById('subtotal-3').value = "R$ " + subTotal;
+                
 
-                swal({
-                    title: "Cupom inserido com sucesso!",
-                    text: "O valor a ser descontado será de R$ " + valorCupom,
-                    icon: "success",
-                });
+                if (valorCupom > subTotal) {
+                    document.getElementById('valor-cupom').value = "R$ 0.00";
+                    document.getElementById('subtotal-3').value = document.getElementById('subtotal-2').value;
+                    document.getElementById('cupom-carrinho').value = null;
+
+                    swal({
+                        title: "O valor do cupom não pode ser maior que o da compra!",
+                        text: "Por favor, escolha outro!",
+                        icon: "error",
+                    }); 
+
+
+                } else {
+
+                    document.getElementById('subtotal-3').value = "R$ " + subTotal;
+
+                    swal({
+                        title: "Cupom inserido com sucesso!",
+                        text: "O valor a ser descontado será de R$ " + valorCupom,
+                        icon: "success",
+                    });
+                }
+
+               
                
 
             } else {
