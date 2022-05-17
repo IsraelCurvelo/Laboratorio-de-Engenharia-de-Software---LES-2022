@@ -65,6 +65,8 @@ namespace RaellShoes.Models.Administrador
       
         public FichaTecnica FichaTecnica { get; set; }
 
+        public Categoria Categoria { get; set; }
+
 
         public int PedidoId { get; set; }
 
@@ -77,7 +79,7 @@ namespace RaellShoes.Models.Administrador
 
         public ProdutoPedido(string nome, string modelo, double valor, string codigoBarra, string url, string descricao, int quantidade, Status status,
             GrupoPrecificacao grupoPrecificacao, Fornecedor fornecedor, Marca marca, CorPrimariaProduto corPrimariaProduto, CorSecundariaProduto corSecundariaProduto,
-            GeneroProduto generoProduto, Tamanho tamanho, FichaTecnica fichaTecnica, int pedidoId, int produtoEstoqueId)
+            GeneroProduto generoProduto, Tamanho tamanho, FichaTecnica fichaTecnica, int pedidoId, int produtoEstoqueId, Categoria categoria)
         {
             Nome = nome;
             Modelo = modelo;
@@ -97,6 +99,7 @@ namespace RaellShoes.Models.Administrador
             FichaTecnica = fichaTecnica;
             PedidoId = pedidoId;
             ProdutoEstoqueId = produtoEstoqueId;
-    } 
+            Categoria =  categoria;
+        } 
     }
 }

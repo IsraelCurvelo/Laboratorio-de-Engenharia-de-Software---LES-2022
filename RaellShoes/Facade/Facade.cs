@@ -457,7 +457,8 @@ namespace RaellShoes.Facadee
                     CorSecundariaProduto = produto.CorSecundariaProduto,
                     Genero = produto.Genero,
                     Tamanho = produto.Tamanho,
-                    FichaTecnica = produto.FichaTecnica
+                    FichaTecnica = produto.FichaTecnica,
+                    Categoria = produto.Categoria
                 };
 
                 pedido.Produtos.Add(produtoPedido);

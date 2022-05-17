@@ -17,6 +17,6 @@ namespace RaellShoes.Models.ViewModel
 
         public int Outro { get; set; }
 
-        public DateTime Data { get; set; }
+        public string Data { get; set; }
     }
 }

@@ -293,6 +293,57 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
         {
+            var lista = new List<DashVendasPeriodo>();
+            var listaPedidos = facade.GerarGrafico(dashViewModel);
+            List<ProdutoPedido> listaProdutos = new List<ProdutoPedido>();
+
+            foreach (var item in listaPedidos)
+            {
+                var listaProdutosDoPedido = facade.ConsultarProdutosDoPedido(item);
+                foreach (var produto in listaProdutosDoPedido)
+                {                    
+                    if(produto.Categoria.Nome.ToLower() == "casual")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:d/M/yyyy}", item.DataCompra), Casual = (int)produto.Valor , Corrida = 0, Treino = 0, Skate = 0});
+                    }else if(produto.Categoria.Nome.ToLower() == "corrida")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:d/M/yyyy}", item.DataCompra), Casual = 0, Corrida = (int)produto.Valor, Treino = 0, Skate = 0 });
+                    }
+                    else if (produto.Categoria.Nome.ToLower() == "treino")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:d/M/yyyy}", item.DataCompra), Casual = 0, Corrida = 0, Treino = (int)produto.Valor, Skate = 0 });
+                    }
+                    else if (produto.Categoria.Nome.ToLower() == "skate")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:d/M/yyyy}", item.DataCompra), Casual = 0, Corrida = 0, Treino = 0, Skate = (int)produto.Valor });
+                    }
+                }               
+
+                
+            }
+
+            
+            
+
+
+            dashViewModel.MostrarGrafico = true;   
+
+            return View("Index", dashViewModel);
+        }
+
+        //Retorna dados JSO da população de cada estado
+        public JsonResult JsonGrafico()
+        {
+            /*
+            var lista = new List<DashVendasPeriodo>();
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,01), Casual = 330, Corrida = 390,Treino = 200, Skate = 100 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,06), Casual = 320, Corrida = 380,Treino = 300, Skate = 120 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 09), Casual = 310, Corrida = 360, Treino = 560, Skate = 190 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 10), Casual = 380, Corrida = 320, Treino = 593, Skate = 220 });
+            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 11), Casual = 390, Corrida = 380, Treino = 530, Skate = 400 });
+            */
+            DashViewModel dashViewModel = new DashViewModel() { DataInicio = new DateTime(2020, 02, 02), DataFinal = DateTime.Now };
+            var lista = new List<DashVendasPeriodo>();
             var listaPedidos = facade.GerarGrafico(dashViewModel);
             List<ProdutoPedido> listaProdutos = new List<ProdutoPedido>();
 
@@ -301,23 +352,26 @@ namespace RaellShoes.Controllers
                 var listaProdutosDoPedido = facade.ConsultarProdutosDoPedido(item);
                 foreach (var produto in listaProdutosDoPedido)
                 {
-                    listaProdutos.Add(produto);
+                    if (produto.Categoria.Nome.ToLower() == "casual")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Casual = (int)produto.Valor });
+                    }
+                    else if (produto.Categoria.Nome.ToLower() == "corrida")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data =  String.Format("{0:dd/MM/yyyy}", item.DataCompra), Corrida = (int)produto.Valor});
+                    }
+                    else if (produto.Categoria.Nome.ToLower() == "treino")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Treino = (int)produto.Valor });
+                    }
+                    else if (produto.Categoria.Nome.ToLower() == "skate")
+                    {
+                        lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Skate = (int)produto.Valor });
+                    }
                 }
             }
-            dashViewModel.MostrarGrafico = true;   
 
-            return View("Index", dashViewModel);
-        }
 
-        //Retorna dados JSO da população de cada estado
-        public JsonResult PopulacaoGrafico()
-        {
-            var lista = new List<DashVendasPeriodo>();
-            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,01), Casual = 330, Corrida = 390,Treino = 200, Skate = 100 });
-            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05,06), Casual = 320, Corrida = 380,Treino = 300, Skate = 120 });
-            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 09), Casual = 310, Corrida = 360, Treino = 560, Skate = 190 });
-            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 10), Casual = 380, Corrida = 320, Treino = 593, Skate = 220 });
-            lista.Add(new DashVendasPeriodo { Data = new DateTime(2022, 05, 11), Casual = 390, Corrida = 380, Treino = 530, Skate = 400 });
             return Json(lista);
         }
     }

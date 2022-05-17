@@ -72,19 +72,19 @@ namespace RaellShoes.Models.Administrador
         public FichaTecnica FichaTecnica { get; set; }
 
         [Required(ErrorMessage = "{0} obrigatório")]
-        public List<Categoria> Categorias { get; set; }
+        public Categoria Categoria { get; set; }
 
         public Produto()
         {
-            Categorias = new List<Categoria>();
+            
         }
        
 
         public Produto(string nome, string modelo, double valor, string codigoBarra, string url, string descricao, int quantidade, Status status,
             DateTime dataCadastro, GrupoPrecificacao grupoPrecificacao, Fornecedor fornecedor, Marca marca, CorPrimariaProduto corPrimariaProduto, CorSecundariaProduto corSecundariaProduto,
-            GeneroProduto generoProduto, Tamanho tamanho, FichaTecnica fichaTecnica, List<Categoria> categorias)
+            GeneroProduto generoProduto, Tamanho tamanho, FichaTecnica fichaTecnica, Categoria categoria)
         {
-            Categorias = new List<Categoria>();
+            Categoria = categoria;
             Nome = nome;
             Modelo = modelo;
             CodigoBarra = codigoBarra;
@@ -101,12 +101,7 @@ namespace RaellShoes.Models.Administrador
             CorSecundariaProduto = corSecundariaProduto;
             Genero = generoProduto;
             Tamanho = tamanho;
-            FichaTecnica = fichaTecnica;
-
-            foreach (var item in categorias)
-            {
-                Categorias.Add(item);
-            }
+            FichaTecnica = fichaTecnica;           
         } 
     }
 }

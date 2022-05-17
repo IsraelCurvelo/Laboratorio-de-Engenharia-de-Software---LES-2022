@@ -227,6 +227,7 @@ namespace RaellShoes.Data
                 }
             };
 
+            
             Produto produto1 = new Produto
             {
                 Nome = "Tênis Adidas Busenitz",
@@ -245,7 +246,8 @@ namespace RaellShoes.Data
                 CorSecundariaProduto= Models.Enums.CorSecundariaProduto.Branco,
                 Genero = Models.Enums.GeneroProduto.Masculino,
                 Tamanho = Models.Enums.Tamanho.QuarentaDois,
-                FichaTecnica =  ficha1               
+                FichaTecnica =  ficha1 ,
+                Categoria = categoria1
 
             };
             Produto produto2 = new Produto
@@ -266,7 +268,8 @@ namespace RaellShoes.Data
                 CorSecundariaProduto= Models.Enums.CorSecundariaProduto.Preto,
                 Genero = Models.Enums.GeneroProduto.Masculino,
                 Tamanho = Models.Enums.Tamanho.TrintaNove,
-                FichaTecnica =  ficha1               
+                FichaTecnica =  ficha1,
+                Categoria = categoria1
 
             };
 
@@ -288,7 +291,8 @@ namespace RaellShoes.Data
                 CorSecundariaProduto = Models.Enums.CorSecundariaProduto.Branco,
                 Genero = Models.Enums.GeneroProduto.Masculino,
                 Tamanho = Models.Enums.Tamanho.Quarenta,
-                FichaTecnica = ficha3
+                FichaTecnica = ficha3,
+                Categoria = categoria2
 
             };
 
@@ -310,11 +314,9 @@ namespace RaellShoes.Data
                 CorSecundariaProduto = Models.Enums.CorSecundariaProduto.Preto,
                 Genero = Models.Enums.GeneroProduto.Masculino,
                 Tamanho = Models.Enums.Tamanho.Quarenta,
-                FichaTecnica = ficha2
-
-            };
-
-
+                FichaTecnica = ficha2,
+                Categoria = categoria4
+            };     
 
             dbContext.AddRange(fornecedor1, fornecedor2, fornecedor3, fornecedor4, fornecedor5);
             dbContext.AddRange(categoria1, categoria2, categoria3, categoria4, categoria5, categoria6, categoria7, categoria8);

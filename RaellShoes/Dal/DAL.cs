@@ -233,7 +233,7 @@ namespace RaellShoes.Dal
                 {
                     Produto produto = dbContext.Produto
                         .Include(obj => obj.FichaTecnica)
-                        .Include(obj => obj.Categorias)
+                        .Include(obj => obj.Categoria)
                         .Include(obj => obj.Fornecedor)
                         .Include(obj => obj.GrupoPrecificacao)                        
                         .FirstOrDefault(x => x.Id == entidadeDominio.Id);
@@ -255,6 +255,7 @@ namespace RaellShoes.Dal
                         .Include(obj => obj.FichaTecnica)                        
                         .Include(obj => obj.Fornecedor)
                         .Include(obj => obj.GrupoPrecificacao)
+                         .Include(obj => obj.Categoria)
                         .FirstOrDefault(x => x.Id == entidadeDominio.Id);
 
                     return produto;
@@ -427,7 +428,7 @@ namespace RaellShoes.Dal
             {
                 Produto produtoAtivo = dbContext.Produto.Where(x=> x.Status == Models.Enums.Status.Ativo)
                     .Include(obj => obj.FichaTecnica)
-                    .Include(obj => obj.Categorias)
+                    .Include(obj => obj.Categoria)
                     .Include(obj => obj.Fornecedor)
                     .Include(obj => obj.GrupoPrecificacao)
                     .FirstOrDefault(x => x.Id == produto.Id);
@@ -580,12 +581,13 @@ namespace RaellShoes.Dal
 
         public List<Pedido> GerarGrafico(DashViewModel model)
         {
-           return dbContext.Pedido.Where(x => x.DataCompra >= model.DataInicio && x.DataCompra <= model.DataFinal).ToList();
+           return dbContext.Pedido.Where(x => x.DataCompra >= model.DataInicio && x.DataCompra <= model.DataFinal).OrderBy(x => x.DataCompra).ToList();
         }
 
         public List<ProdutoPedido> ConsultarProdutosDoPedido(Pedido pedido)
         {
-            return dbContext.ProdutoPedido.Where(x => x.PedidoId == pedido.Id).ToList();
+            return dbContext.ProdutoPedido.Where(x => x.PedidoId == pedido.Id)
+                .Include(obj => obj.Categoria).ToList();
         }
 
 

@@ -303,7 +303,7 @@
         function CarregaDados() {
            
         $.ajax({
-            url: '@Url.Action("PopulacaoGrafico","Administrador")',
+            url: '@Url.Action("JsonGrafico","Administrador")',
             dataType: "json",
             type: "GET",
             error: function(xhr, status, error) {
@@ -311,14 +311,14 @@
                 toastr.error(err.message);
             },
             success: function(data) {
-                GraficoPopulacional(data);
+                GraficoVendas(data);
                 return false;
             }
         });
         return false;
         }
 
-        function GraficoPopulacional(data) {
+        function GraficoVendas(data) {
             var dataArray = [
                 ['Data', 'Casual', 'Corrida', 'Treino', 'Skate', 'Basquete', 'Social', 'Outro']
             ];
