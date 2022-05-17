@@ -12,6 +12,7 @@ namespace RaellShoes.Models.ViewModel
         public int Corrida { get; set; }
         public int Skate { get; set; }
         public int Basquete { get; set; }
+        public int Esporte { get; set; }
 
         public int Social { get; set; }
 

@@ -320,10 +320,10 @@
 
         function GraficoVendas(data) {
             var dataArray = [
-                ['Data', 'Casual', 'Corrida', 'Treino', 'Skate', 'Basquete', 'Social', 'Outro']
+                ['Data', 'Casual', 'Corrida', 'Treino', 'Skate', 'Basquete', 'Social', 'Outro', 'Esporte']
             ];
             $.each(data, function (i, item) {
-                dataArray.push([ item.data, item.casual, item.corrida, item.treino, item.skate, item.basquete, item.social, item.outro]);
+                dataArray.push([ item.data, item.casual, item.corrida, item.treino, item.skate, item.basquete, item.social, item.outro, item.esporte]);
             });
             var data = google.visualization.arrayToDataTable(dataArray);
             var options = {
@@ -331,7 +331,7 @@
                 chartArea: {
                     width: '80%'
                 },
-                colors: ['green', '#ffab91', 'orange', 'blue', 'gray', 'yellow', 'purple'],
+                colors: ['green', '#ffab91', 'orange', 'blue', 'gray', 'yellow', 'purple', 'red'],
                 hAxis: {
                     title: 'Data do pedido',
                     minValue: 0
