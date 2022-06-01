@@ -149,12 +149,10 @@
 
                         </div>
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span>Tipo de Calçado</span>
+                            <span>Fornecedor</span>
                             <br>
-                            <select class="form-select">
+                            <select asp-for="Produto.Fornecedor.Id" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select">
                                 <option></option>
-                                <option value="1">Couro</option>
-                                <option value="2">Tecido</option>
                             </select>
                         </div>
 
@@ -172,13 +170,7 @@
                                    minlength="3">
                         </div>
 
-                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span>Fornecedor</span>
-                            <br>
-                            <select asp-for="Produto.Fornecedor.Id" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select">
-                                <option></option>
-                            </select>
-                        </div>
+                        
 
 
 
@@ -291,7 +283,7 @@
                                             <span>Marca</span>
                                             <br>
                                             <select asp-for="Produto.Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()" class="form-select" required>
-                                                <option></option>                                                
+                                                <option></option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -319,9 +311,9 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Cor</span>
                                             <br>
-                                            <select asp-for="Produto.CorPrimariaProduto"  asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select" required>
+                                            <select asp-for="Produto.CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select" required>
                                                 <option></option>
-                                                
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -332,7 +324,7 @@
                                             <span>Gênero</span>
                                             <br>
                                             <select asp-for="Produto.Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()" class="form-select" required>
-                                                <option></option>                                                
+                                                <option></option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -342,8 +334,8 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Status</span>
                                             <br>
-                                            <select asp-for="Produto.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"class="form-select" required>
-                                                <option></option>                                                
+                                            <select asp-for="Produto.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()" class="form-select" required>
+                                                <option></option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -355,7 +347,7 @@
                                             <br>
                                             <select asp-for="Produto.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" class="form-select" required>
                                                 <option></option>
-                                                
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -365,11 +357,9 @@
                                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Grupo de Precificação</span>
                                             <br>
-                                            <select class="form-select" required>
+                                            <select class="form-select" required asp-for="Produto.GrupoPrecificacao.Id" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))">
                                                 <option></option>
-                                                <option value="1">1 Sem 2022</option>
-                                                <option value="2">2 Sem 2021</option>
-                                                <option value="1">1 Sem 2021</option>
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -386,20 +376,20 @@
                                         </div>
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Data de Entrada</span>
-                                            <input asp-for="Produto.DataCadastro"  class="form-control" id="data-entrada-novo-produto" type="date"
+                                            <input asp-for="Produto.DataCadastro" class="form-control" id="data-entrada-novo-produto" type="date"
                                                    placeholder="Data de Entrada" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
                                             </div>
                                         </div>
 
+                                          
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                            <span>Tipo de Calçado</span>
+                                            <span>Categoria</span>
                                             <br>
-                                            <select class="form-select" required>
+                                            <select asp-for="Produto.Categoria.Id" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))" class="form-select" required>
                                                 <option></option>
-                                                <option value="1">Couro</option>
-                                                <option value="2">Tecido</option>
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -427,12 +417,9 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Fornecedor</span>
                                             <br>
-                                            <select class="form-select" required>
+                                            <select asp-for="Produto.Fornecedor.Id" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select" required>
                                                 <option></option>
-                                                <option value="1">Company Shoes</option>
-                                                <option value="2">Nike Brasil</option>
-                                                <option value="3">Shoes Brasil</option>
-                                                <option value="4">Adidas Outlet</option>
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -458,71 +445,9 @@
                                         </div>
                                     </div>
 
-                                    <br>
+                                   
 
-                                    <div class="row">
-                                        <h5> <strong style="color: rgb(64, 174, 202)"> Categorias</strong></h5><br>
-                                    </div>
-
-                                    <div class="row" style="color: black;  font-style: italic;">
-
-                                        <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="casual">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Casual
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="treino">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Treino
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="corrida">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Corrida
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="ciclismo">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Ciclismo
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="basquete">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Basquete
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="social">
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    Social
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col col-lg-3 col-md-6 form-group mt-3 mt-md-0">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="skate">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Skateboarding
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="outro">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    Outro
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                
                                     <br> <br>
 
                                     <div class="row">
@@ -550,7 +475,7 @@
 
                                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Solado</span>
-                                            <input asp-for="Produto.FichaTecnica.Solado"class="form-control" id="name" placeholder="Digite o tipo de material"
+                                            <input asp-for="Produto.FichaTecnica.Solado" class="form-control" id="name" placeholder="Digite o tipo de material"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -570,7 +495,7 @@
                                             <span>Altura do cano</span>
                                             <br>
                                             <select asp-for="Produto.FichaTecnica.Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()" class="form-select" required>
-                                                <option></option>                                               
+                                                <option></option>
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -588,7 +513,7 @@
 
                                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Cuidados com o Produto</span>
-                                            <textarea asp-for="Produto.FichaTecnica.Cuidados"type="text" name="cuidados-produto" class="form-control" id="cuidados-produto"
+                                            <textarea asp-for="Produto.FichaTecnica.Cuidados" type="text" name="cuidados-produto" class="form-control" id="cuidados-produto"
                                                       placeholder="Principais cuidados com o Produto" data-rule="minlen:3" rows="5"
                                                       required></textarea>
                                             <div class="invalid-feedback">
@@ -602,7 +527,7 @@
                                     <div>
                                         <button class="btn btn-success col-lg-12">Salvar</button>
                                     </div>
-                            </form>
+</form>
                             <br>
                         </div>
 
