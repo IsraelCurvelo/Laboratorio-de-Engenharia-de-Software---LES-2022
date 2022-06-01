@@ -1,4 +1,4 @@
-﻿@model RaellShoes.Models.Administrador.Produto
+﻿@model RaellShoes.Models.ViewModel.ProdutoViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,146 +81,114 @@
         </div>
 
         <div class="container mt-5">
-            <!--Box Clientes-->
-            <div class="info-wrap" style=" border-radius:20px">
+            <form asp-action="ProcurarProduto" class="needs-validation" novalidate>
+                <!--Box Clientes-->
+                <div class="info-wrap" style=" border-radius:20px">
 
-                <h5><strong style="  color: rgb(64, 174, 202);">Procurar Produto </strong></h5><br>
+                    <h5><strong style="  color: rgb(64, 174, 202);">Procurar Produto </strong></h5><br>
 
-                <div class="row">
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Marca</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Adidas</option>
-                            <option value="2">Nike</option>
-                            <option value="3">New Balance</option>
-                            <option value="4">Mizuno</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Nome</span>
-                        <input class="form-control" id="name" placeholder="Digite o nome do produto" minlength="3">
-                    </div>
-                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Modelo</span>
-                        <input class="form-control" id="cpf" placeholder="Digite o modelo do produto">
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Cor</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Branco</option>
-                            <option value="2">Preto</option>
-                            <option value="3">Azul</option>
-                            <option value="4">Vermelho</option>
-                            <option value="5">Rosa</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Gênero</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Feminino</option>
-                            <option value="3">Unissex</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Status</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Ativo</option>
-                            <option value="2">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Tamanho</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">35</option>
-                            <option value="2">36</option>
-                            <option value="3">37</option>
-                            <option value="4">38</option>
-                            <option value="5">39</option>
-                            <option value="6">40</option>
-                            <option value="7">40</option>
-                            <option value="8">41</option>
-                            <option value="9">42</option>
-                            <option value="10">43</option>
-                            <option value="11">44</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Grupo de Precificação</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">1 Sem 2022</option>
-                            <option value="2">2 Sem 2021</option>
-                            <option value="1">1 Sem 2021</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Valor</span>
-                        <input class="form-control" id="name" placeholder="Digite o valor do produto" minlength="3">
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Data de Entrada</span>
-                        <input class="form-control" id="dataNascimento" type="date"
-                               placeholder="Data de Entrada">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Marca</span>
+                            <br>
+                            <select asp-for="Produto.Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome</span>
+                            <input asp-for="Produto.Nome" class="form-control" id="name" placeholder="Digite o nome do produto" minlength="3">
+                        </div>
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Modelo</span>
+                            <input asp-for="Produto.Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto">
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cor</span>
+                            <br>
+                            <select asp-for="Produto.CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Gênero</span>
+                            <br>
+                            <select asp-for="Produto.Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Status</span>
+                            <br>
+                            <select asp-for="Produto.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tamanho</span>
+                            <br>
+                            <select asp-for="Produto.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Grupo de Precificação</span>
+                            <br>
+                            <select asp-for="Produto.GrupoPrecificacao" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Valor</span>
+                            <input asp-for="Produto.Valor" class="form-control" id="name" placeholder="Digite o valor do produto" minlength="3">
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Data de Entrada</span>
+                            <input asp-for="Produto.DataCadastro" class="form-control" id="dataNascimento" type="date"
+                                   placeholder="Data de Entrada">
 
-                    </div>
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Tipo de Calçado</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Couro</option>
-                            <option value="2">Tecido</option>
-                        </select>
-                    </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tipo de Calçado</span>
+                            <br>
+                            <select class="form-select">
+                                <option></option>
+                                <option value="1">Couro</option>
+                                <option value="2">Tecido</option>
+                            </select>
+                        </div>
 
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Categoria</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Esporte</option>
-                            <option value="2">Casual</option>
-                        </select>
-                    </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Categoria</span>
+                            <br>
+                            <select asp-for="Produto.Categoria" class="form-select" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))">
+                                <option></option>
+                            </select>
+                        </div>
 
-                    <div class="col-lg-8 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Código de Barras</span>
-                        <input class="form-control" id="name" placeholder="Digite o código do produto"
-                               minlength="3">
-                    </div>
+                        <div class="col-lg-8 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Código de Barras</span>
+                            <input asp-for="Produto.CodigoBarra" class="form-control" id="name" placeholder="Digite o código do produto"
+                                   minlength="3">
+                        </div>
 
-                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Fornecedor</span>
-                        <br>
-                        <select class="form-select">
-                            <option></option>
-                            <option value="1">Company Shoes</option>
-                            <option value="2">Nike Brasil</option>
-                            <option value="3">Shoes Brasil</option>
-                            <option value="4">Adidas Outlet</option>
-                        </select>
-                    </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Fornecedor</span>
+                            <br>
+                            <select asp-for="Produto.Fornecedor" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select">
+                                <option></option>
+                            </select>
+                        </div>
 
 
 
-                </div><br><br>
-                <button class="col-lg-12 btn btn-success btn-sm" style="color: white;"
-                        onclick="mostrarResultado()">
-                    Procurar
-                </button><br>
-            </div>
+                    </div><br><br>
+                    <button class="col-lg-12 btn btn-success btn-sm" style="color: white;"
+                            onclick="mostrarResultado()">
+                        Procurar
+                    </button><br>
+                </div>
+             </form>
         </div>
 
 
@@ -322,7 +290,7 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Marca</span>
                                             <br>
-                                            <select asp-for="Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()" class="form-select" required>
+                                            <select asp-for="Produto.Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()" class="form-select" required>
                                                 <option></option>                                                
                                             </select>
                                             <div class="invalid-feedback">
@@ -332,7 +300,7 @@
 
                                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Nome</span>
-                                            <input asp-for="Nome" class="form-control" id="name" placeholder="Digite o nome do produto"
+                                            <input asp-for="Produto.Nome" class="form-control" id="name" placeholder="Digite o nome do produto"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -341,7 +309,7 @@
 
                                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Modelo</span>
-                                            <input asp-for="Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto"
+                                            <input asp-for="Produto.Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -351,7 +319,7 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Cor</span>
                                             <br>
-                                            <select asp-for="CorPrimariaProduto"  asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select" required>
+                                            <select asp-for="Produto.CorPrimariaProduto"  asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()" class="form-select" required>
                                                 <option></option>
                                                 
                                             </select>
@@ -363,7 +331,7 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Gênero</span>
                                             <br>
-                                            <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()" class="form-select" required>
+                                            <select asp-for="Produto.Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.GeneroProduto>()" class="form-select" required>
                                                 <option></option>                                                
                                             </select>
                                             <div class="invalid-feedback">
@@ -374,7 +342,7 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Status</span>
                                             <br>
-                                            <select asp-for="Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"class="form-select" required>
+                                            <select asp-for="Produto.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"class="form-select" required>
                                                 <option></option>                                                
                                             </select>
                                             <div class="invalid-feedback">
@@ -385,7 +353,7 @@
                                         <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Tamanho</span>
                                             <br>
-                                            <select asp-for="Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" class="form-select" required>
+                                            <select asp-for="Produto.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" class="form-select" required>
                                                 <option></option>
                                                 
                                             </select>
@@ -410,7 +378,7 @@
 
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Valor</span>
-                                            <input asp-for="Valor" class="form-control" id="name" placeholder="Digite o valor do produto"
+                                            <input asp-for="Produto.Valor" class="form-control" id="name" placeholder="Digite o valor do produto"
                                                    onkeyup="formatarMoeda(this)" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -418,7 +386,7 @@
                                         </div>
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Data de Entrada</span>
-                                            <input asp-for="DataCadastro"  class="form-control" id="data-entrada-novo-produto" type="date"
+                                            <input asp-for="Produto.DataCadastro"  class="form-control" id="data-entrada-novo-produto" type="date"
                                                    placeholder="Data de Entrada" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -441,7 +409,7 @@
 
                                         <div class="col-lg-8 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Código de Barras</span>
-                                            <input asp-for="CodigoBarra" class="form-control" id="name"
+                                            <input asp-for="Produto.CodigoBarra" class="form-control" id="name"
                                                    placeholder="Digite o código do produto" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -450,7 +418,7 @@
 
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Quantidade</span>
-                                            <input asp-for="Quantidade" class="form-control" id="qtd" type="number" min="0" required>
+                                            <input asp-for="Produto.Quantidade" class="form-control" id="qtd" type="number" min="0" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
                                             </div>
@@ -473,7 +441,7 @@
 
                                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>URL Foto do Produto</span>
-                                            <input asp-for="URLFoto" class="form-control" id="url"
+                                            <input asp-for="Produto.URLFoto" class="form-control" id="url"
                                                    placeholder="Cole a URl da foto armazenada do produto" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -482,7 +450,7 @@
 
                                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Descrição</span>
-                                            <textarea asp-for="Descricao" type="text" name="descricao" class="form-control" id="descricao"
+                                            <textarea asp-for="Produto.Descricao" type="text" name="descricao" class="form-control" id="descricao"
                                                       placeholder="Descrição do Produto" data-rule="minlen:3" rows="10" required></textarea>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -564,7 +532,7 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Material do Calçado</span>
-                                            <input asp-for="FichaTecnica.Material" class="form-control" id="material-calcado"
+                                            <input asp-for="Produto.FichaTecnica.Material" class="form-control" id="material-calcado"
                                                    placeholder="Digite o tipo de material" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -573,7 +541,7 @@
 
                                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Palmilha</span>
-                                            <input asp-for="FichaTecnica.Palmilha" class="form-control" id="palmilha"
+                                            <input asp-for="Produto.FichaTecnica.Palmilha" class="form-control" id="palmilha"
                                                    placeholder="Digite o tipo de material" required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -582,7 +550,7 @@
 
                                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Solado</span>
-                                            <input asp-for="FichaTecnica.Solado"class="form-control" id="name" placeholder="Digite o tipo de material"
+                                            <input asp-for="Produto.FichaTecnica.Solado"class="form-control" id="name" placeholder="Digite o tipo de material"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -591,7 +559,7 @@
 
                                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Garantia (Meses)</span>
-                                            <input asp-for="FichaTecnica.GarantiaMeses" class="form-control" id="name" placeholder="Digite o tempo de garantia"
+                                            <input asp-for="Produto.FichaTecnica.GarantiaMeses" class="form-control" id="name" placeholder="Digite o tempo de garantia"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -601,7 +569,7 @@
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Altura do cano</span>
                                             <br>
-                                            <select asp-for="FichaTecnica.Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()" class="form-select" required>
+                                            <select asp-for="Produto.FichaTecnica.Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()" class="form-select" required>
                                                 <option></option>                                               
                                             </select>
                                             <div class="invalid-feedback">
@@ -611,7 +579,7 @@
 
                                         <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Limpeza</span>
-                                            <input asp-for="FichaTecnica.Limpeza" class="form-control" id="name" placeholder="Digite o tipo de limpeza"
+                                            <input asp-for="Produto.FichaTecnica.Limpeza" class="form-control" id="name" placeholder="Digite o tipo de limpeza"
                                                    required>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -620,7 +588,7 @@
 
                                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Cuidados com o Produto</span>
-                                            <textarea asp-for="FichaTecnica.Cuidados"type="text" name="cuidados-produto" class="form-control" id="cuidados-produto"
+                                            <textarea asp-for="Produto.FichaTecnica.Cuidados"type="text" name="cuidados-produto" class="form-control" id="cuidados-produto"
                                                       placeholder="Principais cuidados com o Produto" data-rule="minlen:3" rows="5"
                                                       required></textarea>
                                             <div class="invalid-feedback">
@@ -772,7 +740,7 @@
         }
 
         function setarData() {
-            debugger;
+            
             document.getElementById("data-entrada-novo-produto").value = dataAtualFormatada();
 
         }

@@ -185,6 +185,34 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("categoria"):
+                    Categoria categoria = (Categoria)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.Categoria.ToList().Where(x => x.Status == Models.Enums.Status.Ativo))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
+                case ("grupoprecificacao"):
+                    GrupoPrecificacao grupo = (GrupoPrecificacao)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.GrupoPrecificacao.ToList().Where(x => x.Status == Models.Enums.Status.Ativo))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
+                case ("fornecedor"):
+                    Fornecedor fornecedor = (Fornecedor)entidadeDominio;
+
+                    foreach (EntidadeDominio x in dbContext.Fornecedor.ToList().Where(x => x.Status == Models.Enums.Status.Ativo))
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
+
                 default:
                     return null;
             }
