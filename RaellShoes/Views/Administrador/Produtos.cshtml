@@ -134,7 +134,7 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Grupo de Precificação</span>
                             <br>
-                            <select asp-for="Produto.GrupoPrecificacao" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))" class="form-select">
+                            <select asp-for="Produto.GrupoPrecificacao.Id" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))" class="form-select">
                                 <option></option>
                             </select>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Categoria</span>
                             <br>
-                            <select asp-for="Produto.Categoria" class="form-select" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))">
+                            <select asp-for="Produto.Categoria.Id" class="form-select" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))">
                                 <option></option>
                             </select>
                         </div>
@@ -175,7 +175,7 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Fornecedor</span>
                             <br>
-                            <select asp-for="Produto.Fornecedor" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select">
+                            <select asp-for="Produto.Fornecedor.Id" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))" class="form-select">
                                 <option></option>
                             </select>
                         </div>
