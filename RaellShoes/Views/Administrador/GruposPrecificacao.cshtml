@@ -1,4 +1,4 @@
-﻿@model RaellShoes.Models.ViewModel.FornecedorViewModel
+﻿@model RaellShoes.Models.ViewModel.GrupoPrecificacaoViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RaellShoes - Admin - Fornecedor</title>
+    <title>RaellShoes - Admin - Grupo de Precificação</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -67,62 +67,68 @@
             <!--Box Clientes-->
             <div class="info-wrap" style=" border-radius:20px">
                 <div class="row">
-                    <h5><strong style="  color: rgb(13, 236, 181);">Cadastrar Fornecedor </strong></h5><br>
+                    <h5><strong style="  color: rgb(13, 236, 181);">Cadastrar Grupo de Precificação </strong></h5><br>
 
                 </div>
                 <br>
                 <div class="row">
-                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px" value="Novo Fornecedor"
-                           data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px"
+                           value="Novo Grupo de Precificação" data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
                     <br>
                 </div>
             </div>
         </div>
 
         <div class="container mt-5">
-            <!--Box Fornecedor-->
-            <h5> <strong style="padding-left: 10px; color: rgb(13, 236, 181);"> Fornecedores Existentes</strong></h5>
+            <!--Box Grupo-->
+            <h5> <strong style="padding-left: 10px; color: rgb(13, 236, 181);"> Grupos Existentes</strong></h5>
             <br>
 
-            @foreach (var item in @Model.Fornecedores)
+            @foreach (var item in Model.GruposPrecificacao)
             {
-                <!--Box Fornecedor-->
+                <!--Box Grupo-->
                 <div class="info-wrap" style=" border-radius:20px">
-                    <form class="needs-validation" novalidate asp-action="AlterarFornecedor">
+                    <form class="needs-validation" novalidate asp-action="AlterarGrupoPrecificacao">
 
                         <div class="row">
-                            <div class="col-lg-5 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                 <span>Nome</span>
-                                <input asp-for="@item.Nome" name="Nome" class="form-control" id="nome" placeholder="Nome do Fornecedor" required>
-
+                                <input asp-for="@item.Nome" name="Nome" class="form-control" id="nome" placeholder="Nome do Grupo de Precificação" required>
                                 <div class="invalid-feedback">
                                     *Campo obrigatório
                                 </div>
                             </div>
 
-                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                <span>CNPJ</span>
-                                <input asp-for="@item.CNPJ" name="CNPJ" class="form-control" id="cnpj" type="text" required>
-                                <div class="invalid-feedback">
-                                    *Campo obrigatório
-                                </div>
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Tipo de Grupo</span>
+                                <br>
+                                <select asp-for="@item.TipoGrupoPrecificacao" name="TipoGrupoPrecificacao" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoGrupoPrecificacao>()"
+                                        class="form-select" required>
+                                </select>
                             </div>
-
-                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                 <span>Status</span>
                                 <br>
-                                <select asp-for="@item.Status" name="Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
-                                        class="form-select" required>
+                                <select asp-for="@item.Status" name="Status"
+                                        asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()" class="form-select"
+                                        required>
                                 </select>
                                 <div class="invalid-feedback">
                                     *Campo obrigatório
                                 </div>
                             </div>
 
-
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Margem Min(%)</span>
+                                <input asp-for="@item.MargemMin" name="MargemMin" class="form-control" id="margem-min" type="number" min="0" required>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Margem Max(%)</span>
+                                <input asp-for="@item.MargemMax" name="MargemMax" class="form-control" id="margem-max" type="number" min="0" required>
+                            </div>
                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                 <span>Data de Cadastro</span>
-                                <input asp-for="@item.DataCadastro" name="DataCadastro" class="form-control" id="data-cadastro" type="date" required readonly>
+                                <input asp-for="@item.DataCadastro" class="form-control" id="data-cadastro" type="date" name="DataCadastro" required readonly>
 
                                 <div class="invalid-feedback">
                                     *Campo obrigatório
@@ -143,7 +149,7 @@
                                 <div class="col-lg-6">
                                     <form>
                                         <input type="hidden" asp-for="@item.Id" name="Id" />
-                                        <button asp-action="ExcluirFornecedor" type="submit" class="btn btn-danger btn-sm  col-lg-12"
+                                        <button asp-action="ExcluirGrupoPrecificacao" type="submit" class="btn btn-danger btn-sm  col-lg-12"
                                                 style="border-radius: 10px;">
                                             Excluir
                                         </button>
@@ -153,11 +159,11 @@
                         </div>
                     </form>
                 </div><br>
+
             }
 
 
-
-            <!-- Modal Novo Fornecedor -->
+            <!-- Modal Novo Cupom -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
@@ -167,46 +173,61 @@
                             <section id="cliente" class="cliente">
                                 <div class="container" style=" margin-bottom: -30px;">
                                     <div class="section-title2">
-                                        <h2> <span style="color: rgb(13, 236, 181);">Novo Fornecedor </span></h2>
+                                        <h2> <span style="color: rgb(13, 236, 181);">Novo Grupo de Precificação </span></h2>
                                     </div>
                                 </div>
 
                                 <!--Form-->
                                 <div class="container mt-5">
-                                    <div class="info-wrap" style=" border-radius:20px">
-                                        <form class="needs-validation" novalidate asp-action="NovoFornecedor">
+                                    <form class="needs-validation" novalidate asp-action="NovoGrupoPrecificacao">
+                                        <div class="info-wrap">
 
+                                            <h4> <strong style="padding-left: 10px; color: rgb(13, 236, 181);"> Cadastrar Grupo</strong></h4>
+                                            <br>
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                <div class="col-lg-5 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Nome</span>
-                                                    <input asp-for="Fornecedor.Nome" class="form-control" id="nome" placeholder="Nome do Fornecedor" required>
-
+                                                    <input asp-for="GrupoPrecificacao.Nome" class="form-control" id="nome"
+                                                           placeholder="Nome do Grupo de Precificação" required>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                                    <span>CNPJ</span>
-                                                    <input asp-for="Fornecedor.CNPJ" class="form-control" id="cnpj" type="text" required>
-
+                                                <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Tipo de Grupo</span>
+                                                    <br>
+                                                    <select asp-for="GrupoPrecificacao.TipoGrupoPrecificacao"
+                                                            asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoGrupoPrecificacao>()" class="form-select"
+                                                            required>
+                                                    </select>
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
                                                     </div>
                                                 </div>
 
-
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Margem Min(%)</span>
+                                                    <input asp-for="GrupoPrecificacao.MargemMin" class="form-control" id="margem-min" type="number" min="0"
+                                                           required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>Margem Max(%)</span>
+                                                    <input asp-for="GrupoPrecificacao.MargemMax" class="form-control" id="margem-max" type="number" min="0"
+                                                           required>
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
 
                                                 <br> <br>
                                                 <div>
                                                     <button class="btn btn-success col-lg-12">Salvar</button>
                                                 </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-
+                                    </form>
                                     <br>
                                 </div>
 
@@ -336,22 +357,6 @@
                 document.getElementById("resultado").hidden = false;
             else
                 document.getElementById("resultado").hidden = true;
-        }
-
-        function dataAtualFormatada() {
-            var data = new Date(),
-                dia = data.getDate().toString(),
-                diaF = (dia.length == 1) ? '0' + dia : dia,
-                mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-                mesF = (mes.length == 1) ? '0' + mes : mes,
-                anoF = data.getFullYear();
-            return anoF + "-" + mesF + "-" + diaF;
-        }
-
-        function setarData() {
-            debugger;
-            document.getElementById("data-cadastro-fornecedor").value = dataAtualFormatada();
-
         }
     </script>
 

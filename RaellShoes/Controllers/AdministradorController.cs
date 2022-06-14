@@ -694,5 +694,44 @@ namespace RaellShoes.Controllers
         }
 
         #endregion
+
+        #region GrupoPrecificacao
+
+        public IActionResult GruposPrecificacao()
+        {
+            List<GrupoPrecificacao> grupos = facade.ListarGruposPrecificacao();
+            return View(new GrupoPrecificacaoViewModel() { GruposPrecificacao = grupos });
+        }
+        [HttpPost]
+        public IActionResult NovoGrupoPrecificacao(GrupoPrecificacao grupoPrecificacao)
+        {
+            if (grupoPrecificacao.Nome != null && grupoPrecificacao.TipoGrupoPrecificacao != Models.Enums.TipoGrupoPrecificacao.Selecione && grupoPrecificacao.MargemMax > 0 && grupoPrecificacao.MargemMin > 0)
+            {
+                grupoPrecificacao.Status = Models.Enums.Status.Ativo;
+                grupoPrecificacao.DataCadastro = DateTime.Now;
+                string conf = facade.Cadastrar(grupoPrecificacao);
+                return RedirectToAction("GruposPrecificacao");
+            }            
+            else
+                return RedirectToAction("ErroCadastro", "Home", new string("Grupo de Precificação não contém dados obrigatórios"));
+
+        }
+        [HttpPost]
+        public IActionResult AlterarGrupoPrecificacao(GrupoPrecificacao grupoPrecificacao)
+        {
+            if (grupoPrecificacao.Nome != null && grupoPrecificacao.DataCadastro != null && grupoPrecificacao.Status != Models.Enums.Status.Selecione && grupoPrecificacao.TipoGrupoPrecificacao != Models.Enums.TipoGrupoPrecificacao.Selecione && grupoPrecificacao.MargemMax > 0 && grupoPrecificacao.MargemMin >0)
+            {
+                string conf = facade.Alterar(grupoPrecificacao);
+            }
+            return RedirectToAction("GruposPrecificacao");
+        }
+
+        [HttpPost]
+        public IActionResult ExcluirGrupoPrecificacao(GrupoPrecificacao grupoPrecificacao)
+        {
+            string conf = facade.Excluir(grupoPrecificacao);
+            return RedirectToAction("GruposPrecificacao");
+        }
+        #endregion
     }
 }

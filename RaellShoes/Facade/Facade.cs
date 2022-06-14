@@ -623,6 +623,10 @@ namespace RaellShoes.Facadee
         {
             return dal.ListarFornecedores();
         }
+        public List<GrupoPrecificacao> ListarGruposPrecificacao()
+        {
+            return dal.ListarGruposPrecificacao();
+        }
 
     }
 }

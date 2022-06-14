@@ -692,6 +692,10 @@ namespace RaellShoes.Dal
         {
             return dbContext.Fornecedor.ToList();
         }
+        public List<GrupoPrecificacao> ListarGruposPrecificacao()
+        {
+            return dbContext.GrupoPrecificacao.ToList();
+        }
 
 
     }

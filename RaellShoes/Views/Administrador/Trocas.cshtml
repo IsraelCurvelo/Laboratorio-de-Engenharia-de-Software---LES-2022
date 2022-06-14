@@ -45,9 +45,9 @@
                 <li class="dropdown  active">
                     <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="/administrador/GrupoPrecificacao">Grupo de Precificação</a></li>
-                        <li><a href="/administrador/Fornecedor">Fornecedor</a></li>
-                        <li><a href="/administrador/Categoria">Categoria</a></li>
+                        <li><a href="/administrador/GruposPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedores">Fornecedor</a></li>
+                        <li><a href="/administrador/Categorias">Categoria</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
@@ -60,8 +60,6 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-
-
     </header><!-- End Header -->
     <!--Box Clientes-->
     <section id="cliente" class="cliente">
@@ -97,7 +95,7 @@
                         </div>
                     </div><br><br>
                     <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">Procurar</button><br>
-                    
+
                 </form>
             </div>
         </div>
@@ -106,7 +104,7 @@
         @if (Model.Trocas != null)
         {
             <!--Últimos Clientes-->
-            <div class="container mt-5" id="resultado" >
+            <div class="container mt-5" id="resultado">
                 <!--Box ultimos clientes-->
                 <div class="info-wrap" style=" border-radius:20px; text-align: center;">
                     <h5><strong style="  color: rgb(228, 13, 236);">Resultado </strong></h5><br>
@@ -118,7 +116,7 @@
                                     <tr>
                                         <th scope="col">Código</th>
                                         <th scope="col">Número do pedido</th>
-                                        <th scope="col">CPF do Cliente</th>                                       
+                                        <th scope="col">CPF do Cliente</th>
                                         <th scope="col">Data de Solicitação</th>
                                         <th scope="col">Status</th>
                                         <th scope="col"></th>
@@ -131,18 +129,18 @@
                                         <tr>
                                             <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Pedido.NumeroPedido)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Pedido.Cliente.Cpf)</td>                                            
+                                            <td>@Html.DisplayFor(modelItem => item.Pedido.Cliente.Cpf)</td>
                                             <td>@Html.DisplayFor(modelItem => item.DataSolicitacao)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Status)</td>
                                             <form>
-                                                <td><button  asp-action="DetalhesTroca" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Solicitação</button></td>
+                                                <td><button asp-action="DetalhesTroca" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Solicitação</button></td>
                                             </form>
                                         </tr>
                                     }
 
 
 
-                                    </tbody>
+                                </tbody>
                             </table>
 
                         </div>
@@ -151,7 +149,7 @@
             </div>
         }
 
-        </section>
+    </section>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">

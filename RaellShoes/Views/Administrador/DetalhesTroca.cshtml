@@ -45,9 +45,9 @@
                 <li class="dropdown  active">
                     <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="/administrador/GrupoPrecificacao">Grupo de Precificação</a></li>
-                        <li><a href="/administrador/Fornecedor">Fornecedor</a></li>
-                        <li><a href="/administrador/Categoria">Categoria</a></li>
+                        <li><a href="/administrador/GruposPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedores">Fornecedor</a></li>
+                        <li><a href="/administrador/Categorias">Categoria</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
@@ -60,8 +60,6 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-
-
     </header><!-- End Header -->
     <!--Box Clientes-->
     <section id="cliente" class="cliente">
@@ -199,13 +197,13 @@
                 {
                     <form>
                         <div class="row">
-                            <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12"onclick="mudancaStatus(1)">Autorizar</button>
+                            <button asp-action="AutorizarTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(1)">Autorizar</button>
                         </div>
                     </form>
                     <br>
                     <form>
                         <div class="row">
-                            <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12"onclick="mudancaStatus(2)">Recusar</button>
+                            <button asp-action="ReprovarTroca" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12" onclick="mudancaStatus(2)">Recusar</button>
                         </div>
                     </form>
 
@@ -213,23 +211,23 @@
                 }
                 else if (Model.Status == RaellShoes.Models.Enums.StatusPedido.TrocaAutorizada)
                 {
-               
+
                     <div class="row">
-                        <button  class="btn btn-success col-lg-12" data-bs-toggle="modal" data-bs-target="#modalTroca">Confirmar Recebimento</button>
+                        <button class="btn btn-success col-lg-12" data-bs-toggle="modal" data-bs-target="#modalTroca">Confirmar Recebimento</button>
                     </div>
-               
-                <br>
+
+                    <br>
 
 
                 }
                 else if (Model.Status == RaellShoes.Models.Enums.StatusPedido.ProdutoRecebido)
                 {
-                <form>
-                    <div class="row">
-                        <button asp-action="ConfirmarEntregaProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(4)">Confirmar Entrega</button>
-                    </div>
-                </form>
-                <br>
+                    <form>
+                        <div class="row">
+                            <button asp-action="ConfirmarEntregaProdutoTroca" asp-route-id="@Model.Id" class="btn btn-success col-lg-12" onclick="mudancaStatus(4)">Confirmar Entrega</button>
+                        </div>
+                    </form>
+                    <br>
 
 
                 }
@@ -279,7 +277,7 @@
                                 <div class="row">
                                     <form>
                                         <div class="row">
-                                            <button asp-action="ReceberProdutoTrocaNao" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12"onclick="mudancaStatus(3)">Não</button>
+                                            <button asp-action="ReceberProdutoTrocaNao" asp-route-id="@Model.Id" class="btn btn-danger col-lg-12" onclick="mudancaStatus(3)">Não</button>
                                         </div>
                                     </form>
                                 </div>
