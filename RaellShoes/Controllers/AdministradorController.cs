@@ -331,7 +331,7 @@ namespace RaellShoes.Controllers
                 produto.Fornecedor = fornecedor;
 
                 string confSalvar = facade.Cadastrar(produto);
-                return View("Produtos");
+                return RedirectToAction("Produtos");
             }
             else
             {
