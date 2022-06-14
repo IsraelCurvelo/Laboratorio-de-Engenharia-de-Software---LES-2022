@@ -6,6 +6,7 @@ using RaellShoes.Models;
 using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.ViewModel;
+using RaellShoes.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -316,7 +317,26 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult NovoProduto(Produto produto)
         {
-            return Ok();
+            ValidarDadosProduto validarDadosProduto = new ValidarDadosProduto();
+            string confirmacaoDadosProduto = validarDadosProduto.Processar(produto);
+
+            if(confirmacaoDadosProduto == null)
+            {
+                Categoria categoria = (Categoria)facade.ConsultarId(produto.Categoria);
+                GrupoPrecificacao grupoPrecificacao = (GrupoPrecificacao)facade.ConsultarId(produto.GrupoPrecificacao);
+                Fornecedor fornecedor = (Fornecedor)facade.ConsultarId(produto.Fornecedor);
+
+                produto.Categoria = categoria;
+                produto.GrupoPrecificacao = grupoPrecificacao;
+                produto.Fornecedor = fornecedor;
+
+                string confSalvar = facade.Cadastrar(produto);
+                return View("Produtos");
+            }
+            else
+            {
+                return RedirectToAction("ErroCadastro", "Home", confirmacaoDadosProduto);
+            }              
         }
 
         [HttpPost]

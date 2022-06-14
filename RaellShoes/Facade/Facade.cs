@@ -33,7 +33,7 @@ namespace RaellShoes.Facadee
             if (entidadeDominio.GetType().Name.ToLower().Equals("cliente"))
             {
                 Cliente cliente = (Cliente)entidadeDominio;
-               
+
                 ValidarDadosCliente validarCliente = new ValidarDadosCliente();
                 ValidarDadosEndereco validarEndereco = new ValidarDadosEndereco();
                 ValidarUsuario validarSenha = new ValidarUsuario();
@@ -111,6 +111,13 @@ namespace RaellShoes.Facadee
 
                 return CadastrarEntidade(cupom, log, gerarLog);
             }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("produto"))
+            {
+                Produto produto = (Produto)entidadeDominio;
+
+                return CadastrarEntidade(produto, log, gerarLog);
+            }
+
 
             return null;
             

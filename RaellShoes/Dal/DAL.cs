@@ -349,6 +349,49 @@ namespace RaellShoes.Dal
                     throw new ApplicationException(e.Message);
                 }
             }
+
+            if (entidadeDominio.GetType().Name.ToLower().Equals("categoria"))
+            {
+                try
+                {
+                    Categoria categoria = dbContext.Categoria.FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return categoria;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("grupoprecificacao"))
+            {
+                try
+                {
+                    GrupoPrecificacao grupo = dbContext.GrupoPrecificacao.FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return grupo;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("fornecedor"))
+            {
+                try
+                {
+                    Fornecedor fornecedor = dbContext.Fornecedor.FirstOrDefault(x => x.Id == entidadeDominio.Id);
+
+                    return fornecedor;
+
+                }
+                catch (ApplicationException e)
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
             return null;                    
         }
         
