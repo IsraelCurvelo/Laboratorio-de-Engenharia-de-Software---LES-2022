@@ -612,6 +612,7 @@ namespace RaellShoes.Controllers
         }
 
         //*****************************PARAMETROS*****************************************
+        #region Categorias
 
         public IActionResult Categorias()
         {
@@ -650,5 +651,48 @@ namespace RaellShoes.Controllers
             string conf = facade.Excluir(categoria);
             return RedirectToAction("Categorias");
         }
+        #endregion
+
+        #region Fornecedores
+
+        public IActionResult Fornecedores()
+        {
+            List<Fornecedor> fornecedores = facade.ListarFornecedores();
+            return View(new FornecedorViewModel() { Fornecedores = fornecedores });
+        }
+
+        [HttpPost]
+        public IActionResult NovoFornecedor(Fornecedor fornecedor)
+        {
+            if (fornecedor.Nome != null && fornecedor.CNPJ != null)
+            {
+                fornecedor.Status = Models.Enums.Status.Ativo;
+                fornecedor.DataCadastro = DateTime.Now;
+                string confirmacao = facade.Cadastrar(fornecedor);
+                return RedirectToAction("Fornecedores");
+            }
+            else
+                return RedirectToAction("ErroCadastro", "Home", new string("Fornecedor não contém nome ou CNPJ"));
+
+        }
+
+        [HttpPost]
+        public IActionResult AlterarFornecedor(Fornecedor fornecedor)
+        {
+            if (fornecedor.Nome != null && fornecedor.DataCadastro != null && fornecedor.Status != null && fornecedor.Status != Models.Enums.Status.Selecione && fornecedor.CNPJ != null)
+            {
+                string conf = facade.Alterar(fornecedor);
+            }
+            return RedirectToAction("Fornecedores");
+        }
+
+        [HttpPost]
+        public IActionResult ExcluirFornecedor(Fornecedor fornecedor)
+        {
+            string conf = facade.Excluir(fornecedor);
+            return RedirectToAction("Fornecedores");
+        }
+
+        #endregion
     }
 }

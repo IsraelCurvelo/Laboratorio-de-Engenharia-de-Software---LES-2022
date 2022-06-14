@@ -81,6 +81,18 @@ namespace RaellShoes.Dal
                         throw new ApplicationException("Objeto não encontrado");
                     }
                     return ExtensaoAlterar(entidadeDominio);
+                case ("fornecedor"):
+                    if (!dbContext.Fornecedor.Any(x => x.Id == entidadeDominio.Id))
+                    {
+                        throw new ApplicationException("Objeto não encontrado");
+                    }
+                    return ExtensaoAlterar(entidadeDominio);
+                case ("grupoprecificacao"):
+                    if (!dbContext.GrupoPrecificacao.Any(x => x.Id == entidadeDominio.Id))
+                    {
+                        throw new ApplicationException("Objeto não encontrado");
+                    }
+                    return ExtensaoAlterar(entidadeDominio);
 
 
                 default:
@@ -675,6 +687,10 @@ namespace RaellShoes.Dal
         public List<Categoria> ListarCategorias()
         {
             return dbContext.Categoria.ToList();
+        }
+        public List<Fornecedor> ListarFornecedores()
+        {
+            return dbContext.Fornecedor.ToList();
         }
 
 

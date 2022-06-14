@@ -1,4 +1,4 @@
-﻿@model RaellShoes.Models.ViewModel.CategoriaViewModel
+﻿@model RaellShoes.Models.ViewModel.FornecedorViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RaellShoes - Admin - Categoria</title>
+    <title>RaellShoes - Admin - Fornecedor</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -68,12 +68,12 @@
             <!--Box Clientes-->
             <div class="info-wrap" style=" border-radius:20px">
                 <div class="row">
-                    <h5><strong style="  color: rgb(72, 13, 236);">Cadastrar Categoria </strong></h5><br>
+                    <h5><strong style="  color: rgb(13, 236, 181);">Cadastrar Fornecedor </strong></h5><br>
 
                 </div>
                 <br>
                 <div class="row">
-                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px" value="Nova Categoria"
+                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px" value="Novo Fornecedor"
                            data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
                     <br>
                 </div>
@@ -82,21 +82,28 @@
 
         <div class="container mt-5">
             <!--Box Fornecedor-->
-            <h5> <strong style="padding-left: 10px; color: rgb(72, 13, 236);"> Categorias Existentes</strong></h5>
+            <h5> <strong style="padding-left: 10px; color: rgb(13, 236, 181);"> Fornecedores Existentes</strong></h5>
             <br>
 
-
-            @foreach (var item in Model.Categorias)
+            @foreach (var item in @Model.Fornecedores)
             {
-                <!--Box Categorias-->
+                <!--Box Fornecedor-->
                 <div class="info-wrap" style=" border-radius:20px">
-                    <form class="needs-validation" novalidate asp-action="AlterarCategoria">
-                       
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                <span>Nome</span>
-                                <input asp-for="@item.Nome" class="form-control" id="nome" placeholder="Nome do Fornecedor" required name="Nome" >
+                    <form class="needs-validation" novalidate asp-action="AlterarFornecedor">
 
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Nome</span>
+                                <input asp-for="@item.Nome" name="Nome" class="form-control" id="nome" placeholder="Nome do Fornecedor" required>
+
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>CNPJ</span>
+                                <input asp-for="@item.CNPJ" name="CNPJ" class="form-control" id="cnpj" type="text" required>
                                 <div class="invalid-feedback">
                                     *Campo obrigatório
                                 </div>
@@ -105,7 +112,7 @@
                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                 <span>Status</span>
                                 <br>
-                                <select asp-for="@item.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()" name="Status"
+                                <select asp-for="@item.Status" name="Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
                                         class="form-select" required>
                                 </select>
                                 <div class="invalid-feedback">
@@ -116,7 +123,7 @@
 
                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                 <span>Data de Cadastro</span>
-                                <input asp-for="@item.DataCadastro" class="form-control" id="data-cadastro" type="date" name="DataCadastro" required disabled>
+                                <input asp-for="@item.DataCadastro" name="DataCadastro" class="form-control" id="data-cadastro" type="date" required disabled>
 
                                 <div class="invalid-feedback">
                                     *Campo obrigatório
@@ -125,8 +132,8 @@
 
                             <br> <br><br> <br>
                             <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                <input type="hidden" asp-for="@item.Id" name="Id" />                               
-                             
+                                <input type="hidden" asp-for="@item.Id" name="Id" />
+
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -137,10 +144,8 @@
                                 <div class="col-lg-6">
                                     <form>
                                         <input type="hidden" asp-for="@item.Id" name="Id" />
-                                        <button asp-action="ExcluirCategoria" type="submit" class="btn btn-danger btn-sm  col-lg-12"
-                                                style="border-radius: 10px;">
-                                            Excluir
-                                        </button>
+                                        <button asp-action="ExcluirFornecedor" type="submit" class="btn btn-danger btn-sm  col-lg-12"
+                                           style="border-radius: 10px;">Excluir</button>
                                     </form>
                                 </div>
                             </div>
@@ -151,11 +156,9 @@
 
 
 
-
-
             <!-- Modal Novo Fornecedor -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
 
                         <div class="modal-body">
@@ -163,34 +166,44 @@
                             <section id="cliente" class="cliente">
                                 <div class="container" style=" margin-bottom: -30px;">
                                     <div class="section-title2">
-                                        <h2> <span style="color: rgb(72, 13, 236);">Nova Categoria </span></h2>
+                                        <h2> <span style="color: rgb(13, 236, 181);">Novo Fornecedor </span></h2>
                                     </div>
                                 </div>
 
                                 <!--Form-->
                                 <div class="container mt-5">
                                     <div class="info-wrap" style=" border-radius:20px">
-                                        <form class="needs-validation" novalidate asp-action="NovaCategoria">
+                                        <form class="needs-validation" novalidate asp-action="NovoFornecedor">
 
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                                     <span>Nome</span>
-                                                    <input asp-for="Categoria.Nome" class="form-control" id="nome" placeholder="Nome da Categoria" required>
+                                                    <input asp-for="Fornecedor.Nome" class="form-control" id="nome" placeholder="Nome do Fornecedor" required>
 
                                                     <div class="invalid-feedback">
                                                         *Campo obrigatório
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                    <span>CNPJ</span>
+                                                    <input asp-for="Fornecedor.CNPJ" class="form-control" id="cnpj" type="text" required>
+
+                                                    <div class="invalid-feedback">
+                                                        *Campo obrigatório
+                                                    </div>
+                                                </div>
+
+
+
+                                                <br> <br>
+                                                <div>
+                                                    <button class="btn btn-success col-lg-12">Salvar</button>
+                                                </div>
                                             </div>
-                                            <br>
-                                            <div>
-                                                <button class="btn btn-success col-lg-12">Salvar</button>
-                                            </div>
+
                                         </form>
                                     </div>
-
-
-
 
 
                                     <br>

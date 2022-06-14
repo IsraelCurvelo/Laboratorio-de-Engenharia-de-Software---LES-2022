@@ -44,14 +44,11 @@ namespace RaellShoes.Facadee
                 string senhacriptografada = criptografarSenha.Processar(cliente);
                
                 string retornoValidacaoEndereco = validarEndereco.Processar(cliente.Endereco);
-                  
-                       
               
                 cliente.Usuario.DataCadastro = DateTime.Now;
                 cliente.Usuario.Senha = senhacriptografada;
                 cliente.Status = true;
-                cliente.Usuario.Admin = false;
-               
+                cliente.Usuario.Admin = false;               
 
                 if (confirmacaoDadosCliente == null && retornoValidacaoEndereco == null && confirmacaoSenha == null && senhacriptografada != null)
                 {
@@ -72,22 +69,19 @@ namespace RaellShoes.Facadee
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("endereco"))
             {
-                Endereco endereco = (Endereco)entidadeDominio;
-                
+                Endereco endereco = (Endereco)entidadeDominio;                
                 ValidarDadosEndereco validar = new ValidarDadosEndereco();
                 string confirmacao = validar.Processar(endereco);  
 
                 if(confirmacao != null)  
                     return confirmacao;
 
-                return CadastrarEntidade(endereco, log, gerarLog);                        
-              
+                return CadastrarEntidade(endereco, log, gerarLog);  
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("cartao"))
             {
-                Cartao cartao = (Cartao)entidadeDominio;
-                
+                Cartao cartao = (Cartao)entidadeDominio;                
                 ValidarDadosCartao validar = new ValidarDadosCartao();
                 string confirmacao = validar.Processar(cartao);
 
@@ -95,44 +89,37 @@ namespace RaellShoes.Facadee
                     return confirmacao;
 
                 return CadastrarEntidade(cartao, log, gerarLog);
-
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("troca"))
             {
-                Troca troca = (Troca)entidadeDominio;                
-
+                Troca troca = (Troca)entidadeDominio; 
                 return CadastrarEntidade(troca, log, gerarLog);
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
             {
                 Cupom cupom = (Cupom)entidadeDominio;
-
                 return CadastrarEntidade(cupom, log, gerarLog);
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("produto"))
             {
                 Produto produto = (Produto)entidadeDominio;
-
                 return CadastrarEntidade(produto, log, gerarLog);
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("categoria"))
             {
                 Categoria categoria = (Categoria)entidadeDominio;
-
                 return CadastrarEntidade(categoria, log, gerarLog);
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("fornecedor"))
             {
                 Fornecedor fornecedor = (Fornecedor)entidadeDominio;
-
                 return CadastrarEntidade(fornecedor, log, gerarLog);
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("grupoprecificacao"))
             {
                 GrupoPrecificacao grupoPrecificacao = (GrupoPrecificacao)entidadeDominio;
-
                 return CadastrarEntidade(grupoPrecificacao, log, gerarLog);
             }
 
@@ -211,7 +198,6 @@ namespace RaellShoes.Facadee
                 else
                 {
                     String resposta = null;
-
                     if (confirmacaoDadosCliente != null) 
                         resposta = confirmacaoDadosCliente;
 
@@ -225,10 +211,8 @@ namespace RaellShoes.Facadee
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("endereco"))
             {
-                Endereco endereco = (Endereco)entidadeDominio;
-                
-                ValidarDadosEndereco validarEndereco = new ValidarDadosEndereco();
-               
+                Endereco endereco = (Endereco)entidadeDominio;                
+                ValidarDadosEndereco validarEndereco = new ValidarDadosEndereco();               
                 string confirmacaoDadosEndereco = validarEndereco.Processar(endereco);
 
                 if (confirmacaoDadosEndereco == null)
@@ -239,17 +223,14 @@ namespace RaellShoes.Facadee
                     return null;
                 }
                 else               
-                    return confirmacaoDadosEndereco;
-               
+                    return confirmacaoDadosEndereco;              
 
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("cartao"))
             {
                 Cartao cartao = (Cartao)entidadeDominio;
-
                 ValidarDadosCartao validarCartao = new ValidarDadosCartao();
-
                 string confirmacaoDadosCartao = validarCartao.Processar(cartao);
 
                 if (confirmacaoDadosCartao == null)
@@ -261,61 +242,65 @@ namespace RaellShoes.Facadee
                 }
                 else
                     return confirmacaoDadosCartao;
-
-
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("produtocliente"))
             {
-                ProdutoCliente produtoCliente = (ProdutoCliente)entidadeDominio;       
-
+                ProdutoCliente produtoCliente = (ProdutoCliente)entidadeDominio;
                 string conf = dal.Alterar(produtoCliente);
                 log.Descricao = gerarLog.Processar(produtoCliente) + ", [Tipo: Alteração]";
                 dal.Cadastrar(log);
                 return conf;
-
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("pedido"))
             {
                 Pedido pedido = (Pedido)entidadeDominio;
-
                 string conf = dal.Alterar(pedido);
                 log.Descricao = gerarLog.Processar(pedido) + ", [Tipo: Alteração]";
                 dal.Cadastrar(log);
                 return conf;
-
             }
 
             if (entidadeDominio.GetType().Name.ToLower().Equals("troca"))
             {
                 Troca troca = (Troca)entidadeDominio;
-
                 string conf = dal.Alterar(troca);
                 log.Descricao = gerarLog.Processar(troca) + ", [Tipo: Alteração]";
                 dal.Cadastrar(log);
                 return conf;
-
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("produto"))
             {
                 Produto produto = (Produto)entidadeDominio;
-
                 string conf = dal.Alterar(produto);
                 log.Descricao = gerarLog.Processar(produto) + ", [Tipo: Alteração]";
                 dal.Cadastrar(log);
                 return conf;
-
             }
             if (entidadeDominio.GetType().Name.ToLower().Equals("categoria"))
             {
                 Categoria categoria = (Categoria)entidadeDominio;
-
                 string conf = dal.Alterar(categoria);
                 log.Descricao = gerarLog.Processar(categoria) + ", [Tipo: Alteração]";
                 dal.Cadastrar(log);
                 return conf;
-
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("fornecedor"))
+            {
+                Fornecedor fornecedor = (Fornecedor)entidadeDominio;
+                string conf = dal.Alterar(fornecedor);
+                log.Descricao = gerarLog.Processar(fornecedor) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("grupoprecificacao"))
+            {
+                GrupoPrecificacao grupoPrecificacao = (GrupoPrecificacao)entidadeDominio;
+                string conf = dal.Alterar(grupoPrecificacao);
+                log.Descricao = gerarLog.Processar(grupoPrecificacao) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
             }
             return null;
             
@@ -632,6 +617,11 @@ namespace RaellShoes.Facadee
         public List<Categoria> ListarCategorias()
         {
             return dal.ListarCategorias();
+        }
+        
+        public List<Fornecedor> ListarFornecedores()
+        {
+            return dal.ListarFornecedores();
         }
 
     }
