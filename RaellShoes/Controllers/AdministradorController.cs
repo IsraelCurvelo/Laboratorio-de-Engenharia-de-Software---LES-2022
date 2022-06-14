@@ -285,6 +285,7 @@ namespace RaellShoes.Controllers
         }
 
         //****************PRODUTO********************
+        #region PRODUTOS
         public IActionResult Produtos()
         {
             List<EntidadeDominio> entidadeDominioCategorias = facade.Consultar(new Categoria());
@@ -344,8 +345,10 @@ namespace RaellShoes.Controllers
         {
             return Ok();
         }
+        #endregion
 
         //*****************GRAFICO********************
+        #region DASH
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
         {           
@@ -610,6 +613,7 @@ namespace RaellShoes.Controllers
 
             return Json(lista);
         }
+        #endregion
 
         //*****************************PARAMETROS*****************************************
         #region Categorias
@@ -622,25 +626,27 @@ namespace RaellShoes.Controllers
 
         [HttpPost]
         public IActionResult NovaCategoria(Categoria categoria)
-        {
-            if(categoria.Nome != null)
-            {
-                categoria.Status = Models.Enums.Status.Ativo;
-                categoria.DataCadastro = DateTime.Now;
-                string confirmacao = facade.Cadastrar(categoria);
-                return RedirectToAction("Categorias");
-            }
-            else
-                return RedirectToAction("ErroCadastro", "Home", new string("Categoria não contém nome"));
+        {            
+            categoria.Status = Models.Enums.Status.Ativo;
+            categoria.DataCadastro = DateTime.Now;
+            ValidarDadosCategoria validarDadosCategoria = new ValidarDadosCategoria();
+            string confirmacaoDados = validarDadosCategoria.Processar(categoria);
 
+            if(confirmacaoDados == null) { 
+                string confirmacao = facade.Cadastrar(categoria);                
+            }
+            return RedirectToAction("Categorias");
         }
 
         [HttpPost]
         public IActionResult AlterarCategoria(Categoria categoria)
         {
-            if(categoria.Nome != null && categoria.DataCadastro != null && categoria.Status != null && categoria.Status != Models.Enums.Status.Selecione)
+            ValidarDadosCategoria validarDadosCategoria = new ValidarDadosCategoria();
+            string confirmacaoDados = validarDadosCategoria.Processar(categoria);
+
+            if (confirmacaoDados == null)
             {
-                string conf = facade.Alterar(categoria);
+                string conf = facade.Alterar(categoria);                
             }
             return RedirectToAction("Categorias");
         }
@@ -664,24 +670,28 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult NovoFornecedor(Fornecedor fornecedor)
         {
-            if (fornecedor.Nome != null && fornecedor.CNPJ != null)
-            {
-                fornecedor.Status = Models.Enums.Status.Ativo;
-                fornecedor.DataCadastro = DateTime.Now;
-                string confirmacao = facade.Cadastrar(fornecedor);
-                return RedirectToAction("Fornecedores");
-            }
-            else
-                return RedirectToAction("ErroCadastro", "Home", new string("Fornecedor não contém nome ou CNPJ"));
+            fornecedor.Status = Models.Enums.Status.Ativo;
+            fornecedor.DataCadastro = DateTime.Now;
+            ValidarDadosFornecedor validarDadosFornecedor = new ValidarDadosFornecedor();
+            string confirmacaoDados = validarDadosFornecedor.Processar(fornecedor);
 
+            if (confirmacaoDados == null)
+            {                
+                string confirmacao = facade.Cadastrar(fornecedor);
+                
+            }
+            return RedirectToAction("Fornecedores");           
         }
 
         [HttpPost]
         public IActionResult AlterarFornecedor(Fornecedor fornecedor)
         {
-            if (fornecedor.Nome != null && fornecedor.DataCadastro != null && fornecedor.Status != null && fornecedor.Status != Models.Enums.Status.Selecione && fornecedor.CNPJ != null)
+            ValidarDadosFornecedor validarDadosFornecedor = new ValidarDadosFornecedor();
+            string confirmacaoDados = validarDadosFornecedor.Processar(fornecedor);
+
+            if (confirmacaoDados == null)
             {
-                string conf = facade.Alterar(fornecedor);
+                string conf = facade.Alterar(fornecedor);                 
             }
             return RedirectToAction("Fornecedores");
         }
@@ -702,26 +712,33 @@ namespace RaellShoes.Controllers
             List<GrupoPrecificacao> grupos = facade.ListarGruposPrecificacao();
             return View(new GrupoPrecificacaoViewModel() { GruposPrecificacao = grupos });
         }
+
         [HttpPost]
         public IActionResult NovoGrupoPrecificacao(GrupoPrecificacao grupoPrecificacao)
         {
-            if (grupoPrecificacao.Nome != null && grupoPrecificacao.TipoGrupoPrecificacao != Models.Enums.TipoGrupoPrecificacao.Selecione && grupoPrecificacao.MargemMax > 0 && grupoPrecificacao.MargemMin > 0)
-            {
-                grupoPrecificacao.Status = Models.Enums.Status.Ativo;
-                grupoPrecificacao.DataCadastro = DateTime.Now;
-                string conf = facade.Cadastrar(grupoPrecificacao);
-                return RedirectToAction("GruposPrecificacao");
-            }            
-            else
-                return RedirectToAction("ErroCadastro", "Home", new string("Grupo de Precificação não contém dados obrigatórios"));
+            grupoPrecificacao.Status = Models.Enums.Status.Ativo;
+            grupoPrecificacao.DataCadastro = DateTime.Now;
+            ValidarDadosGrupoPrecificacao validarDadosGrupoPrecificacao = new ValidarDadosGrupoPrecificacao();
+            string confirmacaoDados = validarDadosGrupoPrecificacao.Processar(grupoPrecificacao);
 
+            if (confirmacaoDados == null)
+            {
+                string conf = facade.Cadastrar(grupoPrecificacao);                
+            }   
+            return RedirectToAction("GruposPrecificacao");         
+            
         }
+
         [HttpPost]
         public IActionResult AlterarGrupoPrecificacao(GrupoPrecificacao grupoPrecificacao)
         {
-            if (grupoPrecificacao.Nome != null && grupoPrecificacao.DataCadastro != null && grupoPrecificacao.Status != Models.Enums.Status.Selecione && grupoPrecificacao.TipoGrupoPrecificacao != Models.Enums.TipoGrupoPrecificacao.Selecione && grupoPrecificacao.MargemMax > 0 && grupoPrecificacao.MargemMin >0)
+            ValidarDadosGrupoPrecificacao validarDadosGrupoPrecificacao = new ValidarDadosGrupoPrecificacao();
+            string confirmacaoDados = validarDadosGrupoPrecificacao.Processar(grupoPrecificacao);
+
+            if (confirmacaoDados == null)
             {
-                string conf = facade.Alterar(grupoPrecificacao);
+                string conf = facade.Alterar(grupoPrecificacao); 
+                
             }
             return RedirectToAction("GruposPrecificacao");
         }

@@ -130,8 +130,8 @@ namespace RaellShoes.Controllers
         {
             return View();
         }
-
-        public IActionResult Erro(String mensagem)
+        [HttpPost]
+        public IActionResult ErroCadastro(String mensagem)
         {
             return View();
         }
