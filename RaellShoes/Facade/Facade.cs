@@ -117,6 +117,24 @@ namespace RaellShoes.Facadee
 
                 return CadastrarEntidade(produto, log, gerarLog);
             }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("categoria"))
+            {
+                Categoria categoria = (Categoria)entidadeDominio;
+
+                return CadastrarEntidade(categoria, log, gerarLog);
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("fornecedor"))
+            {
+                Fornecedor fornecedor = (Fornecedor)entidadeDominio;
+
+                return CadastrarEntidade(fornecedor, log, gerarLog);
+            }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("grupoprecificacao"))
+            {
+                GrupoPrecificacao grupoPrecificacao = (GrupoPrecificacao)entidadeDominio;
+
+                return CadastrarEntidade(grupoPrecificacao, log, gerarLog);
+            }
 
 
             return null;

@@ -610,5 +610,27 @@ namespace RaellShoes.Controllers
 
             return Json(lista);
         }
+
+        //*****************************PARAMETROS*****************************************
+
+        public IActionResult Categorias()
+        {
+            return View(new Categoria());
+        }
+
+        [HttpPost]
+        public IActionResult NovaCategoria(Categoria categoria)
+        {
+            if(categoria.Nome != null)
+            {
+                categoria.Status = Models.Enums.Status.Ativo;
+                categoria.DataCadastro = DateTime.Now;
+                string confirmacao = facade.Cadastrar(categoria);
+                return RedirectToAction("Categorias");
+            }
+            else
+                return RedirectToAction("ErroCadastro", "Home", new string("Categoria não contém nome"));
+
+        }
     }
 }
