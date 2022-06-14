@@ -307,6 +307,16 @@ namespace RaellShoes.Facadee
                 return conf;
 
             }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("categoria"))
+            {
+                Categoria categoria = (Categoria)entidadeDominio;
+
+                string conf = dal.Alterar(categoria);
+                log.Descricao = gerarLog.Processar(categoria) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+
+            }
             return null;
             
         }
@@ -617,6 +627,11 @@ namespace RaellShoes.Facadee
         public List<ProdutoPedido> ConsultarProdutosDoPedido(Pedido pedido)
         {
             return dal.ConsultarProdutosDoPedido(pedido);
+        }
+
+        public List<Categoria> ListarCategorias()
+        {
+            return dal.ListarCategorias();
         }
 
     }

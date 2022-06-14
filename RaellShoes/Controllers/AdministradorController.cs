@@ -615,7 +615,8 @@ namespace RaellShoes.Controllers
 
         public IActionResult Categorias()
         {
-            return View(new Categoria());
+            List<Categoria> categorias = facade.ListarCategorias();
+            return View(new CategoriaViewModel() { Categorias = categorias});
         }
 
         [HttpPost]
@@ -631,6 +632,23 @@ namespace RaellShoes.Controllers
             else
                 return RedirectToAction("ErroCadastro", "Home", new string("Categoria não contém nome"));
 
+        }
+
+        [HttpPost]
+        public IActionResult AlterarCategoria(Categoria categoria)
+        {
+            if(categoria.Nome != null && categoria.DataCadastro != null && categoria.Status != null && categoria.Status != Models.Enums.Status.Selecione)
+            {
+                string conf = facade.Alterar(categoria);
+            }
+            return RedirectToAction("Categorias");
+        }
+
+        [HttpPost]
+        public IActionResult ExcluirCategoria(Categoria categoria)
+        {
+            string conf = facade.Excluir(categoria);
+            return RedirectToAction("Categorias");
         }
     }
 }
