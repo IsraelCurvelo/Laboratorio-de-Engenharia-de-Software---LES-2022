@@ -516,6 +516,145 @@ namespace RaellShoes.Dal
             return consulta;
         }
 
+        public ICollection<Produto> ConsultarFiltroProdutosAdmin(Produto produto)
+        {
+            HashSet<Produto> consulta = new HashSet<Produto>();
+
+            if (produto.Marca != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Marca == produto.Marca).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Nome != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Nome == produto.Nome).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Modelo != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Modelo == produto.Modelo).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.CorPrimariaProduto != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.CorPrimariaProduto == produto.CorPrimariaProduto).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Genero != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Genero == produto.Genero).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+
+            if (produto.Tamanho != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Tamanho == produto.Tamanho).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if (produto.Valor != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Valor == produto.Valor).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.DataCadastro != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.DataCadastro == produto.DataCadastro).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.Categoria != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Categoria == produto.Categoria).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.CodigoBarra != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.CodigoBarra == produto.CodigoBarra).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.Status != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Status == produto.Status).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.GrupoPrecificacao != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.GrupoPrecificacao == produto.GrupoPrecificacao).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+            if(produto.Fornecedor != null)
+            {
+                var resultado = dbContext.Produto.Where(x => x.Fornecedor == produto.Fornecedor).ToList();
+                foreach (Produto item in resultado)
+                {
+                    Produto retornoProduto = (Produto)ConsultarId(item);
+                    consulta.Add(retornoProduto);
+                }
+            }
+
+
+            return consulta;
+        }
+
         private Produto FiltroProdutosCliente(Produto produto)
         {
             try

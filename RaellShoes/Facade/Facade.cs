@@ -412,6 +412,11 @@ namespace RaellShoes.Facadee
         public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
         {
             return dal.ConsultarFiltroProdutos(produto);
+        } 
+
+        public ICollection<Produto> ConsultarFiltroProdutosAdmin(Produto produto)
+        {
+            return dal.ConsultarFiltroProdutosAdmin(produto);
         }
 
         public string ProdutoCarrinho(Produto produto, int id)

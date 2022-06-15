@@ -344,7 +344,7 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult ProcurarProduto(Produto produto)
         {
-            var listaProdutos = facade.ConsultarFiltroProdutos(produto);
+            var listaProdutos = facade.ConsultarFiltroProdutosAdmin(produto);
             List<Produto> produtos = new List<Produto>();
 
             foreach (var item in listaProdutos)
@@ -387,7 +387,11 @@ namespace RaellShoes.Controllers
            
         }
 
-     
+        public IActionResult AtivarProduto(Produto Produto)
+        {
+            return Ok();
+        }
+
         public IActionResult InativarProduto(Produto Produto)
         {
             return Ok();

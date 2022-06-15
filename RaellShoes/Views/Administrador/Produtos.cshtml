@@ -208,20 +208,31 @@
 
                                 @foreach (var item in Model.Produtos)
                                 {
-                                    <tr>
-                                        <td> @Html.DisplayFor(modelItem => item.Id)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Marca)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Nome)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Modelo)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Tamanho)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Status)</td>
+                                <tr>
+                                    <td> @Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Marca)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Nome)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Modelo)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Tamanho)</td>
+                                    <td> @Html.DisplayFor(modelItem => item.Status)</td>
+
+                                    @if (item.Status == RaellShoes.Models.Enums.Status.Ativo)
+                                    {
                                         <form>
                                             <td><button asp-action="InativarProduto" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Inativar</button></td>
                                         </form>
+                                    }
+                                    else
+                                    {
                                         <form>
-                                            <td><button asp-action="DetalhesProduto" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Produto</button></td>
+                                            <td><button asp-action="AtivarProduto" asp-route-id="@item.Id" class="btn btn-success btn-sm">Ativar</button></td>
                                         </form>
-                                    </tr>
+                                    }
+
+                                    <form>
+                                        <td><button asp-action="DetalhesProduto" asp-route-id="@item.Id" class="btn btn-info btn-sm">Ver Produto</button></td>
+                                    </form>
+                                </tr>
 
                                 }                               
 
