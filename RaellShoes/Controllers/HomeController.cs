@@ -25,6 +25,7 @@ namespace RaellShoes.Controllers
             this.dbContext = dbContext;
             facade = new Facade(dbContext);
         }
+        #region INDEX
 
         public IActionResult Index()
         {
@@ -45,6 +46,10 @@ namespace RaellShoes.Controllers
         {
             return View();
         }
+
+        #endregion
+
+        #region LOGIN
 
         public IActionResult EsqueceuSenha()
         {            
@@ -88,6 +93,10 @@ namespace RaellShoes.Controllers
 
             return View();
         }
+
+        #endregion
+
+        #region CADASTRO
 
         public IActionResult ConfirmarEmail()
         {
@@ -136,12 +145,16 @@ namespace RaellShoes.Controllers
             return View();
         }
 
+        #endregion
 
+        #region ERRO
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
+
+        #endregion
     }
 }

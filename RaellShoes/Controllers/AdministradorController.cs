@@ -26,6 +26,9 @@ namespace RaellShoes.Controllers
             this.dbContext = dbContext;
             facade = new Facade(dbContext);
         }
+
+        #region INDEX
+
         public IActionResult Index(LoginViewModel admin)
         {
             int idLogado = 0;
@@ -58,7 +61,9 @@ namespace RaellShoes.Controllers
             
         }
 
-        //********************PEDIDOS************************
+        #endregion
+
+        #region PEDIDOS
 
         public IActionResult Pedidos()
         {
@@ -144,16 +149,14 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesPedido", pedido);
         }
 
-        //***********************TROCA*******************************
+        #endregion
+
+        #region TROCA
 
         public IActionResult VerSolicitacaoTroca(Pedido pedidoSolicitacao)
-        {
-            //IMPLEMENTAR APÒS TROCA
-
+        {           
             return View();
         }
-
-
 
         public IActionResult Trocas()
         {
@@ -285,7 +288,8 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesTroca", troca);
         }
 
-      
+        #endregion
+
         #region PRODUTOS
         public IActionResult Produtos()
         {
@@ -387,25 +391,35 @@ namespace RaellShoes.Controllers
            
         }
 
-        public IActionResult AtivarProduto(Produto Produto)
+        public IActionResult AtivarProduto(Produto produto)
         {
-            return Ok();
+            Produto ativarProduto = (Produto)facade.ConsultarId(produto);
+            ativarProduto.Status = Models.Enums.Status.Ativo;
+
+            string conf = facade.Alterar(ativarProduto);
+
+            return RedirectToAction("Produtos");
         }
 
-        public IActionResult InativarProduto(Produto Produto)
+        public IActionResult InativarProduto(Produto produto)
         {
-            return Ok();
+            Produto ativarProduto = (Produto)facade.ConsultarId(produto);
+            ativarProduto.Status = Models.Enums.Status.Inativo;
+
+            string conf = facade.Alterar(ativarProduto);
+
+            return RedirectToAction("Produtos");
         }
 
        
-        public IActionResult DetalhesProduto(Produto Produto)
+        public IActionResult DetalhesProduto(Produto produto)
         {
+            Produto ativarProduto = (Produto)facade.ConsultarId(produto);
             return Ok();
         }
 
         #endregion
-
-        //*****************GRAFICO********************
+        
         #region DASH
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
@@ -672,8 +686,7 @@ namespace RaellShoes.Controllers
             return Json(lista);
         }
         #endregion
-
-        //*****************************PARAMETROS*****************************************
+       
         #region Categorias
 
         public IActionResult Categorias()
