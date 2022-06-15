@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace RaellShoes.Controllers
@@ -284,7 +285,7 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesTroca", troca);
         }
 
-        //****************PRODUTO********************
+      
         #region PRODUTOS
         public IActionResult Produtos()
         {
@@ -343,8 +344,61 @@ namespace RaellShoes.Controllers
         [HttpPost]
         public IActionResult ProcurarProduto(Produto produto)
         {
+            var listaProdutos = facade.ConsultarFiltroProdutos(produto);
+            List<Produto> produtos = new List<Produto>();
+
+            foreach (var item in listaProdutos)
+            {
+                produtos.Add(item);
+            }
+
+            List<EntidadeDominio> entidadeDominioCategorias = facade.Consultar(new Categoria());
+            List<Categoria> categorias = new List<Categoria>();
+
+            foreach (var item in entidadeDominioCategorias)
+            {
+                categorias.Add((Categoria)item);
+            }
+
+            List<EntidadeDominio> entidadeDominioGrupo = facade.Consultar(new GrupoPrecificacao());
+            List<GrupoPrecificacao> gruposPrecificacao = new List<GrupoPrecificacao>();
+
+            foreach (var item in entidadeDominioGrupo)
+            {
+                gruposPrecificacao.Add((GrupoPrecificacao)item);
+            }
+
+            List<EntidadeDominio> entidadeDominioFornecedor = facade.Consultar(new Fornecedor());
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+
+            foreach (var item in entidadeDominioFornecedor)
+            {
+                fornecedores.Add((Fornecedor)item);
+            }
+
+            ProdutoViewModel produtoViewModel = new ProdutoViewModel();
+            produtoViewModel.Categorias = categorias;
+            produtoViewModel.Fornecedores = fornecedores;
+            produtoViewModel.GruposPrecificacao = gruposPrecificacao;
+            produtoViewModel.Produtos = produtos;
+
+            return View("Produtos", produtoViewModel);
+
+           
+        }
+
+     
+        public IActionResult InativarProduto(Produto Produto)
+        {
             return Ok();
         }
+
+       
+        public IActionResult DetalhesProduto(Produto Produto)
+        {
+            return Ok();
+        }
+
         #endregion
 
         //*****************GRAFICO********************

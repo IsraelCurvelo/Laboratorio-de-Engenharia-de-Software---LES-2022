@@ -16,12 +16,14 @@ namespace RaellShoes.Models.ViewModel
         public List<Fornecedor> Fornecedores { get; set; }
         public GrupoPrecificacao GrupoPrecificacao { get; set; }
         public List<GrupoPrecificacao> GruposPrecificacao { get; set; }
+        public List<Produto> Produtos { get; set; }
 
         public ProdutoViewModel()
         {
             Categorias = new List<Categoria>();
             Fornecedores = new List<Fornecedor>();
             GruposPrecificacao = new List<GrupoPrecificacao>();
+            Produtos = new List<Produto>();
         }
     }
 }

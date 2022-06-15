@@ -25,7 +25,7 @@ namespace RaellShoes.Controllers
             facade = new Facade(dbContext);
         }
 
-
+        #region Index
         public IActionResult Index(LoginViewModel cliente)
         {
             int idLogado = 0;
@@ -40,8 +40,10 @@ namespace RaellShoes.Controllers
                 return RedirectToAction("Login", "Home");
            
         }
+        #endregion
+       
+        #region PERFIL
 
-        //**************************PERFIL**************************
         public IActionResult MeuPerfil()
         { 
             int idLogado = 0;
@@ -85,9 +87,10 @@ namespace RaellShoes.Controllers
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
 
+        #endregion
+     
+        #region ENDEREÇOS
 
-
-        //**************************ENDEREÇOS**************************        
         public IActionResult MeusEnderecos()
         {
             int idLogado = 0;
@@ -160,8 +163,9 @@ namespace RaellShoes.Controllers
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
 
+        #endregion
 
-        //**************************CARTÕES**************************
+        #region CARTÕES
         public IActionResult MeusCartoes()
         {
             int idLogado = 0;
@@ -233,7 +237,9 @@ namespace RaellShoes.Controllers
             return RedirectToAction(nameof(Error), new { message = confirmacao });
         }
 
-        //**************************PRODUTO**************************
+        #endregion
+
+        #region FILTROPRODUTOS
 
         public IActionResult ProcurarProduto()
         {
@@ -264,25 +270,9 @@ namespace RaellShoes.Controllers
             return View(produtoResult);
         }
 
-
-        //**************************SENHA**************************
-        public IActionResult EsqueceuSenha()
-        {
-            return View();
-        }
-
-        public IActionResult TrocarSenha()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult TrocarSenha(TrocarSenhaViewModel model)
-        {
-            return RedirectToAction("Login", "Home");
-        }
-
-        //**************************CARRINHO**************************
+        #endregion
+        
+        #region CARRINHO
         //Exibir o carrinho              
         public IActionResult Carrinho()
         {
@@ -460,9 +450,10 @@ namespace RaellShoes.Controllers
            
         }
 
+        #endregion
 
-        //**************************PEDIDOS**************************
-                
+        #region PEDIDOS
+
         public IActionResult RegistrarVenda(string data)
         {
             System.Threading.Thread.Sleep(5000);
@@ -486,11 +477,8 @@ namespace RaellShoes.Controllers
                 return RedirectToAction("PedidoRealizado", pedido);
             }
             else
-                return RedirectToAction("Login");          
-
-            
+                return RedirectToAction("Login");  
         }
-
 
         public IActionResult PedidoRealizado(Pedido pedido)
         {
@@ -542,8 +530,10 @@ namespace RaellShoes.Controllers
                 return RedirectToAction("Login");
 
         }
+        #endregion
 
-        //**************************TROCA*************************
+        #region TROCA
+
         [HttpPost]
         public IActionResult SolicitacaoTroca(Troca troca)
         {
@@ -594,17 +584,36 @@ namespace RaellShoes.Controllers
             
         }
 
-        
-        //**************************SENHA*************************
+        #endregion
+
+        #region SENHA
+
+        public IActionResult EsqueceuSenha()
+        {
+            return View();
+        }
+
+        public IActionResult TrocarSenha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult TrocarSenha(TrocarSenhaViewModel model)
+        {
+            return RedirectToAction("Login", "Home");
+        }
 
         [HttpPost]
         public IActionResult AlterarSenha(TrocarSenhaViewModel senha)
         {
-           //FALTA IMPLEMENTAR
+            //FALTA IMPLEMENTAR
             return View();
         }
-        
-        //**************************ERRO*************************
+
+        #endregion
+
+        #region Erro
         public IActionResult Error(String message)
         {
             var viewModel = new ErrorViewModel
@@ -614,6 +623,7 @@ namespace RaellShoes.Controllers
             };
             return View(viewModel);
         }
+        #endregion
 
     }
 }
