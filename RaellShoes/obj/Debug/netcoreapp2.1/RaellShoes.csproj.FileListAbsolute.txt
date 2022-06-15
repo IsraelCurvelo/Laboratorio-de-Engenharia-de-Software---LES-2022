@@ -157,3 +157,4 @@ C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Fornecedores.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\GruposPrecificacao.cshtml.g.cs
 C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\Cupons.cshtml.g.cs
+C:\Users\curve\Desktop\LES\RaellShoes\RaellShoes\RaellShoes\obj\Debug\netcoreapp2.1\Razor\Views\Administrador\DetalhesProduto.cshtml.g.cs

@@ -414,8 +414,39 @@ namespace RaellShoes.Controllers
        
         public IActionResult DetalhesProduto(Produto produto)
         {
-            Produto ativarProduto = (Produto)facade.ConsultarId(produto);
-            return Ok();
+            Produto detalhesProduto = (Produto)facade.ConsultarId(produto);
+
+            List<EntidadeDominio> entidadeDominioCategorias = facade.Consultar(new Categoria());
+            List<Categoria> categorias = new List<Categoria>();
+
+            foreach (var item in entidadeDominioCategorias)
+            {
+                categorias.Add((Categoria)item);
+            }
+
+            List<EntidadeDominio> entidadeDominioGrupo = facade.Consultar(new GrupoPrecificacao());
+            List<GrupoPrecificacao> gruposPrecificacao = new List<GrupoPrecificacao>();
+
+            foreach (var item in entidadeDominioGrupo)
+            {
+                gruposPrecificacao.Add((GrupoPrecificacao)item);
+            }
+
+            List<EntidadeDominio> entidadeDominioFornecedor = facade.Consultar(new Fornecedor());
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+
+            foreach (var item in entidadeDominioFornecedor)
+            {
+                fornecedores.Add((Fornecedor)item);
+            }
+
+            ProdutoViewModel produtoViewModel = new ProdutoViewModel();
+            produtoViewModel.Categorias = categorias;
+            produtoViewModel.Fornecedores = fornecedores;
+            produtoViewModel.GruposPrecificacao = gruposPrecificacao;
+            produtoViewModel.Produto = detalhesProduto;
+
+            return View(produtoViewModel);            
         }
 
         #endregion

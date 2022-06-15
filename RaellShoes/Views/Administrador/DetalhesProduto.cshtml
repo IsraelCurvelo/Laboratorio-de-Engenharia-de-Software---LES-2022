@@ -1,0 +1,587 @@
+﻿@model RaellShoes.Models.ViewModel.ProdutoViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Admin - Listar produto</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body onload="setarData()">
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="/administrador">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="dropdown  active">
+                    <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/administrador/GruposPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedores">Fornecedor</a></li>
+                        <li><a href="/administrador/Categorias">Categoria</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Trocas">Trocas</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Pedidos">Pedidos</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Clientes">Clientes</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Produtos">Produtos</a></li>
+                <li><a class="nav-link scrollto" href="/">Sair</a></li>
+                <li><a class="nav-link scrollto" href=""></a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+
+    </header><!-- End Header -->
+    <!--Box Clientes-->
+    <section id="cliente" class="cliente">
+
+        <!--Form-->
+        <div class="container mt-5">
+            <form class="needs-validation" novalidate action="">
+                <!--Novo Produto-->
+                <!--Box Produto-->
+                <div class="info-wrap">
+
+                    <h4> <strong style="padding-left: 10px; color: rgb(64, 174, 202)"> Detalhes do Produto</strong></h4><br>
+
+                    <div class="row">
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Marca</span>
+                            <br>
+                            <select asp-for="Produto.Marca" name="Marca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Marca>()"
+                                    class="form-select" required>
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Nome</span>
+                            <input asp-for="Produto.Nome" name="Nome" class="form-control" id="name" placeholder="Digite o nome do produto" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Modelo</span>
+                            <input asp-for="Produto.Modelo" name="Modelo" class="form-control" id="cpf" placeholder="Digite o modelo do produto" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cor</span>
+                            <br>
+                            <select asp-for="Produto.CorPrimariaProduto" name="CorPrimariaProduto" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.CorPrimariaProduto>()"
+                                    class="form-select" required>
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Gênero</span>
+                            <br>
+                            <select asp-for="Produto.Genero" name="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Genero>()"
+                                    class="form-select" required>
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Status</span>
+                            <br>
+                            <select asp-for="Produto.Status" name="Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
+                                    class="form-select" required disabled>
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Tamanho</span>
+                            <br>
+                            <select asp-for="Produto.Tamanho" name="Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()"
+                                    class="form-select" required>
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Grupo de Precificação</span>
+                            <br>
+                            <select asp-for="Produto.GrupoPrecificacao.Id" name="GrupoPrecificacaoId" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))"
+                                    class="form-select" required>
+                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Valor</span>
+                            <input asp-for="Produto.Valor" name="Valor" class="form-control" id="name" placeholder="Digite o valor do produto"
+                                   onkeyup="formatarMoeda(this)" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Data de Entrada</span>
+                            <input asp-for="Produto.DataCadastro" name="DataCadastro" class="form-control" id="data-entrada-novo-produto" type="date"
+                                   placeholder="Data de Entrada" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Quantidade</span>
+                            <input asp-for="Produto.Quantidade" name="Quantidade" class="form-control" id="qtd" type="number" min="0" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-8 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Código de Barras</span>
+                            <input asp-for="Produto.CodigoBarra" name="CodigoBarra" class="form-control" id="name" placeholder="Digite o código do produto"required>                                   
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                                               
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Fornecedor</span>
+                            <br>
+                            <select asp-for="Produto.Fornecedor.Id" name="FornecedorId" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))"
+                                    class="form-select" required>                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Categoria</span>
+                            <br>
+                            <select asp-for="Produto.Categoria.Id" name="CategoriaId" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))"
+                                    class="form-select" required>                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>URL Foto do Produto</span>
+                            <input asp-for="Produto.URLFoto" name="URLFoto" class="form-control" id="url" placeholder="Cole a URl da foto armazenada do produto"
+                                   required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Descrição</span>
+                            <textarea type="text" asp-for="Produto.Descricao" name="descricao" class="form-control" id="descricao"
+                                      placeholder="Descrição do Produto" data-rule="minlen:3" rows="10"
+                                      required></textarea>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <h5> <strong style="color: rgb(64, 174, 202)"> Categorias</strong></h5><br>
+                    </div>                   
+
+                    <br> <br>
+
+                    <div class="row">
+                        <h5> <strong style=" color: rgb(64, 174, 202)"> Ficha Técnica</strong></h5><br>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Material do Calçado</span>
+                            <input asp-for="Produto.FichaTecnica.Material" name="Material" class="form-control" id="material-calcado"
+                                   placeholder="Digite o tipo de material" required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Palmilha</span>
+                            <input asp-for="Produto.FichaTecnica.Palmilha" name="Palmilha" class="form-control" id="palmilha" placeholder="Digite o tipo de material"
+                                   required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Solado</span>
+                            <input asp-for="Produto.FichaTecnica.Solado" name="Solado" class="form-control" id="name" placeholder="Digite o tipo de material" required>                                   
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Garantia (Meses)</span>
+                            <input asp-for="Produto.FichaTecnica.GarantiaMeses" name="GarantiaMeses" class="form-control" id="name" placeholder="Digite o tempo de garantia" required>                                   
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Altura do cano</span>
+                            <br>
+                            <select asp-for="Produto.FichaTecnica.Altura" name="Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()"
+                                    class="form-select" required>                                
+                            </select>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Limpeza</span>
+                            <input asp-for="Produto.FichaTecnica.Limpeza" name="Limpeza" class="form-control" id="name" placeholder="Digite o tipo de limpeza" required>                                   
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Cuidados com o Produto</span>
+                            <textarea type="text" asp-for="Produto.FichaTecnica.Cuidados" name="Cuidados" class="form-control" id="cuidados-produto"
+                                      placeholder="Principais cuidados com o Produto" data-rule="minlen:3" rows="5" required>
+              </textarea>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br> <br>
+                    <div>
+                        <button class="btn btn-warning col-lg-12">Alterar</button>
+                    </div>
+            </form>
+            <br>
+            <div>
+                <input type="button" class="btn btn-dark col-lg-12" value="Inativar"
+                       data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                <br>
+            </div>
+        </div>
+
+        <br>
+
+        <!--Excluir Produto-->
+        <div class="info-wrap col-lg-12 col-md-6 info">
+            <div class="col-lg-12 col-md-6 info">
+                <div class="col-lg-12 col-md-6 info">
+                    <i class="bi bi-exclamation-triangle"
+                       style="margin-top: -10px; color: red; background-color: rgb(255, 253, 253);"></i>
+                </div>
+
+                <h4> <strong style="padding-left: -10px;"> Excluir Produto</strong></h4><br>
+
+            </div>
+
+
+            <br>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <span>Deseja excluir este produto?</span>
+
+                    <button class="btn btn-danger btn-sm " asp-action="ExcluirProduto" asp-route-id=""
+                            id="encerrar-conta" style="border-radius:8px; width: 40%" onclick="return encerrarConta()">
+                        Excluir
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+    <!-- Modal Motivo Inativação -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <section id="cliente" class="cliente">
+                        <div class="container" style=" margin-bottom: -30px;">
+                            <div class="section-title2">
+                                <h2> <span style="color: rgb(64, 174, 202)">Inativar Produto </span></h2>
+                            </div>
+                        </div>
+
+                        <!--Form-->
+                        <div class="container mt-5">
+                            <form class="needs-validation" novalidate action="">
+
+
+                                <!--Box Inativação-->
+                                <div class="info-wrap">
+
+                                    <h4>
+                                        <strong style="padding-left: 10px; color: rgb(64, 174, 202)">
+                                            Qual o motivo da
+                                            inativação?
+                                        </strong>
+                                    </h4><br>
+
+                                    <div class="row">
+
+
+
+                                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Descrição</span>
+                                            <textarea type="text" name="descricao" class="form-control" id="descricao"
+                                                      placeholder="Descrição do Produto" data-rule="minlen:3" rows="10" required></textarea>
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                            <span>Data de Inativação</span>
+                                            <input  class="form-control" id="data-inativacao" type="date" readonly
+                                                   onload="setarData()">
+                                            <div class="invalid-feedback">
+                                                *Campo obrigatório
+                                            </div>
+                                        </div>
+                                        <br> <br>
+                                        <div>
+                                            <button class="btn btn-success col-lg-12">Salvar</button>
+                                        </div>
+                            </form>
+                            <br>
+                        </div>
+
+                    </section>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+            if (texto.substring(0, 1) !== saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+        function mostrarResultado() {
+            var campo = document.getElementById("resultado").hidden;
+
+            if (campo)
+                document.getElementById("resultado").hidden = false;
+            else
+                document.getElementById("resultado").hidden = true;
+        }
+
+        function dataAtualFormatada() {
+            var data = new Date(),
+                dia = data.getDate().toString(),
+                diaF = (dia.length == 1) ? '0' + dia : dia,
+                mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+                mesF = (mes.length == 1) ? '0' + mes : mes,
+                anoF = data.getFullYear();
+            return anoF + "-" + mesF + "-" + diaF;
+        }
+
+        function setarData() {
+           
+            document.getElementById("data-inativacao").value = dataAtualFormatada();
+
+        }
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
