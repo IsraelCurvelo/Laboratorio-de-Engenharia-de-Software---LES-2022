@@ -68,7 +68,7 @@
 
         <!--Form-->
         <div class="container mt-5">
-            <form class="needs-validation" novalidate action="">
+            <form class="needs-validation" novalidate asp-action="AlterarProduto">
                 <!--Novo Produto-->
                 <!--Box Produto-->
                 <div class="info-wrap">
@@ -130,7 +130,7 @@
                             <span>Status</span>
                             <br>
                             <select asp-for="Produto.Status" name="Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
-                                    class="form-select" required disabled>
+                                    class="form-select" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -151,9 +151,9 @@
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Grupo de Precificação</span>
                             <br>
-                            <select asp-for="Produto.GrupoPrecificacao.Id" name="GrupoPrecificacaoId" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))"
+                           
+                            <select asp-for="@Model.Produto.GrupoPrecificacao.Id" name="GrupoPrecificacao.Id" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))"
                                     class="form-select" required>
-                                
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -177,7 +177,7 @@
                             </div>
                         </div>
 
-                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Quantidade</span>
                             <input asp-for="Produto.Quantidade" name="Quantidade" class="form-control" id="qtd" type="number" min="0" required>
                             <div class="invalid-feedback">
@@ -188,18 +188,18 @@
 
                         <div class="col-lg-8 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Código de Barras</span>
-                            <input asp-for="Produto.CodigoBarra" name="CodigoBarra" class="form-control" id="name" placeholder="Digite o código do produto"required>                                   
+                            <input asp-for="Produto.CodigoBarra" name="CodigoBarra" class="form-control" id="name" placeholder="Digite o código do produto" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
                         </div>
-                                               
+
 
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Fornecedor</span>
                             <br>
-                            <select asp-for="Produto.Fornecedor.Id" name="FornecedorId" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))"
-                                    class="form-select" required>                                
+                            <select asp-for="@Model.Produto.Fornecedor.Id" name="Fornecedor.Id" asp-items="@(new SelectList(Model.Fornecedores,"Id","Nome"))"
+                                    class="form-select" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -209,8 +209,8 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Categoria</span>
                             <br>
-                            <select asp-for="Produto.Categoria.Id" name="CategoriaId" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))"
-                                    class="form-select" required>                                
+                            <select asp-for="@Model.Produto.Categoria.Id" name="Categoria.Id" asp-items="@(new SelectList(Model.Categorias,"Id","Nome"))"
+                                    class="form-select" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -241,7 +241,7 @@
 
                     <div class="row">
                         <h5> <strong style="color: rgb(64, 174, 202)"> Categorias</strong></h5><br>
-                    </div>                   
+                    </div>
 
                     <br> <br>
 
@@ -250,9 +250,10 @@
                     </div>
 
                     <div class="row">
+                        <input type="hidden" asp-for="@Model.Produto.FichaTecnica.Id" name="FichaTecnica.Id" />
                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Material do Calçado</span>
-                            <input asp-for="Produto.FichaTecnica.Material" name="Material" class="form-control" id="material-calcado"
+                            <input asp-for="@Model.Produto.FichaTecnica.Material" name="FichaTecnica.Material" class="form-control" id="material-calcado"
                                    placeholder="Digite o tipo de material" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -261,7 +262,7 @@
 
                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Palmilha</span>
-                            <input asp-for="Produto.FichaTecnica.Palmilha" name="Palmilha" class="form-control" id="palmilha" placeholder="Digite o tipo de material"
+                            <input asp-for="@Model.Produto.FichaTecnica.Palmilha" name="FichaTecnica.Palmilha" class="form-control" id="palmilha" placeholder="Digite o tipo de material"
                                    required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -270,7 +271,7 @@
 
                         <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Solado</span>
-                            <input asp-for="Produto.FichaTecnica.Solado" name="Solado" class="form-control" id="name" placeholder="Digite o tipo de material" required>                                   
+                            <input asp-for="@Model.Produto.FichaTecnica.Solado" name="FichaTecnica.Solado" class="form-control" id="name" placeholder="Digite o tipo de material" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -278,7 +279,7 @@
 
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Garantia (Meses)</span>
-                            <input asp-for="Produto.FichaTecnica.GarantiaMeses" name="GarantiaMeses" class="form-control" id="name" placeholder="Digite o tempo de garantia" required>                                   
+                            <input asp-for="@Model.Produto.FichaTecnica.GarantiaMeses" name="FichaTecnica.GarantiaMeses" class="form-control" id="name" placeholder="Digite o tempo de garantia" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -287,8 +288,8 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Altura do cano</span>
                             <br>
-                            <select asp-for="Produto.FichaTecnica.Altura" name="Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()"
-                                    class="form-select" required>                                
+                            <select asp-for="@Model.Produto.FichaTecnica.Altura" name="FichaTecnica.Altura" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Altura>()"
+                                    class="form-select" required>
                             </select>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
@@ -297,7 +298,7 @@
 
                         <div class="col-lg-7 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Limpeza</span>
-                            <input asp-for="Produto.FichaTecnica.Limpeza" name="Limpeza" class="form-control" id="name" placeholder="Digite o tipo de limpeza" required>                                   
+                            <input asp-for="@Model.Produto.FichaTecnica.Limpeza" name="FichaTecnica.Limpeza" class="form-control" id="name" placeholder="Digite o tipo de limpeza" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -305,7 +306,7 @@
 
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Cuidados com o Produto</span>
-                            <textarea type="text" asp-for="Produto.FichaTecnica.Cuidados" name="Cuidados" class="form-control" id="cuidados-produto"
+                            <textarea type="text" asp-for="@Model.Produto.FichaTecnica.Cuidados" name="FichaTecnica.Cuidados" class="form-control" id="cuidados-produto"
                                       placeholder="Principais cuidados com o Produto" data-rule="minlen:3" rows="5" required>
               </textarea>
                             <div class="invalid-feedback">
@@ -316,10 +317,14 @@
 
                     </div>
                     <br> <br>
+                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <input type="hidden" asp-for="@Model.Produto.Id" name="Id" />
+
+                    </div>
                     <div>
                         <button class="btn btn-warning col-lg-12">Alterar</button>
                     </div>
-            </form>
+</form>
             <br>
             <div>
                 <input type="button" class="btn btn-dark col-lg-12" value="Inativar"

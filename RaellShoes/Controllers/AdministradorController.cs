@@ -449,6 +449,25 @@ namespace RaellShoes.Controllers
             return View(produtoViewModel);            
         }
 
+        [HttpPost]
+        public IActionResult AlterarProduto(Produto produto)
+        {            
+            ValidarDadosProduto validar = new ValidarDadosProduto();
+            string confirmacao = validar.Processar(produto);
+            if(confirmacao == null)
+            {
+                Categoria categoria = (Categoria)facade.ConsultarId(produto.Categoria);
+                Fornecedor fornecedor = (Fornecedor)facade.ConsultarId(produto.Fornecedor);
+                GrupoPrecificacao grupo = (GrupoPrecificacao)facade.ConsultarId(produto.GrupoPrecificacao);
+                produto.Categoria = categoria;
+                produto.Fornecedor = fornecedor;
+                produto.GrupoPrecificacao = grupo;
+
+                string conf = facade.Alterar(produto);
+            }
+            return RedirectToAction("DetalhesProduto", produto);
+        }
+
         #endregion
         
         #region DASH
