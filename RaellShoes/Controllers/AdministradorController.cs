@@ -750,5 +750,30 @@ namespace RaellShoes.Controllers
             return RedirectToAction("GruposPrecificacao");
         }
         #endregion
+
+        #region Cupons
+
+        public IActionResult Cupons()
+        {
+
+            return View(new CupomViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult NovoCupom(Cupom cupom)
+        {
+            cupom.Promocional = true;
+            cupom.Status = Models.Enums.Status.Ativo;
+            cupom.DataCadastro = DateTime.Now;
+            ValidarDadosCupom validarDadosCupom = new ValidarDadosCupom();
+            string confirmacao = validarDadosCupom.Processar(cupom);
+            if(confirmacao == null)
+            {
+                string conf = facade.Cadastrar(cupom);               
+            }
+            return RedirectToAction("Cupons");
+        }
+
+        #endregion
     }
 }

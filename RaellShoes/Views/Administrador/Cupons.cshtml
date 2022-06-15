@@ -1,0 +1,372 @@
+﻿@model RaellShoes.Models.ViewModel.CupomViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Admin - Procurar Cupom</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="/administrador">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="dropdown  active">
+                    <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/administrador/GruposPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedores">Fornecedor</a></li>
+                        <li><a href="/administrador/Categorias">Categoria</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Trocas">Trocas</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Pedidos">Pedidos</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Clientes">Clientes</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Produtos">Produtos</a></li>
+                <li><a class="nav-link scrollto" href="/">Sair</a></li>
+                <li><a class="nav-link scrollto" href=""></a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+
+    </header><!-- End Header -->
+    <!--Box Clientes-->
+    <section id="cliente" class="cliente">
+        <div class="container mt-5">
+            <!--Box Clientes-->
+            <div class="info-wrap" style=" border-radius:20px">
+                <div class="row">
+                    <h5><strong style="  color: rgb(13, 236, 181);">CADASTRAR CUPOM </strong></h5><br>
+
+                </div>
+                <br>
+                <div class="row">
+                    <input type="button" class="btn btn-success col-lg-12" style="border-radius:10px" value="Novo Cupom"
+                           data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <!--Box Clientes-->
+            <div class="info-wrap" style=" border-radius:20px">
+
+                <h5><strong style="  color: rgb(13, 236, 181);">Procurar Cupom </strong></h5><br>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Código</span>
+                        <input asp-for="Cupom.Codigo" class="form-control" id="codigo" placeholder="Código do Cupom">
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Descrição</span>
+                        <input asp-for="Cupom.Descricao" class="form-control" id="descricao" placeholder="Descrição do Cupom">
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span>Status</span>
+                        <br>
+                        <select asp-for="Cupom.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
+                                class="form-select">                            
+                        </select>
+                    </div>
+                </div><br><br>
+                <button class="col-lg-12 btn btn-success btn-sm" style="color: white;"
+                        onclick="mostrarResultado()">
+                    Procurar
+                </button><br>
+            </div>
+        </div>
+
+
+
+        <!--Últimos Clientes-->
+        <div class="container mt-5" id="resultado" hidden>
+            <!--Box ultimos clientes-->
+            <div class="info-wrap" style=" border-radius:20px; text-align: center;">
+                <h5><strong style="  color: rgb(13, 236, 181);">Resultado </strong></h5><br>
+
+                <div class="row" style="text-align: center;">
+                    <div class="col-lg-12 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <table class="table table-hover col-lg-10">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">5%OFF</th>
+                                    <td>5% de Desconto</td>
+                                    <td>Ativo</td>
+                                    <td><button class="btn btn-warning btn-sm">Inativar</button></td>
+                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">NIKE10</th>
+                                    <td>10% de Desconto em produtos Nike</td>
+                                    <td>Ativo</td>
+                                    <td><button class="btn btn-warning btn-sm">Inativar</button></td>
+                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                                </tr>
+
+
+                                <tr>
+                                    <th scope="row">COMBO300</th>
+                                    <td>300 Reais de Desconto em compra acima de R$ 1000</td>
+                                    <td>Inativo</td>
+                                    <td><button class="btn btn-success btn-sm">Ativar</button></td>
+                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Novo Cupom -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+
+                        <section id="cliente" class="cliente">
+                            <div class="container" style=" margin-bottom: -30px;">
+                                <div class="section-title2">
+                                    <h2> <span style="color: rgb(13, 236, 181);">Novo Cupom </span></h2>
+                                </div>
+                            </div>
+
+                            <!--Form-->
+                            <div class="container mt-5">
+                                <form class="needs-validation" novalidate asp-action="NovoCupom">
+                                   
+                                    <div class="info-wrap">
+
+                                        <h4> <strong style="padding-left: 10px; color: rgb(13, 236, 181);"> Cadastrar Cupom</strong></h4><br>
+
+                                        <div class="row">
+
+
+                                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                <span>Código</span>
+                                                <input asp-for="Cupom.Codigo" class="form-control" id="codigo-cupom" placeholder="Digite o código do cupom" required>
+                                                <div class="invalid-feedback">
+                                                    *Campo obrigatório
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                <span>Desconto</span>
+                                                <input type="number" asp-for="Cupom.Desconto" class="form-control" id="descricao-cupom" placeholder="Digite a valor de desconto" required>
+                                                <div class="invalid-feedback">
+                                                    *Campo obrigatório
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                                <span>Descrição</span>
+                                                <input asp-for="Cupom.Descricao" class="form-control" id="descricao-cupom" placeholder="Digite a descrição do cupom" required>
+                                                <div class="invalid-feedback">
+                                                    *Campo obrigatório
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <br> <br>
+                                        <div>
+                                            <button class="btn btn-success col-lg-12">Salvar</button>
+                                        </div>
+                                </form>
+                                <br>
+                            </div>
+
+                        </section>
+                        <br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+        function formatar(mascara, documento) {
+            var i = documento.value.length;
+            var saida = mascara.substring(0, 1);
+            var texto = mascara.substring(i)
+            if (texto.substring(0, 1) !== saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+        function mostrarResultado() {
+            var campo = document.getElementById("resultado").hidden;
+
+            if (campo)
+                document.getElementById("resultado").hidden = false;
+            else
+                document.getElementById("resultado").hidden = true;
+        }
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
