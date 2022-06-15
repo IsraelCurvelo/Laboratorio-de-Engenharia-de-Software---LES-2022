@@ -468,8 +468,17 @@ namespace RaellShoes.Controllers
             return RedirectToAction("DetalhesProduto", produto);
         }
 
+     
+        public IActionResult ExcluirProduto(Produto produto)
+        {
+            Produto produtoBanco = (Produto)facade.ConsultarId(produto);
+            string conf = facade.Excluir(produtoBanco);
+
+            return RedirectToAction("Produtos");
+        }
+
         #endregion
-        
+
         #region DASH
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)

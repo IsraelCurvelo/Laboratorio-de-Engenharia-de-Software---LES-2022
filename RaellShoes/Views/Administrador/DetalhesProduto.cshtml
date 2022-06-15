@@ -353,11 +353,13 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                     <span>Deseja excluir este produto?</span>
-
-                    <button class="btn btn-danger btn-sm " asp-action="ExcluirProduto" asp-route-id=""
-                            id="encerrar-conta" style="border-radius:8px; width: 40%" onclick="return encerrarConta()">
-                        Excluir
-                    </button>
+                    <form>
+                        <input type="hidden" asp-for="@Model.Produto.Id" name="Id" />
+                        <button class="btn btn-danger btn-sm " asp-action="ExcluirProduto" id="encerrar-conta" style="border-radius:8px; width: 40%">
+                            Excluir
+                        </button>
+                    </form>
+                   
 
                 </div>
             </div>
