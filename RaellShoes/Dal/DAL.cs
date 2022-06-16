@@ -887,6 +887,49 @@ namespace RaellShoes.Dal
             return clientes;
         }
 
+        public List<Cupom> ConsultarFiltroCupom(Cupom cupom)
+        {
+            HashSet<Cupom> consulta = new HashSet<Cupom>();
+            List<Cupom> cupons = new List<Cupom>();
+
+            if (cupom.Codigo != null)
+            {
+                var resultado = dbContext.Cupom.Where(x => x.Codigo == cupom.Codigo).ToList();
+                foreach (Cupom item in resultado)
+                {
+                    Cupom retornoCupom = (Cupom)ConsultarId(item);
+                    consulta.Add(retornoCupom);
+                }
+            }
+
+            if (cupom.Descricao != null)
+            {
+                var resultado = dbContext.Cupom.Where(x => x.Descricao == cupom.Descricao).ToList();
+                foreach (Cupom item in resultado)
+                {
+                    Cupom retornoCupom = (Cupom)ConsultarId(item);
+                    consulta.Add(retornoCupom);
+                }
+            }
+
+            if (cupom.Status != null)
+            {
+                var resultado = dbContext.Cupom.Where(x => x.Status == cupom.Status).ToList();
+                foreach (Cupom item in resultado)
+                {
+                    Cupom retornoCupom = (Cupom)ConsultarId(item);
+                    consulta.Add(retornoCupom);
+                }
+            }
+
+            foreach (var item in consulta)
+            {
+                cupons.Add(item);
+            }
+
+            return cupons;
+        }
+
         public List<Categoria> ConsultarCategoriasDash()
         {
             return dbContext.Categoria.ToList();

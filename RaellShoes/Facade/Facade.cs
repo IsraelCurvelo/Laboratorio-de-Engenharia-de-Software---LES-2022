@@ -302,6 +302,14 @@ namespace RaellShoes.Facadee
                 dal.Cadastrar(log);
                 return conf;
             }
+            if (entidadeDominio.GetType().Name.ToLower().Equals("cupom"))
+            {
+                Cupom cupom = (Cupom)entidadeDominio;
+                string conf = dal.Alterar(cupom);
+                log.Descricao = gerarLog.Processar(cupom) + ", [Tipo: Alteração]";
+                dal.Cadastrar(log);
+                return conf;
+            }
             return null;
             
         }
@@ -408,16 +416,22 @@ namespace RaellShoes.Facadee
                 return "Houve um erro ao cadastrar os endereços";
 
         }
+        
+        public List<Cupom> ConsultarFiltroCupom(Cupom cupom)
+        {
+            return dal.ConsultarFiltroCupom(cupom);
+        }
 
         public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
         {
             return dal.ConsultarFiltroProdutos(produto);
         } 
-
         public ICollection<Produto> ConsultarFiltroProdutosAdmin(Produto produto)
         {
             return dal.ConsultarFiltroProdutosAdmin(produto);
         }
+
+         
 
         public string ProdutoCarrinho(Produto produto, int id)
         {

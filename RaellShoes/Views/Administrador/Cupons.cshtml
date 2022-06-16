@@ -82,41 +82,43 @@
 
         <div class="container mt-5">
             <!--Box Clientes-->
-            <div class="info-wrap" style=" border-radius:20px">
+            <form asp-action="ProcurarCupons" class="needs-validation" novalidate>
+                <div class="info-wrap" style=" border-radius:20px">
 
-                <h5><strong style="  color: rgb(13, 236, 181);">Procurar Cupom </strong></h5><br>
+                    <h5><strong style="  color: rgb(13, 236, 181);">Procurar Cupom </strong></h5><br>
 
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Código</span>
-                        <input asp-for="Cupom.Codigo" class="form-control" id="codigo" placeholder="Código do Cupom">
-                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Código</span>
+                            <input asp-for="Cupom.Codigo" class="form-control" id="codigo" placeholder="Código do Cupom">
+                        </div>
 
-                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Descrição</span>
-                        <input asp-for="Cupom.Descricao" class="form-control" id="descricao" placeholder="Descrição do Cupom">
-                    </div>
+                        <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Descrição</span>
+                            <input asp-for="Cupom.Descricao" class="form-control" id="descricao" placeholder="Descrição do Cupom">
+                        </div>
 
 
-                    <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                        <span>Status</span>
-                        <br>
-                        <select asp-for="Cupom.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
-                                class="form-select">                            
-                        </select>
-                    </div>
-                </div><br><br>
-                <button class="col-lg-12 btn btn-success btn-sm" style="color: white;"
-                        onclick="mostrarResultado()">
-                    Procurar
-                </button><br>
-            </div>
+                        <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>Status</span>
+                            <br>
+                            <select asp-for="Cupom.Status" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Status>()"
+                                    class="form-select">
+                            </select>
+                        </div>
+                    </div><br><br>
+                    <button class="col-lg-12 btn btn-success btn-sm" style="color: white;">
+
+                        Procurar
+                    </button><br>
+                </div>
+            </form>
         </div>
 
 
 
         <!--Últimos Clientes-->
-        <div class="container mt-5" id="resultado" hidden>
+        <div class="container mt-5" id="resultado">
             <!--Box ultimos clientes-->
             <div class="info-wrap" style=" border-radius:20px; text-align: center;">
                 <h5><strong style="  color: rgb(13, 236, 181);">Resultado </strong></h5><br>
@@ -129,35 +131,40 @@
                                     <th scope="col">Código</th>
                                     <th scope="col">Descrição</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Promocional?</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">5%OFF</th>
-                                    <td>5% de Desconto</td>
-                                    <td>Ativo</td>
-                                    <td><button class="btn btn-warning btn-sm">Inativar</button></td>
-                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                                </tr>
+                                @foreach (var item in Model.Cupons)
+                                {
+                                    <tr>
+                                        <td> @Html.DisplayFor(modelItem => item.Codigo)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Descricao)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Status)</td> 
+                                        <td> @Html.DisplayFor(modelItem => item.Promocional)</td>
 
-                                <tr>
-                                    <th scope="row">NIKE10</th>
-                                    <td>10% de Desconto em produtos Nike</td>
-                                    <td>Ativo</td>
-                                    <td><button class="btn btn-warning btn-sm">Inativar</button></td>
-                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
-                                </tr>
+                                        @if (item.Status == RaellShoes.Models.Enums.Status.Ativo)
+                                        {
+                                            <form>
+                                                <td><button asp-action="InativarCupom" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Inativar</button></td>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form>
+                                                <td><button asp-action="AtivarCupom" asp-route-id="@item.Id" class="btn btn-success btn-sm">Ativar</button></td>
+                                            </form>
+                                        }
 
+                                        <form>
+                                            <td><button asp-action="ExcluirCupom" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</button></td>
+                                        </form>
+                                    </tr>
 
-                                <tr>
-                                    <th scope="row">COMBO300</th>
-                                    <td>300 Reais de Desconto em compra acima de R$ 1000</td>
-                                    <td>Inativo</td>
-                                    <td><button class="btn btn-success btn-sm">Ativar</button></td>
-                                    <td><button class="btn btn-danger btn-sm">Excluir</button></td>
+                                }                             
 
 
                             </tbody>

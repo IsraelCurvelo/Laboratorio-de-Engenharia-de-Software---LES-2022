@@ -946,6 +946,35 @@ namespace RaellShoes.Controllers
             return RedirectToAction("Cupons");
         }
 
+        public IActionResult ProcurarCupons(Cupom cupom)
+        {
+            var cupons = facade.ConsultarFiltroCupom(cupom);
+            return View("Cupons", new CupomViewModel() { Cupons = cupons });
+        }
+
+        public IActionResult AtivarCupom(Cupom cupom)
+        {
+            Cupom cupomRetornado = (Cupom)facade.ConsultarId(cupom);
+            cupomRetornado.Status = Models.Enums.Status.Ativo;
+            string conf = facade.Alterar(cupomRetornado);
+            return View("Cupons", new CupomViewModel());
+        }
+
+        public IActionResult InativarCupom(Cupom cupom)
+        {
+            Cupom cupomRetornado = (Cupom)facade.ConsultarId(cupom);
+            cupomRetornado.Status = Models.Enums.Status.Inativo;
+            string conf = facade.Alterar(cupomRetornado);
+            return View("Cupons", new CupomViewModel());
+        }
+
+        public IActionResult ExcluirCupom(Cupom cupom)
+        {
+            Cupom cupomRetornado = (Cupom)facade.ConsultarId(cupom);            
+            string conf = facade.Excluir(cupomRetornado);
+            return View("Cupons", new CupomViewModel());
+        }
+
         #endregion
     }
 }
