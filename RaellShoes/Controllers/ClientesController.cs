@@ -11,6 +11,7 @@ using RaellShoes.Models.Administrador;
 using RaellShoes.Models.Clientes;
 using RaellShoes.Models.NN;
 using RaellShoes.Models.ViewModel;
+using RaellShoes.Strategy;
 
 namespace RaellShoes.Controllers
 {
@@ -593,22 +594,57 @@ namespace RaellShoes.Controllers
             return View();
         }
 
-        public IActionResult TrocarSenha()
-        {
-            return View();
-        }
+        //public IActionResult TrocarSenha()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public IActionResult TrocarSenha(TrocarSenhaViewModel model)
-        {
-            return RedirectToAction("Login", "Home");
+        //[HttpPost]
+        //public IActionResult TrocarSenha(TrocarSenhaViewModel model)
+        //{
+        //    return RedirectToAction("Login", "Home");
+        //}
+
+        
+        public IActionResult AlterarSenha()
+        {            
+            return View();
         }
 
         [HttpPost]
         public IActionResult AlterarSenha(TrocarSenhaViewModel senha)
         {
-            //FALTA IMPLEMENTAR
-            return View();
+            int idLogado = 0;
+            if (HttpContext.Session.GetInt32("UsuarioId") != null)
+                idLogado = (int)HttpContext.Session.GetInt32("UsuarioId");
+            
+            Cliente clienteSenhaAtual = (Cliente)facade.ConsultarId(new Cliente() { Id = idLogado });
+            Cliente clienteSenhaNova = new Cliente();
+            clienteSenhaNova.Usuario = new Usuario() { Senha = senha.NovaSenha };
+
+            if (idLogado > 0)
+            {
+                if (senha.NovaSenha == senha.NovaSenha)
+                {  
+                    CriptografarSenha criptografar = new CriptografarSenha();                    
+                    string confSenhaNova = criptografar.Processar(clienteSenhaNova);
+                    string confSenhaAtual = criptografar.Processar(clienteSenhaAtual);
+
+                    if (clienteSenhaAtual.Usuario.Senha == confSenhaAtual)
+                    {
+                        clienteSenhaAtual.Usuario.Senha = confSenhaNova;
+                        string conf = facade.Alterar(clienteSenhaAtual);
+                       
+                    }                
+                }
+            }
+            return RedirectToAction("Index", new LoginViewModel()
+            {
+                Admin = false,
+                Email = clienteSenhaAtual.Usuario.Email,
+                Nome = clienteSenhaAtual.Nome,
+                IdCliente = clienteSenhaAtual.Id
+            });
         }
 
         #endregion
