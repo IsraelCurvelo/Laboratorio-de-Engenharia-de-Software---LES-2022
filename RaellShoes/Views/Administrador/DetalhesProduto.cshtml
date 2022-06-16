@@ -76,7 +76,23 @@
                     <h4> <strong style="padding-left: 10px; color: rgb(64, 174, 202)"> Detalhes do Produto</strong></h4><br>
 
                     <div class="row">
+                        <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                        <span></span>
+                        <img src='~/assets/img/Produtos/URLFoto/@Html.DisplayFor(model => Model.Produto.URLFoto)'
+                             id="img-historico" />
+                        </div>
 
+                        <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                            <span>URL Foto do Produto</span>
+                            <input type="file" asp-for="Produto.URLFoto" name="URLFoto" class="form-control" id="url" placeholder="Cole a URl da foto armazenada do produto"
+                                   required>
+                            <div class="invalid-feedback">
+                                *Campo obrigatório
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Marca</span>
                             <br>
@@ -151,7 +167,7 @@
                         <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Grupo de Precificação</span>
                             <br>
-                           
+
                             <select asp-for="@Model.Produto.GrupoPrecificacao.Id" name="GrupoPrecificacao.Id" asp-items="@(new SelectList(Model.GruposPrecificacao,"Id","Nome"))"
                                     class="form-select" required>
                             </select>
@@ -163,7 +179,7 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Valor</span>
                             <input asp-for="Produto.Valor" name="Valor" class="form-control" id="name" placeholder="Digite o valor do produto"
-                                   onkeyup="formatarMoeda(this)" required>
+                                    onkeyup="formatarMoeda(this)" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -171,7 +187,7 @@
                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Data de Entrada</span>
                             <input asp-for="Produto.DataCadastro" name="DataCadastro" class="form-control" id="data-entrada-novo-produto" type="date"
-                                   placeholder="Data de Entrada" required>
+                                    placeholder="Data de Entrada" required>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
@@ -217,20 +233,12 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                            <span>URL Foto do Produto</span>
-                            <input asp-for="Produto.URLFoto" name="URLFoto" class="form-control" id="url" placeholder="Cole a URl da foto armazenada do produto"
-                                   required>
-                            <div class="invalid-feedback">
-                                *Campo obrigatório
-                            </div>
-                        </div>
 
                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                             <span>Descrição</span>
                             <textarea type="text" asp-for="Produto.Descricao" name="descricao" class="form-control" id="descricao"
-                                      placeholder="Descrição do Produto" data-rule="minlen:3" rows="10"
-                                      required></textarea>
+                                        placeholder="Descrição do Produto" data-rule="minlen:3" rows="10"
+                                        required></textarea>
                             <div class="invalid-feedback">
                                 *Campo obrigatório
                             </div>
