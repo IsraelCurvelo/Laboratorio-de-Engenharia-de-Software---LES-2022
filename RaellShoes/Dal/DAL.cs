@@ -143,6 +143,13 @@ namespace RaellShoes.Dal
                     }
                     return resultado;
 
+                case ("cliente"):
+                    foreach (EntidadeDominio x in dbContext.Cliente.Include(x => x.Telefone).Include(x => x.Usuario).ToList())                     
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
+
                 case ("cartao"):
                     foreach (EntidadeDominio x in dbContext.Cartao.ToList().Where(x => x.ClienteId == entidadeDominio.Id))
                     {
@@ -807,7 +814,80 @@ namespace RaellShoes.Dal
             return listaTrocas;
         }
 
-         public List<Categoria> ConsultarCategoriasDash()
+        public List<Cliente> ConsultarFiltroClienteAdmin(Cliente cliente)
+        {
+            HashSet<Cliente> consulta = new HashSet<Cliente>();
+            List<Cliente> clientes = new List<Cliente>();
+
+            if (cliente.Nome != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.Nome == cliente.Nome).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            if (cliente.Cpf != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.Cpf == cliente.Cpf).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            if (cliente.DataNascimento != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.DataNascimento == cliente.DataNascimento).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            if (cliente.Genero != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.Genero == cliente.Genero && x.Genero != Models.Enums.Genero.Selecione).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            if (cliente.Usuario.Email != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.Usuario.Email == cliente.Usuario.Email).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            if (cliente.Telefone.Numero != null)
+            {
+                var resultado = dbContext.Cliente.Where(x => x.Telefone.Numero == cliente.Telefone.Numero).ToList();
+                foreach (Cliente item in resultado)
+                {
+                    Cliente retornoCliente = (Cliente)ConsultarId(item);
+                    consulta.Add(retornoCliente);
+                }
+            }
+
+            foreach (var item in consulta)
+            {
+                clientes.Add(item);
+            }
+
+            return clientes;
+        }
+
+        public List<Categoria> ConsultarCategoriasDash()
         {
             return dbContext.Categoria.ToList();
         }

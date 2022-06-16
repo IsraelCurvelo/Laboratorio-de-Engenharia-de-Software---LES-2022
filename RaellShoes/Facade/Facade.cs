@@ -603,6 +603,11 @@ namespace RaellShoes.Facadee
         {
             return dal.ConsultarFiltroTrocasAdmin(troca);
         }
+        
+        public List<Cliente> ConsultarFiltroClienteAdmin(Cliente cliente)
+        {
+            return dal.ConsultarFiltroClienteAdmin(cliente);
+        }
 
         public List<Categoria> ConsultarCategoriasDash()
         {

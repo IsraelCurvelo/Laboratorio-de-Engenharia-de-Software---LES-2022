@@ -1,0 +1,386 @@
+﻿@model RaellShoes.Models.Clientes.Cliente
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>RaellShoes - Admin - Listar Cliente</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/assets/antigo/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="/administrador">RaellShoes<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+
+        </div>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="dropdown  active">
+                    <a href="#"><span>Parâmetros</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/administrador/GruposPrecificacao">Grupo de Precificação</a></li>
+                        <li><a href="/administrador/Fornecedores">Fornecedor</a></li>
+                        <li><a href="/administrador/Categorias">Categoria</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="/administrador/Cupons">Cupons</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Trocas">Trocas</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Pedidos">Pedidos</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Clientes">Clientes</a></li>
+                <li><a class="nav-link scrollto" href="/administrador/Produtos">Produtos</a></li>
+                <li><a class="nav-link scrollto" href="/">Sair</a></li>
+                <li><a class="nav-link scrollto" href=""></a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+
+    </header><!-- End Header -->
+
+
+
+
+
+    <section id="cliente" class="cliente">
+        <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
+            <div class="section-title2">
+                <h2>Detalhes do Cliente </h2>
+            </div>
+        </div>
+
+        <!--Form-->
+        <div class="container mt-5">
+            <form action="admin-index.html" id="form-cliente" class="needs-validation" novalidate>
+
+                <!--Box Dados Pessoais-->
+                <div class="info-wrap">
+
+                    <div class="row">
+
+                        <div class="row">
+                            <input type="hidden" asp-for="@Model.Id" name="Id" />
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Nome</span>
+                                <input asp-for="Nome" class="form-control" id="name" placeholder="Digite seu primeiro nome"
+                                       minlength="3" disabled>
+
+                            </div>
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Sobrenome</span>
+                                <input asp-for="Sobrenome" class="form-control" id="lastname" placeholder="Digite seu sobrenome"
+                                       minlength="3" disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>CPF</span>
+                                <input asp-for="Cpf" class="form-control" id="cpf" placeholder="Digite seu CPF" maxlength="14"
+                                       onkeypress="formatar('###.###.###-##', this);" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Data de Nascimento</span>
+                                <input asp-for="DataNascimento" class="form-control" id="dataNascimento"
+                                       placeholder="Data de Nascimento" disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Gênero</span>
+                                <br>
+                                <select asp-for="Genero" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Genero>()"
+                                        class="form-select" disabled>
+                                </select>
+
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Email</span>
+                                <input asp-for="Usuario.Email" class="form-control" id="lastname" placeholder="Digite seu email" minlength="3"
+                                       disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>DDD</span>
+                                <input asp-for="Telefone.DDD" class="form-control" id="ddd" placeholder="Digite seu DDD" maxlength="3"
+                                       pattern="[0-9]{3}" disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório (3 Dígitos)
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Telefone</span>
+                                <input asp-for="Telefone.Numero" class="form-control" id="telefone" placeholder="Digite seu Telefone"
+                                       maxlength="10" onkeypress="formatar('#####-####', this);"
+                                       pattern="[0-9]{4}-[0-9]{5}||[0-9]{5}-[0-9]{4}" disabled>
+                                <div class="invalid-feedback">
+                                    *Campo obrigatório (9 ou 8 Dígitos)
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Ranking</span>
+                                <input class="form-control" id="ranking" disabled value="XX">
+
+                            </div>
+                            <div class="col-lg-1 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Pedidos</span>
+                                <input class="form-control" id="pedidos" disabled value="XX">
+
+                            </div>
+
+                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form" style="padding-top:30px">
+                                <input asp-for="Status" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Status Ativo?</label>
+
+
+                            </div>
+
+                            <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                                <span>Endereço Residencial</span>
+                                <input asp-for="Telefone.Numero" class="form-control" id="endereco" disabled
+                                       value="@Model.Endereco.Logradouro,@Model.Endereco.Numero, @Model.Endereco.Bairro, @Model.Endereco.Cidade.Descricao-@Model.Endereco.Cidade.Estado.Descricao @Model.Endereco.Cep ">
+
+                            </div><br><br>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+
+
+                <br>
+
+
+
+
+
+
+
+                <!--Encerrar Conta-->
+                <div class="info-wrap">
+                    <div class="col-lg-3 col-md-6 info">
+                        <div class="col-lg-3 col-md-6 info">
+                            <i class="bi bi-exclamation-triangle"
+                               style="margin-top: -10px; color: red; background-color: rgb(255, 253, 253);"></i>
+                        </div>
+
+                        <h4> <strong style="padding-left: -10px;"> Mudar Status da Conta</strong></h4><br>
+
+                    </div>
+            </form>
+            <div class="row">
+                <div class="col-lg-5 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
+                    <span>Deseja mudar o status dessa conta?</span>
+
+                    @if (Model.Status)
+                    {
+                        <button asp-action="InativarCliente" asp-route-id="@Model.Id" class="btn btn-danger btn-sm"
+                                style="border-radius:8px; width: 40%" onclick="return encerrarConta()">
+                            Inativar
+                        </button>
+                    }
+                    else
+                    {
+                        <button asp-action="AtivarCliente" asp-route-id="@Model.Id" class="btn btn-success btn-sm"
+                                style="border-radius:8px; width: 40%" onclick="return encerrarConta()">
+                            Ativar
+                        </button>
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <header id="header" class="d-flex align-items-center" style="margin-top: 200px;">
+        </header>
+        <div class="footer-top" style="margin-top: -90px;">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>RaellShoes<span>.</span></h3>
+                        <p>
+                            Avenida Paulista, 9999 <br>
+                            São Paulo, SP 15370-496<br>
+                            Brasil <br><br>
+                            <strong>Telefone:</strong> 11 989462969<br>
+                            <strong>Email:</strong> raellcurvelo@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Navegue</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Masculino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Feminino</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Lançamentos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Outlet</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Redes Sociais</h4>
+                        <p>Nos siga em nossas redes socias para conhecer um pouco mais sobre a RaellShoes</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="copyright">
+                &copy; Copyright <strong><span>RaellShoes</span></strong>. Todos os direitos reservados.
+            </div>
+            <div class="credits">
+                Desenvolvido por <a href="https://www.linkedin.com/in/israel-curvelo-0a9686173/">Israel Curvelo</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+
+
+    <script>
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+
+
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    <script>
+
+        function encerrarConta() {
+            return confirm("Deseja realmente inativar este cliente?");
+
+            //Swal.fire({
+            //    title: 'Você tem certeza?',
+            //    text: "Sentiremos sua falta!",
+            //    icon: 'warning',
+            //    showCancelButton: true,
+            //    confirmButtonColor: '#3085d6',
+            //    cancelButtonColor: '#d33',
+            //    confirmButtonText: 'Sim, excluir a conta!',
+            //    cancelButtonText: 'Não tenho certeza'
+            //}).then((result) => {
+            //    if (result.isConfirmed) {
+            //        form.submit();
+            //        //Swal.fire(
+            //        //    'Sua conta foi deletada',
+            //        //    'Espero que volte logo.',
+            //        //    'success',
+            //        //)
+
+            //        setTimeout(function () {
+            //            window.location.href = "ExcluirPerfil";
+            //        }, 1200);
+            //    }
+            //})
+
+        }
+    </script>
+
+    <script>
+        function alterarPerfil() {
+
+        }
+    </script>
+
+
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -479,6 +479,48 @@ namespace RaellShoes.Controllers
 
         #endregion
 
+        #region CLIENTES
+
+        public IActionResult Clientes()
+        {
+            return View(new ClienteViewModel());            
+        }
+
+        [HttpPost]
+        public IActionResult ProcurarCliente(Cliente cliente)
+        {
+            List<Cliente> clientes = facade.ConsultarFiltroClienteAdmin(cliente);
+            return View("Clientes", new ClienteViewModel() { Clientes = clientes });
+        }
+
+        public IActionResult AtivarCliente(Cliente cliente)
+        {
+            Cliente clienteAtualizar = (Cliente)facade.ConsultarId(cliente);
+            clienteAtualizar.Status = true;
+
+            string conf = facade.Alterar(clienteAtualizar);
+
+            return RedirectToAction("Clientes");
+        }
+                
+        public IActionResult InativarCliente(Cliente cliente)
+        {
+            Cliente clienteAtualizar = (Cliente)facade.ConsultarId(cliente);
+            clienteAtualizar.Status = false;
+
+            string conf = facade.Alterar(clienteAtualizar);
+
+            return RedirectToAction("Clientes");
+        }
+                
+        public IActionResult DetalhesCliente(Cliente cliente)
+        {
+            Cliente clienteRetornado = (Cliente)facade.ConsultarId(cliente);
+            return View(clienteRetornado);
+        }
+
+        #endregion
+
         #region DASH
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
