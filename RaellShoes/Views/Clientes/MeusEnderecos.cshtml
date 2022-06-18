@@ -49,9 +49,9 @@
                                 <li><a href="/clientes/meusenderecos">Meus Endereços</a></li>
                                 <li><a href="/clientes/meuscartoes">Meus Cartões</a></li>
                                 <li><a href="/clientes/meuspedidos">Meus Pedidos</a></li>
-                                <li><a href="">Troca e Devoluções</a></li>
-                                <li><a href="">Ranking e Vales</a></li>
-                                <li><a href="">Alterar Senha</a></li>
+                                <li><a href="/clientes/troca">Troca e Devoluções</a></li>
+                                <li><a href="/clientes/rankingcupons">Ranking e Cupons</a></li>
+                                <li><a href="/clientes/alterarsenha">Alterar Senha</a></li>
                                 <li><a href="/">Sair</a></li>
                             </ul>
                         </li>
@@ -497,7 +497,7 @@
 
             if (document.getElementById(id).hidden) {
                 document.getElementById(id).hidden = false
-                document.getElementById('detalhes-endereco('+Id+')').value = "Recolher";
+                document.getElementById('detalhes-endereco(' + Id + ')').value = "Recolher";
             } else {
                 document.getElementById(id).hidden = true;
                 document.getElementById('detalhes-endereco(' + Id + ')').value = "Ver detalhes";

@@ -587,6 +587,13 @@ namespace RaellShoes.Controllers
 
         #endregion
 
+        #region RANKING
+        public IActionResult RankingCupons()
+        {
+            return View();
+        }
+        #endregion
+
         #region SENHA
 
         public IActionResult EsqueceuSenha()
@@ -660,6 +667,7 @@ namespace RaellShoes.Controllers
             return View(viewModel);
         }
         #endregion
+
 
     }
 }

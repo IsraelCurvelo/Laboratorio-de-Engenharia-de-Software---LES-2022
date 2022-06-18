@@ -64,7 +64,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(81, 1091, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52429defc2b144b3beeabc67e7b6d8a4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "03e0a789ba3640a9ba4cfe7415716d45", async() => {
                 BeginContext(87, 1078, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -105,7 +105,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n\r\n");
             EndContext();
             BeginContext(1176, 27351, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "404fc0e4d47b4034a818d05033243100", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "630a75a587f144299f2d07e34157077d", async() => {
                 BeginContext(1182, 21581, true);
                 WriteLiteral(@"
 
@@ -500,7 +500,7 @@ using RaellShoes.Models;
                 WriteLiteral("ra receber conteúdo promocionais e informativos</p>\r\n                        ");
                 EndContext();
                 BeginContext(22763, 167, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a5537bc51bd4b3cac1041a0f9d28fba", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "56aeec0d93b14b54ad7ba34f1f903c26", async() => {
                     BeginContext(22793, 130, true);
                     WriteLiteral("\r\n                            <input type=\"email\" name=\"email\"><input type=\"submit\" value=\"Inscreva-se\">\r\n                        ");
                     EndContext();

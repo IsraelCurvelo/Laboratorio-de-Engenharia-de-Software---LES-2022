@@ -57,8 +57,8 @@
                                 <li><a href="/clientes/meuscartoes">Meus Cartões</a></li>
                                 <li><a href="/clientes/meuspedidos">Meus Pedidos</a></li>
                                 <li><a href="/clientes/troca">Troca e Devoluções</a></li>
-                                <li><a href="">Ranking e Vales</a></li>
-                                <li><a href="">Alterar Senha</a></li>
+                                <li><a href="/clientes/rankingcupons">Ranking e Cupons</a></li>
+                                <li><a href="/clientes/alterarsenha">Alterar Senha</a></li>
                                 <li><a href="/">Sair</a></li>
                             </ul>
                         </li>
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        @if (Model.Pedidos.Count >0 )
+        @if (Model.Pedidos.Count > 0)
         {
             @foreach (var item in Model.Pedidos)
             {<!--Pedido-->
@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                      
+
 
                         <!--Componente de prodtos-->
                         <div class="row" id="@item.Id" style="margin-top: 40px;" hidden>
@@ -338,7 +338,7 @@
                         <!--Form-->
                         <div class="container mt-5">
                             <form asp-action="SolicitacaoTroca" class="needs-validation" novalidate>
-                                <input type="text" id="id-modal" asp-for="@Model.Troca.IddoProduto" hidden/>
+                                <input type="text" id="id-modal" asp-for="@Model.Troca.IddoProduto" hidden />
                                 <!--Solicitar Troca-->
                                 <div class="info-wrap">
                                     <div class="col-lg-3 col-md-6 info">
@@ -347,7 +347,7 @@
                                     <h4> <strong style="padding-left: 10px; color: blueviolet;"> Nos conte um pouco sobre essa solicitação</strong></h4><br>
 
 
-                                    
+
                                     <br>
 
                                     <div class="row">
@@ -355,7 +355,7 @@
                                             <span>Motivo da Troca</span>
                                             <select id="motivo-troca" class="form-select" asp-for="@Model.Troca.MotivoTroca" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.MotivoTroca >()" style="font-size:small" required onchange="mostrarExibirSolicitacao()">
                                                 <option></option>
-                                                
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -375,7 +375,7 @@
                                             <span>Tipo de reembolso desejado</span>
                                             <select class="form-select" id="tipo-reembolso" asp-for="@Model.Troca.TipoReembolso" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.TipoReembolso>()" style="font-size:small" required onchange="mostrarExibirSolicitacao()">
                                                 <option></option>
-                                                
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -383,9 +383,9 @@
                                         </div>
                                         <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="div-tamanho-troca" hidden>
                                             <span style="color: black;">Qual Tamanho?</span>
-                                            <select class="form-select" id="tamanho-troca"asp-for="@Model.Troca.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" style="font-size:small">
+                                            <select class="form-select" id="tamanho-troca" asp-for="@Model.Troca.Tamanho" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.Tamanho>()" style="font-size:small">
                                                 <option></option>
-                                                
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -396,7 +396,7 @@
                                             <span>Método de coleta</span>
                                             <select class="form-select" id="metodo-coleta" asp-for="@Model.Troca.MetodoColeta" asp-items="Html.GetEnumSelectList<RaellShoes.Models.Enums.MetodoColeta>()" style="font-size:small" required>
                                                 <option></option>
-                                               
+
                                             </select>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório
@@ -408,7 +408,7 @@
 
                                         <div class="col-lg-12 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                             <span>Comentários</span>
-                                            <textarea type="text" rows="4" class="form-control" id="comentarios" style="font-size:small"asp-for="@Model.Troca.Comentarios"
+                                            <textarea type="text" rows="4" class="form-control" id="comentarios" style="font-size:small" asp-for="@Model.Troca.Comentarios"
                                                       placeholder="Deseja realizar algum comentário?" required></textarea>
                                             <div class="invalid-feedback">
                                                 *Campo obrigatório

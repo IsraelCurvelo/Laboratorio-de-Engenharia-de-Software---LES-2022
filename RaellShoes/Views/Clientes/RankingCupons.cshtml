@@ -1,15 +1,11 @@
-﻿@model RaellShoes.Models.ViewModel.TrocaViewModel
-
-@{ViewData["Title"] = "Trocas e Devoluções";}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>RaellShoes - Troca e Devoluções</title>
+    <title>RaellShoes - Ranking e Vales</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -17,12 +13,12 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="~/assets/css/style.css" rel="stylesheet">
@@ -76,109 +72,151 @@
     <section id="cliente" class="cliente">
         <div class="container" style="padding-top: 40px; margin-bottom: -30px;">
             <div class="section-title2">
-                <h2>Trocas e <span style="color: rgb(245, 159, 0);">Devoluções </span></h2>
+                <h2>Ranking e <span style="color: rgb(13, 236, 181);">Cupons </span></h2>
             </div>
         </div>
-        @if (Model.Trocas.Count > 0)
-        {
-            @foreach (var item in Model.Trocas)
-            {
-                <!--Troca-->
-                <div class="container mt-5">
-                    <!--Box Trocas-->
-                    <div class="info-wrap" style=" border-radius:20px">
-                        <div class="row">
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
-                                <span>Número do Pedido </span>
-                                <input disabled type="textarea" name="numero-pedido" readonly class="form-control-plaintext" id="numero-pedido" value="@item.Pedido.NumeroPedido" style="color: rgb(245, 159, 0); font-weight: bold;">
-                                <br>
-                            </div>
 
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
-                                <span>Valor do produto </span>
-                                <input disabled type="textarea" name="valor-produto" readonly class="form-control-plaintext" id="valor-produto" value="R$ @item.Produto.Valor" style="color: rgb(245, 159, 0); font-weight: bold;">
-                                <br>
-                            </div>
+        <!--RANKING-->
+        <div class="container mt-5">
+            <!--Box Ranking-->
+            <div class="info-wrap" style=" border-radius:20px">
+                <div class="row">
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <i class="bi bi-star-fill" style="color: yellow; font-size: 20px;"></i><span> Posição no ranking </span>
+                        <input disabled type="textarea" name="posicao-ranking" readonly class="form-control-plaintext" id="posicao-ranking" value="92" style="color: rgb(9, 41, 59); font-weight: bold;margin-left: 30%;">
+                    </div>
 
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
-                                <span>Data da Solicitação</span>
-                                <input disabled type="text" name="data-solicitacao" readonly class="form-control-plaintext" id="data-solicitacao" value="@item.DataSolicitacao" style="color: rgb(245, 159, 0); font-weight: bold;">
-                            </div>
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
+                        <i class="bi bi-bag-fill" style="color: rgb(13, 236, 181); font-size: 20px;"></i><span> Compras efetuadas </span>
+                        <input disabled type="textarea" name="compras-efetuadas" readonly class="form-control-plaintext" id="compras-efetuadas" value="3" style="color: rgb(9, 41, 59); font-weight: bold; margin-left: 30%;">
+                        <br>
+                    </div>
 
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
-                                <span>Tipo de Reembolso</span>
-                                <input disabled type="text" name="tipo-reembolso" readonly class="form-control-plaintext" id="tipo-reembolso" value="@item.TipoReembolso" style="color: rgb(245, 159, 0); font-weight: bold;">
-                            </div>
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <i class="bi bi-calendar3" style="color: rgb(13, 236, 181); font-size: 20px;"></i><span> Data de cadastro</span>
+                        <input disabled type="text" name="data-solicitacao" readonly class="form-control-plaintext" id="data-solicitacao" value="17/12/2021" style="color: rgb(9, 41, 59); font-weight: bold; margin-left: 10%;">
+                    </div>
 
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
-                                <span>Método de coleta</span>
-                                <input disabled type="text" name="metodo-coleta" readonly class="form-control-plaintext" id="metodo-coleta" value="@item.MetodoColeta" style="color: rgb(245, 159, 0); font-weight: bold;">
-                            </div>
+                    <div class="col-lg-3 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <i class="bi bi-arrow-left-right" style="color: rgb(13, 236, 181); font-size: 20px;"></i><span> Trocas Efetuadas</span>
+                        <input disabled type="text" name="tipo-reembolso" readonly class="form-control-plaintext" id="tipo-reembolso" value="1" style="color: rgb(9, 41, 59); font-weight: bold; margin-left: 20%;">
+                    </div>
 
-                            <div class="col-lg-2 col-md-2 form-group mt-3 mt-md-0" id="comb-form">
-                                <span>Status</span>
-                                <input disabled type="text" readonly class="form-control-plaintext" name="status-produto" id="status-produto" value="@Html.DisplayFor(modelItem => item.Status)" style="color: rgb(228, 22, 193); font-weight: bold; font-style: italic;">
-                                <div class="validate"></div>
-                            </div>
-                        </div>
-                        <hr>
+                </div>
+            </div>
+        </div>
 
-                        <!--Componente de prodtos-->
-                        <div class="row" id="1" style="margin-top: 40px;">
-                            <h5><strong style="padding-left: 10px;  color:rgba(7, 6, 88, 0.466);"> Produto </strong></h5><br>
-                            <br><br>
-                            <!--Produto 1-->
-                            <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                <span></span>
-                                <img src='~/assets/img/Produtos/URLFoto/@item.Produto.URLFoto'
-                                     id="img-historico" />
-                            </div>
+        <!--CUPOM DE TROCA-->
+        <div class="container mt-5">
+            <!--Box Cupom de troca-->
+            <div class="info-wrap" style=" border-radius:20px">
+                <h5><strong style="  color: rgb(13, 236, 181);">Cupons de Troca </strong></h5><br>
 
-
-                            <div class="col-lg-10 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <span>Descrição</span>
-                                        <input disabled type="text" name="descricao" readonly class="form-control-plaintext" id="descricao" value="@item.Produto.Marca - @item.Produto.Modelo - @item.Produto.Nome ">
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <span>Tamanho</span>
-                                        <input disabled type="textarea" name="tamanho-produto" readonly class="form-control-plaintext" id="tamanho-produto" value="@Html.DisplayFor(model => item.Produto.Tamanho)">
-                                    </div>
-
-                                    <div class="col-lg-2 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
-                                        <span>Cor</span>
-                                        <input disabled type="textarea" name="cor-produto" readonly class="form-control-plaintext" id="cor-produto" value="@Html.DisplayFor(model => item.Produto.CorPrimariaProduto)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <table class="table table-hover col-lg-10">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Motivo</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Troca de Produto</td>
+                                    <td>UGDUFTFDTYD8767567JU</td>
+                                    <td>R$ 249,99</td>
+                                    <td>AGUARDANDO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Saldo Utilização de Cupom</td>
+                                    <td>YDCTDRYFYFYT6564D45S</td>
+                                    <td>R$ 48,75</td>
+                                    <td>LIBERADO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Troca de Produto</td>
+                                    <td>734FYTDDSTS445SDE66</td>
+                                    <td>R$ 49,99</td>
+                                    <td>USADO</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            }
-        }
-        else
-        {
-            <div class="container mt-5">
-                <!--Box Dados Pedido-->
-                <div class="info-wrap" style=" border-radius:20px">
-                    <div class="row">
-                        <div class="section-title">
-                            <i class="bi bi-emoji-smile" style="color: black; font-size: 300%"></i>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="section-title">
-                            <h4 style="color: black">Ainda não foi realizado uma solicitação de troca :/</h4>
-                        </div>
+
+            </div>
+
+        </div>
+
+        <!--CUPOM PROMOCIONAL-->
+        <div class="container mt-5">
+            <!--Box Cupom Promocional-->
+            <div class="info-wrap" style=" border-radius:20px">
+                <h5><strong style="  color: rgb(13, 236, 181);">Cupons Promocionais </strong></h5><br>
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-2 form-group mt-3 mt-md-0" id="comb-form" readonly>
+                        <table class="table table-hover col-lg-10">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Frete Grátis (Até R$ 20,00)</td>
+                                    <td>FRETE20</td>
+                                    <td>R$ 20,00</td>
+                                    <td>LIBERADO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>50 Reais em compras acima de R$ 1000,00</td>
+                                    <td>BUY100050OFF</td>
+                                    <td>R$ 50,00</td>
+                                    <td>LIBERADO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>5% OFF NIKE (Produtos Nike até R$999,99)</td>
+                                    <td>NIKE5OFF</td>
+                                    <td>---</td>
+                                    <td>LIBERADO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>INDIQUE E GANHE 5%</td>
+                                    <td>SHAREFRIENDS5OFF</td>
+                                    <td>---</td>
+                                    <td>USADO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Novo Usuário (10% OFF)</td>
+                                    <td>NEWUSER10</td>
+                                    <td>---</td>
+                                    <td>USADO</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        }
-
-
-
-
+        </div>
+        </div>
     </section>
 
     <!-- ======= Footer ======= -->
