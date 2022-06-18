@@ -73,7 +73,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n");
             EndContext();
             BeginContext(85, 1193, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c713088e4ee406eb596175c0e87d45f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "31f2912d07cf441f9ca1a721dc902630", async() => {
                 BeginContext(91, 1057, true);
                 WriteLiteral(@"
     <meta charset=""utf-8"">
@@ -99,7 +99,7 @@ using RaellShoes.Models;
                 WriteLiteral(" Template Main CSS File -->\r\n    ");
                 EndContext();
                 BeginContext(1148, 53, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2b1bda96b55f416d9af67bf518927f50", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8c68a49959074f8a982580be90f274c6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -118,7 +118,7 @@ using RaellShoes.Models;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(1207, 60, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0dfe162973b4615b272e8e6f3af250b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8415ac5f3ecd49958872deec7b9cb420", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -152,7 +152,7 @@ using RaellShoes.Models;
             WriteLiteral("\r\n\r\n");
             EndContext();
             BeginContext(1282, 21881, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b1ea716a7f834b77b975ae294aaa3de2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dd74d708855a47158ecdbd04c2e63f51", async() => {
                 BeginContext(1288, 2370, true);
                 WriteLiteral(@"
 
@@ -388,7 +388,7 @@ WriteAttributeValue("", 8121, Model.Pedido.Cliente.Usuario.Email, 8121, 35, fals
                         ");
                 EndContext();
                 BeginContext(8720, 141, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0aa9e7ac356d431f8b557b68162e2518", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9ccca7aa46d74c36a800f0e2673c1a1b", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -514,12 +514,12 @@ WriteAttributeValue("", 11115, Html.DisplayFor(model =>  Model.Produto.Quantidad
                 WriteLiteral("                    ");
                 EndContext();
                 BeginContext(11436, 280, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "165bd36ec97d461cb3d1c8f02f021a25", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8cf750be27f64096a80077f3391d3ce2", async() => {
                     BeginContext(11442, 73, true);
                     WriteLiteral("\r\n                        <div class=\"row\">\r\n                            ");
                     EndContext();
                     BeginContext(11515, 140, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3662465ce8b7406b898f5ad01534c313", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa55f82ef996491690c597bf2c9ce7fe", async() => {
                         BeginContext(11637, 9, true);
                         WriteLiteral("Autorizar");
                         EndContext();
@@ -573,12 +573,12 @@ WriteAttributeValue("", 11115, Html.DisplayFor(model =>  Model.Produto.Quantidad
                 WriteLiteral("\r\n                    <br>\r\n                    ");
                 EndContext();
                 BeginContext(11764, 276, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2c098345b0c43d180c116cb8d9e84e2", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ab48f4217704256967e60eab88988cb", async() => {
                     BeginContext(11770, 73, true);
                     WriteLiteral("\r\n                        <div class=\"row\">\r\n                            ");
                     EndContext();
                     BeginContext(11843, 136, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "45b401ff01194cbeaf7581b497b6e7c6", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3cac7dfa0e2418c98c3341cca651346", async() => {
                         BeginContext(11963, 7, true);
                         WriteLiteral("Recusar");
                         EndContext();
@@ -660,12 +660,12 @@ WriteAttributeValue("", 11115, Html.DisplayFor(model =>  Model.Produto.Quantidad
                 WriteLiteral("                    ");
                 EndContext();
                 BeginContext(12585, 302, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37161dc7158d4626924b136171a4336a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "90c216445aa549c2b114f42945d40555", async() => {
                     BeginContext(12591, 73, true);
                     WriteLiteral("\r\n                        <div class=\"row\">\r\n                            ");
                     EndContext();
                     BeginContext(12664, 162, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "69847f323ef44e17a9cb3c907f3843bd", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4077d0bfa4d4d26b30af72ae415c9e3", async() => {
                         BeginContext(12800, 17, true);
                         WriteLiteral("Confirmar Entrega");
                         EndContext();
@@ -766,12 +766,12 @@ WriteAttributeValue("", 11115, Html.DisplayFor(model =>  Model.Produto.Quantidad
                                     ");
                 EndContext();
                 BeginContext(14277, 346, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "09eaae243b814a92b78f81118cdb3455", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ea5471ed231e41dda5e17d44e29aacdd", async() => {
                     BeginContext(14283, 105, true);
                     WriteLiteral("\r\n                                        <div class=\"row\">\r\n                                            ");
                     EndContext();
                     BeginContext(14388, 142, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71c219c6aade4581bece285b4527cb31", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f9d8597af5c24ed79b510d0f6a571dfb", async() => {
                         BeginContext(14518, 3, true);
                         WriteLiteral("Sim");
                         EndContext();
@@ -825,12 +825,12 @@ WriteAttributeValue("", 11115, Html.DisplayFor(model =>  Model.Produto.Quantidad
                 WriteLiteral("\r\n                                </div>\r\n                                <br>\r\n                                <div class=\"row\">\r\n                                    ");
                 EndContext();
                 BeginContext(14790, 345, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4d88faa026c34cfcab7157fd87870ede", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "515181c47d594ba28ddda0473ee70d17", async() => {
                     BeginContext(14796, 105, true);
                     WriteLiteral("\r\n                                        <div class=\"row\">\r\n                                            ");
                     EndContext();
                     BeginContext(14901, 141, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d50a2aa586b4090adc898e1ed06123e", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("button", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "797e1df96bbc4805a9b1bb2209e4f29b", async() => {
                         BeginContext(15030, 3, true);
                         WriteLiteral("Não");
                         EndContext();

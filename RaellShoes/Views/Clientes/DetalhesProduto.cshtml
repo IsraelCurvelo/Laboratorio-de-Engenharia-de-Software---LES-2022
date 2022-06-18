@@ -133,11 +133,9 @@
                             <div class="portfolio-info">
                                 <h3>@Html.DisplayFor(model => Model.Marca) @Html.DisplayFor(model => Model.Modelo) - @Html.DisplayFor(model => Model.Nome) </h3>
                                 <ul>
-                                    <li>
-                                        <strong>Categoria</strong>:
-                                    </li>
+                                    <li><strong>Categoria</strong>: @Html.DisplayFor(model => Model.Categoria.Nome) </li>
                                     <li><strong>Marca</strong>: @Html.DisplayFor(model => Model.Marca)</li>
-                                    <li><strong>Data de Lançamento</strong>: @Html.DisplayFor(model => Model.DataCadastro)</li>
+                                    <li><strong>Data de Lançamento</strong>: @Html.DisplayFor(model => Model.DataCadastro.Month)/@Html.DisplayFor(model => Model.DataCadastro.Year)</li>
                                     <li><strong>URL Fabricante</strong>: </li>
                                 </ul>
                                 <br>
