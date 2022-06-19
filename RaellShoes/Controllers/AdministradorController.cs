@@ -47,18 +47,12 @@ namespace RaellShoes.Controllers
                 
                 List<Categoria> ListaCategorias = facade.ConsultarCategoriasDash();
 
-
-
-                DashViewModel dashViewModel = new DashViewModel() { MostrarGrafico = false, Categorias = ListaCategorias };
-
-                
+                DashViewModel dashViewModel = new DashViewModel() { MostrarGrafico = false, Categorias = ListaCategorias };               
 
                 return View(dashViewModel);
             }
             else
-                return RedirectToAction("Login", "Home");
-
-            
+                return RedirectToAction("Login", "Home");           
         }
 
         #endregion
@@ -524,15 +518,15 @@ namespace RaellShoes.Controllers
         #region DASH
         [HttpPost]
         public IActionResult GerarGrafico(DashViewModel dashViewModel)
-        {           
-
-            dashViewModel.MostrarGrafico = true;   
-
+        {         
+            dashViewModel.MostrarGrafico = true; 
             return View("Index", dashViewModel);
         }
 
-        //Retorna dados JSO da população de cada estado
-        public JsonResult JsonGrafico()
+        //Retorna dados JSON para o gráfico     
+
+        [HttpPost]
+        public JsonResult JsonGrafico(DashViewModel dashViewModel)
         {
             /*
             var lista = new List<DashVendasPeriodo>();
@@ -541,9 +535,8 @@ namespace RaellShoes.Controllers
             lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", "2022, 05, 09"), Casual = 310, Corrida = 360, Treino = 560, Skate = 190 });
             lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", "2022, 05, 10"), Casual = 380, Corrida = 320, Treino = 593, Skate = 220 });
             lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", "2022, 05, 11"), Casual = 390, Corrida = 380, Treino = 530, Skate = 400 });
-            */
-            DashViewModel dashViewModel = new DashViewModel() { DataInicio = new DateTime(2020, 02, 02), DataFinal = DateTime.Now };
-            var lista = new List<DashVendasPeriodo>();            
+            */            
+            var lista = new List<DashVendasPeriodo>();
             var listaPedidos = facade.GerarGrafico(dashViewModel);
             List<ProdutoPedido> listaProdutos = new List<ProdutoPedido>();
             bool conf = false;
@@ -553,233 +546,259 @@ namespace RaellShoes.Controllers
                 var listaProdutosDoPedido = facade.ConsultarProdutosDoPedido(item);
                 foreach (var produto in listaProdutosDoPedido)
                 {
+                    
                     if (produto.Categoria.Nome.ToLower() == "casual")
                     {
-                        if(lista.Count > 0)
+                        if (dashViewModel.Casual)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if(grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra)){
-                                    grafico.Casual += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
-                                }
-                                else
+                                foreach (var grafico in lista)
                                 {
-                                    conf = true;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Casual += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
+                                }
+                                if (conf)
+                                {
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Casual = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Casual = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Casual = (int)produto.ValorSubtotal });
-                        }    
+                        
                     }
                     else if (produto.Categoria.Nome.ToLower() == "corrida")
                     {
-                        if (lista.Count > 0)
+                        if (dashViewModel.Corrida)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Corrida += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Corrida += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Corrida = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Corrida = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Corrida = (int)produto.ValorSubtotal });
-                        }
+                        
                     }
                     else if (produto.Categoria.Nome.ToLower() == "treino")
                     {
-                        if(lista.Count > 0)
+                        if (dashViewModel.Treino)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Treino += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Treino += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Treino = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Treino = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Treino = (int)produto.ValorSubtotal });
-                        }                        
+                        
                     }
                     else if (produto.Categoria.Nome.ToLower() == "skate")
                     {
-                        if(lista.Count > 0)
+                        if (dashViewModel.Skateboarding)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Skate += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Skate += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Skate = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Skate = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Skate = (int)produto.ValorSubtotal });
-                        }                        
-                       
+                        
                     }
                     else if (produto.Categoria.Nome.ToLower() == "basquete")
                     {
-                        if (lista.Count > 0)
+                        if (dashViewModel.Basquete)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Basquete += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Basquete += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Basquete = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Basquete = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Basquete = (int)produto.ValorSubtotal });
-                        }
-
                     }
                     else if (produto.Categoria.Nome.ToLower() == "esporte")
                     {
-                        if (lista.Count > 0)
+                        if (dashViewModel.Esporte)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Esporte += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Esporte += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Esporte = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Esporte = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
-                        }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Esporte = (int)produto.ValorSubtotal });
-                        }
+                        }                       
 
                     }
                     else if (produto.Categoria.Nome.ToLower() == "social")
                     {
-                        if (lista.Count > 0)
+                        if (dashViewModel.Social)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Social += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Social += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Social = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Social = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Social = (int)produto.ValorSubtotal });
-                        }
-
                     }
                     else if (produto.Categoria.Nome.ToLower() == "outro")
                     {
-                        if (lista.Count > 0)
+                        if (dashViewModel.Outro)
                         {
-                            foreach (var grafico in lista)
+                            if (lista.Count > 0)
                             {
-                                if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                foreach (var grafico in lista)
                                 {
-                                    grafico.Outro += (int)produto.ValorSubtotal;
-                                    conf = false;
-                                    continue;
+                                    if (grafico.Data == String.Format("{0:dd/MM/yyyy}", item.DataCompra))
+                                    {
+                                        grafico.Outro += (int)produto.ValorSubtotal;
+                                        conf = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        conf = true;
+                                    }
                                 }
-                                else
+                                if (conf)
                                 {
-                                    conf = true;
+                                    lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Outro = (int)produto.ValorSubtotal });
+                                    conf = false;
                                 }
                             }
-                            if (conf)
+                            else
                             {
                                 lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Outro = (int)produto.ValorSubtotal });
-                                conf = false;
                             }
                         }
-                        else
-                        {
-                            lista.Add(new DashVendasPeriodo { Data = String.Format("{0:dd/MM/yyyy}", item.DataCompra), Outro = (int)produto.ValorSubtotal });
-                        }
-
                     }
                 }
             }
@@ -787,7 +806,7 @@ namespace RaellShoes.Controllers
             return Json(lista);
         }
         #endregion
-       
+
         #region Categorias
 
         public IActionResult Categorias()

@@ -23,6 +23,7 @@ namespace RaellShoes.Models.ViewModel
         public bool Corrida { get; set; }       
         public bool Outro { get; set; }
 
+        public bool Esporte { get; set; }
         public DataTable Tabela { get; set; }
 
         public DashViewModel()
@@ -39,7 +40,7 @@ namespace RaellShoes.Models.ViewModel
             
         }
 
-        public DashViewModel(DateTime dataInicio, DateTime dataFinal, bool mostrarGrafico, bool basquete, bool treino, bool casual, bool social, bool skateboarding, bool corrida, bool outro) : this(dataInicio, dataFinal, mostrarGrafico)
+        public DashViewModel(DateTime dataInicio, DateTime dataFinal, bool mostrarGrafico, bool basquete, bool treino, bool casual, bool social, bool skateboarding, bool corrida, bool outro, bool esporte) : this(dataInicio, dataFinal, mostrarGrafico)
         {
             Basquete = basquete;
             Treino = treino;
@@ -48,6 +49,7 @@ namespace RaellShoes.Models.ViewModel
             Skateboarding = skateboarding;
             Corrida = corrida;
             Outro = outro;
+            Esporte = esporte;
         }
     }
 }

@@ -126,10 +126,15 @@
                                 <input asp-for="Corrida" type="checkbox" class="form-check-input" id="corrida">
                             </div>
                             <div class="form-check form-switch">
+                                <span>Corrida</span>
+                                <input asp-for="Esporte" type="checkbox" class="form-check-input" id="esporte">
+                            </div>
+                            <div class="form-check form-switch">
                                 <span>Outro</span>
                                 <input asp-for="Outro" type="checkbox" class="form-check-input" id="outro">
-                            </div>
+                            </div>                            
                         </div>
+                       
 
                         <div class="col col-lg-6 col-md-6 form-group mt-3 mt-md-0">
 
@@ -138,12 +143,12 @@
 
                                 <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                     <span>Data inicial</span>
-                                    <input asp-for="DataInicio" class="form-control" id="data-pedido" type="date" placeholder="Data Início" required>
+                                    <input asp-for="DataInicio" class="form-control" id="datainicio" type="date" placeholder="Data Início" required>
 
                                 </div>
                                 <div class="col-lg-6 col-md-6 form-group mt-3 mt-md-0" id="comb-form">
                                     <span>Data Final</span>
-                                    <input asp-for="DataFinal" class="form-control" id="data-pedido" type="date" placeholder="Data Final" required>
+                                    <input asp-for="DataFinal" class="form-control" id="datafinal" type="date" placeholder="Data Final" required>
 
                                 </div>
 
@@ -295,13 +300,14 @@
     <script src="~/lib/jquery-ajax-unobtrusive-main/src/jquery.unobtrusive-ajax.js"></script>
 
     <script type="text/javascript">
+
         //google.charts.load('current', { 'packages': ['corechart'] });
         //google.charts.setOnLoadCallback(drawChart);
         google.charts.load('current', { packages: ['corechart', 'bar'] });
         google.charts.setOnLoadCallback(CarregaDados);
 
-        function CarregaDados() {
-           
+        function CarregaDadosAntiga() {
+
         $.ajax({
             url: '@Url.Action("JsonGrafico","Administrador")',
             dataType: "json",
@@ -317,6 +323,76 @@
         });
         return false;
         }
+
+        function CarregaDados() {
+
+            var datainicio = document.getElementById('datainicio').value;
+            var datafinal = document.getElementById('datafinal').value;
+            var basquete = document.getElementById('basquete').checked;
+            var treino = document.getElementById('treino').checked;
+            var casual = document.getElementById('casual').checked;
+            var social = document.getElementById('social').checked;
+            var skateboarding = document.getElementById('skateboarding').checked;
+            var corrida = document.getElementById('corrida').checked;
+            var outro = document.getElementById('outro').checked;
+            var esporte = document.getElementById('esporte').checked;          
+
+            
+            if (datainicio > datafinal) {
+                swal({
+                    title: "A data final deve ser maior ou igual a data de início!",
+                    text: "Por favor, revise os dados!",
+                    icon: "error",
+                });
+                return;
+            }           
+
+            if (basquete || treino || casual || social || skateboarding || corrida || outro || esporte) {
+                $.ajax({
+                    url: '@Url.Action("JsonGrafico","Administrador")',
+                    type: "POST",
+                    data: {
+                        'DataInicio': datainicio,
+                        'DataFinal': datafinal,
+                        'Basquete': basquete,
+                        'Treino': treino,
+                        'Casual': casual,
+                        'Social': social,
+                        'Skateboarding': skateboarding,
+                        'Corrida': corrida,
+                        'Outro': outro
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        toastr.error(err.message);
+                    },
+                    success: function (data) {
+                        if (data[0] != null) {
+                            GraficoVendas(data);
+                        } else {
+                            swal({
+                                title: "Não há venda nesse período para esta(s) categoria(s)!",
+                                text: "Por favor, tente novamente!",
+                                icon: "info",
+                            });
+                        }
+
+                        return false;
+                    }
+                });
+            } else { 
+                if (document.getElementById('grafico').hidden) return;
+                swal({
+                    title: "É necessário escolher pelo menos uma categoria!",
+                    text: "Por favor, revise os dados!",
+                    icon: "error",
+                });
+
+                return;
+            }
+
+        }
+   
 
         function GraficoVendas(data) {
             var dataArray = [
