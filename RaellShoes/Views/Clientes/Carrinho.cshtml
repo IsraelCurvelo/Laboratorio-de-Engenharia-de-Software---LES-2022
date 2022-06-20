@@ -1109,7 +1109,7 @@
         }
 
         //Calcular desconto do cupom escolhido
-        function calcularCupom() {
+        function calcularCupom() {           
             var cupomEscolhido = document.getElementById('cupom-carrinho').value;
             if (cupomEscolhido != null && cupomEscolhido > 0) {
                 var cupom = document.getElementById('cupom-carrinho');
@@ -1124,12 +1124,12 @@
                 var valorCupom = document.getElementById('valor-cupom').value;
                 valorCupom = valorCupom.slice(3).replace(",", ".");
                 valorCupom = parseFloat(valorCupom);
-
+                var subtotalAntes = subtotal;
                 subTotal -= valorCupom;
 
 
 
-                if (valorCupom > subTotal) {
+                if (valorCupom > subtotalAntes) {
                     document.getElementById('valor-cupom').value = "R$ 0.00";
                     document.getElementById('subtotal-3').value = document.getElementById('subtotal-2').value;
                     document.getElementById('cupom-carrinho').value = null;
