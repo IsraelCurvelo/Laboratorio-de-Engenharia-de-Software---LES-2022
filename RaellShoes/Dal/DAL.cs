@@ -17,9 +17,10 @@ namespace RaellShoes.Dal
         public DAL(DataBaseContext dbContext)
         {
             this.dbContext = dbContext;
-        }        
+        }
 
-        //MÉTODOS GENÉRICOS
+        #region METODOS GERAIS
+
         public string Cadastrar(EntidadeDominio entidadeDominio)
         {
             try
@@ -424,14 +425,14 @@ namespace RaellShoes.Dal
             }
             return null;                    
         }
-        
+
+        #endregion
+
+        #region METODOS ESPECIFICOS  
         public Cliente ConsultarEmail(String email)
         {
             return dbContext.Cliente.Include(x => x.Usuario).FirstOrDefault(x => x.Usuario.Email == email);           
-        }
-
-
-        //*********MÉTODOS ESPECIALISTA****************        
+        }          
 
         public Cliente Login(Cliente cliente)
         {
@@ -959,6 +960,6 @@ namespace RaellShoes.Dal
             return dbContext.GrupoPrecificacao.ToList();
         }
 
-
+        #endregion
     }
 }

@@ -23,7 +23,9 @@ namespace RaellShoes.Facadee
             this.dbContext = dbContext;
             dal = new DAL(dbContext);
         }
+        #region METODOS GERAIS
 
+        #region Cadastrar
 
         public String Cadastrar(EntidadeDominio entidadeDominio)
         {
@@ -122,10 +124,7 @@ namespace RaellShoes.Facadee
                 GrupoPrecificacao grupoPrecificacao = (GrupoPrecificacao)entidadeDominio;
                 return CadastrarEntidade(grupoPrecificacao, log, gerarLog);
             }
-
-
-            return null;
-            
+            return null;            
         }
 
         private string CadastrarEntidade(EntidadeDominio entidadeDominio, Log log, GerarLog gerarLog)
@@ -159,7 +158,9 @@ namespace RaellShoes.Facadee
             return resposta;
         }
 
+        #endregion
 
+        #region Alterar
         public String Alterar(EntidadeDominio entidadeDominio)
         {
             Log log = new Log();
@@ -313,11 +314,18 @@ namespace RaellShoes.Facadee
             return null;
             
         }
+        #endregion
+
+        #region Excluir
 
         public string Excluir(EntidadeDominio entidadeDominio)
         {
-           return dal.Excluir(entidadeDominio);
+            return dal.Excluir(entidadeDominio);
         }
+
+        #endregion
+
+        #region Consultar
 
         public List<EntidadeDominio> Consultar(EntidadeDominio entidadeDominio)
         {
@@ -328,7 +336,13 @@ namespace RaellShoes.Facadee
         {
             return dal.ConsultarId(entidadeDominio);
         }
-       
+        #endregion
+
+        #endregion
+
+        #region METODOS ESPECIFICOS
+
+        #region Login
 
         public Cliente ConsultarEmail(String email)
         {
@@ -342,9 +356,7 @@ namespace RaellShoes.Facadee
             string senhacrip = criptografar.Processar(cliente);
 
             cliente.Usuario.Senha = senhacrip;
-            Cliente login = dal.Login(cliente);
-
-            
+            Cliente login = dal.Login(cliente);            
 
             if (login != null) {
                 Usuario usuario = (Usuario)dal.ConsultarId(login.Usuario);
@@ -352,6 +364,10 @@ namespace RaellShoes.Facadee
             }
             return null;
         }
+
+        #endregion
+
+        #region Endereço
 
         public string CadastrarEnderecosIniciais(Cliente cliente)
         {
@@ -374,8 +390,7 @@ namespace RaellShoes.Facadee
                 enderecoEntrega = new Endereco(
                     cliente.Endereco.Apelido, cliente.Endereco.Logradouro, cliente.Endereco.Numero, cliente.Endereco.Complemento,
                     cliente.Endereco.Bairro, cliente.Endereco.Cep, cliente.Endereco.Observacoes, cliente.Endereco.Cidade,
-                    cliente.Endereco.TipoResidencia, cliente.Endereco.TipoLogradouro, TipoEndereco.Entrega);
-                
+                    cliente.Endereco.TipoResidencia, cliente.Endereco.TipoLogradouro, TipoEndereco.Entrega);                
             }
             else
             {
@@ -409,29 +424,14 @@ namespace RaellShoes.Facadee
             enderecoCobranca.ClienteId = cliente.Id;
             string confirmacaoEnderecoCobranca = Cadastrar(enderecoCobranca);
 
-
             if (confirmacaoEnderecoResidencial == null && confirmacaoEnderecoEntrega == null && confirmacaoEnderecoCobranca == null)
                 return null;
             else
                 return "Houve um erro ao cadastrar os endereços";
-
         }
-        
-        public List<Cupom> ConsultarFiltroCupom(Cupom cupom)
-        {
-            return dal.ConsultarFiltroCupom(cupom);
-        }
+        #endregion   
 
-        public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
-        {
-            return dal.ConsultarFiltroProdutos(produto);
-        } 
-        public ICollection<Produto> ConsultarFiltroProdutosAdmin(Produto produto)
-        {
-            return dal.ConsultarFiltroProdutosAdmin(produto);
-        }
-
-         
+        #region Carrinho
 
         public string ProdutoCarrinho(Produto produto, int id)
         {
@@ -467,6 +467,15 @@ namespace RaellShoes.Facadee
             else
                 return null;
         }
+
+        public Carrinho BuscarCarrinho(int idCliente)
+        {
+            return dal.BuscarCarrinho(idCliente);
+        }
+
+        #endregion
+
+        #region Pedido
 
         public Pedido RegistrarVenda(DadosPedidoViewModel dados, List<ProdutoCliente> produtoClientes)
         {
@@ -511,7 +520,6 @@ namespace RaellShoes.Facadee
             pedido.Status = Models.Enums.StatusPedido.EmProcessamento;
             pedido.DataCompra = DateTime.Now;
             pedido.FormaPagamento = Models.Enums.FormaPagamento.Credito;
-
 
             pedido.SubTotalProdutos = dados.SubTotalProdutos;
             pedido.ApelidoEnderecoEntrega = dados.ApelidoEnderecoEntrega;
@@ -584,18 +592,35 @@ namespace RaellShoes.Facadee
             }
         }
 
-        public Carrinho BuscarCarrinho(int idCliente)
+        public List<Pedido> ConsultarFiltroPedidosAdmin(Pedido pedido)
         {
-            return dal.BuscarCarrinho(idCliente);
-        } 
-        
+            return dal.ConsultarFiltroPedidoAdmin(pedido);
+        }
+
+        #endregion
+
+        #region Produto
+
         public List<ProdutoCliente> BuscaProdutoCliente(int idCliente)
         {
             return dal.BuscaProdutoCliente(idCliente);
         }
 
+        public ICollection<Produto> ConsultarFiltroProdutos(Produto produto)
+        {
+            return dal.ConsultarFiltroProdutos(produto);
+        }
+        public ICollection<Produto> ConsultarFiltroProdutosAdmin(Produto produto)
+        {
+            return dal.ConsultarFiltroProdutosAdmin(produto);
+        }
+
+        #endregion
+
+        #region Cupom
+
         public List<Cupom> BuscarCuponsCliente(int idCliente)
-        { 
+        {
             List<Cupom> cupomLista = new List<Cupom>();
             List<EntidadeDominio> cuponsClientesResult = dal.Consultar(new Cupom { ClienteId = idCliente });
             List<CupomCliente> cupomClientes = new List<CupomCliente>();
@@ -603,25 +628,28 @@ namespace RaellShoes.Facadee
             foreach (var item in cuponsClientesResult)
             {
                 cupomLista.Add((Cupom)item);
-            }   
+            }
 
             return cupomLista;
         }
 
-        public List<Pedido> ConsultarFiltroPedidosAdmin(Pedido pedido)
+        public List<Cupom> ConsultarFiltroCupom(Cupom cupom)
         {
-            return dal.ConsultarFiltroPedidoAdmin(pedido);
+            return dal.ConsultarFiltroCupom(cupom);
         }
+
+        #endregion
+
+        #region Troca
 
         public List<Troca> ConsultarFiltroTrocasAdmin(Troca troca)
         {
             return dal.ConsultarFiltroTrocasAdmin(troca);
         }
-        
-        public List<Cliente> ConsultarFiltroClienteAdmin(Cliente cliente)
-        {
-            return dal.ConsultarFiltroClienteAdmin(cliente);
-        }
+
+        #endregion
+
+        #region Dash
 
         public List<Categoria> ConsultarCategoriasDash()
         {
@@ -633,16 +661,15 @@ namespace RaellShoes.Facadee
             return dal.GerarGrafico(model);
         }
 
-        public List<ProdutoPedido> ConsultarProdutosDoPedido(Pedido pedido)
-        {
-            return dal.ConsultarProdutosDoPedido(pedido);
-        }
+        #endregion
+
+        #region Parametros
 
         public List<Categoria> ListarCategorias()
         {
             return dal.ListarCategorias();
         }
-        
+
         public List<Fornecedor> ListarFornecedores()
         {
             return dal.ListarFornecedores();
@@ -652,5 +679,22 @@ namespace RaellShoes.Facadee
             return dal.ListarGruposPrecificacao();
         }
 
+        #endregion
+
+        #region Admin
+
+        public List<Cliente> ConsultarFiltroClienteAdmin(Cliente cliente)
+        {
+            return dal.ConsultarFiltroClienteAdmin(cliente);
+        }
+
+        public List<ProdutoPedido> ConsultarProdutosDoPedido(Pedido pedido)
+        {
+            return dal.ConsultarProdutosDoPedido(pedido);
+        }
+
+        #endregion
+
+        #endregion
     }
 }
