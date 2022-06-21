@@ -1034,12 +1034,15 @@
             var subtotal = 0;
 
 
-            for (var i = 1; i <= @Model.Carrinho.Produtos.Count; i++) {
-                var auxSubtotal = document.getElementById('valor-produto(' + i + ')').value;
-                auxSubtotal = auxSubtotal.replace(",", ".");
+            for (var i = 1; i <= 20; i++) {
+                if (document.getElementById('valor-produto(' + i + ')') != null) {
+                    var auxSubtotal = document.getElementById('valor-produto(' + i + ')').value;
+                    auxSubtotal = auxSubtotal.replace(",", ".");
 
-                var floatValorUnitario = parseFloat(auxSubtotal);
-                subtotal = subtotal + floatValorUnitario;
+                    var floatValorUnitario = parseFloat(auxSubtotal);
+                    subtotal = subtotal + floatValorUnitario;
+                }
+                
             }
 
             document.getElementById('subtotal').value = "R$ " + subtotal;
